@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import FirebaseAuth
+import Firebase
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     var activeField: UITextField?
     var distance: CGFloat? = 0
+    let myFont = UIFont (name: "TimesNewRomanPS-BoldMT", size: 15)
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -45,6 +48,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         // set tap dismiss keyboard
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
+        
         
     }
     
@@ -97,16 +101,79 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    
+    func isValidEmail(emailStr:String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        
+        let emailPattern = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPattern.evaluate(with: emailStr)
+    }
+    
+    // show a toast
+    func showToast(message : String, font: UIFont) {
+
+        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 120, y: self.view.frame.size.height-100, width: 250, height: 35))
+        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        toastLabel.textColor = UIColor.white
+        toastLabel.font = font
+        toastLabel.textAlignment = .center;
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 10;
+        toastLabel.clipsToBounds  =  true
+        self.view.addSubview(toastLabel)
+        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
+             toastLabel.alpha = 0.0
+        }, completion: {(isCompleted) in
+            toastLabel.removeFromSuperview()
+        })
+    }
+    
+    // check if each field is valid
+    func isFieldsValid()->Bool?{
+        // check empty fields
+        if nameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+           emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""{
+            showToast(message: "Please fill in every field", font: myFont!)
+            return false
+        }
+        
+        // check email pattern
+        let email = emailTextField.text;
+        if !isValidEmail(emailStr: email!){
+            showToast(message: "Please enter a valid email", font: myFont!)
+            return false
+        }
+        
+        // check password length
+        let password = passwordTextField.text;
+        if password!.count < 8{
+            showToast(message: "Password is too short", font: myFont!)
+            return false
+        }
+        
+        return true
+    }
     // *** sign up ***
     
     func trySignUp() {
-        let name = nameTextField.text
+        let isValid = isFieldsValid()
         let email = emailTextField.text
         let password = passwordTextField.text
-        
-        print(name ?? "")
-        print(email ?? "")
-        print(password ?? "")
+        if isValid!{
+            Auth.auth().createUser(withEmail: email!, password: password!) { authResult, error in
+              // [START_EXCLUDE]
+                guard let user = authResult?.user, error == nil else {
+                  
+                  print("failed")
+                  return
+                }
+                // @TODO Go to login page
+                print("\(user.email!) created")
+              }
+              // [END_EXCLUDE]
+        }
     }
     
     // *** objective-c functions ***
