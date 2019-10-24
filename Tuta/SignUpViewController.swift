@@ -155,6 +155,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         return true
     }
+    
+    func showToastForRegisteredEmail() {
+        showToast(message: "This email has arealdy registered", font: myFont!)
+    }
     // *** sign up ***
     
     func trySignUp() {
@@ -165,12 +169,20 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             Auth.auth().createUser(withEmail: email!, password: password!) { authResult, error in
               // [START_EXCLUDE]
                 guard let user = authResult?.user, error == nil else {
-                  
+                    self.showToastForRegisteredEmail()
                   print("failed")
                   return
                 }
                 // @TODO Go to login page
                 print("\(user.email!) created")
+                // jump to login page
+                print("presenting logInViewController")
+                let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = sb.instantiateViewController(identifier: "logInViewController") as LogInViewController
+                vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+                vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+                self.present(vc, animated: true, completion: nil)
+                
               }
               // [END_EXCLUDE]
         }
