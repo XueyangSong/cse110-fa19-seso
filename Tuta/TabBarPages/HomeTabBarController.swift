@@ -23,7 +23,7 @@ class HomeTabBarController : UITabBarController, UITabBarControllerDelegate {
         eventViewController = EventViewController()
         searchViewController = SearchViewController()
         profileViewController = ProfileViewController()
-        self.viewControllers = [eventViewController, searchViewController, profileViewController]
+        self.viewControllers = [searchViewController, eventViewController, profileViewController]
 
         setUpTabBarItem()
         
