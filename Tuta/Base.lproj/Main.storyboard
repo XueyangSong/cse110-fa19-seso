@@ -132,7 +132,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="uS9-kc-Zlc">
             <objects>
-                <viewController id="EAJ-iC-4bq" customClass="SignUpViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signUpViewController" id="EAJ-iC-4bq" customClass="SignUpViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jjw-Wa-5Oq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -198,6 +198,73 @@
             </objects>
             <point key="canvasLocation" x="1732" y="-267"/>
         </scene>
+        <!--Item 2-->
+        <scene sceneID="OW1-6A-DSb">
+            <objects>
+                <viewController id="IDg-V9-G7j" customClass="SearchViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="44S-fg-DbI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6ai-p6-65f"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="ZG0-8Q-VTM"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8gE-Vb-2uE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4490" y="-127"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="u2t-gx-wSI">
+            <objects>
+                <viewController id="wQm-wm-JRn" customClass="ProfileViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2w6-o9-NTU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="zIr-tK-UAF"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="dtO-1s-H68"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="enB-Lh-2EA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4490" y="521"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="93Q-Qc-lN5">
+            <objects>
+                <viewController id="Suh-S8-JYv" customClass="EventViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BNl-Sc-qGv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="DMI-0e-XAt"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="zfe-24-qyp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GR5-NE-4Tb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4490" y="-779"/>
+        </scene>
+        <!--Home Tab Bar Controller-->
+        <scene sceneID="EAQ-Ss-Y0Z">
+            <objects>
+                <tabBarController storyboardIdentifier="homeTabBarController" id="HFW-nU-lyf" customClass="HomeTabBarController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mmk-UE-zQk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Suh-S8-JYv" kind="relationship" relationship="viewControllers" id="OU0-Sf-k2J"/>
+                        <segue destination="IDg-V9-G7j" kind="relationship" relationship="viewControllers" id="dHY-vA-IPj"/>
+                        <segue destination="wQm-wm-JRn" kind="relationship" relationship="viewControllers" id="9nc-Jc-EzT"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nkd-Sm-DtM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2972" y="127"/>
+        </scene>
     </scenes>
     <resources>
         <image name="backIcon" width="256" height="256"/>
@@ -205,6 +272,6 @@
         <image name="tutaLogo_1" width="360" height="127"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Djd-gn-S7J"/>
+        <segue reference="biD-n9-DuG"/>
     </inferredMetricsTieBreakers>
 </document>

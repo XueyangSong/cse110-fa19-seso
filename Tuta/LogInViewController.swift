@@ -151,14 +151,20 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         Auth.auth().signIn(withEmail: email!, password: password!) { [weak self] user, error in
           // [START_EXCLUDE]
             
-            if let error = error {
+            if error != nil {
               print("login failed")
               return
             }
             else{
                 
-              // @TODO go to main page
-              print("login successfull")
+                // @TODO go to main page
+                print("login successfull")
+                // present home tabBarController
+                let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = sb.instantiateViewController(identifier: "homeTabBarController") as HomeTabBarController
+                vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+                vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+                self!.present(vc, animated: true, completion: nil)
             }
         
         }

@@ -176,9 +176,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 // @TODO Go to login page
                 print("\(user.email!) created")
                 // jump to login page
-                print("presenting logInViewController")
+                print("presenting home page")
                 let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = sb.instantiateViewController(identifier: "logInViewController") as LogInViewController
+                let vc = sb.instantiateViewController(identifier: "homeTabBarController") as HomeTabBarController
                 vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
                 vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
                 self.present(vc, animated: true, completion: nil)
