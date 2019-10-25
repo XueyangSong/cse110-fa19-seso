@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import Firebase
+import FirebaseAuth
 class ProfileViewController: UIViewController {
 
     
@@ -31,6 +32,15 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func logOutButtonPressed(_ sender: UIButton!) {
+        
+        let firebaseAuth = Auth.auth()
+        do {
+          try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+          print ("Error signing out: %@", signOutError)
+        }
+        print("logout successful")
+        
         let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(identifier: "logInViewController") as LogInViewController
         vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
