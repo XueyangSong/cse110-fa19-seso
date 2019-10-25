@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,9 +15,16 @@
 		1F83DCEE235B301300DAFB89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F83DCED235B301300DAFB89 /* Assets.xcassets */; };
 		1F83DCF1235B301300DAFB89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F83DCEF235B301300DAFB89 /* LaunchScreen.storyboard */; };
 		1F83DCF9235B85CA00DAFB89 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83DCF8235B85CA00DAFB89 /* SignUpViewController.swift */; };
+		1F9AC507236125EE00E3A4FE /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9AC506236125EE00E3A4FE /* EventViewController.swift */; };
+		1F9AC509236125FD00E3A4FE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9AC508236125FC00E3A4FE /* SearchViewController.swift */; };
+		1F9AC50B2361260A00E3A4FE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9AC50A2361260A00E3A4FE /* ProfileViewController.swift */; };
+		1F9AC50D2361268F00E3A4FE /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9AC50C2361268F00E3A4FE /* HomeTabBarController.swift */; };
+		41338E6C235E69CC0043501B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41338E6B235E69CC0043501B /* GoogleService-Info.plist */; };
+		B833A5513440CA41B3385A11 /* Pods_Tuta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D773613C7FB2D22CCDA41F /* Pods_Tuta.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F0CC1CE008AABB03AD78858 /* Pods-Tuta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuta.debug.xcconfig"; path = "Target Support Files/Pods-Tuta/Pods-Tuta.debug.xcconfig"; sourceTree = "<group>"; };
 		1F538BF5235CEB95003795E0 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		1F83DCE1235B300C00DAFB89 /* Tuta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tuta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F83DCE4235B300C00DAFB89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -28,6 +35,13 @@
 		1F83DCF0235B301300DAFB89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F83DCF2235B301300DAFB89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F83DCF8235B85CA00DAFB89 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		1F9AC506236125EE00E3A4FE /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		1F9AC508236125FC00E3A4FE /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		1F9AC50A2361260A00E3A4FE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		1F9AC50C2361268F00E3A4FE /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
+		41338E6B235E69CC0043501B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CBC95DDDE617DF3F0EF934F6 /* Pods-Tuta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuta.release.xcconfig"; path = "Target Support Files/Pods-Tuta/Pods-Tuta.release.xcconfig"; sourceTree = "<group>"; };
+		E4D773613C7FB2D22CCDA41F /* Pods_Tuta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tuta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B833A5513440CA41B3385A11 /* Pods_Tuta.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +61,8 @@
 			children = (
 				1F83DCE3235B300C00DAFB89 /* Tuta */,
 				1F83DCE2235B300C00DAFB89 /* Products */,
+				848DB37B9286BAC8C717041D /* Pods */,
+				FA1535C3E5775DFC04522159 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +77,7 @@
 		1F83DCE3235B300C00DAFB89 /* Tuta */ = {
 			isa = PBXGroup;
 			children = (
+				1F9AC5052361254600E3A4FE /* TabBarPages */,
 				1F83DCE4235B300C00DAFB89 /* AppDelegate.swift */,
 				1F83DCE6235B300C00DAFB89 /* SceneDelegate.swift */,
 				1F83DCE8235B300C00DAFB89 /* ViewController.swift */,
@@ -68,9 +86,38 @@
 				1F83DCEF235B301300DAFB89 /* LaunchScreen.storyboard */,
 				1F83DCF2235B301300DAFB89 /* Info.plist */,
 				1F83DCF8235B85CA00DAFB89 /* SignUpViewController.swift */,
+				41338E6B235E69CC0043501B /* GoogleService-Info.plist */,
 				1F538BF5235CEB95003795E0 /* LogInViewController.swift */,
 			);
 			path = Tuta;
+			sourceTree = "<group>";
+		};
+		1F9AC5052361254600E3A4FE /* TabBarPages */ = {
+			isa = PBXGroup;
+			children = (
+				1F9AC506236125EE00E3A4FE /* EventViewController.swift */,
+				1F9AC508236125FC00E3A4FE /* SearchViewController.swift */,
+				1F9AC50A2361260A00E3A4FE /* ProfileViewController.swift */,
+				1F9AC50C2361268F00E3A4FE /* HomeTabBarController.swift */,
+			);
+			path = TabBarPages;
+			sourceTree = "<group>";
+		};
+		848DB37B9286BAC8C717041D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1F0CC1CE008AABB03AD78858 /* Pods-Tuta.debug.xcconfig */,
+				CBC95DDDE617DF3F0EF934F6 /* Pods-Tuta.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FA1535C3E5775DFC04522159 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E4D773613C7FB2D22CCDA41F /* Pods_Tuta.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,9 +127,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F83DCF5235B301300DAFB89 /* Build configuration list for PBXNativeTarget "Tuta" */;
 			buildPhases = (
+				8D1E8E43EDA07FE2E1337033 /* [CP] Check Pods Manifest.lock */,
 				1F83DCDD235B300C00DAFB89 /* Sources */,
 				1F83DCDE235B300C00DAFB89 /* Frameworks */,
 				1F83DCDF235B300C00DAFB89 /* Resources */,
+				C954FB1C1F87839F89A13D1F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F83DCF1235B301300DAFB89 /* LaunchScreen.storyboard in Resources */,
+				41338E6C235E69CC0043501B /* GoogleService-Info.plist in Resources */,
 				1F83DCEE235B301300DAFB89 /* Assets.xcassets in Resources */,
 				1F83DCEC235B300C00DAFB89 /* Main.storyboard in Resources */,
 			);
@@ -139,16 +189,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8D1E8E43EDA07FE2E1337033 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tuta-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C954FB1C1F87839F89A13D1F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Tuta/Pods-Tuta-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Tuta/Pods-Tuta-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tuta/Pods-Tuta-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1F83DCDD235B300C00DAFB89 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1F83DCE9235B300C00DAFB89 /* ViewController.swift in Sources */,
+				1F9AC509236125FD00E3A4FE /* SearchViewController.swift in Sources */,
 				1F83DCE5235B300C00DAFB89 /* AppDelegate.swift in Sources */,
 				1F83DCF9235B85CA00DAFB89 /* SignUpViewController.swift in Sources */,
 				1F83DCE7235B300C00DAFB89 /* SceneDelegate.swift in Sources */,
+				1F9AC50D2361268F00E3A4FE /* HomeTabBarController.swift in Sources */,
 				1F538BF6235CEB95003795E0 /* LogInViewController.swift in Sources */,
+				1F9AC50B2361260A00E3A4FE /* ProfileViewController.swift in Sources */,
+				1F9AC507236125EE00E3A4FE /* EventViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +386,7 @@
 		};
 		1F83DCF6235B301300DAFB89 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F0CC1CE008AABB03AD78858 /* Pods-Tuta.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -309,6 +406,7 @@
 		};
 		1F83DCF7235B301300DAFB89 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBC95DDDE617DF3F0EF934F6 /* Pods-Tuta.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
