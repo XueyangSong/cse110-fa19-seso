@@ -177,11 +177,15 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 print("\(user.email!) created")
                 // jump to login page
                 print("presenting home page")
+                Auth.auth().currentUser!.sendEmailVerification()
+                
                 let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = sb.instantiateViewController(identifier: "homeTabBarController") as HomeTabBarController
+                let vc = sb.instantiateViewController(identifier: "logInViewController") as LogInViewController
                 vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
                 vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
                 self.present(vc, animated: true, completion: nil)
+                
+                vc.showToast(message: "verification email sent", font: self.myFont!)
                 
               }
               // [END_EXCLUDE]

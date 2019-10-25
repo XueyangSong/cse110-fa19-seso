@@ -144,29 +144,40 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }
     
     // *** Log In ***
-
+    func showToastForRegisteredEmail() {
+        showToast(message: "Wrong email and password", font: myFont!)
+    }
+    
+    func showToastForVerifyEmail() {
+        showToast(message: "Please first verify your email", font: myFont!)
+    }
+    
     func tryLogIn() {
         let email = emailTextField.text
         let password = passwordTextField.text
-        Auth.auth().signIn(withEmail: email!, password: password!) { [weak self] user, error in
-          // [START_EXCLUDE]
-            
-            if error != nil {
-              print("login failed")
-              return
+        if(isFieldsValid()!){
+            Auth.auth().signIn(withEmail: email!, password: password!) { [weak self] user, error in
+                  // [START_EXCLUDE]
+                if error != nil {
+                    print("login failed")
+                    self!.showToastForRegisteredEmail()
+                    return
+                }
+                else{
+                    // @TODO go to main page
+                    if(!Auth.auth().currentUser!.isEmailVerified){
+                        self!.showToastForVerifyEmail()
+                        return
+                    }
+                    print("login successfull")
+                    // present home tabBarController
+                    let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let vc = sb.instantiateViewController(identifier: "homeTabBarController") as HomeTabBarController
+                    vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+                    vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+                    self!.present(vc, animated: true, completion: nil)
+                }
             }
-            else{
-                
-                // @TODO go to main page
-                print("login successfull")
-                // present home tabBarController
-                let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = sb.instantiateViewController(identifier: "homeTabBarController") as HomeTabBarController
-                vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
-                vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-                self!.present(vc, animated: true, completion: nil)
-            }
-        
         }
     }
 
