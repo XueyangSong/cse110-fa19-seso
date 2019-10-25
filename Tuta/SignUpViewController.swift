@@ -9,12 +9,13 @@
 import UIKit
 import FirebaseAuth
 import Firebase
-
+import FirebaseDatabase
 class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     var activeField: UITextField?
     var distance: CGFloat? = 0
-
+    // get a reference for database
+    var ref: DatabaseReference!
     let myFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
     
     @IBOutlet weak var nameTextField: UITextField!
@@ -23,7 +24,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        ref = Database.database().reference()
         setUpDelegate()
         registerForKeyboardNotifications()
     }
@@ -169,6 +170,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     func trySignUp() {
         let isValid = isFieldsValid()
+        let name = nameTextField.text
         let email = emailTextField.text
         let password = passwordTextField.text
         if isValid!{
@@ -185,6 +187,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 print("presenting home page")
                 Auth.auth().currentUser!.sendEmailVerification()
                 
+                //store user data
+                let currUser = [
+                    "username":name,
+                    "email":email
+                ]
+                
+                self.ref.child("users").child(user.uid).setValue(currUser)
                 let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = sb.instantiateViewController(identifier: "logInViewController") as LogInViewController
                 vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
