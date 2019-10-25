@@ -14,7 +14,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     var activeField: UITextField?
     var distance: CGFloat? = 0
-    let myFont = UIFont (name: "TimesNewRomanPS-BoldMT", size: 15)
+    //let myFont = UIFont (name: "TimesNewRomanPS-BoldMT", size: 20)
+    let myFont = UIFont(name: "HelveticaNeue-Light", size: 20)! //UIFont.systemFontSize)!
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -112,17 +113,22 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     // show a toast
     func showToast(message : String, font: UIFont) {
 
-        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 120, y: self.view.frame.size.height-100, width: 250, height: 35))
+        let rect = CGRect.init(x: (self.view.frame.width - 250) / 2, y: nameTextField.frame.origin.y - 55, width: 250, height: 35)
+        let toastLabel = UILabel(frame: rect)
+            //CGRect(x: self.view.frame.size.width/2 - 120, y: self.view.frame.size.height-100, width: 250, height: 35))
+        
         toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         toastLabel.textColor = UIColor.white
+        toastLabel.font = .systemFont(ofSize: 20)
         toastLabel.font = font
         toastLabel.textAlignment = .center;
         toastLabel.text = message
         toastLabel.alpha = 1.0
         toastLabel.layer.cornerRadius = 10;
-        toastLabel.clipsToBounds  =  true
+        toastLabel.clipsToBounds = true
+        
         self.view.addSubview(toastLabel)
-        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 1, delay: 2.5, options: .curveEaseOut, animations: {
              toastLabel.alpha = 0.0
         }, completion: {(isCompleted) in
             toastLabel.removeFromSuperview()
@@ -135,21 +141,21 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         if nameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
            emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""{
-            showToast(message: "Please fill in every field", font: myFont!)
+            showToast(message: "Please fill in every field", font: myFont)
             return false
         }
         
         // check email pattern
         let email = emailTextField.text;
         if !isValidEmail(emailStr: email!){
-            showToast(message: "Please enter a valid email", font: myFont!)
+            showToast(message: "Please enter a valid email", font: myFont)
             return false
         }
         
         // check password length
         let password = passwordTextField.text;
         if password!.count < 8{
-            showToast(message: "Password is too short", font: myFont!)
+            showToast(message: "Password is too short", font: myFont)
             return false
         }
         
@@ -157,7 +163,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     func showToastForRegisteredEmail() {
-        showToast(message: "This email has arealdy registered", font: myFont!)
+        showToast(message: "This email has arealdy registered", font: myFont)
     }
     // *** sign up ***
     
@@ -185,7 +191,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
                 self.present(vc, animated: true, completion: nil)
                 
-                vc.showToast(message: "verification email sent", font: self.myFont!)
+                vc.showToast(message: "verification email sent", font: self.myFont)
                 
               }
               // [END_EXCLUDE]
