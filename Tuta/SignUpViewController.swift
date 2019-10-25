@@ -15,7 +15,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     var activeField: UITextField?
     var distance: CGFloat? = 0
     //let myFont = UIFont (name: "TimesNewRomanPS-BoldMT", size: 20)
-    let myFont = UIFont(name: "HelveticaNeue-Light", size: 20)! //UIFont.systemFontSize)!
+    let myFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
