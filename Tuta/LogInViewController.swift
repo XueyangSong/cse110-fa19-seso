@@ -13,7 +13,7 @@ import FirebaseAuth
 class LogInViewController: UIViewController, UITextFieldDelegate {
     var activeField : UITextField?
     var distance : CGFloat = 0
-    let myFont = UIFont (name: "TimesNewRomanPS-BoldMT", size: 15)
+    let myFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -100,7 +100,9 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     // show a toast
     func showToast(message : String, font: UIFont) {
 
-        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 120, y: self.view.frame.size.height-100, width: 250, height: 35))
+        let rect = CGRect.init(x: (self.view.frame.width - 250) / 2, y: emailTextField.frame.origin.y - 65, width: 250, height: 35)
+        let toastLabel = UILabel(frame: rect)
+        
         toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         toastLabel.textColor = UIColor.white
         toastLabel.font = font
@@ -122,21 +124,21 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         // check empty fields
         if  emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""{
-            showToast(message: "Please fill in every field", font: myFont!)
+            showToast(message: "Please fill in every field", font: myFont)
             return false
         }
         
         // check email pattern
         let email = emailTextField.text;
         if !isValidEmail(emailStr: email!){
-            showToast(message: "Please enter a valid email", font: myFont!)
+            showToast(message: "Please enter a valid email", font: myFont)
             return false
         }
         
         // check password length
         let password = passwordTextField.text;
         if password!.count < 8{
-            showToast(message: "Password is too short", font: myFont!)
+            showToast(message: "Password is too short", font: myFont)
             return false
         }
         
@@ -145,11 +147,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     // *** Log In ***
     func showToastForRegisteredEmail() {
-        showToast(message: "Wrong email and password", font: myFont!)
+        showToast(message: "Wrong email and password", font: myFont)
     }
     
     func showToastForVerifyEmail() {
-        showToast(message: "Please first verify your email", font: myFont!)
+        showToast(message: "Please first verify your email", font: myFont)
     }
     
     func tryLogIn() {
