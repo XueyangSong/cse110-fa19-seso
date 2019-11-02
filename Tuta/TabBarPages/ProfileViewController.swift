@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
 class ProfileViewController: UIViewController {
-
+    
+    
     @IBOutlet weak var profilePictureImageView: UIImageView!
     @IBOutlet weak var genderButton: UIButton!
     @IBOutlet weak var nameButton: UIButton!
@@ -29,11 +32,42 @@ class ProfileViewController: UIViewController {
     }
     @IBAction func coursesTakenButtonPressed(_ sender: UIButton) {
     }
+    let db = Firestore.firestore()
     
     override func viewDidLoad() {
+        var user : tutaUser! = nil
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let userID = Auth.auth().currentUser?.uid
+        print(userID)
+        
+        let docRef = db.collection("user").document(userID!)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let document = document
+                if (document.exists){
+                    let name = document.get("name")!
+                    let email = document.get("email")!
+                    let gender = document.get("gender")!
+                    let description = document.get("description")
+                    let rate = document.get("rate")
+                    let picture = document.get("picture")
+                    print("\(name)")
+                    user = tutaUser(name: "\(name)", email: "\(email)", url: "\(picture)", gender: "\(gender)", rate: "\(rate)", description: "\(description)")
+                    
+                    self.nameButton.titleLabel?.text = user.name
+                    self.emailButton.titleLabel?.text = user.email
+                    self.genderButton.titleLabel?.text = user.gender ?? "drag queen"
+                    self.descriptionButton.titleLabel?.text = user.description ?? "No description"
+                    
+                    
+                }
+            } else {
+                print("Document does not exist")
+            }
+        }
+        
+        
+ 
     }
     
 
