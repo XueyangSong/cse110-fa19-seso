@@ -2,71 +2,40 @@
 //  ProfileViewController.swift
 //  Tuta
 //
-//  Created by Zhen Duan on 10/23/19.
+//  Created by Zhen Duan on 11/2/19.
 //  Copyright © 2019 Zhen Duan. All rights reserved.
 //
 
 import UIKit
-import Firebase
-import FirebaseAuth
+
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var profilePictureImageView: UIImageView!
+    @IBOutlet weak var genderButton: UIButton!
+    @IBOutlet weak var nameButton: UIButton!
+    @IBOutlet weak var rating: UILabel!
+    
+    @IBOutlet weak var emailButton: UIButton!
+    @IBOutlet weak var descriptionButton: UIButton!
+    @IBOutlet weak var coursesTakenButton: UIButton!
+    
+    @IBAction func genderButtonPressed(_ sender: UIButton) {
+    }
+    @IBAction func nameButtonPressed(_ sender: UIButton) {
+    }
+    @IBAction func emailButtonPressed(_ sender: UIButton) {
+    }
+    @IBAction func descriptionButtonPressed(_ sender: UIButton) {
+    }
+    @IBAction func coursesTakenButtonPressed(_ sender: UIButton) {
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColorFromRGB(rgbValue: 0xd9eeec)
-        addTitleLabel()
-        addLogOutButton()
+        // Do any additional setup after loading the view.
     }
     
-    func addLogOutButton() {
-        let logOutButton = UIButton(frame: CGRect(x: 0, y: 0, width: 300, height: 42))
-        logOutButton.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height * 4 / 5)
-        logOutButton.setTitle("Log Out", for: UIControl.State.normal)
-        logOutButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
-        logOutButton.setTitleColor(UIColor.gray, for: UIControl.State.selected)
-        logOutButton.backgroundColor = UIColorFromRGB(rgbValue: 0xda9833)
-        logOutButton.addTarget(self, action: #selector(logOutButtonPressed(_:)), for: .touchUpInside)
-        self.view.addSubview(logOutButton)
-    }
-    
-    @objc func logOutButtonPressed(_ sender: UIButton!) {
-        
-        let firebaseAuth = Auth.auth()
-        do {
-          try firebaseAuth.signOut()
-        } catch let signOutError as NSError {
-          print ("Error signing out: %@", signOutError)
-        }
-        print("logout successful")
-        
-        let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(identifier: "logInViewController") as LogInViewController
-        vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-        vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        self.present(vc, animated: true, completion: nil)
-    }
-    
-    func addTitleLabel() {
-        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 100))
-        titleLabel.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/3)
-        titleLabel.textAlignment = NSTextAlignment.center
-        titleLabel.text = "This page shows user's profile."
-        titleLabel.font = UIFont.systemFont(ofSize: 28.0)
-        titleLabel.textColor = UIColorFromRGB(rgbValue: 0xda9833)
-        titleLabel.numberOfLines = 3
-        self.view.addSubview(titleLabel)
-    }
-    
-    func UIColorFromRGB(rgbValue: UInt) -> UIColor {
-        return UIColor(
-            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-            alpha: CGFloat(1.0)
-        )
-    }
 
     /*
     // MARK: - Navigation
