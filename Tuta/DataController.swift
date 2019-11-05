@@ -2,7 +2,7 @@
 //  DataController.swift
 //  Tuta
 //
-//  Created by 陈明煜 on 11/4/19.
+//  Created by Mingyu Chen on 11/4/19.
 //  Copyright © 2019 Zhen Duan. All rights reserved.
 //
 
@@ -14,9 +14,8 @@ import FirebaseStorage
 class DataController{
     
     let db = Firestore.firestore()
-    var uid = "uid"
     
-    
+    /******************************FUNCTION FOR USER***********************************/
     func getUserFromCloud(userID : String, completion: @escaping ((TutaUser) -> ())){
         
         let docRef = db.collection("user").document(userID)
@@ -88,6 +87,43 @@ class DataController{
                 }
             })
         })
+    }
+    
+    /**************************************************************************************/
+    
+    
+    /*******************************FUNCTION FOR POSTCARD*********************************/
+    
+    static func getNewCardID(type : String, course : String)->String{
+        let cardID = Firestore.firestore().collection("postCard").document(type).collection(course).document().documentID
+    Firestore.firestore().collection("postCard").document(type).collection(course).document(cardID).setData(["placeHolder":"just book this place"])
+        return cardID
+    }
+    
+    func getCardFromCloud(cardID : String, type: String, course : String, completion: @escaping ((PostCard) -> ())){
+        
+        let docRef = db.collection("postCard").document(type).collection(course).document(cardID)
+        //var cardObj = PostCard()
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                    //print(document.get("eventName") as! String)
+                print("data get fetched")
+                let cardObj = PostCard(value: document.data() ?? [String:Any]())
+                completion(cardObj)
+                    
+            
+            } else {
+                print("Document does not exist")
+            }
+        }
+    }
+    
+    func uploadCardToCloud(postCard : PostCard)->Bool{
+        let docRef = db.collection("postCard").document(postCard.type).collection(postCard.course).document(postCard.cardID)
+        
+        docRef.setData(postCard.getCardData())
+        
+        return true // needs to handle error and staff later
     }
     
 }

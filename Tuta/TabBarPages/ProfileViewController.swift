@@ -34,12 +34,13 @@ class ProfileViewController: UIViewController {
     }
     let db = Firestore.firestore()
     
+    
     override func viewDidLoad() {
-        var user : tutaUser! = nil
+        var user : TutaUser! = nil
         super.viewDidLoad()
         let userID = Auth.auth().currentUser?.uid
         //print(userID)
-        
+        /*
         let docRef = db.collection("user").document(userID!)
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
@@ -52,7 +53,7 @@ class ProfileViewController: UIViewController {
                     let rate = document.get("rate")
                     let picture = document.get("picture")
                     print("\(name)")
-                    user = tutaUser(name: "\(name)", email: "\(email)", url: "\(picture)", gender: "\(gender)", rate: "\(rate)", description: "\(description)")
+                    user = TutaUser(name: "\(name)", email: "\(email)", url: "\(picture)", gender: "\(gender)", rate: "\(rate)", description: "\(description)")
                     
                     self.nameButton.titleLabel?.text = user.name
                     self.emailButton.titleLabel?.text = user.email
@@ -64,9 +65,10 @@ class ProfileViewController: UIViewController {
             } else {
                 print("Document does not exist")
             }
+ 
         }
         
-        
+        */
  
     }
     
