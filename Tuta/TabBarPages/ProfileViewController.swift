@@ -38,7 +38,7 @@ class ProfileViewController: UIViewController {
         var user : tutaUser! = nil
         super.viewDidLoad()
         let userID = Auth.auth().currentUser?.uid
-        print(userID)
+        //print(userID)
         
         let docRef = db.collection("user").document(userID!)
         docRef.getDocument { (document, error) in

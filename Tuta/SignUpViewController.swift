@@ -182,10 +182,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                   print("failed")
                   return
                 }
-                // @TODO Go to login page
-                print("\(user.email!) created")
+                
+                // print("\(user.email!) created")
                 // jump to login page
-                print("presenting home page")
+                //print("presenting home page")
                 Auth.auth().currentUser!.sendEmailVerification()
                 
                 //store user data
@@ -198,7 +198,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     "rate": "0"
                 ]
                 
-                var ref: DocumentReference? = nil
+                
                 let userID = Auth.auth().currentUser?.uid
                 self.db.collection("user").document(userID!).setData(currUser)
             
