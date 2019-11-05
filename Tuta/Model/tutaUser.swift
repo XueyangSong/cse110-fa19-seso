@@ -17,6 +17,7 @@ class TutaUser{
     var rate : Int
     var description: String
     var numRate : Int
+    var courseTaken : [String]
     
     init(){
         self.name = ""
@@ -26,11 +27,12 @@ class TutaUser{
         self.rate = 0
         self.description = ""
         self.numRate = 0
+        self.courseTaken = [String]()
         
     }
     
     init(name:String, email:String, url:String, gender:String, rate:Int, description:String,
-         numRate : Int){
+         numRate : Int, courseTaken : [String]){
         self.name = name
         self.email = email
         self.url = url
@@ -38,6 +40,7 @@ class TutaUser{
         self.rate = rate
         self.description = description
         self.numRate = numRate
+        self.courseTaken = courseTaken
     }
     
     init(value : Dictionary<String, Any>){
@@ -48,6 +51,7 @@ class TutaUser{
         self.rate = value["rate"] as? Int ?? 0
         self.description = value["description"] as? String ?? ""
         self.numRate = value["numRate"] as? Int ?? 0
+        self.courseTaken = value["courseTaken"] as? [String] ?? [String]()
     }
     
     func getUserData()-> Dictionary<String, Any>{
@@ -58,7 +62,8 @@ class TutaUser{
             "gender" : self.url,
             "rate" : self.rate,
             "description" : self.description,
-            "numRate" : self.numRate
+            "numRate" : self.numRate,
+            "courseTaken" : self.courseTaken
         ]
     }
     

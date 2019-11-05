@@ -188,14 +188,18 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 //print("presenting home page")
                 Auth.auth().currentUser!.sendEmailVerification()
                 
+                
+                
                 //store user data
-                let currUser = [
-                    "name":name,
-                    "email":email,
+                let currUser : [String: Any] = [
+                    "name": name,
+                    "email": email,
                     "gender": "",
                     "description": "",
                     "picture": "",
-                    "rate": "0"
+                    "rate": 0,
+                    "numRate" : 0,
+                    "courseTaken" : ["none"]
                 ]
                 
                 

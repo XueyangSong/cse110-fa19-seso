@@ -12,6 +12,7 @@ import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     
+    let dc = DataController()
     
     @IBOutlet weak var profilePictureImageView: UIImageView!
     @IBOutlet weak var genderButton: UIButton!
@@ -37,29 +38,29 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         var user : TutaUser! = nil
+        var x = 10
         super.viewDidLoad()
         let userID = Auth.auth().currentUser?.uid
-        //print(userID)
-        /*
+        
         let docRef = db.collection("user").document(userID!)
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let document = document
                 if (document.exists){
-                    let name = document.get("name")!
-                    let email = document.get("email")!
-                    let gender = document.get("gender")!
-                    let description = document.get("description")
-                    let rate = document.get("rate")
-                    let picture = document.get("picture")
-                    print("\(name)")
-                    user = TutaUser(name: "\(name)", email: "\(email)", url: "\(picture)", gender: "\(gender)", rate: "\(rate)", description: "\(description)")
+                    
+                   
+                    user = TutaUser(value: document.data() ?? [String:Any]())
                     
                     self.nameButton.titleLabel?.text = user.name
                     self.emailButton.titleLabel?.text = user.email
                     self.genderButton.titleLabel?.text = user.gender ?? "drag queen"
                     self.descriptionButton.titleLabel?.text = user.description ?? "No description"
+                    var courses : String = ""
+                    for item in user.courseTaken{
+                        courses = courses + item
+                    }
                     
+                    self.coursesTakenButton.titleLabel?.text = courses
                     
                 }
             } else {
@@ -68,7 +69,7 @@ class ProfileViewController: UIViewController {
  
         }
         
-        */
+        
  
     }
     

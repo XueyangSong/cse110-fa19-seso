@@ -14,6 +14,11 @@ import FirebaseStorage
 class DataController{
     
     let db = Firestore.firestore()
+    var flag : Bool
+    
+    init(){
+        self.flag = true
+    }
     
     /******************************FUNCTION FOR USER***********************************/
     func getUserFromCloud(userID : String, completion: @escaping ((TutaUser) -> ())){
