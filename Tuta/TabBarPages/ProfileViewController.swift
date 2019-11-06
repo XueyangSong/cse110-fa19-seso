@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
+import Firebase
 
 class ProfileViewController: UIViewController {
     
@@ -37,39 +38,24 @@ class ProfileViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        var user : TutaUser! = nil
-        var x = 10
+        
+        
         super.viewDidLoad()
         let userID = Auth.auth().currentUser?.uid
         
-        let docRef = db.collection("user").document(userID!)
-        docRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                let document = document
-                if (document.exists){
-                    
-                   
-                    user = TutaUser(value: document.data() ?? [String:Any]())
-                    
-                    self.nameButton.titleLabel?.text = user.name
-                    self.emailButton.titleLabel?.text = user.email
-                    self.genderButton.titleLabel?.text = user.gender ?? "drag queen"
-                    self.descriptionButton.titleLabel?.text = user.description ?? "No description"
-                    var courses : String = ""
-                    for item in user.courseTaken{
-                        courses = courses + item
-                    }
-                    
-                    self.coursesTakenButton.titleLabel?.text = courses
-                    
-                }
-            } else {
-                print("Document does not exist")
+        var user : TutaUser = TutaUser()
+        dc.getUserFromCloud(userID: userID!){(e) in user = (e)
+            self.nameButton.titleLabel?.text = user.name
+            self.emailButton.titleLabel?.text = user.email
+            self.genderButton.titleLabel?.text = user.gender ?? "drag queen"
+            self.descriptionButton.titleLabel?.text = user.description ?? "No description"
+            var courses : String = ""
+            for item in user.courseTaken{
+                courses = courses + item
             }
- 
+            self.coursesTakenButton.titleLabel?.text = courses
+            
         }
-        
-        
  
     }
     

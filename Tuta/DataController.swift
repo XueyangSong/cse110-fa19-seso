@@ -21,16 +21,14 @@ class DataController{
     }
     
     /******************************FUNCTION FOR USER***********************************/
-    func getUserFromCloud(userID : String, completion: @escaping ((TutaUser) -> ())){
+    func getUserFromCloud(userID : String, completion : @escaping ((TutaUser)->())){
         
         let docRef = db.collection("user").document(userID)
-        var userObj = TutaUser()
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                     //print(document.get("eventName") as! String)
-                print("data get fetched")
-                userObj = TutaUser(value: document.data() ?? [String:Any]())
-                completion(userObj)
+             let user = TutaUser(value: document.data() ?? [String: Any]())
+             completion(user)
                     
             
             } else {

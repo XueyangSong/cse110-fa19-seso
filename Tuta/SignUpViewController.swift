@@ -192,8 +192,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 
                 //store user data
                 let currUser : [String: Any] = [
-                    "name": name,
-                    "email": email,
+                    "name": name!,
+                    "email": email!,
                     "gender": "",
                     "description": "",
                     "picture": "",
