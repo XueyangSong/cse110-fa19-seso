@@ -11,31 +11,47 @@ import FirebaseFirestore
 import FirebaseAuth
 import Firebase
 
+
+
 class ProfileViewController: UIViewController {
-    
     let dc = DataController()
-    
+//    static var user : TutaUser = TutaUser()
+    @IBOutlet weak var DescriptionTextView: UITextView!
+
+    @IBOutlet weak var EmailLabel: UILabel!
+    @IBOutlet weak var NameLabel: UILabel!
     @IBOutlet weak var profilePictureImageView: UIImageView!
     @IBOutlet weak var genderButton: UIButton!
-    @IBOutlet weak var nameButton: UIButton!
+
     @IBOutlet weak var rating: UILabel!
     
-    @IBOutlet weak var emailButton: UIButton!
-    @IBOutlet weak var descriptionButton: UIButton!
-    @IBOutlet weak var coursesTakenButton: UIButton!
+    
+    @IBOutlet weak var CoursesTakenTextField: UITextField!
     
     @IBAction func genderButtonPressed(_ sender: UIButton) {
     }
-    @IBAction func nameButtonPressed(_ sender: UIButton) {
+    
+    @IBOutlet weak var DescriptionEditButton: UIButton!
+    
+    @IBAction func EditDescription(_ sender: Any) {
+/*        let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(identifier: "descriptionViewController") as DescriptionViewController
+        vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+        vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        self.present(vc, animated: true, completion: nil)*/
     }
-    @IBAction func emailButtonPressed(_ sender: UIButton) {
-    }
-    @IBAction func descriptionButtonPressed(_ sender: UIButton) {
-    }
-    @IBAction func coursesTakenButtonPressed(_ sender: UIButton) {
-    }
+    
+    @IBAction func CoursesTakenTextFieldChanged(_ sender: UITextField) {
+       }
+    
     let db = Firestore.firestore()
     
+    var refreshControl = UIRefreshControl()
+
+    @objc func refresh(sender:AnyObject) {
+       // Code to refresh table view
+    }
+   
     
     override func viewDidLoad() {
         
@@ -45,17 +61,23 @@ class ProfileViewController: UIViewController {
         
         var user : TutaUser = TutaUser()
         dc.getUserFromCloud(userID: userID!){(e) in user = (e)
-            self.nameButton.titleLabel?.text = user.name
-            self.emailButton.titleLabel?.text = user.email
+            
+            self.NameLabel.text = user.name
+            self.EmailLabel.text = user.email
             self.genderButton.titleLabel?.text = user.gender ?? "drag queen"
-            self.descriptionButton.titleLabel?.text = user.description ?? "No description"
+//            self.DescriptionTextField.text = user.description ?? "No description"
+            
+            self.DescriptionTextView.text = user.description ?? "please write down your description"
             var courses : String = ""
             for item in user.courseTaken{
                 courses = courses + item
             }
-            self.coursesTakenButton.titleLabel?.text = courses
+            self.CoursesTakenTextField.text = courses ?? "No course taken"
             
         }
+        
+//        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+//        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: UIControl.Event.valueChanged)
  
     }
     
