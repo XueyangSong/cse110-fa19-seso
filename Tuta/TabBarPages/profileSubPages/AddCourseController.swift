@@ -25,9 +25,10 @@ class AddCourseController:UIViewController {
         var user : TutaUser = TutaUser()
          dc.getUserFromCloud(userID: userID!){(e) in user = (e)
             user.courseTaken.append(self.AddCourseTextField.text!) 
-             self.dc.uploadUserToCloud(tutaUser: user, userId: self.userID!)
+            self.dc.uploadUserToCloud(tutaUser: user, userId: self.userID!)
          }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        let userID = Auth.auth().currentUser?.uid

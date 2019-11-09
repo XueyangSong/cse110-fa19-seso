@@ -199,7 +199,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     "picture": "",
                     "rate": 0,
                     "numRate" : 0,
-                    "courseTaken" : ["none"]
+                    "courseTaken" : [String](),
+                    "phone" : ""
                 ]
                 
                 
