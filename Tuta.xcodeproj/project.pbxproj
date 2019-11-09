@@ -17,6 +17,7 @@
 		1F83DCF1235B301300DAFB89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F83DCEF235B301300DAFB89 /* LaunchScreen.storyboard */; };
 		1F83DCF9235B85CA00DAFB89 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83DCF8235B85CA00DAFB89 /* SignUpViewController.swift */; };
 		1F9AC50D2361268F00E3A4FE /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9AC50C2361268F00E3A4FE /* HomeTabBarController.swift */; };
+		41243C45237698C400A11E82 /* ProfileDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41243C44237698C400A11E82 /* ProfileDelegate.swift */; };
 		41338E6C235E69CC0043501B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41338E6B235E69CC0043501B /* GoogleService-Info.plist */; };
 		41C8FE4F2371444A00952CFB /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C8FE4E2371444A00952CFB /* DataController.swift */; };
 		41C8FE512371450D00952CFB /* TutaUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C8FE502371450D00952CFB /* TutaUser.swift */; };
@@ -40,6 +41,7 @@
 		1F83DCF2235B301300DAFB89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F83DCF8235B85CA00DAFB89 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		1F9AC50C2361268F00E3A4FE /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
+		41243C44237698C400A11E82 /* ProfileDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDelegate.swift; sourceTree = "<group>"; };
 		41338E6B235E69CC0043501B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		41C8FE4E2371444A00952CFB /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		41C8FE502371450D00952CFB /* TutaUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutaUser.swift; sourceTree = "<group>"; };
@@ -86,18 +88,16 @@
 				41DA9771236E0E00004674E2 /* Model */,
 				1F9AC5052361254600E3A4FE /* TabBarPages */,
 				1F83DCE4235B300C00DAFB89 /* AppDelegate.swift */,
+				41C8FE4E2371444A00952CFB /* DataController.swift */,
 				1F83DCE6235B300C00DAFB89 /* SceneDelegate.swift */,
 				1F83DCE8235B300C00DAFB89 /* ViewController.swift */,
 				1F83DCEA235B300C00DAFB89 /* Main.storyboard */,
-				5AB28AEA2375091D00815A03 /* AddCourseController.swift */,
 				1F83DCED235B301300DAFB89 /* Assets.xcassets */,
 				1F83DCEF235B301300DAFB89 /* LaunchScreen.storyboard */,
 				1F83DCF2235B301300DAFB89 /* Info.plist */,
 				1F83DCF8235B85CA00DAFB89 /* SignUpViewController.swift */,
 				41338E6B235E69CC0043501B /* GoogleService-Info.plist */,
 				1F538BF5235CEB95003795E0 /* LogInViewController.swift */,
-				41C8FE4E2371444A00952CFB /* DataController.swift */,
-				5AB28AE82373FDC800815A03 /* DescriptionViewController.swift */,
 			);
 			path = Tuta;
 			sourceTree = "<group>";
@@ -105,10 +105,21 @@
 		1F9AC5052361254600E3A4FE /* TabBarPages */ = {
 			isa = PBXGroup;
 			children = (
+				41243C432376943000A11E82 /* profileSubPages */,
 				1F9AC50C2361268F00E3A4FE /* HomeTabBarController.swift */,
 				1F467B87236DFE9500A5CA59 /* ProfileViewController.swift */,
+				41243C44237698C400A11E82 /* ProfileDelegate.swift */,
 			);
 			path = TabBarPages;
+			sourceTree = "<group>";
+		};
+		41243C432376943000A11E82 /* profileSubPages */ = {
+			isa = PBXGroup;
+			children = (
+				5AB28AEA2375091D00815A03 /* AddCourseController.swift */,
+				5AB28AE82373FDC800815A03 /* DescriptionViewController.swift */,
+			);
+			path = profileSubPages;
 			sourceTree = "<group>";
 		};
 		41DA9771236E0E00004674E2 /* Model */ = {
@@ -255,6 +266,7 @@
 			files = (
 				1F83DCE9235B300C00DAFB89 /* ViewController.swift in Sources */,
 				1F83DCE5235B300C00DAFB89 /* AppDelegate.swift in Sources */,
+				41243C45237698C400A11E82 /* ProfileDelegate.swift in Sources */,
 				1F83DCF9235B85CA00DAFB89 /* SignUpViewController.swift in Sources */,
 				1F83DCE7235B300C00DAFB89 /* SceneDelegate.swift in Sources */,
 				41C8FE4F2371444A00952CFB /* DataController.swift in Sources */,

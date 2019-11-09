@@ -13,6 +13,7 @@ import FirebaseStorage
 
 class DataController{
     
+    weak var delegate: ProfileDelegate?
     let db = Firestore.firestore()
     var flag : Bool
     
@@ -28,8 +29,8 @@ class DataController{
             if let document = document, document.exists {
                     //print(document.get("eventName") as! String)
              let user = TutaUser(value: document.data() ?? [String: Any]())
+             self.delegate?.didReceiveData(user)
              completion(user)
-                    
             
             } else {
                 print("Document does not exist")

@@ -13,10 +13,11 @@ import FirebaseAuth
 import Firebase
 
 
-class DescriptionViewController:UIViewController {
-
+class DescriptionViewController:UIViewController{
+    
     let dc = DataController()
     let userID = Auth.auth().currentUser?.uid
+    var user : TutaUser = TutaUser()
     
     @IBOutlet weak var DescriptionTextView: UITextView!
     
@@ -37,10 +38,11 @@ class DescriptionViewController:UIViewController {
 
     @IBAction func EnterTapped(_ sender: Any) {
 //        let userID = Auth.auth().currentUser?.uid
-        var user : TutaUser = TutaUser()
-        dc.getUserFromCloud(userID: userID!){(e) in user = (e)
-            user.description = self.DescriptionTextView.text!
-            self.dc.uploadUserToCloud(tutaUser: user, userId: self.userID!)
+        
+        dc.getUserFromCloud(userID: userID!){(e) in self.user = (e)
+            self.user.description = self.DescriptionTextView.text!
+            self.dc.uploadUserToCloud(tutaUser: self.user, userId: self.userID!)
+            
         }
     }
     
@@ -54,5 +56,6 @@ extension DescriptionViewController : UITextViewDelegate{
         textView.resignFirstResponder()
         return true
     }
+    
 }
 

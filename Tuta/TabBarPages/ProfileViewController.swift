@@ -15,6 +15,8 @@ import Firebase
 
 class ProfileViewController: UIViewController {
     let dc = DataController()
+    var user : TutaUser = TutaUser()
+    let userID = Auth.auth().currentUser?.uid
 //    static var user : TutaUser = TutaUser()
     @IBOutlet weak var DescriptionTextView: UITextView!
 
@@ -57,28 +59,37 @@ class ProfileViewController: UIViewController {
         
         
         super.viewDidLoad()
-        let userID = Auth.auth().currentUser?.uid
+        dc.delegate = self
         
-        var user : TutaUser = TutaUser()
-        dc.getUserFromCloud(userID: userID!){(e) in user = (e)
+        dc.getUserFromCloud(userID: self.userID!){(e) in self.user = (e)
             
-            self.NameLabel.text = user.name
-            self.EmailLabel.text = user.email
-            self.genderButton.titleLabel?.text = user.gender ?? "drag queen"
-//            self.DescriptionTextField.text = user.description ?? "No description"
+            self.NameLabel.text = self.user.name
+            self.EmailLabel.text = self.user.email
+            self.genderButton.titleLabel?.text = self.user.gender
             
-            self.DescriptionTextView.text = user.description ?? "please write down your description"
+            self.DescriptionTextView.text = self.user.description
             var courses : String = ""
-            for item in user.courseTaken{
+            for item in self.user.courseTaken{
                 courses = courses + item
             }
-            self.CoursesTakenTextField.text = courses ?? "No course taken"
+            self.CoursesTakenTextField.text = courses
             
         }
         
 //        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
 //        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: UIControl.Event.valueChanged)
  
+    }
+    
+    func updateTextField(user: TutaUser){
+        self.genderButton.titleLabel?.text = user.gender
+        self.DescriptionTextView.text = user.description
+        var courses : String = ""
+        for item in user.courseTaken{
+            courses = courses + item
+        }
+        self.CoursesTakenTextField.text = courses
+        print("updated " + self.DescriptionTextView.text)
     }
     
 
@@ -91,5 +102,23 @@ class ProfileViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+}
 
+extension ProfileViewController: ProfileDelegate {
+    
+    
+    func didReceiveData(_ user: TutaUser) {
+        self.user = user
+        print("did receieve: " + self.user.description)
+        DescriptionTextView.text = self.user.description
+        genderButton.titleLabel?.text = self.user.description
+        var courses : String = ""
+        for item in self.user.courseTaken{
+            courses = courses + item
+        }
+        CoursesTakenTextField.text = courses
+        print("did updated " + DescriptionTextView.text)
+    }
+    
+    
 }
