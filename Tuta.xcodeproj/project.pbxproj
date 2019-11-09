@@ -21,6 +21,8 @@
 		41C8FE4F2371444A00952CFB /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C8FE4E2371444A00952CFB /* DataController.swift */; };
 		41C8FE512371450D00952CFB /* TutaUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C8FE502371450D00952CFB /* TutaUser.swift */; };
 		41C8FE532371492600952CFB /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C8FE522371492600952CFB /* PostCard.swift */; };
+		490AB898237693E000C63347 /* SearchPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB897237693E000C63347 /* SearchPageViewController.swift */; };
+		490AB89A2376984D00C63347 /* PostcardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB8992376984D00C63347 /* PostcardTableViewCell.swift */; };
 		5AB28AE92373FDC900815A03 /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB28AE82373FDC800815A03 /* DescriptionViewController.swift */; };
 		5AB28AEB2375091D00815A03 /* AddCourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB28AEA2375091D00815A03 /* AddCourseController.swift */; };
 		B833A5513440CA41B3385A11 /* Pods_Tuta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D773613C7FB2D22CCDA41F /* Pods_Tuta.framework */; };
@@ -44,6 +46,8 @@
 		41C8FE4E2371444A00952CFB /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		41C8FE502371450D00952CFB /* TutaUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutaUser.swift; sourceTree = "<group>"; };
 		41C8FE522371492600952CFB /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
+		490AB897237693E000C63347 /* SearchPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageViewController.swift; sourceTree = "<group>"; };
+		490AB8992376984D00C63347 /* PostcardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostcardTableViewCell.swift; sourceTree = "<group>"; };
 		5AB28AE82373FDC800815A03 /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		5AB28AEA2375091D00815A03 /* AddCourseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseController.swift; sourceTree = "<group>"; };
 		CBC95DDDE617DF3F0EF934F6 /* Pods-Tuta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuta.release.xcconfig"; path = "Target Support Files/Pods-Tuta/Pods-Tuta.release.xcconfig"; sourceTree = "<group>"; };
@@ -89,6 +93,8 @@
 				1F83DCE6235B300C00DAFB89 /* SceneDelegate.swift */,
 				1F83DCE8235B300C00DAFB89 /* ViewController.swift */,
 				1F83DCEA235B300C00DAFB89 /* Main.storyboard */,
+				490AB897237693E000C63347 /* SearchPageViewController.swift */,
+				490AB8992376984D00C63347 /* PostcardTableViewCell.swift */,
 				5AB28AEA2375091D00815A03 /* AddCourseController.swift */,
 				1F83DCED235B301300DAFB89 /* Assets.xcassets */,
 				1F83DCEF235B301300DAFB89 /* LaunchScreen.storyboard */,
@@ -256,11 +262,13 @@
 				1F83DCE9235B300C00DAFB89 /* ViewController.swift in Sources */,
 				1F83DCE5235B300C00DAFB89 /* AppDelegate.swift in Sources */,
 				1F83DCF9235B85CA00DAFB89 /* SignUpViewController.swift in Sources */,
+				490AB89A2376984D00C63347 /* PostcardTableViewCell.swift in Sources */,
 				1F83DCE7235B300C00DAFB89 /* SceneDelegate.swift in Sources */,
 				41C8FE4F2371444A00952CFB /* DataController.swift in Sources */,
 				1F467B88236DFE9500A5CA59 /* ProfileViewController.swift in Sources */,
 				5AB28AEB2375091D00815A03 /* AddCourseController.swift in Sources */,
 				41C8FE512371450D00952CFB /* TutaUser.swift in Sources */,
+				490AB898237693E000C63347 /* SearchPageViewController.swift in Sources */,
 				5AB28AE92373FDC900815A03 /* DescriptionViewController.swift in Sources */,
 				1F9AC50D2361268F00E3A4FE /* HomeTabBarController.swift in Sources */,
 				1F538BF6235CEB95003795E0 /* LogInViewController.swift in Sources */,
