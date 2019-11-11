@@ -20,10 +20,11 @@ class ProfileViewController: UIViewController {
 //    static var user : TutaUser = TutaUser()
     @IBOutlet weak var DescriptionTextView: UITextView!
 
+    @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var EmailLabel: UILabel!
     @IBOutlet weak var NameLabel: UILabel!
     @IBOutlet weak var profilePictureImageView: UIImageView!
-    @IBOutlet weak var genderButton: UIButton!
+   
 
     @IBOutlet weak var rating: UILabel!
     
@@ -65,7 +66,7 @@ class ProfileViewController: UIViewController {
             
             self.NameLabel.text = self.user.name
             self.EmailLabel.text = self.user.email
-            self.genderButton.titleLabel?.text = self.user.gender
+            self.genderLabel.text = self.user.gender
             
             self.DescriptionTextView.text = self.user.description
             var courses : String = ""
@@ -82,7 +83,7 @@ class ProfileViewController: UIViewController {
     }
     
     func updateTextField(user: TutaUser){
-        self.genderButton.titleLabel?.text = user.gender
+        self.genderLabel.text = user.gender
         self.DescriptionTextView.text = user.description
         var courses : String = ""
         for item in user.courseTaken{
@@ -111,7 +112,7 @@ extension ProfileViewController: ProfileDelegate {
         self.user = user
         print("did receieve: " + self.user.description)
         DescriptionTextView.text = self.user.description
-        genderButton.titleLabel?.text = self.user.description
+        genderLabel.text = self.user.description
         var courses : String = ""
         for item in self.user.courseTaken{
             courses = courses + item

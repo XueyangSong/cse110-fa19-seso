@@ -13,6 +13,7 @@ import FirebaseFirestore
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var genderField: UISegmentedControl!
     var activeField: UITextField?
     var distance: CGFloat? = 0
     // get a reference for database
@@ -194,18 +195,19 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 let currUser : [String: Any] = [
                     "name": name!,
                     "email": email!,
-                    "gender": "",
+                    "gender": self.genderField.titleForSegment(at: self.genderField.selectedSegmentIndex),
                     "description": "",
                     "picture": "",
                     "rate": 0,
                     "numRate" : 0,
                     "courseTaken" : [String](),
                     "phone" : ""
+                    
                 ]
                 
                 
                 let userID = Auth.auth().currentUser?.uid
-                self.db.collection("user").document(userID!).setData(currUser)
+                self.db.collection("users").document(userID!).setData(currUser)
             
                 
                 let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
