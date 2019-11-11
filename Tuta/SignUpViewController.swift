@@ -9,13 +9,15 @@
 import UIKit
 import FirebaseAuth
 import Firebase
-import FirebaseDatabase
+import FirebaseFirestore
+
 class SignUpViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var genderField: UISegmentedControl!
     var activeField: UITextField?
     var distance: CGFloat? = 0
     // get a reference for database
-    var ref: DatabaseReference!
+    let db = Firestore.firestore()
     let myFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
     
     @IBOutlet weak var nameTextField: UITextField!
@@ -24,7 +26,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        ref = Database.database().reference()
+        
         setUpDelegate()
         registerForKeyboardNotifications()
     }
@@ -181,19 +183,33 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                   print("failed")
                   return
                 }
-                // @TODO Go to login page
-                print("\(user.email!) created")
+                
+                // print("\(user.email!) created")
                 // jump to login page
-                print("presenting home page")
+                //print("presenting home page")
                 Auth.auth().currentUser!.sendEmailVerification()
                 
+                
+                
                 //store user data
-                let currUser = [
-                    "username":name,
-                    "email":email
+                let currUser : [String: Any] = [
+                    "name": name!,
+                    "email": email!,
+                    "gender": self.genderField.titleForSegment(at: self.genderField.selectedSegmentIndex),
+                    "description": "",
+                    "picture": "",
+                    "rate": 0,
+                    "numRate" : 0,
+                    "courseTaken" : [String](),
+                    "phone" : ""
+                    
                 ]
                 
-                self.ref.child("users").child(user.uid).setValue(currUser)
+                
+                let userID = Auth.auth().currentUser?.uid
+                self.db.collection("users").document(userID!).setData(currUser)
+            
+                
                 let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = sb.instantiateViewController(identifier: "logInViewController") as LogInViewController
                 vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal

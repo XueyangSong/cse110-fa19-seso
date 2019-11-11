@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F467B88236DFE9500A5CA59 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F467B87236DFE9500A5CA59 /* ProfileViewController.swift */; };
 		1F538BF6235CEB95003795E0 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F538BF5235CEB95003795E0 /* LogInViewController.swift */; };
 		1F83DCE5235B300C00DAFB89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83DCE4235B300C00DAFB89 /* AppDelegate.swift */; };
 		1F83DCE7235B300C00DAFB89 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83DCE6235B300C00DAFB89 /* SceneDelegate.swift */; };
@@ -15,16 +16,22 @@
 		1F83DCEE235B301300DAFB89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F83DCED235B301300DAFB89 /* Assets.xcassets */; };
 		1F83DCF1235B301300DAFB89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F83DCEF235B301300DAFB89 /* LaunchScreen.storyboard */; };
 		1F83DCF9235B85CA00DAFB89 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83DCF8235B85CA00DAFB89 /* SignUpViewController.swift */; };
-		1F9AC507236125EE00E3A4FE /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9AC506236125EE00E3A4FE /* EventViewController.swift */; };
-		1F9AC509236125FD00E3A4FE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9AC508236125FC00E3A4FE /* SearchViewController.swift */; };
-		1F9AC50B2361260A00E3A4FE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9AC50A2361260A00E3A4FE /* ProfileViewController.swift */; };
 		1F9AC50D2361268F00E3A4FE /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9AC50C2361268F00E3A4FE /* HomeTabBarController.swift */; };
 		41338E6C235E69CC0043501B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41338E6B235E69CC0043501B /* GoogleService-Info.plist */; };
+		41C8FE4F2371444A00952CFB /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C8FE4E2371444A00952CFB /* DataController.swift */; };
+		41C8FE512371450D00952CFB /* TutaUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C8FE502371450D00952CFB /* TutaUser.swift */; };
+		490AB8A42376D87400C63347 /* SearchPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB897237693E000C63347 /* SearchPageViewController.swift */; };
+		490AB8A52376D88C00C63347 /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C8FE522371492600952CFB /* PostCard.swift */; };
+		490AB8A62376D89400C63347 /* PostcardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB8992376984D00C63347 /* PostcardTableViewCell.swift */; };
+		490AB8AA2377706A00C63347 /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB8A92377706A00C63347 /* DescriptionViewController.swift */; };
+		490AB8AC2377708300C63347 /* AddCourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB8AB2377708300C63347 /* AddCourseController.swift */; };
+		490AB8AE237772AF00C63347 /* ProfileDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB8AD237772AF00C63347 /* ProfileDelegate.swift */; };
 		B833A5513440CA41B3385A11 /* Pods_Tuta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D773613C7FB2D22CCDA41F /* Pods_Tuta.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1F0CC1CE008AABB03AD78858 /* Pods-Tuta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuta.debug.xcconfig"; path = "Target Support Files/Pods-Tuta/Pods-Tuta.debug.xcconfig"; sourceTree = "<group>"; };
+		1F467B87236DFE9500A5CA59 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1F538BF5235CEB95003795E0 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		1F83DCE1235B300C00DAFB89 /* Tuta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tuta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F83DCE4235B300C00DAFB89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -35,11 +42,18 @@
 		1F83DCF0235B301300DAFB89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F83DCF2235B301300DAFB89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F83DCF8235B85CA00DAFB89 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		1F9AC506236125EE00E3A4FE /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
-		1F9AC508236125FC00E3A4FE /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		1F9AC50A2361260A00E3A4FE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1F9AC50C2361268F00E3A4FE /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		41338E6B235E69CC0043501B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		41C8FE4E2371444A00952CFB /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		41C8FE502371450D00952CFB /* TutaUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutaUser.swift; sourceTree = "<group>"; };
+		41C8FE522371492600952CFB /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
+		490AB897237693E000C63347 /* SearchPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageViewController.swift; sourceTree = "<group>"; };
+		490AB8992376984D00C63347 /* PostcardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostcardTableViewCell.swift; sourceTree = "<group>"; };
+		490AB8A92377706A00C63347 /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DescriptionViewController.swift; path = Tuta/TabBarPages/profileSubPages/DescriptionViewController.swift; sourceTree = "<group>"; };
+		490AB8AB2377708300C63347 /* AddCourseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddCourseController.swift; path = Tuta/TabBarPages/profileSubPages/AddCourseController.swift; sourceTree = "<group>"; };
+		490AB8AD237772AF00C63347 /* ProfileDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileDelegate.swift; path = Tuta/TabBarPages/ProfileDelegate.swift; sourceTree = "<group>"; };
+		5AB28AE82373FDC800815A03 /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
+		5AB28AEA2375091D00815A03 /* AddCourseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseController.swift; sourceTree = "<group>"; };
 		CBC95DDDE617DF3F0EF934F6 /* Pods-Tuta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuta.release.xcconfig"; path = "Target Support Files/Pods-Tuta/Pods-Tuta.release.xcconfig"; sourceTree = "<group>"; };
 		E4D773613C7FB2D22CCDA41F /* Pods_Tuta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tuta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -59,6 +73,9 @@
 		1F83DCD8235B300C00DAFB89 = {
 			isa = PBXGroup;
 			children = (
+				490AB8AD237772AF00C63347 /* ProfileDelegate.swift */,
+				490AB8AB2377708300C63347 /* AddCourseController.swift */,
+				490AB8A92377706A00C63347 /* DescriptionViewController.swift */,
 				1F83DCE3235B300C00DAFB89 /* Tuta */,
 				1F83DCE2235B300C00DAFB89 /* Products */,
 				848DB37B9286BAC8C717041D /* Pods */,
@@ -77,17 +94,23 @@
 		1F83DCE3235B300C00DAFB89 /* Tuta */ = {
 			isa = PBXGroup;
 			children = (
+				41DA9771236E0E00004674E2 /* Model */,
 				1F9AC5052361254600E3A4FE /* TabBarPages */,
 				1F83DCE4235B300C00DAFB89 /* AppDelegate.swift */,
 				1F83DCE6235B300C00DAFB89 /* SceneDelegate.swift */,
 				1F83DCE8235B300C00DAFB89 /* ViewController.swift */,
 				1F83DCEA235B300C00DAFB89 /* Main.storyboard */,
+				490AB897237693E000C63347 /* SearchPageViewController.swift */,
+				490AB8992376984D00C63347 /* PostcardTableViewCell.swift */,
+				5AB28AEA2375091D00815A03 /* AddCourseController.swift */,
 				1F83DCED235B301300DAFB89 /* Assets.xcassets */,
 				1F83DCEF235B301300DAFB89 /* LaunchScreen.storyboard */,
 				1F83DCF2235B301300DAFB89 /* Info.plist */,
 				1F83DCF8235B85CA00DAFB89 /* SignUpViewController.swift */,
 				41338E6B235E69CC0043501B /* GoogleService-Info.plist */,
 				1F538BF5235CEB95003795E0 /* LogInViewController.swift */,
+				41C8FE4E2371444A00952CFB /* DataController.swift */,
+				5AB28AE82373FDC800815A03 /* DescriptionViewController.swift */,
 			);
 			path = Tuta;
 			sourceTree = "<group>";
@@ -95,12 +118,19 @@
 		1F9AC5052361254600E3A4FE /* TabBarPages */ = {
 			isa = PBXGroup;
 			children = (
-				1F9AC506236125EE00E3A4FE /* EventViewController.swift */,
-				1F9AC508236125FC00E3A4FE /* SearchViewController.swift */,
-				1F9AC50A2361260A00E3A4FE /* ProfileViewController.swift */,
 				1F9AC50C2361268F00E3A4FE /* HomeTabBarController.swift */,
+				1F467B87236DFE9500A5CA59 /* ProfileViewController.swift */,
 			);
 			path = TabBarPages;
+			sourceTree = "<group>";
+		};
+		41DA9771236E0E00004674E2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				41C8FE502371450D00952CFB /* TutaUser.swift */,
+				41C8FE522371492600952CFB /* PostCard.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		848DB37B9286BAC8C717041D /* Pods */ = {
@@ -236,15 +266,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				490AB8AE237772AF00C63347 /* ProfileDelegate.swift in Sources */,
+				490AB8AC2377708300C63347 /* AddCourseController.swift in Sources */,
+				490AB8AA2377706A00C63347 /* DescriptionViewController.swift in Sources */,
+				490AB8A62376D89400C63347 /* PostcardTableViewCell.swift in Sources */,
+				490AB8A52376D88C00C63347 /* PostCard.swift in Sources */,
+				490AB8A42376D87400C63347 /* SearchPageViewController.swift in Sources */,
 				1F83DCE9235B300C00DAFB89 /* ViewController.swift in Sources */,
-				1F9AC509236125FD00E3A4FE /* SearchViewController.swift in Sources */,
 				1F83DCE5235B300C00DAFB89 /* AppDelegate.swift in Sources */,
 				1F83DCF9235B85CA00DAFB89 /* SignUpViewController.swift in Sources */,
 				1F83DCE7235B300C00DAFB89 /* SceneDelegate.swift in Sources */,
+				41C8FE4F2371444A00952CFB /* DataController.swift in Sources */,
+				1F467B88236DFE9500A5CA59 /* ProfileViewController.swift in Sources */,
+				41C8FE512371450D00952CFB /* TutaUser.swift in Sources */,
 				1F9AC50D2361268F00E3A4FE /* HomeTabBarController.swift in Sources */,
 				1F538BF6235CEB95003795E0 /* LogInViewController.swift in Sources */,
-				1F9AC50B2361260A00E3A4FE /* ProfileViewController.swift in Sources */,
-				1F9AC507236125EE00E3A4FE /* EventViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,71 +2,97 @@
 //  ProfileViewController.swift
 //  Tuta
 //
-//  Created by Zhen Duan on 10/23/19.
+//  Created by Zhen Duan on 11/2/19.
 //  Copyright © 2019 Zhen Duan. All rights reserved.
 //
 
 import UIKit
-import Firebase
+import FirebaseFirestore
 import FirebaseAuth
-class ProfileViewController: UIViewController {
+import Firebase
 
+
+
+class ProfileViewController: UIViewController {
+    let dc = DataController()
+    var user : TutaUser = TutaUser()
+    let userID = Auth.auth().currentUser?.uid
+//    static var user : TutaUser = TutaUser()
+    @IBOutlet weak var DescriptionTextView: UITextView!
+
+    @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var EmailLabel: UILabel!
+    @IBOutlet weak var NameLabel: UILabel!
+    @IBOutlet weak var profilePictureImageView: UIImageView!
+   
+
+    @IBOutlet weak var rating: UILabel!
+    
+    
+    @IBOutlet weak var CoursesTakenTextField: UITextField!
+    
+    @IBAction func genderButtonPressed(_ sender: UIButton) {
+    }
+    
+    @IBOutlet weak var DescriptionEditButton: UIButton!
+    
+    @IBAction func EditDescription(_ sender: Any) {
+/*        let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(identifier: "descriptionViewController") as DescriptionViewController
+        vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+        vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        self.present(vc, animated: true, completion: nil)*/
+    }
+    
+    @IBAction func CoursesTakenTextFieldChanged(_ sender: UITextField) {
+       }
+    
+    let db = Firestore.firestore()
+    
+    var refreshControl = UIRefreshControl()
+
+    @objc func refresh(sender:AnyObject) {
+       // Code to refresh table view
+    }
+   
     
     override func viewDidLoad() {
+        
+        
         super.viewDidLoad()
-
-        self.view.backgroundColor = UIColorFromRGB(rgbValue: 0xd9eeec)
-        addTitleLabel()
-        addLogOutButton()
-    }
-    
-    func addLogOutButton() {
-        let logOutButton = UIButton(frame: CGRect(x: 0, y: 0, width: 300, height: 42))
-        logOutButton.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height * 4 / 5)
-        logOutButton.setTitle("Log Out", for: UIControl.State.normal)
-        logOutButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
-        logOutButton.setTitleColor(UIColor.gray, for: UIControl.State.selected)
-        logOutButton.backgroundColor = UIColorFromRGB(rgbValue: 0xda9833)
-        logOutButton.addTarget(self, action: #selector(logOutButtonPressed(_:)), for: .touchUpInside)
-        self.view.addSubview(logOutButton)
-    }
-    
-    @objc func logOutButtonPressed(_ sender: UIButton!) {
+        dc.delegate = self
         
-        let firebaseAuth = Auth.auth()
-        do {
-          try firebaseAuth.signOut()
-        } catch let signOutError as NSError {
-          print ("Error signing out: %@", signOutError)
+        dc.getUserFromCloud(userID: self.userID!){(e) in self.user = (e)
+            
+            self.NameLabel.text = self.user.name
+            self.EmailLabel.text = self.user.email
+            self.genderLabel.text = self.user.gender
+            
+            self.DescriptionTextView.text = self.user.description
+            var courses : String = ""
+            for item in self.user.courseTaken{
+                courses = courses + item
+            }
+            self.CoursesTakenTextField.text = courses
+            
         }
-        print("logout successful")
         
-        let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(identifier: "logInViewController") as LogInViewController
-        vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-        vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        self.present(vc, animated: true, completion: nil)
+//        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+//        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: UIControl.Event.valueChanged)
+ 
     }
     
-    func addTitleLabel() {
-        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 100))
-        titleLabel.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/3)
-        titleLabel.textAlignment = NSTextAlignment.center
-        titleLabel.text = "This page shows user's profile."
-        titleLabel.font = UIFont.systemFont(ofSize: 28.0)
-        titleLabel.textColor = UIColorFromRGB(rgbValue: 0xda9833)
-        titleLabel.numberOfLines = 3
-        self.view.addSubview(titleLabel)
+    func updateTextField(user: TutaUser){
+        self.genderLabel.text = user.gender
+        self.DescriptionTextView.text = user.description
+        var courses : String = ""
+        for item in user.courseTaken{
+            courses = courses + item
+        }
+        self.CoursesTakenTextField.text = courses
+        print("updated " + self.DescriptionTextView.text)
     }
     
-    func UIColorFromRGB(rgbValue: UInt) -> UIColor {
-        return UIColor(
-            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-            alpha: CGFloat(1.0)
-        )
-    }
 
     /*
     // MARK: - Navigation
@@ -77,5 +103,23 @@ class ProfileViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+}
 
+extension ProfileViewController: ProfileDelegate {
+    
+    
+    func didReceiveData(_ user: TutaUser) {
+        self.user = user
+        print("did receieve: " + self.user.description)
+        DescriptionTextView.text = self.user.description
+        genderLabel.text = self.user.description
+        var courses : String = ""
+        for item in self.user.courseTaken{
+            courses = courses + item
+        }
+        CoursesTakenTextField.text = courses
+        print("did updated " + DescriptionTextView.text)
+    }
+    
+    
 }
