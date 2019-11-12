@@ -41,7 +41,7 @@ class DescriptionViewController:UIViewController{
         
         dc.getUserFromCloud(userID: userID!){(e) in self.user = (e)
             self.user.description = self.DescriptionTextView.text!
-            self.dc.uploadUserToCloud(tutaUser: self.user, userId: self.userID!)
+            self.dc.uploadUserToCloud(tutaUser: self.user)
             
         }
     }

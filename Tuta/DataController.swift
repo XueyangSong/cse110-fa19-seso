@@ -39,8 +39,8 @@ class DataController{
         
     }
     
-    func uploadUserToCloud(tutaUser : TutaUser, userId : String)->Bool{
-        let docRef = db.collection("users").document(userId)
+    func uploadUserToCloud(tutaUser : TutaUser)->Bool{
+        let docRef = db.collection("users").document(tutaUser.uid)
         docRef.setData(tutaUser.getUserData())
         return true
     }
@@ -65,19 +65,19 @@ class DataController{
         return downloadURL
     }
     
-    func uploadProfilePic(img1 :UIImage, user: TutaUser, userID:String,completion: @escaping ((String) -> Void)){
+    func uploadProfilePic(img1 :UIImage, user: TutaUser, completion: @escaping ((String) -> Void)){
         
         let uploadData = img1.jpegData(compressionQuality: 0.3)!
         //var data = NSData()
         //data = UIImageJPEGRepresentation(img1, 0.8)! as NSData
         // set upload path
-        let filePath = "\(userID)" // path where you wanted to store img in storage
+        let filePath = "\(user.uid)" // path where you wanted to store img in storage
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpeg"
         var downloadURL = ""
         let storageRef = Storage.storage().reference()
         let imageName = NSUUID().uuidString
-        let storeImage = storageRef.child("Images").child(userID).child(imageName)
+        let storeImage = storageRef.child("Images").child(user.uid).child(imageName)
         var strURL = ""
         storeImage.putData(uploadData, metadata: metaData, completion: { (metaData, error) in
             storeImage.downloadURL(completion: { (url, error) in
@@ -87,7 +87,7 @@ class DataController{
                     print(strURL)
                     //print("///////////tttttttt//////// \(strURL)   ////////")
                     user.url = strURL
-                    self.uploadUserToCloud(tutaUser: user, userId: userID)
+                    self.uploadUserToCloud(tutaUser: user)
                     completion(strURL)
                 }
             })
