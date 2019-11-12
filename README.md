@@ -13,7 +13,7 @@ Jiahe Liu
 
 ## **Contribution**
 1. Fork it
-2. Create your feature branch (git checkout -b <branchname>)
+2. Create your feature branch (git checkout -b \<branchname\>)
 3. Add your modified files and Commit your changes (git commit -m 'commit message')
 4. Push your branch (git push \<your_fork_branch_git_url\> \<branchname\>)
 5. Merge your code to master
