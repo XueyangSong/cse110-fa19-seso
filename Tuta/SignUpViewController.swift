@@ -201,8 +201,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     "rate": 0,
                     "numRate" : 0,
                     "courseTaken" : [String](),
-                    "phone" : ""
-                    
+                    "phone" : "",
+                    "uid" : Auth.auth().currentUser!.uid
                 ]
                 
                 
