@@ -63,7 +63,7 @@ class TutaUser{
             "name" : self.name,
             "email" : self.email,
             "url" : self.url,
-            "gender" : self.url,
+            "gender" : self.gender,
             "rate" : self.rate,
             "description" : self.description,
             "numRate" : self.numRate,
@@ -71,9 +71,6 @@ class TutaUser{
             "phone" : self.phone
         ]
     }
-    
-    
-    
     
 }
 

@@ -13,36 +13,38 @@ import Firebase
 
 
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController{
     let dc = DataController()
     var user : TutaUser = TutaUser()
     let userID = Auth.auth().currentUser?.uid
-//    static var user : TutaUser = TutaUser()
-    @IBOutlet weak var DescriptionTextView: UITextView!
 
+    var imgUrl = ""
+    var imagePicker = UIImagePickerController()
+    var imageData = Data()
+    let defaultProfile = Bundle.main.path(forResource: "stu-1", ofType: "jpg")
+
+    
+    @IBOutlet weak var DescriptionText: UITextField!
+    
     @IBOutlet weak var genderLabel: UILabel!
+    
     @IBOutlet weak var EmailLabel: UILabel!
+    
     @IBOutlet weak var NameLabel: UILabel!
+    
     @IBOutlet weak var profilePictureImageView: UIImageView!
-   
+    
+    @IBOutlet weak var numberRate: UILabel!
+    
+    @IBOutlet weak var phoneLabel: UILabel!
 
+    @IBAction func uploadAvatar(_ sender: UIButton) {
+       present(imagePicker, animated: true, completion: nil)
+    }
+    
     @IBOutlet weak var rating: UILabel!
     
-    
     @IBOutlet weak var CoursesTakenTextField: UITextField!
-    
-    @IBAction func genderButtonPressed(_ sender: UIButton) {
-    }
-    
-    @IBOutlet weak var DescriptionEditButton: UIButton!
-    
-    @IBAction func EditDescription(_ sender: Any) {
-/*        let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(identifier: "descriptionViewController") as DescriptionViewController
-        vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
-        vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        self.present(vc, animated: true, completion: nil)*/
-    }
     
     @IBAction func CoursesTakenTextFieldChanged(_ sender: UITextField) {
        }
@@ -55,20 +57,18 @@ class ProfileViewController: UIViewController {
        // Code to refresh table view
     }
    
-    
     override func viewDidLoad() {
         
         
         super.viewDidLoad()
         dc.delegate = self
-        
         dc.getUserFromCloud(userID: self.userID!){(e) in self.user = (e)
             
             self.NameLabel.text = self.user.name
             self.EmailLabel.text = self.user.email
             self.genderLabel.text = self.user.gender
-            
-            self.DescriptionTextView.text = self.user.description
+            self.phoneLabel.text = self.user.phone
+            self.DescriptionText.text = self.user.description
             var courses : String = ""
             for item in self.user.courseTaken{
                 courses = courses + item
@@ -76,21 +76,33 @@ class ProfileViewController: UIViewController {
             self.CoursesTakenTextField.text = courses
             
         }
-        
-//        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-//        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: UIControl.Event.valueChanged)
- 
+        imgUrl = self.user.url
+        if(imgUrl == ""){}
+        else{
+        imageData = try!Data(contentsOf: URL(string:imgUrl) ??  URL(fileURLWithPath: defaultProfile!))
+        self.profilePictureImageView.image = UIImage(data : imageData)
+        }
+        imagePicker.allowsEditing = true
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+
     }
     
     func updateTextField(user: TutaUser){
-        self.genderLabel.text = user.gender
-        self.DescriptionTextView.text = user.description
+        self.DescriptionText.text = user.description
+        imgUrl = self.user.url
+        if(imgUrl == ""){}
+        else{
+        imageData = try!Data(contentsOf: URL(string:imgUrl) ??  URL(fileURLWithPath: defaultProfile!))
+        self.profilePictureImageView.image = UIImage(data : imageData)
+        }
+        self.profilePictureImageView.image = UIImage(data : imageData)
         var courses : String = ""
         for item in user.courseTaken{
             courses = courses + item
         }
         self.CoursesTakenTextField.text = courses
-        print("updated " + self.DescriptionTextView.text)
+        print("updated " + self.DescriptionText.text!)
     }
     
 
@@ -111,15 +123,43 @@ extension ProfileViewController: ProfileDelegate {
     func didReceiveData(_ user: TutaUser) {
         self.user = user
         print("did receieve: " + self.user.description)
-        DescriptionTextView.text = self.user.description
-        genderLabel.text = self.user.description
+        DescriptionText.text = self.user.description
+        imgUrl = self.user.url
+        if(imgUrl == ""){}
+        else{
+        imageData = try!Data(contentsOf: URL(string:imgUrl) ??  URL(fileURLWithPath: defaultProfile!))
+        self.profilePictureImageView.image = UIImage(data : imageData)
+        }
+        self.profilePictureImageView.image = UIImage(data : imageData)
         var courses : String = ""
         for item in self.user.courseTaken{
             courses = courses + item
         }
         CoursesTakenTextField.text = courses
-        print("did updated " + DescriptionTextView.text)
+        print("did updated " + DescriptionText.text!)
     }
     
+}
+
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+     func imagePickerController( _ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            profilePictureImageView.contentMode = .scaleAspectFit
+            profilePictureImageView.image = pickedImage
+        }
+        
+        picker.dismiss(animated: true, completion: nil)
+         if profilePictureImageView.image != nil{
+            dc.uploadProfilePic(img1: profilePictureImageView.image!, user: self.user, userID: userID!){(url) in
+                 self.imgUrl = (url)}
+            print(self.imgUrl)
+            print("upload a picture")
+         }
+    }
     
+     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+
 }
