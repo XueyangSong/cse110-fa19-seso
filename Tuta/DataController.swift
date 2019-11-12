@@ -45,10 +45,10 @@ class DataController{
         return true
     }
     
-    func getDownloadURL(path:String)->String{
+    func getDownloadURL(uid: String, user: TutaUser)->String{
         let storageRef = Storage.storage().reference()
         var downloadURL = ""
-        storageRef.child(path).downloadURL { url, error in
+        storageRef.child("Images").child(uid).child(user.url).downloadURL { url, error in
           if let error = error {
             // Handle any errors
             downloadURL = "get url failed"
@@ -65,7 +65,7 @@ class DataController{
         return downloadURL
     }
     
-    func uploadProfilePic(img1 :UIImage, userID:String,completion: @escaping ((String) -> Void)){
+    func uploadProfilePic(img1 :UIImage, user: TutaUser, userID:String,completion: @escaping ((String) -> Void)){
         
         let uploadData = img1.jpegData(compressionQuality: 0.3)!
         //var data = NSData()
@@ -86,11 +86,13 @@ class DataController{
                     strURL = urlText
                     print(strURL)
                     //print("///////////tttttttt//////// \(strURL)   ////////")
-
+                    user.url = strURL
+                    self.uploadUserToCloud(tutaUser: user, userId: userID)
                     completion(strURL)
                 }
             })
         })
+
     }
     
     /**************************************************************************************/
