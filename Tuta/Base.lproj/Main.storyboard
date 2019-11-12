@@ -741,7 +741,6 @@
                                     <color key="titleColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="BackButton:" destination="Wuk-N8-FyK" eventType="touchUpInside" id="bdX-pu-eUd"/>
                                     <segue destination="cKR-m2-OON" kind="presentation" identifier="finishDescription" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="DGJ-KP-53a"/>
                                 </connections>
                             </button>
@@ -767,7 +766,8 @@
         <image name="tutaLogo_1" width="360" height="127"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="S1w-tn-AbY"/>
+        <segue reference="Ies-go-XMi"/>
+        <segue reference="DGJ-KP-53a"/>
         <segue reference="Djd-gn-S7J"/>
     </inferredMetricsTieBreakers>
 </document>
