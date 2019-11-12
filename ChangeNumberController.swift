@@ -16,6 +16,7 @@ class ChangeNumberController:UIViewController{
     
     let dc = DataController()
     let userID = Auth.auth().currentUser?.uid
+    var user:TutaUser = TutaUser()
     
     @IBOutlet weak var numberText: UITextField!
     
@@ -29,6 +30,9 @@ class ChangeNumberController:UIViewController{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        dc.getUserFromCloud(userID: self.userID!){(e) in self.user = (e)
+            self.numberText.text = self.user.phone
+        }
 //        numberText.delegate = self
         
     }
