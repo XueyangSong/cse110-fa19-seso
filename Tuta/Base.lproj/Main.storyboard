@@ -558,7 +558,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Edit"/>
                                 <connections>
-                                    <action selector="EditDescription:" destination="cKR-m2-OON" eventType="touchUpInside" id="3oU-MM-Ehq"/>
                                     <segue destination="Wuk-N8-FyK" kind="presentation" modalPresentationStyle="fullScreen" id="Ies-go-XMi"/>
                                 </connections>
                             </button>
@@ -608,7 +607,7 @@
                                     </segue>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="No Description" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VDy-3l-LNL">
+                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="No Description" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VDy-3l-LNL">
                                 <rect key="frame" x="39" y="488" width="346" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -768,7 +767,6 @@
         <image name="tutaLogo_1" width="360" height="127"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ELe-XS-7nM"/>
         <segue reference="S1w-tn-AbY"/>
         <segue reference="Djd-gn-S7J"/>
     </inferredMetricsTieBreakers>
