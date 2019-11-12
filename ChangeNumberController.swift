@@ -24,7 +24,7 @@ class ChangeNumberController:UIViewController{
         var user : TutaUser = TutaUser()
         dc.getUserFromCloud(userID: userID!){(e) in user = (e)
             user.phone = self.numberText.text!
-            self.dc.uploadUserToCloud(tutaUser: user, userId: self.userID!)
+            self.dc.uploadUserToCloud(tutaUser: user)
         }
     }
     override func viewDidLoad() {

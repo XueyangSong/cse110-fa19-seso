@@ -71,7 +71,7 @@ class ProfileViewController: UIViewController{
             self.DescriptionText.text = self.user.description
             var courses : String = ""
             for item in self.user.courseTaken{
-                courses = courses + item
+                courses = courses + item + " "
             }
             self.CoursesTakenTextField.text = courses
             
@@ -133,7 +133,7 @@ extension ProfileViewController: ProfileDelegate {
         self.profilePictureImageView.image = UIImage(data : imageData)
         var courses : String = ""
         for item in self.user.courseTaken{
-            courses = courses + item
+            courses = courses + item + " "
         }
         CoursesTakenTextField.text = courses
         print("did updated " + DescriptionText.text!)
@@ -151,7 +151,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         
         picker.dismiss(animated: true, completion: nil)
          if profilePictureImageView.image != nil{
-            dc.uploadProfilePic(img1: profilePictureImageView.image!, user: self.user, userID: userID!){(url) in
+            dc.uploadProfilePic(img1: profilePictureImageView.image!, user: self.user){(url) in
                  self.imgUrl = (url)}
             print(self.imgUrl)
             print("upload a picture")
