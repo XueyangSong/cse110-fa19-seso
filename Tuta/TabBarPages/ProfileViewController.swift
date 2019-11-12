@@ -90,6 +90,7 @@ class ProfileViewController: UIViewController{
     
     func updateTextField(user: TutaUser){
         self.DescriptionText.text = user.description
+        self.phoneLabel.text = user.phone
         imgUrl = self.user.url
         if(imgUrl == ""){}
         else{
@@ -124,6 +125,7 @@ extension ProfileViewController: ProfileDelegate {
         self.user = user
         print("did receieve: " + self.user.description)
         DescriptionText.text = self.user.description
+        self.phoneLabel.text = user.phone
         imgUrl = self.user.url
         if(imgUrl == ""){}
         else{
