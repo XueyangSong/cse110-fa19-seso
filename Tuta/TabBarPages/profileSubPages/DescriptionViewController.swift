@@ -21,11 +21,6 @@ class DescriptionViewController:UIViewController{
     
     @IBOutlet weak var DescriptionTextView: UITextView!
     
-
-    @IBAction func BackButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        let userID = Auth.auth().currentUser?.uid
