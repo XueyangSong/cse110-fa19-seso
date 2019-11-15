@@ -47,11 +47,11 @@ class PostCard{
         self.type = value["type"] as? String ?? ""
         self.cardID = value["cardID"] as? String ?? ""
     }
-    
+    /*
     func setUpCardID(){
         self.cardID = DataController.getNewCardID(type: self.type, course: self.course)
     }
-    
+    */
     func getCardData() -> Dictionary<String, Any>{
         return [
             "cardId" : self.cardID,

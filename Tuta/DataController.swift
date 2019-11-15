@@ -132,4 +132,40 @@ class DataController{
         return true // needs to handle error and staff later
     }
     
+    /**************************************************************************************/
+    
+    
+    /*******************************FUNCTION FOR EVENTS*********************************/
+    
+    static func getNewEventID()->String{
+        let eid = Firestore.firestore().collection("events").document().documentID
+        Firestore.firestore().collection("events").document(eid).setData(["placeHolder":"just book this place"])
+        return eid
+    }
+    
+    func getEventFromCloud(at path: String, completion: @escaping ((Event) -> ())) {
+        let ref = db.collection("events").document(path)
+        ref.getDocument { (document, error) in
+            if let document = document, document.exists {
+                //let dictionaries = snapshot?.documents.compactMap({$0.data()}) ?? []
+                //let addresses = dictionaries.compactMap({Address($0)})
+                let event = Event(value: document.data() ?? [String:Any]())
+                completion(event)
+            }
+            else{
+            }
+        }
+    }
+    
+    func uploadEventToCloud(event : Event)->Bool{
+        let docRef = db.collection("events").document(event.eventID)
+        let tutorRef = db.collection("users").document(event.tutorID)
+        let studentRef = db.collection("users").document(event.studentID)
+        docRef.setData(event.getEventData())
+        tutorRef.updateData(["events": FieldValue.arrayUnion([event.tutorID])])
+        studentRef.updateData(["events": FieldValue.arrayUnion([event.tutorID])])
+        
+        return true
+    }
+    
 }

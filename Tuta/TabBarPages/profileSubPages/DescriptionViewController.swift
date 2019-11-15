@@ -21,16 +21,14 @@ class DescriptionViewController:UIViewController{
     
     @IBOutlet weak var DescriptionTextView: UITextView!
     
-
-    @IBAction func BackButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        let userID = Auth.auth().currentUser?.uid
         DescriptionTextView.delegate = self
         DescriptionTextView.sizeThatFits(CGSize(width: DescriptionTextView.frame.size.width, height: DescriptionTextView.frame.size.height))
+        dc.getUserFromCloud(userID: self.userID!){(e) in self.user = (e)
+            self.DescriptionTextView.text = self.user.description
+        }
 //        print(type(of: DescriptionTextView))
 //        print(type(of: self))
         //DescriptionButton.backgroundColor = ;
