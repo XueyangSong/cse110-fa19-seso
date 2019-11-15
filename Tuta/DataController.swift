@@ -162,8 +162,8 @@ class DataController{
         let tutorRef = db.collection("users").document(event.tutorID)
         let studentRef = db.collection("users").document(event.studentID)
         docRef.setData(event.getEventData())
-        tutorRef.updateData(["events": FieldValue.arrayUnion([event.tutorID])])
-        studentRef.updateData(["events": FieldValue.arrayUnion([event.tutorID])])
+        tutorRef.updateData(["events": FieldValue.arrayUnion([event.eventID])])
+        studentRef.updateData(["events": FieldValue.arrayUnion([event.eventID])])
         
         return true
     }

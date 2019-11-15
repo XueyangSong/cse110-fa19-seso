@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var logoImageView: UIImageView!
@@ -49,12 +50,9 @@ class ViewController: UIViewController {
         
         // have an account label
         
-        
-        
-        
     }
-
-
+    
 }
+
 
 
