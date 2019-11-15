@@ -20,6 +20,7 @@ class TutaUser{
     var courseTaken : [String]
     var phone : String
     var uid : String
+    var events : [String]
     
     init(){
         self.name = ""
@@ -32,11 +33,11 @@ class TutaUser{
         self.courseTaken = [String]()
         self.phone = ""
         self.uid = ""
-        
+        self.events = [String]()
     }
     
     init(name:String, email:String, url:String, gender:String, rate:Int, description:String,
-         numRate : Int, courseTaken : [String], phone : String, uid : String){
+         numRate : Int, courseTaken : [String], phone : String, uid : String, events : [String]){
         self.name = name
         self.email = email
         self.url = url
@@ -47,6 +48,7 @@ class TutaUser{
         self.courseTaken = courseTaken
         self.phone = phone
         self.uid = uid
+        self.events = events
     }
     
     init(value : [String: Any]){
@@ -60,6 +62,7 @@ class TutaUser{
         self.courseTaken = value["courseTaken"] as? [String] ?? [String]()
         self.phone = value["phone"] as? String ?? ""
         self.uid = value["uid"] as? String ?? ""
+        self.events = value["events"] as? [String] ?? [String]()
     }
     
     func getUserData()-> [String: Any]{
@@ -73,7 +76,8 @@ class TutaUser{
             "numRate" : self.numRate,
             "courseTaken" : self.courseTaken,
             "phone" : self.phone,
-            "uid" : self.uid
+            "uid" : self.uid,
+            "events": self.events
         ]
     }
     
