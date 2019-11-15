@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
+
 class LogInViewController: UIViewController, UITextFieldDelegate {
     var activeField : UITextField?
     var distance : CGFloat = 0
@@ -31,14 +32,12 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setUp()
     }
 
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
         deregisterForKeyboardNorifications()
     }
 
@@ -51,6 +50,9 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     func setUpDelegate() {
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        /*
+        let signUpVC = storyboard?.instantiateViewController(identifier: "SignUpViewController") as! SignUpViewController
+        signUpVC.signUpDelegate = self*/
     }
 
     func registerForKeyboardNotifications() {
@@ -217,3 +219,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     */
 
 }
+
+/*
+extension LogInViewController: SignUpDelegate{
+    func didReceiveData(value: String) {
+        showToast(message: value, font: myFont)
+    }
+}
+*/

@@ -11,11 +11,18 @@ import FirebaseAuth
 import Firebase
 import FirebaseFirestore
 
+/*
+protocol SignUpDelegate: class{
+    func didReceiveData(value: String)
+}
+*/
 class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var genderField: UISegmentedControl!
     var activeField: UITextField?
     var distance: CGFloat? = 0
+    //weak var signUpDelegate: SignUpDelegate?
+    
     // get a reference for database
     let db = Firestore.firestore()
     let myFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
@@ -188,7 +195,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 // jump to login page
                 //print("presenting home page")
                 Auth.auth().currentUser!.sendEmailVerification()
-                
+                //self.signUpDelegate?.didReceiveData(value: "Verification email has been sent")
                 
                 
                 //store user data
@@ -202,7 +209,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     "numRate" : 0,
                     "courseTaken" : [String](),
                     "phone" : "",
-                    "uid" : Auth.auth().currentUser!.uid
+                    "uid" : Auth.auth().currentUser!.uid,
+                    "events": [String]()
                 ]
                 
                 
