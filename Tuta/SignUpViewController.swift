@@ -205,12 +205,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     "gender": self.genderField.titleForSegment(at: self.genderField.selectedSegmentIndex),
                     "description": "",
                     "picture": "",
-                    "rate": 0,
+                    "rate": 0.0,
                     "numRate" : 0,
                     "courseTaken" : [String](),
                     "phone" : "",
                     "uid" : Auth.auth().currentUser!.uid,
-                    "events": [String]()
+                    "events": [String](),
+                    "postCards": [String]()
                 ]
                 
                 
@@ -224,7 +225,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
                 self.present(vc, animated: true, completion: nil)
                 
-                vc.showToast(message: "verification email sent", font: self.myFont)
+                //vc.showToast(message: "verification email sent", font: self.myFont)
                 
               }
               // [END_EXCLUDE]
