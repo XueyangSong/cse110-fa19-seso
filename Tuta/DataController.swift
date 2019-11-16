@@ -142,7 +142,7 @@ class DataController{
     
     func uploadCardToCloud(postCard : PostCard)->Bool{
         let docRef = db.collection("postCards").document(postCard.type).collection(postCard.course).document(postCard.cardID)
-        let userRef = db.collection("users").document(postCard.creator)
+        let userRef = db.collection("users").document(postCard.creatorID)
         docRef.setData(postCard.getCardData())
         userRef.updateData(["postCards": FieldValue.arrayUnion([postCard.cardID])])
         
