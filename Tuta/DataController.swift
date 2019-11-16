@@ -114,7 +114,7 @@ class DataController{
             if let document = document, document.exists {
                     //print(document.get("eventName") as! String)
                 print("data get fetched")
-                let cardObj = PostCard(postDic: document.data() ?? [String:Any]())
+                let cardObj = PostCard(value: document.data() ?? [String:Any]())
                 completion(cardObj)
                     
             

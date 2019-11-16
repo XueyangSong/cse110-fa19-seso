@@ -83,7 +83,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
             post = posts[indexPath.row]
         }
 
-        let postCardObj = PostCard(postDic:post)
+        let postCardObj = PostCard(value:post)
         let postDic = postCardObj.getCardData()
         // TODO: Here we might want to create a post object.
         // TODO: if let maybe safer!

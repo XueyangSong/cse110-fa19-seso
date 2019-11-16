@@ -46,17 +46,17 @@ class PostCard{
         self.numOfRatings = numOfRatings
     }
     
-    init(postDic : Dictionary<String, Any>){
-        self.description = postDic["description"] as? String ?? ""
-        self.date = postDic["date"] as? String ?? ""
-        self.time = postDic["time"] as? String ?? ""
-        self.userID = postDic["userID"] as? String ?? ""
-        self.username = postDic["username"] as? String ?? ""
-        self.course = postDic["course"] as? String ?? ""
-        self.type = postDic["type"] as? String ?? ""
-        self.cardID = postDic["cardID"] as? String ?? ""
-        self.rating = postDic["rating"] as? String ?? ""
-        self.numOfRatings = postDic["numOfRatings"] as? String ?? ""
+    init(value : Dictionary<String, Any>){
+        self.description = value["description"] as? String ?? ""
+        self.date = value["date"] as? String ?? ""
+        self.time = value["time"] as? String ?? ""
+        self.userID = value["userID"] as? String ?? ""
+        self.username = value["username"] as? String ?? ""
+        self.course = value["course"] as? String ?? ""
+        self.type = value["type"] as? String ?? ""
+        self.cardID = value["cardID"] as? String ?? ""
+        self.rating = value["rating"] as? String ?? ""
+        self.numOfRatings = value["numOfRatings"] as? String ?? ""
     }
     /*
     func setUpCardID(){
