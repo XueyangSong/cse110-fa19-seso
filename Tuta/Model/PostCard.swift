@@ -19,6 +19,7 @@ class PostCard{
     var type : String
     var numRate: Int
     var rate: Double
+
     
     init(){
         self.cardID = "no card ID"
@@ -31,15 +32,18 @@ class PostCard{
         self.type = ""
         self.rate = 0.0
         self.numRate = 0
+
     }
     
-    init(userID : String, username: String, description : String, date : String, time : String, cardID : String, course : String, type : String, rate: Double, numRate: Int){
+    init(creatorID : String, creatorName: String, description : String, date : String, time : String, 
+         cardID : String, course : String, type : String, rate: Double, numRate: Int){
+
         self.cardID = cardID
         self.description = description
         self.date = date
         self.time = time
-        self.creatorID = userID
-        self.creatorName = username
+        self.creatorID = creatorID
+        self.creatorName = creatorName
         self.course = course
         self.type = type
         self.rate = rate
@@ -75,6 +79,7 @@ class PostCard{
             "type" : self.type,
             "rate" : self.rate,
             "numRate": self.numRate
+
         ]
     }
     
