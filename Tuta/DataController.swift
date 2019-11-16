@@ -108,13 +108,13 @@ class DataController{
     
     func getCardFromCloud(cardID : String, type: String, course : String, completion: @escaping ((PostCard) -> ())){
         
-        let docRef = db.collection("postCard").document(type).collection(course).document(cardID)
+        let docRef = db.collection("postCards").document(type).collection(course).document(cardID)
         //var cardObj = PostCard()
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                     //print(document.get("eventName") as! String)
                 print("data get fetched")
-                let cardObj = PostCard(value: document.data() ?? [String:Any]())
+                let cardObj = PostCard(postDic: document.data() ?? [String:Any]())
                 completion(cardObj)
                     
             
@@ -123,6 +123,23 @@ class DataController{
             }
         }
     }
+
+    
+    func getCardsCollection(type: String, course: String, completion: @escaping (([[String:Any]]) -> Void)) {
+        var cards = [[String:Any]]()
+        let ref = db.collection("postCards").document(type).collection(course)
+        ref.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    cards.append(document.data())
+                }
+                completion(cards)
+            }
+        }
+    }
+    
     
     func uploadCardToCloud(postCard : PostCard)->Bool{
         let docRef = db.collection("postCard").document(postCard.type).collection(postCard.course).document(postCard.cardID)
