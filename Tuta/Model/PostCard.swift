@@ -16,6 +16,8 @@ class PostCard{
     var creator : String
     var course :  String
     var type : String
+    var rate : Double
+    var numRate : Int
     
     init(){
         self.cardID = "no card ID"
@@ -25,10 +27,12 @@ class PostCard{
         self.creator = ""
         self.course = ""
         self.type = ""
+        self.rate = 0.0
+        self.numRate = 0
     }
     
     init(creator : String, description : String, date : String,
-         time : String, cardID : String, course : String, type : String){
+         time : String, cardID : String, course : String, type : String, rate: Double, numRate: Int){
         self.cardID = cardID
         self.description = description
         self.date = date
@@ -36,6 +40,8 @@ class PostCard{
         self.creator = creator
         self.course = course
         self.type = type
+        self.rate = rate
+        self.numRate = numRate
     }
     
     init(value : Dictionary<String, Any>){
@@ -46,6 +52,8 @@ class PostCard{
         self.course = value["course"] as? String ?? ""
         self.type = value["type"] as? String ?? ""
         self.cardID = value["cardID"] as? String ?? ""
+        self.rate = value["rate"] as? Double ?? 0.0
+        self.numRate = value["numRate"] as? Int ?? 0
     }
     /*
     func setUpCardID(){
@@ -60,7 +68,9 @@ class PostCard{
             "time" : self.time,
             "creator" : self.creator,
             "course" : self.course,
-            "type" : self.type
+            "type" : self.type,
+            "rate": self.rate,
+            "numRate": self.numRate
         ]
     }
     

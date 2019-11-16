@@ -92,9 +92,25 @@ class DataController{
                 }
             })
         })
-
     }
     
+    func updateRate(uid: String, rate: Double){
+        let docRef = db.collection("users").document(uid)
+        docRef.getDocument{(document, error) in
+            if let document = document, document.exists{
+                var numRate = document.data()!["numRate"] as! Int
+                let rate = ((document.data()!["rate"] as! Double) * Double(numRate) + rate) / Double(numRate+1)
+                numRate = numRate + 1
+                docRef.updateData(["rate": rate, "numRate": numRate])
+                let postCards = document.data()!["postCards"] as! [String]
+                for cardID in postCards{
+                    let cardRef = self.db.collection("postCards").document(cardID)
+                    cardRef.updateData(["rate": rate, "numRate": numRate])
+                }
+            }
+        }
+        
+    }
     /**************************************************************************************/
     
     
@@ -108,7 +124,7 @@ class DataController{
     
     func getCardFromCloud(cardID : String, type: String, course : String, completion: @escaping ((PostCard) -> ())){
         
-        let docRef = db.collection("postCard").document(type).collection(course).document(cardID)
+        let docRef = db.collection("postCards").document(type).collection(course).document(cardID)
         //var cardObj = PostCard()
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
@@ -125,11 +141,29 @@ class DataController{
     }
     
     func uploadCardToCloud(postCard : PostCard)->Bool{
-        let docRef = db.collection("postCard").document(postCard.type).collection(postCard.course).document(postCard.cardID)
-        
+        let docRef = db.collection("postCards").document(postCard.type).collection(postCard.course).document(postCard.cardID)
+        let userRef = db.collection("users").document(postCard.creator)
         docRef.setData(postCard.getCardData())
+        userRef.updateData(["postCards": FieldValue.arrayUnion([postCard.cardID])])
         
         return true // needs to handle error and staff later
+    }
+    
+    func getCardCollection(type: String, course: String, completion: @escaping ( ([PostCard])-> ())){
+        var cardCollection = [PostCard]()
+        let docRef = db.collection("postCards").document(type).collection(course)
+        docRef.getDocuments(){(querySnapshot, err) in
+            if let err = err{
+                print ("error getting documents: \(err)")
+            }
+            else{
+                for document in querySnapshot!.documents{
+                    var cardObj = PostCard(value: document.data())
+                    cardCollection.append(cardObj)
+                }
+            }
+            completion(cardCollection)
+        }
     }
     
     /**************************************************************************************/
