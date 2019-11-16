@@ -13,50 +13,50 @@ class PostCard{
     var description : String
     var date : String
     var time : String
-    var username : String
-    var userID : String
+    var creatorName : String
+    var creatorID : String
     var course :  String
     var type : String
-    var numOfRatings: String
-    var rating: String
+    var numRate: Int
+    var rate: Double
     
     init(){
         self.cardID = "no card ID"
         self.description = ""
         self.date = "2000-01-01"
         self.time = "0:00:00 AM"
-        self.userID = ""
-        self.username = ""
+        self.creatorID = ""
+        self.creatorName = ""
         self.course = ""
         self.type = ""
-        self.rating = "0.0"
-        self.numOfRatings = "0"
+        self.rate = 0.0
+        self.numRate = 0
     }
     
-    init(userID : String, username: String, description : String, date : String, time : String, cardID : String, course : String, type : String, rating: String, numOfRatings: String){
+    init(userID : String, username: String, description : String, date : String, time : String, cardID : String, course : String, type : String, rate: Double, numRate: Int){
         self.cardID = cardID
         self.description = description
         self.date = date
         self.time = time
-        self.userID = userID
-        self.username = username
+        self.creatorID = userID
+        self.creatorName = username
         self.course = course
         self.type = type
-        self.rating = rating
-        self.numOfRatings = numOfRatings
+        self.rate = rate
+        self.numRate = numRate
     }
     
     init(value : Dictionary<String, Any>){
         self.description = value["description"] as? String ?? ""
         self.date = value["date"] as? String ?? ""
         self.time = value["time"] as? String ?? ""
-        self.userID = value["userID"] as? String ?? ""
-        self.username = value["username"] as? String ?? ""
+        self.creatorID = value["creatorID"] as? String ?? ""
+        self.creatorName = value["creatorName"] as? String ?? ""
         self.course = value["course"] as? String ?? ""
         self.type = value["type"] as? String ?? ""
         self.cardID = value["cardID"] as? String ?? ""
-        self.rating = value["rating"] as? String ?? ""
-        self.numOfRatings = value["numOfRatings"] as? String ?? ""
+        self.rate = value["rate"] as? Double ?? 0.0
+        self.numRate = value["numRate"] as? Int ?? 0
     }
     /*
     func setUpCardID(){
@@ -69,12 +69,12 @@ class PostCard{
             "description" : self.description,
             "date" : self.date,
             "time" : self.time,
-            "userID" : self.userID,
-            "username": self.username,
+            "creatorID" : self.creatorID,
+            "creatorName": self.creatorName,
             "course" : self.course,
             "type" : self.type,
-            "rating" : self.rating,
-            "numOfRatings": self.numOfRatings
+            "rate" : self.rate,
+            "numRate": self.numRate
         ]
     }
     

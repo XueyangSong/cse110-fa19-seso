@@ -97,11 +97,11 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         let numOfRatings = post["numOfRatings"] as! NSNumber*/
         
         cell.courseLabel!.text = postDic["course"] as! String
-        cell.usernameLabel!.text = postDic["username"] as! String
+        cell.usernameLabel!.text = postDic["creatorName"] as! String
         cell.descriptionLabel!.text = postDic["description"] as! String
         cell.timeLabel!.text = (postDic["time"] as! String) + "  " + (postDic["date"] as! String)
-        cell.ratingLabel!.text = "Rating: " + (postDic["rating"] as! String)
-        cell.numRatingsLabel!.text = (postDic["numOfRatings"] as! String) + " People rated"
+        cell.ratingLabel!.text = "Rating: " + String(postDic["rate"] as! Double)
+        cell.numRatingsLabel!.text = String(postDic["numRate"] as! Int) + " People rated"
         
         
         return cell
