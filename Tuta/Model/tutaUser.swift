@@ -14,12 +14,14 @@ class TutaUser{
     var email : String
     var url : String
     var gender : String
-    var rate : Int
+    var rate : Double
     var description: String
     var numRate : Int
     var courseTaken : [String]
     var phone : String
     var uid : String
+    var events : [String]
+    var postCards : [String]
     
     init(){
         self.name = ""
@@ -32,11 +34,12 @@ class TutaUser{
         self.courseTaken = [String]()
         self.phone = ""
         self.uid = ""
-        
+        self.events = [String]()
+        self.postCards = [String]()
     }
     
-    init(name:String, email:String, url:String, gender:String, rate:Int, description:String,
-         numRate : Int, courseTaken : [String], phone : String, uid : String){
+    init(name:String, email:String, url:String, gender:String, rate:Double, description:String,
+         numRate : Int, courseTaken : [String], phone : String, uid : String, events : [String], postCards: [String]){
         self.name = name
         self.email = email
         self.url = url
@@ -47,6 +50,8 @@ class TutaUser{
         self.courseTaken = courseTaken
         self.phone = phone
         self.uid = uid
+        self.events = events
+        self.postCards = postCards
     }
     
     init(value : [String: Any]){
@@ -54,12 +59,14 @@ class TutaUser{
         self.email = value["email"] as? String ?? ""
         self.url = value["url"] as? String ?? ""
         self.gender = value["gender"] as? String ?? ""
-        self.rate = value["rate"] as? Int ?? 0
+        self.rate = value["rate"] as? Double ?? 0.0
         self.description = value["description"] as? String ?? ""
         self.numRate = value["numRate"] as? Int ?? 0
         self.courseTaken = value["courseTaken"] as? [String] ?? [String]()
         self.phone = value["phone"] as? String ?? ""
         self.uid = value["uid"] as? String ?? ""
+        self.events = value["events"] as? [String] ?? [String]()
+        self.postCards = value["postCards"] as? [String] ?? [String]()
     }
     
     func getUserData()-> [String: Any]{
@@ -73,7 +80,9 @@ class TutaUser{
             "numRate" : self.numRate,
             "courseTaken" : self.courseTaken,
             "phone" : self.phone,
-            "uid" : self.uid
+            "uid" : self.uid,
+            "events": self.events,
+            "postCards": self.postCards
         ]
     }
     

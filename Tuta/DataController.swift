@@ -92,9 +92,25 @@ class DataController{
                 }
             })
         })
-
     }
     
+    func updateRate(uid: String, rate: Double){
+        let docRef = db.collection("users").document(uid)
+        docRef.getDocument{(document, error) in
+            if let document = document, document.exists{
+                var numRate = document.data()!["numRate"] as! Int
+                let rate = ((document.data()!["rate"] as! Double) * Double(numRate) + rate) / Double(numRate+1)
+                numRate = numRate + 1
+                docRef.updateData(["rate": rate, "numRate": numRate])
+                let postCards = document.data()!["postCards"] as! [String]
+                for cardID in postCards{
+                    let cardRef = self.db.collection("postCards").document(cardID)
+                    cardRef.updateData(["rate": rate, "numRate": numRate])
+                }
+            }
+        }
+        
+    }
     /**************************************************************************************/
     
     
@@ -108,7 +124,7 @@ class DataController{
     
     func getCardFromCloud(cardID : String, type: String, course : String, completion: @escaping ((PostCard) -> ())){
         
-        let docRef = db.collection("postCard").document(type).collection(course).document(cardID)
+        let docRef = db.collection("postCards").document(type).collection(course).document(cardID)
         //var cardObj = PostCard()
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
@@ -123,13 +139,84 @@ class DataController{
             }
         }
     }
+
+    
+    func getCardsCollection(type: String, course: String, completion: @escaping (([[String:Any]]) -> Void)) {
+        var cards = [[String:Any]]()
+        let ref = db.collection("postCards").document(type).collection(course)
+        ref.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    cards.append(document.data())
+                }
+                completion(cards)
+            }
+        }
+    }
+    
     
     func uploadCardToCloud(postCard : PostCard)->Bool{
-        let docRef = db.collection("postCard").document(postCard.type).collection(postCard.course).document(postCard.cardID)
-        
+        let docRef = db.collection("postCards").document(postCard.type).collection(postCard.course).document(postCard.cardID)
+        let userRef = db.collection("users").document(postCard.creatorID)
         docRef.setData(postCard.getCardData())
+        userRef.updateData(["postCards": FieldValue.arrayUnion([postCard.cardID])])
         
         return true // needs to handle error and staff later
+    }
+    
+    func getCardCollection(type: String, course: String, completion: @escaping ( ([PostCard])-> ())){
+        var cardCollection = [PostCard]()
+        let docRef = db.collection("postCards").document(type).collection(course)
+        docRef.getDocuments(){(querySnapshot, err) in
+            if let err = err{
+                print ("error getting documents: \(err)")
+            }
+            else{
+                for document in querySnapshot!.documents{
+                    var cardObj = PostCard(value: document.data())
+                    cardCollection.append(cardObj)
+                }
+            }
+            completion(cardCollection)
+        }
+    }
+    
+    /**************************************************************************************/
+    
+    
+    /*******************************FUNCTION FOR EVENTS*********************************/
+    
+    static func getNewEventID()->String{
+        let eid = Firestore.firestore().collection("events").document().documentID
+        Firestore.firestore().collection("events").document(eid).setData(["placeHolder":"just book this place"])
+        return eid
+    }
+    
+    func getEventFromCloud(at path: String, completion: @escaping ((Event) -> ())) {
+        let ref = db.collection("events").document(path)
+        ref.getDocument { (document, error) in
+            if let document = document, document.exists {
+                //let dictionaries = snapshot?.documents.compactMap({$0.data()}) ?? []
+                //let addresses = dictionaries.compactMap({Address($0)})
+                let event = Event(value: document.data() ?? [String:Any]())
+                completion(event)
+            }
+            else{
+            }
+        }
+    }
+    
+    func uploadEventToCloud(event : Event)->Bool{
+        let docRef = db.collection("events").document(event.eventID)
+        let tutorRef = db.collection("users").document(event.tutorID)
+        let studentRef = db.collection("users").document(event.studentID)
+        docRef.setData(event.getEventData())
+        tutorRef.updateData(["events": FieldValue.arrayUnion([event.eventID])])
+        studentRef.updateData(["events": FieldValue.arrayUnion([event.eventID])])
+        
+        return true
     }
     
 }

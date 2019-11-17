@@ -2,7 +2,7 @@
 //  ProfileViewController.swift
 //  Tuta
 //
-//  Created by Zhen Duan on 11/2/19.
+//  Created by Alex Li on 11/2/19.
 //  Copyright © 2019 Zhen Duan. All rights reserved.
 //
 
@@ -69,6 +69,10 @@ class ProfileViewController: UIViewController{
             self.genderLabel.text = self.user.gender
             self.phoneLabel.text = self.user.phone
             self.DescriptionText.text = self.user.description
+            self.rating.text = "rating: " + String(self.user.rate)
+            self.numberRate.text =  String(self.user.numRate) + " rates"
+            
+            
             var courses : String = ""
             for item in self.user.courseTaken{
                 courses = courses + item + " "
@@ -133,6 +137,8 @@ extension ProfileViewController: ProfileDelegate {
         self.profilePictureImageView.image = UIImage(data : imageData)
         }
         self.profilePictureImageView.image = UIImage(data : imageData)
+        self.rating.text = "rating: " + String(self.user.rate)
+        self.numberRate.text =  String(self.user.numRate) + " rates"
         var courses : String = ""
         for item in self.user.courseTaken{
             courses = courses + item + " "

@@ -11,11 +11,18 @@ import FirebaseAuth
 import Firebase
 import FirebaseFirestore
 
+/*
+protocol SignUpDelegate: class{
+    func didReceiveData(value: String)
+}
+*/
 class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var genderField: UISegmentedControl!
     var activeField: UITextField?
     var distance: CGFloat? = 0
+    //weak var signUpDelegate: SignUpDelegate?
+    
     // get a reference for database
     let db = Firestore.firestore()
     let myFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
@@ -188,7 +195,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 // jump to login page
                 //print("presenting home page")
                 Auth.auth().currentUser!.sendEmailVerification()
-                
+                //self.signUpDelegate?.didReceiveData(value: "Verification email has been sent")
                 
                 
                 //store user data
@@ -198,11 +205,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     "gender": self.genderField.titleForSegment(at: self.genderField.selectedSegmentIndex),
                     "description": "",
                     "picture": "",
-                    "rate": 0,
+                    "rate": 0.0,
                     "numRate" : 0,
                     "courseTaken" : [String](),
                     "phone" : "",
-                    "uid" : Auth.auth().currentUser!.uid
+                    "uid" : Auth.auth().currentUser!.uid,
+                    "events": [String](),
+                    "postCards": [String]()
                 ]
                 
                 
@@ -216,7 +225,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
                 self.present(vc, animated: true, completion: nil)
                 
-                vc.showToast(message: "verification email sent", font: self.myFont)
+                //vc.showToast(message: "verification email sent", font: self.myFont)
                 
               }
               // [END_EXCLUDE]

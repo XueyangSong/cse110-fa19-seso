@@ -20,12 +20,14 @@
 		41338E6C235E69CC0043501B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41338E6B235E69CC0043501B /* GoogleService-Info.plist */; };
 		41C8FE4F2371444A00952CFB /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C8FE4E2371444A00952CFB /* DataController.swift */; };
 		41C8FE512371450D00952CFB /* TutaUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C8FE502371450D00952CFB /* TutaUser.swift */; };
+		41D020E2237C983B00910A14 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D020E1237C983B00910A14 /* Event.swift */; };
 		490AB8A42376D87400C63347 /* SearchPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB897237693E000C63347 /* SearchPageViewController.swift */; };
 		490AB8A52376D88C00C63347 /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C8FE522371492600952CFB /* PostCard.swift */; };
 		490AB8A62376D89400C63347 /* PostcardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB8992376984D00C63347 /* PostcardTableViewCell.swift */; };
 		490AB8AA2377706A00C63347 /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB8A92377706A00C63347 /* DescriptionViewController.swift */; };
 		490AB8AC2377708300C63347 /* AddCourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB8AB2377708300C63347 /* AddCourseController.swift */; };
 		490AB8AE237772AF00C63347 /* ProfileDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB8AD237772AF00C63347 /* ProfileDelegate.swift */; };
+		5A30888223808D70007501E5 /* ViewProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A30888123808D70007501E5 /* ViewProfileViewController.swift */; };
 		B833A5513440CA41B3385A11 /* Pods_Tuta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D773613C7FB2D22CCDA41F /* Pods_Tuta.framework */; };
 		FCFBFE712379C58100137A81 /* ChangeNumberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFBFE702379C58100137A81 /* ChangeNumberController.swift */; };
 		FCFBFE73237A381700137A81 /* imagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFBFE72237A381700137A81 /* imagePicker.swift */; };
@@ -49,11 +51,13 @@
 		41C8FE4E2371444A00952CFB /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		41C8FE502371450D00952CFB /* TutaUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutaUser.swift; sourceTree = "<group>"; };
 		41C8FE522371492600952CFB /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
+		41D020E1237C983B00910A14 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		490AB897237693E000C63347 /* SearchPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageViewController.swift; sourceTree = "<group>"; };
 		490AB8992376984D00C63347 /* PostcardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostcardTableViewCell.swift; sourceTree = "<group>"; };
 		490AB8A92377706A00C63347 /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DescriptionViewController.swift; path = Tuta/TabBarPages/profileSubPages/DescriptionViewController.swift; sourceTree = "<group>"; };
 		490AB8AB2377708300C63347 /* AddCourseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddCourseController.swift; path = Tuta/TabBarPages/profileSubPages/AddCourseController.swift; sourceTree = "<group>"; };
 		490AB8AD237772AF00C63347 /* ProfileDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileDelegate.swift; path = Tuta/TabBarPages/ProfileDelegate.swift; sourceTree = "<group>"; };
+		5A30888123808D70007501E5 /* ViewProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProfileViewController.swift; sourceTree = "<group>"; };
 		CBC95DDDE617DF3F0EF934F6 /* Pods-Tuta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuta.release.xcconfig"; path = "Target Support Files/Pods-Tuta/Pods-Tuta.release.xcconfig"; sourceTree = "<group>"; };
 		E4D773613C7FB2D22CCDA41F /* Pods_Tuta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tuta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCFBFE702379C58100137A81 /* ChangeNumberController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNumberController.swift; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 				1F538BF5235CEB95003795E0 /* LogInViewController.swift */,
 				41C8FE4E2371444A00952CFB /* DataController.swift */,
 				FCFBFE72237A381700137A81 /* imagePicker.swift */,
+				5A30888123808D70007501E5 /* ViewProfileViewController.swift */,
 			);
 			path = Tuta;
 			sourceTree = "<group>";
@@ -120,8 +125,8 @@
 		1F9AC5052361254600E3A4FE /* TabBarPages */ = {
 			isa = PBXGroup;
 			children = (
-				1F9AC50C2361268F00E3A4FE /* HomeTabBarController.swift */,
 				1F467B87236DFE9500A5CA59 /* ProfileViewController.swift */,
+				1F9AC50C2361268F00E3A4FE /* HomeTabBarController.swift */,
 			);
 			path = TabBarPages;
 			sourceTree = "<group>";
@@ -131,6 +136,7 @@
 			children = (
 				41C8FE502371450D00952CFB /* TutaUser.swift */,
 				41C8FE522371492600952CFB /* PostCard.swift */,
+				41D020E1237C983B00910A14 /* Event.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -278,8 +284,10 @@
 				1F83DCE5235B300C00DAFB89 /* AppDelegate.swift in Sources */,
 				1F83DCF9235B85CA00DAFB89 /* SignUpViewController.swift in Sources */,
 				1F83DCE7235B300C00DAFB89 /* SceneDelegate.swift in Sources */,
+				41D020E2237C983B00910A14 /* Event.swift in Sources */,
 				FCFBFE73237A381700137A81 /* imagePicker.swift in Sources */,
 				FCFBFE712379C58100137A81 /* ChangeNumberController.swift in Sources */,
+				5A30888223808D70007501E5 /* ViewProfileViewController.swift in Sources */,
 				41C8FE4F2371444A00952CFB /* DataController.swift in Sources */,
 				1F467B88236DFE9500A5CA59 /* ProfileViewController.swift in Sources */,
 				41C8FE512371450D00952CFB /* TutaUser.swift in Sources */,
