@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 
 class SearchPageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -15,7 +14,8 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var postcardTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    let db = Firestore.firestore()
+    let dc = DataController()
+    
     var posts = [[String:Any]]()
     var filteredPosts = [[String:Any]]()
     var searching = false
@@ -26,12 +26,16 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         postcardTableView.delegate = self
         postcardTableView.dataSource = self
         
-        getCollection()
+        dc.getCardsCollection(type: "tutorPostCards", course: "cse110") { (postsFromCloud) in
+            self.posts = postsFromCloud
+            self.postcardTableView.reloadData()
+        }
 
     }
     
     
     // MARK: - Functions
+    /*
     private func getCollection() {
         db.collection("postCards").getDocuments() { (querySnapshot, err) in
             if let err = err {
@@ -46,7 +50,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
                 print(self.posts)
             }
         }
-    }
+    }*/
     
     private func convertTimestamp(serverTimestamp: Int64) -> String {
         let x = Double(serverTimestamp) / 1000
@@ -79,23 +83,25 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
             post = posts[indexPath.row]
         }
 
-        
+        let postCardObj = PostCard(value:post)
+        let postDic = postCardObj.getCardData()
         // TODO: Here we might want to create a post object.
         // TODO: if let maybe safer!
+        /*
         let course = post["course"] as! String
         let username = post["username"] as! String
         let description = post["description"] as! String
-        let timestamp = post["time"] as! Timestamp
+        let timestamp = post["time"] as! CVTimeStamp
         let time = convertTimestamp(serverTimestamp: timestamp.seconds)
         let rating = post["rating"] as! NSNumber
-        let numOfRatings = post["numOfRatings"] as! NSNumber
+        let numOfRatings = post["numOfRatings"] as! NSNumber*/
         
-        cell.courseLabel!.text = course
-        cell.usernameLabel!.text = username
-        cell.descriptionLabel!.text = description
-        cell.timeLabel!.text = time
-        cell.ratingLabel!.text = "Rating: \(rating)"
-        cell.numRatingsLabel!.text = "\(numOfRatings) People rated"
+        cell.courseLabel!.text = postDic["course"] as! String
+        cell.usernameLabel!.text = postDic["creatorName"] as! String
+        cell.descriptionLabel!.text = postDic["description"] as! String
+        cell.timeLabel!.text = (postDic["time"] as! String) + "  " + (postDic["date"] as! String)
+        cell.ratingLabel!.text = "Rating: " + String(postDic["rate"] as! Double)
+        cell.numRatingsLabel!.text = String(postDic["numRate"] as! Int) + " People rated"
         
         
         return cell
@@ -115,13 +121,23 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
 }
 
 extension SearchPageViewController: UISearchBarDelegate{
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    /*func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         // TODO: Omit whitespace
         filteredPosts = posts.filter( {($0["course"] as! String).lowercased().prefix(searchText.count) == searchText.lowercased()} )
         //print(filteredPosts)
         searching = true
         postcardTableView.reloadData()
+    }*/
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searching = true
+        let course = searchBar.text?.lowercased()
+        view.endEditing(true)
+        dc.getCardsCollection(type: "tutorPostCards", course: course as! String) { (postsFromCloud) in
+            self.filteredPosts = postsFromCloud
+            self.postcardTableView.reloadData()
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

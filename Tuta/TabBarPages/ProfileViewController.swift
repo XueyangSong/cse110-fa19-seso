@@ -2,7 +2,7 @@
 //  ProfileViewController.swift
 //  Tuta
 //
-//  Created by Zhen Duan on 11/2/19.
+//  Created by Alex Li on 11/2/19.
 //  Copyright © 2019 Zhen Duan. All rights reserved.
 //
 
