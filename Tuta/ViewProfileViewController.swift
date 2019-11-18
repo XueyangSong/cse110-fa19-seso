@@ -14,6 +14,9 @@ import Firebase
 class ViewProfileViewController: UIViewController{
     let dc = DataController()
     var user : TutaUser = TutaUser()
+    
+    var post : [String:Any]!
+    
 //    let userID = Auth.auth().currentUser?.uid
     
     var userID =  ""
@@ -45,7 +48,8 @@ class ViewProfileViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dc.getUserFromCloud(userID: self.userID){(e) in self.user = (e)
+        print(post)
+        /*dc.getUserFromCloud(userID: self.userID){(e) in self.user = (e)
             
             self.ViewNameLabel.text = self.user.name
             self.ViewEmailLabel.text = self.user.email
@@ -62,8 +66,8 @@ class ViewProfileViewController: UIViewController{
             }
             self.ViewCoursesTakenLabel.text = courses
             
-        }
-        imgUrl = self.user.url
+        }*/
+        /*imgUrl = self.user.url
         if(imgUrl == ""){}
         else{
             imageData = try!Data(contentsOf: URL(string:imgUrl) ??  URL(fileURLWithPath: defaultProfile!))
@@ -71,12 +75,12 @@ class ViewProfileViewController: UIViewController{
         }
         imagePicker.allowsEditing = true
         imagePicker.sourceType = .photoLibrary
-        imagePicker.delegate = self
+        imagePicker.delegate = self*/
     }
     
 }
 
-extension ViewProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+/*extension ViewProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
      func imagePickerController( _ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
@@ -97,4 +101,4 @@ extension ViewProfileViewController: UIImagePickerControllerDelegate, UINavigati
         picker.dismiss(animated: true, completion: nil)
     }
 
-}
+}*/

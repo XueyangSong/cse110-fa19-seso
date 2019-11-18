@@ -83,15 +83,27 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
+        // Find the select postCard
+        let cell = sender as! UITableViewCell
+        let indexPath = postcardTableView.indexPath(for: cell)!
+        var post : [String:Any]!
+        if searching {
+            post = filteredPosts[indexPath.row]
+        } else {
+            post = posts[indexPath.row]
+        }
+
+        // Pass the selected postCard to other's profile page
+        let othersProfileViewController = segue.destination as! ViewProfileViewController
+        othersProfileViewController.post = post
     }
-    */
+    
 
 }
 
