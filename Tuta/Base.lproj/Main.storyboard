@@ -733,7 +733,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.80402455569507625" green="0.92701077177975166" blue="0.96130555868148804" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="backgroundColor" red="0.83445012596189527" green="0.95835487889293403" blue="0.96130555868148804" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
                                                 <constraint firstItem="Cl9-dx-MIb" firstAttribute="baseline" secondItem="Ccd-pa-t1P" secondAttribute="baseline" id="6Gj-RS-Mmj"/>
                                                 <constraint firstItem="Cl9-dx-MIb" firstAttribute="top" secondItem="tA6-Eo-m0R" secondAttribute="bottom" constant="7" id="BkD-AU-g95"/>
@@ -771,7 +771,7 @@
                                     <constraint firstAttribute="height" constant="44" id="YlL-Ev-kel"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="barTintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="barTintColor" red="0.84153218405234376" green="0.64426975191678471" blue="0.089121944945402695" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="3R0-9R-WQx" id="7dv-u6-eDp"/>
