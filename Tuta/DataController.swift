@@ -139,6 +139,23 @@ class DataController{
             }
         }
     }
+
+    
+    func getCardsCollection(type: String, course: String, completion: @escaping (([[String:Any]]) -> Void)) {
+        var cards = [[String:Any]]()
+        let ref = db.collection("postCards").document(type).collection(course)
+        ref.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    cards.append(document.data())
+                }
+                completion(cards)
+            }
+        }
+    }
+    
     
     func uploadCardToCloud(postCard : PostCard)->Bool{
         let docRef = db.collection("postCards").document(postCard.type).collection(postCard.course).document(postCard.cardID)
