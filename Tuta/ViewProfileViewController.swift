@@ -46,7 +46,7 @@ class ViewProfileViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        dc.delegate = self
         userID = (post["creatorID"]as? String)!
         dc.getUserFromCloud(userID: self.userID){(e) in self.user = (e)
             
@@ -66,7 +66,9 @@ class ViewProfileViewController: UIViewController{
             self.ViewCoursesTakenLabel.text = courses
             
         }
-        /*imgUrl = self.user.url
+        imgUrl = self.user.url
+        print("*********")
+        print(imgUrl)
         if(imgUrl == ""){}
         else{
             imageData = try!Data(contentsOf: URL(string:imgUrl) ??  URL(fileURLWithPath: defaultProfile!))
@@ -74,12 +76,38 @@ class ViewProfileViewController: UIViewController{
         }
         imagePicker.allowsEditing = true
         imagePicker.sourceType = .photoLibrary
-        imagePicker.delegate = self*/
+        imagePicker.delegate = self
     }
     
 }
 
-/*extension ViewProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension ViewProfileViewController: ProfileDelegate {
+
+
+    func didReceiveData(_ user: TutaUser) {
+        self.user = user
+        print("did receieve: " + self.user.description)
+        ViewDescriptionTextView.text = self.user.description
+        self.ViewPhoneNumberLabel.text = user.phone
+        imgUrl = self.user.url
+        if(imgUrl == ""){}
+        else{
+        imageData = try!Data(contentsOf: URL(string:imgUrl) ??  URL(fileURLWithPath: defaultProfile!))
+        self.ViewPhotoImageView.image = UIImage(data : imageData)
+        }
+        self.ViewPhotoImageView.image = UIImage(data : imageData)
+        self.ViewRatingLabel.text = "rating: " + String(self.user.rate)
+        self.ViewNumberRateLabel.text =  String(self.user.numRate) + " rates"
+        var courses : String = ""
+        for item in self.user.courseTaken{
+            courses = courses + item + " "
+        }
+        ViewCoursesTakenLabel.text = courses
+//        print("did updated " + DescriptionText.text!)
+    }
+
+}
+extension ViewProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
      func imagePickerController( _ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
@@ -100,4 +128,4 @@ class ViewProfileViewController: UIViewController{
         picker.dismiss(animated: true, completion: nil)
     }
 
-}*/
+}
