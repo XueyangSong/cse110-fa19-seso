@@ -28,6 +28,8 @@
 		490AB8AC2377708300C63347 /* AddCourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB8AB2377708300C63347 /* AddCourseController.swift */; };
 		490AB8AE237772AF00C63347 /* ProfileDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB8AD237772AF00C63347 /* ProfileDelegate.swift */; };
 		5A30888223808D70007501E5 /* ViewProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A30888123808D70007501E5 /* ViewProfileViewController.swift */; };
+		7F3E1C8223836BCA00F8088B /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3E1C8123836BCA00F8088B /* MeViewController.swift */; };
+		7F3E1C842383AF5800F8088B /* PopWindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3E1C832383AF5800F8088B /* PopWindowViewController.swift */; };
 		B833A5513440CA41B3385A11 /* Pods_Tuta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D773613C7FB2D22CCDA41F /* Pods_Tuta.framework */; };
 		FCFBFE712379C58100137A81 /* ChangeNumberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFBFE702379C58100137A81 /* ChangeNumberController.swift */; };
 		FCFBFE73237A381700137A81 /* imagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFBFE72237A381700137A81 /* imagePicker.swift */; };
@@ -35,7 +37,7 @@
 
 /* Begin PBXFileReference section */
 		1F0CC1CE008AABB03AD78858 /* Pods-Tuta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuta.debug.xcconfig"; path = "Target Support Files/Pods-Tuta/Pods-Tuta.debug.xcconfig"; sourceTree = "<group>"; };
-		1F467B87236DFE9500A5CA59 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		1F467B87236DFE9500A5CA59 /* ProfileViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1F538BF5235CEB95003795E0 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		1F83DCE1235B300C00DAFB89 /* Tuta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tuta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F83DCE4235B300C00DAFB89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +60,8 @@
 		490AB8AB2377708300C63347 /* AddCourseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddCourseController.swift; path = Tuta/TabBarPages/profileSubPages/AddCourseController.swift; sourceTree = "<group>"; };
 		490AB8AD237772AF00C63347 /* ProfileDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileDelegate.swift; path = Tuta/TabBarPages/ProfileDelegate.swift; sourceTree = "<group>"; };
 		5A30888123808D70007501E5 /* ViewProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProfileViewController.swift; sourceTree = "<group>"; };
+		7F3E1C8123836BCA00F8088B /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		7F3E1C832383AF5800F8088B /* PopWindowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopWindowViewController.swift; sourceTree = "<group>"; };
 		CBC95DDDE617DF3F0EF934F6 /* Pods-Tuta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tuta.release.xcconfig"; path = "Target Support Files/Pods-Tuta/Pods-Tuta.release.xcconfig"; sourceTree = "<group>"; };
 		E4D773613C7FB2D22CCDA41F /* Pods_Tuta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tuta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCFBFE702379C58100137A81 /* ChangeNumberController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNumberController.swift; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 				1F83DCE6235B300C00DAFB89 /* SceneDelegate.swift */,
 				1F83DCE8235B300C00DAFB89 /* ViewController.swift */,
 				1F83DCEA235B300C00DAFB89 /* Main.storyboard */,
+				7F3E1C832383AF5800F8088B /* PopWindowViewController.swift */,
+				7F3E1C8123836BCA00F8088B /* MeViewController.swift */,
 				490AB897237693E000C63347 /* SearchPageViewController.swift */,
 				490AB8992376984D00C63347 /* PostcardTableViewCell.swift */,
 				1F83DCED235B301300DAFB89 /* Assets.xcassets */,
@@ -276,11 +282,13 @@
 			files = (
 				490AB8AE237772AF00C63347 /* ProfileDelegate.swift in Sources */,
 				490AB8AC2377708300C63347 /* AddCourseController.swift in Sources */,
+				7F3E1C842383AF5800F8088B /* PopWindowViewController.swift in Sources */,
 				490AB8AA2377706A00C63347 /* DescriptionViewController.swift in Sources */,
 				490AB8A62376D89400C63347 /* PostcardTableViewCell.swift in Sources */,
 				490AB8A52376D88C00C63347 /* PostCard.swift in Sources */,
 				490AB8A42376D87400C63347 /* SearchPageViewController.swift in Sources */,
 				1F83DCE9235B300C00DAFB89 /* ViewController.swift in Sources */,
+				7F3E1C8223836BCA00F8088B /* MeViewController.swift in Sources */,
 				1F83DCE5235B300C00DAFB89 /* AppDelegate.swift in Sources */,
 				1F83DCF9235B85CA00DAFB89 /* SignUpViewController.swift in Sources */,
 				1F83DCE7235B300C00DAFB89 /* SceneDelegate.swift in Sources */,
