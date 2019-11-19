@@ -946,7 +946,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHg-Ws-kMx">
-                                <rect key="frame" x="202" y="175" width="64" height="46"/>
+                                <rect key="frame" x="202" y="175" width="110" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -1072,7 +1072,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4S5-pk-csf">
-                                <rect key="frame" x="308" y="185" width="73" height="25"/>
+                                <rect key="frame" x="308" y="185" width="106" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -1456,6 +1456,7 @@
         <image name="tutaLogo_1" width="360" height="127"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="1oy-hL-d4t"/>
         <segue reference="4WX-ki-KIC"/>
         <segue reference="biD-n9-DuG"/>
     </inferredMetricsTieBreakers>
