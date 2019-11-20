@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -465,6 +465,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="41"/>
                                 <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutButtonPressed:" destination="ogR-8e-Qce" eventType="touchUpInside" id="Fd9-Rr-KXz"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.8515146375" green="0.93340355159999999" blue="0.92549169060000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -474,9 +477,9 @@
                     <navigationItem key="navigationItem" id="Zw7-2i-4GJ"/>
                     <connections>
                         <outlet property="Event" destination="ar3-4W-UIa" id="4NV-Ac-JZ9"/>
-                        <outlet property="Logout" destination="0TD-Eq-RMV" id="kzS-GR-vsi"/>
                         <outlet property="Profile" destination="jUk-Dc-hSw" id="LLm-vj-pJh"/>
                         <outlet property="Setting" destination="fHQ-7W-Cyf" id="JMK-Pd-38q"/>
+                        <outlet property="logoutButton" destination="0TD-Eq-RMV" id="wIp-31-oUv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZjS-4j-7dS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -760,6 +763,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Confirm"/>
+                                <connections>
+                                    <action selector="confirmButtonPressed:" destination="Grb-Z4-uQr" eventType="touchUpInside" id="cgg-qi-1en"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I Wanna Be A ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i2P-ZL-iCV">
                                 <rect key="frame" x="103" y="118" width="213" height="39"/>
@@ -774,12 +780,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Post" image="plus.circle.fill" catalog="system" selectedImage="plus.circle.fill" id="rs8-59-pls" userLabel="+"/>
                     <connections>
-                        <outlet property="ConfirmButton" destination="o48-7e-oi9" id="Azb-5L-IcO"/>
-                        <outlet property="CourseName" destination="jcu-0b-zNd" id="blO-xe-CoE"/>
-                        <outlet property="CourseNameInput" destination="ILD-J0-yw7" id="ojG-f0-LTb"/>
-                        <outlet property="Description" destination="Wsk-T3-Wcp" id="EqW-h3-VJz"/>
-                        <outlet property="DescriptionInput" destination="qEz-wd-k3Z" id="3XP-Hb-dcR"/>
-                        <outlet property="Gender" destination="mOX-qY-2L6" id="NgC-o2-XSG"/>
+                        <outlet property="confirmButton" destination="o48-7e-oi9" id="Azb-5L-IcO"/>
+                        <outlet property="courseField" destination="ILD-J0-yw7" id="ojG-f0-LTb"/>
+                        <outlet property="descriptionField" destination="qEz-wd-k3Z" id="3XP-Hb-dcR"/>
+                        <outlet property="typeSegment" destination="mOX-qY-2L6" id="k6W-eE-rmZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aut-LF-rKu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1443,7 +1447,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7mG-ac-4rK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5087" y="1714"/>
+            <point key="canvasLocation" x="5920" y="1789"/>
         </scene>
     </scenes>
     <resources>
@@ -1456,7 +1460,6 @@
         <image name="tutaLogo_1" width="360" height="127"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1oy-hL-d4t"/>
         <segue reference="4WX-ki-KIC"/>
         <segue reference="biD-n9-DuG"/>
     </inferredMetricsTieBreakers>
