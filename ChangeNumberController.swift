@@ -15,6 +15,7 @@ import Firebase
 class ChangeNumberController:UIViewController{
     
     let dc = DataController()
+    //let profile = ProfileViewController()
     let userID = Auth.auth().currentUser?.uid
     var user:TutaUser = TutaUser()
     
@@ -27,7 +28,11 @@ class ChangeNumberController:UIViewController{
             user.phone = self.numberText.text!
             self.dc.uploadUserToCloud(tutaUser: user)
         }
+        
+        
+        
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         dc.getUserFromCloud(userID: self.userID!){(e) in self.user = (e)

@@ -116,9 +116,9 @@ class DataController{
     
     /*******************************FUNCTION FOR POSTCARD*********************************/
     
-    static func getNewCardID(type : String, course : String)->String{
-        let cardID = Firestore.firestore().collection("postCard").document(type).collection(course).document().documentID
-    Firestore.firestore().collection("postCard").document(type).collection(course).document(cardID).setData(["placeHolder":"just book this place"])
+    func getNewCardID(type : String, course : String)->String{
+        let cardID = Firestore.firestore().collection("postCards").document(type).collection(course).document().documentID
+    Firestore.firestore().collection("postCards").document(type).collection(course).document(cardID).setData(["placeHolder":"just book this place"])
         return cardID
     }
     
