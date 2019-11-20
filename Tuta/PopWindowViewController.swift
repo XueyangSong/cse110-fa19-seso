@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
-class PopWindowViewController: UIViewController {
+class PopWindowViewController: UIViewController{
 
     
     @IBOutlet weak var typeSegment: UISegmentedControl!
@@ -24,15 +24,14 @@ class PopWindowViewController: UIViewController {
     let uid = Auth.auth().currentUser?.uid
     var user = TutaUser()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        confirmButton.applyButton()
-
     }
     
     func showToast(message : String, font: UIFont) {
 
-        let rect = CGRect.init(x: (self.view.frame.width - 250) / 2, y: courseField.frame.origin.y - 55, width: 250, height: 35)
+        let rect = CGRect.init(x: (self.view.frame.width - 250) / 2, y: courseField.frame.origin.y + 55, width: 250, height: 35)
         let toastLabel = UILabel(frame: rect)
             //CGRect(x: self.view.frame.size.width/2 - 120, y: self.view.frame.size.height-100, width: 250, height: 35))
         
@@ -57,14 +56,8 @@ class PopWindowViewController: UIViewController {
     
     @IBAction func confirmButtonPressed(_ sender: UIButton) {
         if isFieldsValid()!{
-            let segmentText = self.typeSegment.titleForSegment(at: self.typeSegment.selectedSegmentIndex)
-            var type : String
-            if segmentText == "Student"{
-                type = "studentPostCards"
-            }
-            else{
-                type = "tutorPostCards"
-            }
+            let segmentText = self.typeSegment.titleForSegment(at: self.typeSegment.selectedSegmentIndex) as! String
+            let type = segmentText.lowercased()
             
             let courseString = self.courseField.text!.lowercased()
             let course = String(courseString.filter{!$0.isNewline && !$0.isWhitespace})
@@ -88,7 +81,10 @@ class PopWindowViewController: UIViewController {
                 self.dc.uploadCardToCloud(postCard: card)
                 
                 self.showToast(message: "Successfully posted!", font: self.myFont)
+                self.descriptionField.text = ""
+                self.courseField.text = ""
             }
+            
         }else{
             showToast(message: "Please fill in every field", font: myFont)
         }
@@ -103,7 +99,11 @@ class PopWindowViewController: UIViewController {
         
         return true
     }
+    
+    
 }
+
+
 
 extension UIButton{
     func applyButton(){

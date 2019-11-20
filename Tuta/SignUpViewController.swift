@@ -40,7 +40,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setUp()
         
     }
@@ -59,8 +58,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         // set tap dismiss keyboard
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
-        
-        
     }
     
     // *** delegate
