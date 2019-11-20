@@ -14,15 +14,17 @@ import Firebase
 class ViewProfileViewController: UIViewController{
     let dc = DataController()
     var user : TutaUser = TutaUser()
+    
+    var post : [String:Any]!
+    
 //    let userID = Auth.auth().currentUser?.uid
     
-    var userID =  ""
+    var userID = "cT524ItOQzUKXXRWjkWwHeMPGhJ2"
     var imgUrl = ""
     var imagePicker = UIImagePickerController()
     var imageData = Data()
     let defaultProfile = Bundle.main.path(forResource: "stu-1", ofType: "jpg")
 
-    
     @IBOutlet weak var ViewNameLabel: UILabel!
     
     @IBOutlet weak var ViewGenderLabel: UILabel!
@@ -44,7 +46,8 @@ class ViewProfileViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        dc.delegate = self
+        userID = (post["creatorID"]as? String)!
         dc.getUserFromCloud(userID: self.userID){(e) in self.user = (e)
             
             self.ViewNameLabel.text = self.user.name
@@ -64,6 +67,8 @@ class ViewProfileViewController: UIViewController{
             
         }
         imgUrl = self.user.url
+        print("*********")
+        print(imgUrl)
         if(imgUrl == ""){}
         else{
             imageData = try!Data(contentsOf: URL(string:imgUrl) ??  URL(fileURLWithPath: defaultProfile!))
@@ -76,6 +81,32 @@ class ViewProfileViewController: UIViewController{
     
 }
 
+extension ViewProfileViewController: ProfileDelegate {
+
+
+    func didReceiveData(_ user: TutaUser) {
+        self.user = user
+        print("did receieve: " + self.user.description)
+        ViewDescriptionTextView.text = self.user.description
+        self.ViewPhoneNumberLabel.text = user.phone
+        imgUrl = self.user.url
+        if(imgUrl == ""){}
+        else{
+        imageData = try!Data(contentsOf: URL(string:imgUrl) ??  URL(fileURLWithPath: defaultProfile!))
+        self.ViewPhotoImageView.image = UIImage(data : imageData)
+        }
+        self.ViewPhotoImageView.image = UIImage(data : imageData)
+        self.ViewRatingLabel.text = "rating: " + String(self.user.rate)
+        self.ViewNumberRateLabel.text =  String(self.user.numRate) + " rates"
+        var courses : String = ""
+        for item in self.user.courseTaken{
+            courses = courses + item + " "
+        }
+        ViewCoursesTakenLabel.text = courses
+//        print("did updated " + DescriptionText.text!)
+    }
+
+}
 extension ViewProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
      func imagePickerController( _ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
