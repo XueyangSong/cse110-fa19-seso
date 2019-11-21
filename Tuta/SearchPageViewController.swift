@@ -26,7 +26,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         postcardTableView.delegate = self
         postcardTableView.dataSource = self
         
-        dc.getCardsCollection(type: "tutorPostCards", course: "cse110") { (postsFromCloud) in
+        dc.getCardsCollection(type: "tutor", course: "cse110") { (postsFromCloud) in
             self.posts = postsFromCloud
             self.postcardTableView.reloadData()
         }
