@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -286,10 +286,10 @@
             </objects>
             <point key="canvasLocation" x="1408.6956521739132" y="126.5625"/>
         </scene>
-        <!--View Controller-->
+        <!--Event History-->
         <scene sceneID="jP6-x4-ekH">
             <objects>
-                <viewController id="Z0v-Ua-V2P" sceneMemberID="viewController">
+                <viewController id="Z0v-Ua-V2P" customClass="eventHistory" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EQZ-ad-biz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -915,6 +915,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Request"/>
+                                <connections>
+                                    <action selector="RequestButtonClicked:" destination="RAt-iE-2Re" eventType="touchUpInside" id="lX3-6o-f3x"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -922,6 +925,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Cto-a2-i3q"/>
                     <connections>
+                        <outlet property="RequestButton" destination="4lc-pX-HXD" id="PC7-8z-pi2"/>
                         <outlet property="ViewCoursesTakenLabel" destination="BeL-fG-Rhk" id="awH-oa-dmH"/>
                         <outlet property="ViewDescriptionTextView" destination="AKc-BW-aCy" id="B83-pS-mqo"/>
                         <outlet property="ViewEmailLabel" destination="ogQ-jU-FNj" id="xFf-Ke-r5Z"/>
@@ -1460,7 +1464,8 @@
         <image name="tutaLogo_1" width="360" height="127"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4WX-ki-KIC"/>
+        <segue reference="5kr-Ss-2qV"/>
+        <segue reference="Jmi-eE-QGA"/>
         <segue reference="biD-n9-DuG"/>
     </inferredMetricsTieBreakers>
 </document>

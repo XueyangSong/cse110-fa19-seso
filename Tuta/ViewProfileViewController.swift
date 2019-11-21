@@ -14,7 +14,6 @@ import Firebase
 class ViewProfileViewController: UIViewController{
     let dc = DataController()
     var user : TutaUser = TutaUser()
-    
     var post : [String:Any]!
     
 //    let userID = Auth.auth().currentUser?.uid
@@ -41,7 +40,13 @@ class ViewProfileViewController: UIViewController{
     
     @IBOutlet weak var ViewCoursesTakenLabel: UILabel!
     @IBOutlet weak var ViewPhotoImageView: UIImageView!
+    @IBOutlet weak var RequestButton: UIButton!
     
+    @IBAction func RequestButtonClicked(_ sender: Any) {
+        RequestButton.isEnabled = false
+        var event : Event = Event(eventID: "eventID", studentID: self.user.uid, tutorID: post?["creatorID"] as! String, time: post?["time"] as! String, date: post?["date"] as! String,course: post?["course"] as! String, status: "requested")
+        dc.uploadEventToCloud(event: event)
+    }
     let db = Firestore.firestore()
     
     override func viewDidLoad() {
@@ -78,6 +83,8 @@ class ViewProfileViewController: UIViewController{
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
     }
+    
+
     
 }
 
