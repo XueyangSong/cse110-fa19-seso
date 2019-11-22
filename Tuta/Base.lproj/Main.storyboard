@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -583,7 +583,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="207" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cqt-oh-z7o">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="134" width="414" height="762"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostcardTableViewCell" rowHeight="207" id="oWB-yp-GUw" customClass="PostcardTableViewCell" customModule="Tuta" customModuleProvider="target">
@@ -682,7 +682,7 @@
                                 </prototypes>
                             </tableView>
                             <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hJT-xD-tR7">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="90" width="414" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="YlL-Ev-kel"/>
                                 </constraints>
@@ -693,15 +693,26 @@
                                     <outlet property="delegate" destination="3R0-9R-WQx" id="7dv-u6-eDp"/>
                                 </connections>
                             </searchBar>
+                            <segmentedControl opaque="NO" contentMode="center" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ch3-HB-QOl">
+                                <rect key="frame" x="57" y="44" width="300" height="32"/>
+                                <segments>
+                                    <segment title="Student"/>
+                                    <segment title="Tutor"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="hJT-xD-tR7" firstAttribute="leading" secondItem="cqt-oh-z7o" secondAttribute="leading" id="5XH-x6-dhO"/>
+                            <constraint firstItem="Ch3-HB-QOl" firstAttribute="top" secondItem="PhX-sk-VZO" secondAttribute="top" id="77J-gl-ZKI"/>
                             <constraint firstAttribute="bottomMargin" secondItem="cqt-oh-z7o" secondAttribute="bottom" constant="-83" id="8dg-cp-cld"/>
                             <constraint firstItem="hJT-xD-tR7" firstAttribute="trailing" secondItem="cqt-oh-z7o" secondAttribute="trailing" id="AHA-U4-TQE"/>
+                            <constraint firstItem="PhX-sk-VZO" firstAttribute="trailing" secondItem="Ch3-HB-QOl" secondAttribute="trailing" constant="57" id="EuP-HZ-TZm"/>
                             <constraint firstItem="hJT-xD-tR7" firstAttribute="centerX" secondItem="NNA-kY-zKs" secondAttribute="centerX" id="IXd-wl-4H8"/>
+                            <constraint firstItem="hJT-xD-tR7" firstAttribute="top" secondItem="Ch3-HB-QOl" secondAttribute="bottom" constant="15" id="Tx3-yl-MOE"/>
+                            <constraint firstItem="hJT-xD-tR7" firstAttribute="top" secondItem="Ch3-HB-QOl" secondAttribute="bottom" constant="15" id="UQn-iC-bVa"/>
+                            <constraint firstItem="Ch3-HB-QOl" firstAttribute="leading" secondItem="PhX-sk-VZO" secondAttribute="leading" constant="57" id="fhk-Ow-B8n"/>
                             <constraint firstItem="cqt-oh-z7o" firstAttribute="top" secondItem="hJT-xD-tR7" secondAttribute="bottom" id="jhD-xK-wfJ"/>
-                            <constraint firstItem="hJT-xD-tR7" firstAttribute="top" secondItem="PhX-sk-VZO" secondAttribute="top" id="r77-Vo-IbO"/>
                             <constraint firstItem="hJT-xD-tR7" firstAttribute="leading" secondItem="PhX-sk-VZO" secondAttribute="leading" id="zbV-tw-txE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PhX-sk-VZO"/>
@@ -710,11 +721,12 @@
                     <connections>
                         <outlet property="postcardTableView" destination="cqt-oh-z7o" id="ffC-TO-iVL"/>
                         <outlet property="searchBar" destination="hJT-xD-tR7" id="etZ-f0-4ut"/>
+                        <outlet property="searchForSegment" destination="Ch3-HB-QOl" id="8td-cf-ssO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XeX-Ui-8VA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="920" y="920"/>
+            <point key="canvasLocation" x="918.84057971014499" y="919.41964285714278"/>
         </scene>
         <!--PopWindowViewController-->
         <scene sceneID="0HV-C6-MkE">
@@ -1464,7 +1476,6 @@
         <image name="tutaLogo_1" width="360" height="127"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5kr-Ss-2qV"/>
         <segue reference="Jmi-eE-QGA"/>
         <segue reference="biD-n9-DuG"/>
     </inferredMetricsTieBreakers>
