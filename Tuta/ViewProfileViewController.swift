@@ -14,12 +14,10 @@ import Firebase
 class ViewProfileViewController: UIViewController{
     let dc = DataController()
     var user : TutaUser = TutaUser()
-    
     var post : [String:Any]!
     
-//    let userID = Auth.auth().currentUser?.uid
-    
-    var userID = "cT524ItOQzUKXXRWjkWwHeMPGhJ2"
+    var uid = Auth.auth().currentUser?.uid
+    var userID = ""
     var imgUrl = ""
     var imagePicker = UIImagePickerController()
     var imageData = Data()
@@ -41,6 +39,31 @@ class ViewProfileViewController: UIViewController{
     
     @IBOutlet weak var ViewCoursesTakenLabel: UILabel!
     @IBOutlet weak var ViewPhotoImageView: UIImageView!
+    @IBOutlet weak var RequestButton: UIButton!
+    
+    @IBAction func RequestButtonClicked(_ sender: Any) {
+        RequestButton.isEnabled = false
+        var type = post?["type"] as? String
+        var event : Event
+        
+        let calendar = Calendar.current
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        let date = formatter.string(from: Date())
+        formatter.dateFormat = "hh:mm:ss"
+        let time = formatter.string(from: Date())
+        
+        print(post?["creatorID"] as! String)
+        print(uid)
+        
+        if(type! == "tutor"){
+            event = Event(studentID: self.uid!, tutorID: post?["creatorID"] as! String, time: time, date: date, course: post?["course"] as! String, status: "requested")
+        }
+        else{
+            event = Event(studentID: post?["creatorID"] as! String, tutorID: self.uid!, time: time, date: date, course: post?["course"] as! String, status: "requested")
+        }
+        dc.uploadEventToCloud(event: event)
+    }
     
     let db = Firestore.firestore()
     
@@ -78,6 +101,8 @@ class ViewProfileViewController: UIViewController{
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
     }
+    
+
     
 }
 
