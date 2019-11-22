@@ -27,9 +27,9 @@ class Event{
         status = ""
     }
     
-    init(eventID: String, studentID: String, tutorID: String, time: String, date: String,
+    init(studentID: String, tutorID: String, time: String, date: String,
          course: String, status: String){
-        self.eventID = eventID
+        self.eventID = DataController.getNewEventID()
         self.status = status
         self.studentID = studentID
         self.tutorID = tutorID
