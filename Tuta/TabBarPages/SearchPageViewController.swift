@@ -26,7 +26,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         super.viewDidLoad()
         postcardTableView.delegate = self
         postcardTableView.dataSource = self
-
+        
     }
     
     
