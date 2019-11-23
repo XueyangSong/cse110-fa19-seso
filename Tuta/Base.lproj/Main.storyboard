@@ -598,13 +598,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hJT-xD-tR7">
+                            <searchBar contentMode="redraw" placeholder="Search by course ID" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hJT-xD-tR7">
                                 <rect key="frame" x="0.0" y="90" width="414" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="YlL-Ev-kel"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="barTintColor" red="0.84153218405234376" green="0.64426975191678471" blue="0.089121944945402695" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="barTintColor" red="1" green="0.70752408969537739" blue="0.23660760705434103" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="3R0-9R-WQx" id="7dv-u6-eDp"/>
@@ -1057,7 +1057,7 @@
                                 <rect key="frame" x="61" y="189" width="293" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="new phone number:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I4R-eO-GaI">
                                 <rect key="frame" x="61" y="126" width="214" height="46"/>
