@@ -13,6 +13,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
     // MARK: - Properties
     @IBOutlet weak var postcardTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchForSegment: UISegmentedControl!
     
     let dc = DataController()
     
@@ -26,11 +27,6 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         postcardTableView.delegate = self
         postcardTableView.dataSource = self
         
-        dc.getCardsCollection(type: "tutorPostCards", course: "cse110") { (postsFromCloud) in
-            self.posts = postsFromCloud
-            self.postcardTableView.reloadData()
-        }
-
     }
     
     
@@ -119,9 +115,16 @@ extension SearchPageViewController: UISearchBarDelegate{
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searching = true
-        let course = searchBar.text?.lowercased()
+        if(searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ){
+            return;
+        }
+        
+        let course = String(searchBar.text!.lowercased().filter{!$0.isNewline && !$0.isWhitespace})
         view.endEditing(true)
-        dc.getCardsCollection(type: "tutorPostCards", course: course as! String) { (postsFromCloud) in
+        var type = self.searchForSegment.titleForSegment(at: self.searchForSegment.selectedSegmentIndex) as! String
+        type = type.lowercased()
+        
+        dc.getCardsCollection(type: type, course: course) { (postsFromCloud) in
             self.filteredPosts = postsFromCloud
             self.postcardTableView.reloadData()
         }

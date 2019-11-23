@@ -116,9 +116,9 @@ class DataController{
     
     /*******************************FUNCTION FOR POSTCARD*********************************/
     
-    static func getNewCardID(type : String, course : String)->String{
-        let cardID = Firestore.firestore().collection("postCard").document(type).collection(course).document().documentID
-    Firestore.firestore().collection("postCard").document(type).collection(course).document(cardID).setData(["placeHolder":"just book this place"])
+    func getNewCardID(type : String, course : String)->String{
+        let cardID = Firestore.firestore().collection("postCards").document(type).collection(course).document().documentID
+    //Firestore.firestore().collection("postCards").document(type).collection(course).document(cardID).setData(["placeHolder":"just book this place"])
         return cardID
     }
     
@@ -157,29 +157,50 @@ class DataController{
     }
     
     
-    func uploadCardToCloud(postCard : PostCard)->Bool{
-        let docRef = db.collection("postCards").document(postCard.type).collection(postCard.course).document(postCard.cardID)
-        let userRef = db.collection("users").document(postCard.creatorID)
-        docRef.setData(postCard.getCardData())
-        userRef.updateData(["postCards": FieldValue.arrayUnion([postCard.cardID])])
-        
-        return true // needs to handle error and staff later
+    
+    func uploadCardToCloud(postCard : PostCard, completion: @escaping ((Bool) -> ())){
+        let path = db.collection("postCards").document(postCard.type).collection(postCard.course)
+        path.whereField("creatorID", isEqualTo: postCard.creatorID).getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    if querySnapshot?.documents.count != 0{
+                       completion(false)
+                    }
+                    else{
+                        let docRef = path.document(postCard.cardID)
+                        let userRef = self.db.collection("users").document(postCard.creatorID)
+                        docRef.setData(postCard.getCardData())
+                        userRef.updateData(["postCards": FieldValue.arrayUnion([postCard.cardID])])
+                        completion(true)
+                    }
+                }
+        }
+       // return true
     }
     
-    func getCardCollection(type: String, course: String, completion: @escaping ( ([PostCard])-> ())){
-        var cardCollection = [PostCard]()
-        let docRef = db.collection("postCards").document(type).collection(course)
-        docRef.getDocuments(){(querySnapshot, err) in
-            if let err = err{
-                print ("error getting documents: \(err)")
-            }
-            else{
-                for document in querySnapshot!.documents{
-                    var cardObj = PostCard(value: document.data())
-                    cardCollection.append(cardObj)
+    
+    func deletePostCard(cardDic: [String: Any]){
+        db.collection("postCards").document(cardDic["type"] as! String)
+            .collection(cardDic["course"] as! String).document(cardDic["cardId"] as! String).delete(){
+                err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("Document successfully removed!")
                 }
+        }
+        let cardID = cardDic["cardId"] as! String
+        var docRef = db.collection("users").document(cardDic["creatorID"] as! String)
+        docRef.updateData([
+            "postCards": FieldValue.arrayRemove([cardID])
+        ]){
+            err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
             }
-            completion(cardCollection)
         }
     }
     
