@@ -187,7 +187,7 @@ class DataController{
                 if let err = err {
                     print("Error removing document: \(err)")
                 } else {
-                    print("Document successfully removed!")
+                    print("Post card Document successfully removed!")
                 }
         }
         let cardID = cardDic["cardId"] as! String
@@ -199,7 +199,7 @@ class DataController{
             if let err = err {
                 print("Error updating document: \(err)")
             } else {
-                print("Document successfully updated")
+                print("Post array element successfully updated")
             }
         }
     }
@@ -229,6 +229,36 @@ class DataController{
         }
     }
     
+    func getEventsListFromCloud(userID: String, completion: @escaping (([Event])->())){
+        let docRef = db.collection("users").document(userID)
+        var eventArray = [String]()
+        var eventList = [Event]()
+        var event = Event()
+        docRef.getDocument(){ (document, error) in
+            if let document = document, document.exists {
+                eventArray = document.get("events") as! [String]
+                for eventID in eventArray{
+                    if eventID != eventArray[-1]{
+                        self.getEventFromCloud(at: eventID){
+                            (e) in event = (e)
+                            eventList.append(event)
+                        }
+                    }
+                    else{
+                        sleep(1)
+                        self.getEventFromCloud(at: eventID){
+                            (e) in event = (e)
+                            eventList.append(event)
+                            completion(eventList)
+                        }
+                    }
+                }
+            } else {
+                print("Document does not exist")
+            }
+        }
+    }
+    
     func uploadEventToCloud(event : Event)->Bool{
         let docRef = db.collection("events").document(event.eventID)
         let tutorRef = db.collection("users").document(event.tutorID)
@@ -236,8 +266,54 @@ class DataController{
         docRef.setData(event.getEventData())
         tutorRef.updateData(["events": FieldValue.arrayUnion([event.eventID])])
         studentRef.updateData(["events": FieldValue.arrayUnion([event.eventID])])
-        
         return true
+    }
+    
+    func deleteEvent(event: Event){
+        db.collection("events").document(event.eventID).delete(){
+                err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("Event Document successfully removed!")
+                }
+        }
+        
+        let tutorRef = db.collection("users").document(event.tutorID)
+        tutorRef.updateData([
+            "events": FieldValue.arrayRemove([event.eventID])
+        ]){
+            err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Tutor event array element successfully updated")
+            }
+        }
+        let studentRef = db.collection("users").document(event.studentID)
+        studentRef.updateData([
+            "events": FieldValue.arrayRemove([event.eventID])
+        ]){
+            err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Student event array element successfully updated")
+            }
+        }
+    }
+    
+    
+    func updateEventStatus(event : Event, completion: @escaping ((Bool) -> ())){
+        let docRef = db.collection("events").document(event.eventID)
+        if event.status == "requested"{
+            event.status = "inProgress"
+        }
+        else{
+            event.status = "finished"
+        }
+        docRef.updateData(["status": event.status])
+        completion(true)
     }
     
 }
