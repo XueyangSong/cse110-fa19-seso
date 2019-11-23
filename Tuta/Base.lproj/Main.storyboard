@@ -1393,7 +1393,6 @@
         <image name="tutaLogo_1" width="360" height="127"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="FOh-xn-r2q"/>
         <segue reference="Jmi-eE-QGA"/>
         <segue reference="Djd-gn-S7J"/>
     </inferredMetricsTieBreakers>
