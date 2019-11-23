@@ -78,11 +78,21 @@ class PopWindowViewController: UIViewController{
             
             dc.getUserFromCloud(userID: self.uid!){(u) in self.user = (u)
                 let card = PostCard(creatorID: self.user.uid, creatorName: self.user.name, description: description, date: date, time: time, cardID: cardID, course: course, type: type, rate: self.user.rate, numRate: self.user.numRate)
-                self.dc.uploadCardToCloud(postCard: card)
                 
-                self.showToast(message: "Successfully posted!", font: self.myFont)
-                self.descriptionField.text = ""
-                self.courseField.text = ""
+                //dc.getUserFromCloud(userID: self.userID!){(e) in self.user = (e)}
+                var isSuccess = false
+                self.dc.uploadCardToCloud(postCard: card){
+                    (b) in isSuccess = (b)
+                    if isSuccess{
+                        self.showToast(message: "Successfully posted!", font: self.myFont)
+                        self.descriptionField.text = ""
+                        self.courseField.text = ""
+                    }
+                    else{
+                        self.showToast(message: "Post already exists!", font: self.myFont)
+                    }
+                }
+                
             }
             
         }else{
