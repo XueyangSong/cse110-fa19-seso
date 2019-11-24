@@ -286,34 +286,28 @@
             </objects>
             <point key="canvasLocation" x="1408.6956521739132" y="126.5625"/>
         </scene>
-        <!--View Controller-->
+        <!--Event List View Controller-->
         <scene sceneID="6BW-MX-St1">
             <objects>
-                <viewController id="a7s-Ga-07e" sceneMemberID="viewController">
+                <viewController id="a7s-Ga-07e" customClass="EventListViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wqD-Fe-YS2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FrQ-wq-pwN">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="ikA-xn-zA6"/>
                     </view>
+                    <navigationItem key="navigationItem" id="0x6-uk-krK"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aD8-F2-ohm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3257.971014492754" y="1722.9910714285713"/>
+            <point key="canvasLocation" x="3522" y="1714"/>
         </scene>
         <!--Event History-->
         <scene sceneID="jP6-x4-ekH">
             <objects>
                 <viewController id="Z0v-Ua-V2P" customClass="eventHistory" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EQZ-ad-biz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jvA-8Z-K0p">
@@ -374,7 +368,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="41"/>
                                 <state key="normal" title="Event List"/>
                                 <connections>
-                                    <segue destination="Z0v-Ua-V2P" kind="show" id="pIZ-SA-1gO"/>
+                                    <segue destination="a7s-Ga-07e" kind="show" id="6b9-Uq-0G1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHQ-7W-Cyf">
@@ -516,10 +510,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="207"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tA6-Eo-m0R">
-                                                    <rect key="frame" x="25" y="56" width="350" height="80"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tA6-Eo-m0R">
+                                                    <rect key="frame" x="25" y="46" width="350" height="79"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="80" id="RoZ-ej-dhx"/>
+                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="90" id="RoZ-ej-dhx"/>
                                                         <constraint firstAttribute="width" constant="350" id="wfA-ZP-G1v"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
@@ -563,7 +557,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cl9-dx-MIb">
-                                                    <rect key="frame" x="146" y="143" width="113" height="23"/>
+                                                    <rect key="frame" x="146" y="144.5" width="113" height="21.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="113" id="ouK-FW-2wO"/>
                                                     </constraints>
@@ -575,9 +569,8 @@
                                             <color key="backgroundColor" red="0.83445012596189527" green="0.95835487889293403" blue="0.96130555868148804" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
                                                 <constraint firstItem="Cl9-dx-MIb" firstAttribute="baseline" secondItem="Ccd-pa-t1P" secondAttribute="baseline" id="6Gj-RS-Mmj"/>
-                                                <constraint firstItem="Cl9-dx-MIb" firstAttribute="top" secondItem="tA6-Eo-m0R" secondAttribute="bottom" constant="7" id="BkD-AU-g95"/>
                                                 <constraint firstItem="bq7-Zp-Vrw" firstAttribute="top" secondItem="vzk-IG-QhC" secondAttribute="top" constant="15" id="CsA-aw-66l"/>
-                                                <constraint firstItem="tA6-Eo-m0R" firstAttribute="top" secondItem="bq7-Zp-Vrw" secondAttribute="bottom" constant="20" id="Kbx-28-POz"/>
+                                                <constraint firstItem="tA6-Eo-m0R" firstAttribute="top" secondItem="bq7-Zp-Vrw" secondAttribute="bottom" constant="10" id="Kbx-28-POz"/>
                                                 <constraint firstItem="CdN-dv-SyI" firstAttribute="top" secondItem="vzk-IG-QhC" secondAttribute="top" constant="15" id="KdC-MT-Zqt"/>
                                                 <constraint firstItem="CdN-dv-SyI" firstAttribute="leading" secondItem="bq7-Zp-Vrw" secondAttribute="trailing" constant="91" id="Kx1-4f-myd"/>
                                                 <constraint firstItem="73c-KX-0fR" firstAttribute="leading" secondItem="vzk-IG-QhC" secondAttribute="leading" constant="100" id="QW6-pZ-ubk"/>
@@ -604,13 +597,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hJT-xD-tR7">
+                            <searchBar contentMode="redraw" placeholder="Search by course ID" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hJT-xD-tR7">
                                 <rect key="frame" x="0.0" y="90" width="414" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="YlL-Ev-kel"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="barTintColor" red="0.84153218405234376" green="0.64426975191678471" blue="0.089121944945402695" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="barTintColor" red="1" green="0.70752408969537739" blue="0.23660760705434103" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="3R0-9R-WQx" id="7dv-u6-eDp"/>
@@ -1063,7 +1056,7 @@
                                 <rect key="frame" x="61" y="189" width="293" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="new phone number:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I4R-eO-GaI">
                                 <rect key="frame" x="61" y="126" width="214" height="46"/>
@@ -1399,7 +1392,8 @@
         <image name="tutaLogo_1" width="360" height="127"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="FOh-xn-r2q"/>
         <segue reference="Jmi-eE-QGA"/>
-        <segue reference="biD-n9-DuG"/>
+        <segue reference="Djd-gn-S7J"/>
     </inferredMetricsTieBreakers>
 </document>
