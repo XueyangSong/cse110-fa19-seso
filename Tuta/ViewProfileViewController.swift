@@ -56,17 +56,18 @@ class ViewProfileViewController: UIViewController{
         
         print(post?["creatorID"] as! String)
         print(uid)
-        var isRequested : Bool = false
+        var isRequested : Bool = true
         if(type! == "tutor"){
             event = Event(studentID: self.uid!, tutorID: post?["creatorID"] as! String, time: time, date: date, course: post?["course"] as! String, status: "requested")
-            dc.ifRequestedBefore(event: event){
-                (b) in isRequested = (b)
+            
+            dc.ifRequestedBefore(event: event){ (b) in isRequested = (b)
                 if(isRequested){
                     self.showToast(message: "You have requested before", font: myFont)
                     return;
                 }
                 else{
                     self.dc.uploadEventToCloud(event: event)
+                    print("success")
                 }
             }
         }
