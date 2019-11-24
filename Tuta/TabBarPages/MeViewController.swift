@@ -37,10 +37,10 @@ class MeViewController: UIViewController {
 }
 extension UIButton{
     func apply(){
-
+        self.backgroundColor = UIColor.darkGray
         self.layer.cornerRadius = self.frame.height / 2
         self.setTitleColor(UIColor.white, for: .normal)
-
+        self.layer.shadowColor = UIColor.darkGray.cgColor
         self.layer.shadowRadius = 4
         self.layer.shadowOpacity = 0.5
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
