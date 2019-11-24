@@ -67,6 +67,7 @@ class ViewProfileViewController: UIViewController{
                 }
                 else{
                     self.dc.uploadEventToCloud(event: event)
+                    self.showToast(message: "Successfully requested", font: myFont)
                     print("success")
                 }
             }
@@ -80,6 +81,7 @@ class ViewProfileViewController: UIViewController{
                     return;
                 }
                 else{
+                    self.showToast(message: "Successfully requested", font: myFont)
                     self.dc.uploadEventToCloud(event: event)
                 }
             }

@@ -211,7 +211,7 @@ class DataController{
     
     static func getNewEventID()->String{
         let eid = Firestore.firestore().collection("events").document().documentID
-        Firestore.firestore().collection("events").document(eid).setData(["placeHolder":"just book this place"])
+      //  Firestore.firestore().collection("events").document(eid).setData(["placeHolder":"just book this place"])
         return eid
     }
     /*
