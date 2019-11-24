@@ -15,6 +15,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     var activeField : UITextField?
     var distance : CGFloat = 0
     let myFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
+    var loginClicked = false
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -157,6 +158,12 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }
     
     func tryLogIn() {
+        if loginClicked{
+            return
+        }
+        else{
+            loginClicked = true
+        }
         let email = emailTextField.text
         let password = passwordTextField.text
         if(isFieldsValid()!){
@@ -165,12 +172,14 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 if error != nil {
                     print("login failed")
                     self!.showToastForRegisteredEmail()
+                    self!.loginClicked = false
                     return
                 }
                 else{
                     // @TODO go to main page
                     if(!Auth.auth().currentUser!.isEmailVerified){
                         self!.showToastForVerifyEmail()
+                        self!.loginClicked = false
                         return
                     }
                     print("login successfull")
