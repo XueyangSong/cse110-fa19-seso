@@ -21,6 +21,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var genderField: UISegmentedControl!
     var activeField: UITextField?
     var distance: CGFloat? = 0
+    var signUpClicked = false
     //weak var signUpDelegate: SignUpDelegate?
     
     // get a reference for database
@@ -40,7 +41,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setUp()
         
     }
@@ -59,8 +59,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         // set tap dismiss keyboard
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
-        
-        
     }
     
     // *** delegate
@@ -178,6 +176,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     // *** sign up ***
     
     func trySignUp() {
+        if signUpClicked{
+            return
+        }
+        else{
+            signUpClicked = true
+        }
         let isValid = isFieldsValid()
         let name = nameTextField.text
         let email = emailTextField.text
@@ -188,6 +192,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 guard let user = authResult?.user, error == nil else {
                     self.showToastForRegisteredEmail()
                   print("failed")
+                  self.signUpClicked = false
                   return
                 }
                 
