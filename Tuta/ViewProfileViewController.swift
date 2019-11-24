@@ -14,15 +14,15 @@ import Firebase
 class ViewProfileViewController: UIViewController{
     let dc = DataController()
     var user : TutaUser = TutaUser()
-//    let userID = Auth.auth().currentUser?.uid
+    var post : [String:Any]!
     
-    var userID =  ""
+    var uid = Auth.auth().currentUser?.uid
+    var userID = ""
     var imgUrl = ""
     var imagePicker = UIImagePickerController()
     var imageData = Data()
     let defaultProfile = Bundle.main.path(forResource: "stu-1", ofType: "jpg")
 
-    
     @IBOutlet weak var ViewNameLabel: UILabel!
     
     @IBOutlet weak var ViewGenderLabel: UILabel!
@@ -39,12 +39,38 @@ class ViewProfileViewController: UIViewController{
     
     @IBOutlet weak var ViewCoursesTakenLabel: UILabel!
     @IBOutlet weak var ViewPhotoImageView: UIImageView!
+    @IBOutlet weak var RequestButton: UIButton!
+    
+    @IBAction func RequestButtonClicked(_ sender: Any) {
+        RequestButton.isEnabled = false
+        var type = post?["type"] as? String
+        var event : Event
+        
+        let calendar = Calendar.current
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        let date = formatter.string(from: Date())
+        formatter.dateFormat = "hh:mm:ss"
+        let time = formatter.string(from: Date())
+        
+        print(post?["creatorID"] as! String)
+        print(uid)
+        
+        if(type! == "tutor"){
+            event = Event(studentID: self.uid!, tutorID: post?["creatorID"] as! String, time: time, date: date, course: post?["course"] as! String, status: "requested")
+        }
+        else{
+            event = Event(studentID: post?["creatorID"] as! String, tutorID: self.uid!, time: time, date: date, course: post?["course"] as! String, status: "requested")
+        }
+        dc.uploadEventToCloud(event: event)
+    }
     
     let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        dc.delegate = self
+        userID = (post["creatorID"]as? String)!
         dc.getUserFromCloud(userID: self.userID){(e) in self.user = (e)
             
             self.ViewNameLabel.text = self.user.name
@@ -64,6 +90,8 @@ class ViewProfileViewController: UIViewController{
             
         }
         imgUrl = self.user.url
+        print("*********")
+        print(imgUrl)
         if(imgUrl == ""){}
         else{
             imageData = try!Data(contentsOf: URL(string:imgUrl) ??  URL(fileURLWithPath: defaultProfile!))
@@ -74,8 +102,36 @@ class ViewProfileViewController: UIViewController{
         imagePicker.delegate = self
     }
     
+
+    
 }
 
+extension ViewProfileViewController: ProfileDelegate {
+
+
+    func didReceiveData(_ user: TutaUser) {
+        self.user = user
+        print("did receieve: " + self.user.description)
+        ViewDescriptionTextView.text = self.user.description
+        self.ViewPhoneNumberLabel.text = user.phone
+        imgUrl = self.user.url
+        if(imgUrl == ""){}
+        else{
+        imageData = try!Data(contentsOf: URL(string:imgUrl) ??  URL(fileURLWithPath: defaultProfile!))
+        self.ViewPhotoImageView.image = UIImage(data : imageData)
+        }
+        self.ViewPhotoImageView.image = UIImage(data : imageData)
+        self.ViewRatingLabel.text = "rating: " + String(self.user.rate)
+        self.ViewNumberRateLabel.text =  String(self.user.numRate) + " rates"
+        var courses : String = ""
+        for item in self.user.courseTaken{
+            courses = courses + item + " "
+        }
+        ViewCoursesTakenLabel.text = courses
+//        print("did updated " + DescriptionText.text!)
+    }
+
+}
 extension ViewProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
      func imagePickerController( _ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

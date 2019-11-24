@@ -13,6 +13,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
     // MARK: - Properties
     @IBOutlet weak var postcardTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchForSegment: UISegmentedControl!
     
     let dc = DataController()
     
@@ -26,31 +27,10 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         postcardTableView.delegate = self
         postcardTableView.dataSource = self
         
-        dc.getCardsCollection(type: "tutorPostCards", course: "cse110") { (postsFromCloud) in
-            self.posts = postsFromCloud
-            self.postcardTableView.reloadData()
-        }
-
     }
     
     
     // MARK: - Functions
-    /*
-    private func getCollection() {
-        db.collection("postCards").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    // TODO: Maybe here you want to just give documents to posts, instead of appending data to posts.
-                    self.posts.append(document.data())
-                }
-                // Very important, to reload data to the table view after the async call of getDocuments.
-                self.postcardTableView.reloadData()
-                print(self.posts)
-            }
-        }
-    }*/
     
     private func convertTimestamp(serverTimestamp: Int64) -> String {
         let x = Double(serverTimestamp) / 1000
@@ -85,16 +65,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
 
         let postCardObj = PostCard(value:post)
         let postDic = postCardObj.getCardData()
-        // TODO: Here we might want to create a post object.
-        // TODO: if let maybe safer!
-        /*
-        let course = post["course"] as! String
-        let username = post["username"] as! String
-        let description = post["description"] as! String
-        let timestamp = post["time"] as! CVTimeStamp
-        let time = convertTimestamp(serverTimestamp: timestamp.seconds)
-        let rating = post["rating"] as! NSNumber
-        let numOfRatings = post["numOfRatings"] as! NSNumber*/
+
         
         cell.courseLabel!.text = postDic["course"] as! String
         cell.usernameLabel!.text = postDic["creatorName"] as! String
@@ -108,15 +79,27 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
+        // Find the select postCard
+        let cell = sender as! UITableViewCell
+        let indexPath = postcardTableView.indexPath(for: cell)!
+        var post : [String:Any]!
+        if searching {
+            post = filteredPosts[indexPath.row]
+        } else {
+            post = posts[indexPath.row]
+        }
+
+        // Pass the selected postCard to other's profile page
+        let othersProfileViewController = segue.destination as! ViewProfileViewController
+        othersProfileViewController.post = post
     }
-    */
+    
 
 }
 
@@ -132,9 +115,16 @@ extension SearchPageViewController: UISearchBarDelegate{
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searching = true
-        let course = searchBar.text?.lowercased()
+        if(searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ){
+            return;
+        }
+        
+        let course = String(searchBar.text!.lowercased().filter{!$0.isNewline && !$0.isWhitespace})
         view.endEditing(true)
-        dc.getCardsCollection(type: "tutorPostCards", course: course as! String) { (postsFromCloud) in
+        var type = self.searchForSegment.titleForSegment(at: self.searchForSegment.selectedSegmentIndex) as! String
+        type = type.lowercased()
+        
+        dc.getCardsCollection(type: type, course: course) { (postsFromCloud) in
             self.filteredPosts = postsFromCloud
             self.postcardTableView.reloadData()
         }
