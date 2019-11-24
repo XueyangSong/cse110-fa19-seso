@@ -842,6 +842,9 @@
                                 <rect key="frame" x="119" y="252" width="152" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
                                 <state key="normal" title="Request"/>
                                 <connections>
                                     <action selector="RequestButtonClicked:" destination="RAt-iE-2Re" eventType="touchUpInside" id="lX3-6o-f3x"/>
@@ -1392,7 +1395,6 @@
         <image name="tutaLogo_1" width="360" height="127"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="FOh-xn-r2q"/>
         <segue reference="Jmi-eE-QGA"/>
         <segue reference="Djd-gn-S7J"/>
     </inferredMetricsTieBreakers>
