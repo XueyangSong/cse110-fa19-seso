@@ -49,7 +49,7 @@ class ChangeNumberController:UIViewController{
     
     // Return true if only containing digits.
     func isValidPhoneNum(numString:String) -> Bool {
-        let numRegEx = "[0-9]+"
+        let numRegEx = "[0-9]{9,15}"
         
         let numPattern = NSPredicate(format: "SELF MATCHES %@", numRegEx)
         return numPattern.evaluate(with: numString)
