@@ -239,7 +239,7 @@ class DataController{
             (querySnapshot, err) in
             if let err = err{
                 print("Error getting documents: \(err) in isRequested")
-                completion(false)
+                //completion(true)
             } else{
                 if querySnapshot?.documents.count != 0{
                    completion(true)
