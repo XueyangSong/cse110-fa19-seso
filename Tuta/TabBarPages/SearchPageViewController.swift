@@ -74,6 +74,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         cell.ratingLabel!.text = "Rating: " + String(postDic["rate"] as! Double)
         cell.numRatingsLabel!.text = String(postDic["numRate"] as! Int) + " People rated"
         
+        cell.descriptionLabel.sizeToFit()
         
         return cell
     }

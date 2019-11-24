@@ -23,6 +23,7 @@ class PopWindowViewController: UIViewController{
     let dc = DataController()
     let uid = Auth.auth().currentUser?.uid
     var user = TutaUser()
+
     
     
     override func viewDidLoad() {
@@ -115,14 +116,13 @@ class PopWindowViewController: UIViewController{
 }
 
 
+
 extension UIButton{
     func applyButton(){
         self.layer.cornerRadius = self.frame.height / 2
         self.setTitleColor(UIColor.white, for: .normal)
-        self.layer.shadowColor = UIColor.white.cgColor
         self.layer.shadowRadius = 4
         self.layer.shadowOpacity = 0.5
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
     }
 }
-
