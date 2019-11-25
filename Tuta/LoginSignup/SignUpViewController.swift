@@ -171,7 +171,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     func showToastForRegisteredEmail() {
-        showToast(message: "This email has arealdy registered", font: myFont)
+        showToast(message: "This email has already registered", font: myFont)
     }
     // *** sign up ***
     

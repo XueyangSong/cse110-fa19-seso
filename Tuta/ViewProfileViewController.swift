@@ -42,6 +42,7 @@ class ViewProfileViewController: UIViewController{
     @IBOutlet weak var RequestButton: UIButton!
     let db = Firestore.firestore()
     
+    let myFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
     @IBAction func RequestButtonClicked(_ sender: Any) {
         RequestButton.isEnabled = false
         var type = post?["type"] as? String
@@ -87,7 +88,6 @@ class ViewProfileViewController: UIViewController{
             }
         }
     }
-    
     
     
     override func viewDidLoad() {
