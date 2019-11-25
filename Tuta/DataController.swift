@@ -211,8 +211,44 @@ class DataController{
     
     static func getNewEventID()->String{
         let eid = Firestore.firestore().collection("events").document().documentID
-        Firestore.firestore().collection("events").document(eid).setData(["placeHolder":"just book this place"])
+      //  Firestore.firestore().collection("events").document(eid).setData(["placeHolder":"just book this place"])
         return eid
+    }
+    /*
+    let path = db.collection("postCards").document(postCard.type).collection(postCard.course)
+    path.whereField("creatorID", isEqualTo: postCard.creatorID).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                if querySnapshot?.documents.count != 0{
+                   completion(false)
+                }
+                else{
+                    let docRef = path.document(postCard.cardID)
+                    let userRef = self.db.collection("users").document(postCard.creatorID)
+                    docRef.setData(postCard.getCardData())
+                    userRef.updateData(["postCards": FieldValue.arrayUnion([postCard.cardID])])
+                    completion(true)
+                }
+            }
+    }*/
+    
+    func ifRequestedBefore(event: Event, completion: @escaping ((Bool)->())){
+        let docRef = db.collection("events")
+        docRef.whereField("tutorID", isEqualTo: event.tutorID).whereField("studentID", isEqualTo: event.studentID).getDocuments(){
+            (querySnapshot, err) in
+            if let err = err{
+                print("Error getting documents: \(err) in isRequested")
+                //completion(true)
+            } else{
+                if querySnapshot?.documents.count != 0{
+                   completion(true)
+                }
+                else{
+                    completion(false)
+                }
+            }
+        }
     }
     
     func getEventFromCloud(at path: String, completion: @escaping ((Event) -> ())) {

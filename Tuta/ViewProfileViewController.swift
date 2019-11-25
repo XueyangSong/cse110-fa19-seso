@@ -40,13 +40,14 @@ class ViewProfileViewController: UIViewController{
     @IBOutlet weak var ViewCoursesTakenLabel: UILabel!
     @IBOutlet weak var ViewPhotoImageView: UIImageView!
     @IBOutlet weak var RequestButton: UIButton!
+    let db = Firestore.firestore()
     
     let myFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
     @IBAction func RequestButtonClicked(_ sender: Any) {
         RequestButton.isEnabled = false
         var type = post?["type"] as? String
         var event : Event
-        
+        let myFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
         let calendar = Calendar.current
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd"
@@ -56,43 +57,38 @@ class ViewProfileViewController: UIViewController{
         
         print(post?["creatorID"] as! String)
         print(uid)
-        
+        var isRequested : Bool = true
         if(type! == "tutor"){
             event = Event(studentID: self.uid!, tutorID: post?["creatorID"] as! String, time: time, date: date, course: post?["course"] as! String, status: "requested")
+            
+            dc.ifRequestedBefore(event: event){ (b) in isRequested = (b)
+                if(isRequested){
+                    self.showToast(message: "You have requested before", font: myFont)
+                    return;
+                }
+                else{
+                    self.dc.uploadEventToCloud(event: event)
+                    self.showToast(message: "Successfully requested", font: myFont)
+                    print("success")
+                }
+            }
         }
         else{
             event = Event(studentID: post?["creatorID"] as! String, tutorID: self.uid!, time: time, date: date, course: post?["course"] as! String, status: "requested")
+            dc.ifRequestedBefore(event: event){
+                (b) in isRequested = (b)
+                if(isRequested){
+                    self.showToast(message: "You have requested before", font: myFont)
+                    return;
+                }
+                else{
+                    self.showToast(message: "Successfully requested", font: myFont)
+                    self.dc.uploadEventToCloud(event: event)
+                }
+            }
         }
-        dc.uploadEventToCloud(event: event)
-        showToast(message: "request submitted", font: myFont)
     }
     
-    func showToast(message : String, font: UIFont) {
-
-        let rect = CGRect.init(x: (self.view.frame.width-200) / 2, y: RequestButton.frame.origin.y + 45, width: 180, height: 35)
-        let toastLabel = UILabel(frame: rect)
-            //CGRect(x: self.view.frame.size.width/2 - 120, y: self.view.frame.size.height-100, width: 250, height: 35))
-        
-        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        toastLabel.textColor = UIColor.white
-        toastLabel.font = .systemFont(ofSize: 20)
-        toastLabel.font = font
-        toastLabel.textAlignment = .center;
-        toastLabel.text = message
-        toastLabel.alpha = 1.0
-        toastLabel.layer.cornerRadius = 10;
-        toastLabel.clipsToBounds = true
-        
-        self.view.addSubview(toastLabel)
-        UIView.animate(withDuration: 1, delay: 2.5, options: .curveEaseOut, animations: {
-             toastLabel.alpha = 0.0
-        }, completion: {(isCompleted) in
-            toastLabel.removeFromSuperview()
-        })
-    }
-    
-    
-    let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,7 +125,29 @@ class ViewProfileViewController: UIViewController{
         imagePicker.delegate = self
     }
     
+    func showToast(message : String, font: UIFont) {
 
+           let rect = CGRect.init(x: (self.view.frame.width - 250) / 2, y: ViewDescriptionTextView.frame.origin.y - 55, width: 250, height: 35)
+           let toastLabel = UILabel(frame: rect)
+               //CGRect(x: self.view.frame.size.width/2 - 120, y: self.view.frame.size.height-100, width: 250, height: 35))
+           
+           toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+           toastLabel.textColor = UIColor.white
+           toastLabel.font = .systemFont(ofSize: 20)
+           toastLabel.font = font
+           toastLabel.textAlignment = .center;
+           toastLabel.text = message
+           toastLabel.alpha = 1.0
+           toastLabel.layer.cornerRadius = 10;
+           toastLabel.clipsToBounds = true
+           
+           self.view.addSubview(toastLabel)
+           UIView.animate(withDuration: 1, delay: 2.5, options: .curveEaseOut, animations: {
+                toastLabel.alpha = 0.0
+           }, completion: {(isCompleted) in
+               toastLabel.removeFromSuperview()
+           })
+       }
     
 }
 
