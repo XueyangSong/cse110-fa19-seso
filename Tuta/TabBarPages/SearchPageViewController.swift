@@ -27,6 +27,8 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         postcardTableView.delegate = self
         postcardTableView.dataSource = self
         
+        searchForSegment.addTarget(self, action: #selector(onModeSwitch(sender:)), for: .valueChanged)
+        
     }
     
     
@@ -42,7 +44,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         return formatter.string(from: date as Date)
     }
     
-    // MARK: - DataSource
+    // MARK: - Tableview DataSource Configuration
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searching {
             return filteredPosts.count
@@ -104,6 +106,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
 
 }
 
+// MARK: - Search Bar Functions
 extension SearchPageViewController: UISearchBarDelegate{
     /*func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -114,21 +117,38 @@ extension SearchPageViewController: UISearchBarDelegate{
         postcardTableView.reloadData()
     }*/
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.searchTextField.autocorrectionType = .no
+        searchBar.searchTextField.autocapitalizationType = .none
+        searchBar.searchTextField.spellCheckingType = .no
+    }
+    
+    func search() {
+        let index = self.searchForSegment.selectedSegmentIndex
+        
         searching = true
+        
         if(searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ){
             return;
         }
         
         let course = String(searchBar.text!.lowercased().filter{!$0.isNewline && !$0.isWhitespace})
         view.endEditing(true)
-        var type = self.searchForSegment.titleForSegment(at: self.searchForSegment.selectedSegmentIndex) as! String
+        var type = self.searchForSegment.titleForSegment(at: index) as! String
         type = type.lowercased()
         
         dc.getCardsCollection(type: type, course: course) { (postsFromCloud) in
             self.filteredPosts = postsFromCloud
             self.postcardTableView.reloadData()
         }
+    }
+    
+    @objc func onModeSwitch(sender: UISegmentedControl){
+        search()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        search()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
