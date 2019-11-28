@@ -10,8 +10,30 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 import Firebase
+import MessageUI
 
-class ViewProfileViewController: UIViewController{
+class ViewProfileViewController: UIViewController,MFMessageComposeViewControllerDelegate{
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        switch (result) {
+            case .cancelled:
+                print("Message was cancelled")
+                dismiss(animated: true, completion: nil)
+            case .failed:
+                print("Message failed")
+                dismiss(animated: true, completion: nil)
+            case .sent:
+                print("Message was sent")
+                dismiss(animated: true, completion: nil)
+            default:
+            break
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
+    
     let dc = DataController()
     var user : TutaUser = TutaUser()
     var post : [String:Any]!
@@ -57,35 +79,57 @@ class ViewProfileViewController: UIViewController{
         
         print(post?["creatorID"] as! String)
         print(uid)
-        var isRequested : Bool = true
-        if(type! == "tutor"){
-            event = Event(studentID: self.uid!, tutorID: post?["creatorID"] as! String, time: time, date: date, course: post?["course"] as! String, status: "requested")
-            
-            dc.ifRequestedBefore(event: event){ (b) in isRequested = (b)
-                if(isRequested){
-                    self.showToast(message: "You have requested before", font: myFont)
-                    return;
+        if(uid != post?["creatorID"] as! String){
+            var isRequested : Bool = true
+            if(type! == "tutor"){
+                event = Event(studentID: self.uid!, tutorID: post?["creatorID"] as! String, time: time, date: date, course: post?["course"] as! String, status: "requested")
+                
+                dc.ifRequestedBefore(event: event){ (b) in isRequested = (b)
+                    if(isRequested){
+                        self.showToast(message: "You have requested before", font: myFont)
+                        return;
+                    }
+                    else{
+                        self.dc.uploadEventToCloud(event: event)
+                        self.showToast(message: "Successfully requested", font: myFont)
+                        print("success")
+                    }
                 }
-                else{
-                    self.dc.uploadEventToCloud(event: event)
-                    self.showToast(message: "Successfully requested", font: myFont)
-                    print("success")
+            }
+            else{
+                event = Event(studentID: post?["creatorID"] as! String, tutorID: self.uid!, time: time, date: date, course: post?["course"] as! String, status: "requested")
+                dc.ifRequestedBefore(event: event){
+                    (b) in isRequested = (b)
+                    if(isRequested){
+                        self.showToast(message: "You have requested before", font: myFont)
+                        return;
+                    }
+                    else{
+                        self.showToast(message: "Successfully requested", font: myFont)
+                        self.dc.uploadEventToCloud(event: event)
+                    }
                 }
             }
         }
         else{
-            event = Event(studentID: post?["creatorID"] as! String, tutorID: self.uid!, time: time, date: date, course: post?["course"] as! String, status: "requested")
-            dc.ifRequestedBefore(event: event){
-                (b) in isRequested = (b)
-                if(isRequested){
-                    self.showToast(message: "You have requested before", font: myFont)
-                    return;
-                }
-                else{
-                    self.showToast(message: "Successfully requested", font: myFont)
-                    self.dc.uploadEventToCloud(event: event)
-                }
-            }
+            dc.deletePostCard(cardDic: post)
+            self.showToast(message: "Successfully deleted", font: myFont)
+        }
+    }
+    
+    
+    @IBAction func Message(_ sender: Any) {
+        if MFMessageComposeViewController.canSendText() == false {
+            print("Cannot send text")
+            return
+        }
+        else{
+
+            let controller = MFMessageComposeViewController()
+            controller.body = "hardcode"
+            controller.recipients = [(self.ViewPhoneNumberLabel.text ?? "000")]
+            controller.messageComposeDelegate = self
+            self.present(controller, animated: true, completion: nil)
         }
     }
     
@@ -94,6 +138,9 @@ class ViewProfileViewController: UIViewController{
         super.viewDidLoad()
         dc.delegate = self
         userID = (post["creatorID"]as? String)!
+        if(uid == userID){
+            RequestButton.setTitle("delete", for: .normal)
+        }
         dc.getUserFromCloud(userID: self.userID){(e) in self.user = (e)
             
             self.ViewNameLabel.text = self.user.name
@@ -124,6 +171,7 @@ class ViewProfileViewController: UIViewController{
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
     }
+    
     
     func showToast(message : String, font: UIFont) {
 
