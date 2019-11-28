@@ -61,6 +61,9 @@ class PostCard{
         self.cardID = value["cardID"] as? String ?? ""
         self.rate = value["rate"] as? Double ?? 0.0
         self.numRate = value["numRate"] as? Int ?? 0
+        
+        // Round the rate to the first decimal place
+        self.rate = Double(round(10 * self.rate) / 10)
     }
     /*
     func setUpCardID(){
