@@ -309,5 +309,24 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selected row: ")
         print(indexPath)
+        
+        let cell = tableView.cellForRow(at: indexPath)
+        //let rateViewController = RateViewController(eventID: "string")
+        //navigationController?.pushViewController(UIViewController(), animated: true)
+        self.performSegue(withIdentifier: "navToRatePage", sender: cell)
     }
+    
+    /*
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Find the selected event
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)!
+        let event = finishedEventsArray[indexPath.row]
+        let eventID = event.eventID
+        print("Selected event ID is >>>>>>>>>>>>>>>>>>> " + eventID)
+        
+        // Pass the eventID to the rate view controller
+        let rateViewController = segue.destination as! RateViewController
+        rateViewController.eventID = eventID
+    }*/
 }
