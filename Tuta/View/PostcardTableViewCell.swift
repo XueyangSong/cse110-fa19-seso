@@ -10,13 +10,13 @@ import UIKit
 
 class PostcardTableViewCell: UITableViewCell {
 
-    
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var numRatingsLabel: UILabel!
     @IBOutlet weak var courseLabel: UILabel!
+    @IBOutlet weak var cellView: UIView!
     
     
     override func awakeFromNib() {

@@ -19,7 +19,7 @@ class MeViewController: UIViewController {
         super.viewDidLoad()
         Profile.apply()
         Event.apply()
-        Setting.apply()
+        
         logoutButton.apply()
         // Do any additional setup after loading the view.
     }
