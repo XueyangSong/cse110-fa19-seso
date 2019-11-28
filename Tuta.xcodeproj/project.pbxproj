@@ -32,6 +32,7 @@
 		490AB8AA2377706A00C63347 /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB8A92377706A00C63347 /* DescriptionViewController.swift */; };
 		490AB8AC2377708300C63347 /* AddCourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB8AB2377708300C63347 /* AddCourseController.swift */; };
 		490AB8AE237772AF00C63347 /* ProfileDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB8AD237772AF00C63347 /* ProfileDelegate.swift */; };
+		49FFF4A1238E544F0069A81F /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FFF4A0238E544F0069A81F /* RateViewController.swift */; };
 		5A30888223808D70007501E5 /* ViewProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A30888123808D70007501E5 /* ViewProfileViewController.swift */; };
 		7F3E1C8223836BCA00F8088B /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3E1C8123836BCA00F8088B /* MeViewController.swift */; };
 		7F3E1C842383AF5800F8088B /* PopWindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3E1C832383AF5800F8088B /* PopWindowViewController.swift */; };
@@ -70,6 +71,7 @@
 		490AB8A92377706A00C63347 /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		490AB8AB2377708300C63347 /* AddCourseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseController.swift; sourceTree = "<group>"; };
 		490AB8AD237772AF00C63347 /* ProfileDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileDelegate.swift; path = Tuta/TabBarPages/ProfileDelegate.swift; sourceTree = "<group>"; };
+		49FFF4A0238E544F0069A81F /* RateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
 		5A30888123808D70007501E5 /* ViewProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProfileViewController.swift; sourceTree = "<group>"; };
 		7F3E1C8123836BCA00F8088B /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		7F3E1C832383AF5800F8088B /* PopWindowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopWindowViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				1FF1F2DA23890A890092AD83 /* EditProfile */,
 				1F467B87236DFE9500A5CA59 /* ProfileViewController.swift */,
 				1FF1F2D8238908E10092AD83 /* EventListViewController.swift */,
+				49FFF4A0238E544F0069A81F /* RateViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				7F3E1C842383AF5800F8088B /* PopWindowViewController.swift in Sources */,
 				1FF1F2E22389BC2F0092AD83 /* ExpandableEventsArray.swift in Sources */,
 				490AB8AA2377706A00C63347 /* DescriptionViewController.swift in Sources */,
+				49FFF4A1238E544F0069A81F /* RateViewController.swift in Sources */,
 				490AB8A62376D89400C63347 /* PostcardTableViewCell.swift in Sources */,
 				490AB8A52376D88C00C63347 /* PostCard.swift in Sources */,
 				490AB8A42376D87400C63347 /* SearchPageViewController.swift in Sources */,

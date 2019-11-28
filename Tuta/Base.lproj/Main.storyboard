@@ -315,7 +315,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="47" id="JeF-7J-aqq">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="47" id="JeF-7J-aqq" customClass="EventListCell" customModule="Tuta" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="47"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JeF-7J-aqq" id="dbs-jH-5gh">
@@ -334,6 +334,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eTc-VT-lPi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4228.985507246377" y="1713.6160714285713"/>
+        </scene>
+        <!--Rate View Controller-->
+        <scene sceneID="2hk-sy-5HP">
+            <objects>
+                <viewController id="U1j-7f-dyJ" customClass="RateViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1CD-bq-1XT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D2M-SF-oqV" customClass="CosmosView" customModule="Cosmos">
+                                <rect key="frame" x="147" y="329" width="120" height="20"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekA-xx-QED">
+                                <rect key="frame" x="165" y="463" width="98" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="onSubmit:" destination="U1j-7f-dyJ" eventType="touchUpInside" id="GgR-2I-SAg"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give your tutor a rating" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjY-uH-3OC">
+                                <rect key="frame" x="41" y="160" width="332" height="124"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="124" id="Igf-em-4YY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="D2M-SF-oqV" firstAttribute="centerX" secondItem="1CD-bq-1XT" secondAttribute="centerX" id="BPC-SO-MKv"/>
+                            <constraint firstItem="D2M-SF-oqV" firstAttribute="top" secondItem="mjY-uH-3OC" secondAttribute="bottom" constant="45" id="MAf-hy-xsg"/>
+                            <constraint firstItem="mjY-uH-3OC" firstAttribute="leading" secondItem="UdK-BU-Akd" secondAttribute="leading" constant="41" id="NPE-Xn-ImL"/>
+                            <constraint firstItem="mjY-uH-3OC" firstAttribute="top" secondItem="UdK-BU-Akd" secondAttribute="top" constant="116" id="n6K-NL-1eF"/>
+                            <constraint firstItem="mjY-uH-3OC" firstAttribute="centerX" secondItem="1CD-bq-1XT" secondAttribute="centerX" id="odx-eF-tdg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UdK-BU-Akd"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Mjm-ch-xI2"/>
+                    <connections>
+                        <outlet property="starRatingView" destination="D2M-SF-oqV" id="J0o-LZ-7aN"/>
+                        <outlet property="submitButton" destination="ekA-xx-QED" id="Ol7-g2-Foc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="15u-pV-2IT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4228.985507246377" y="2537.9464285714284"/>
         </scene>
         <!--MeViewController-->
         <scene sceneID="mis-b7-6JF">
