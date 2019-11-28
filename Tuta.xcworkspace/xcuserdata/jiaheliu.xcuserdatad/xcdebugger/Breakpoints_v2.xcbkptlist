@@ -187,8 +187,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "14"
             endingLineNumber = "14"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "MyProfileViewController"
+            landmarkType = "3">
             <Locations>
                <Location
                   uuid = "B7F42834-DD8A-4039-B25A-F0DD97C6B88F - 29b26ac5b6270724"
@@ -272,7 +272,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "ECDA318C-3C97-46D6-AC78-AD1AF6A06CCA"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tuta/MyProfileViewController.swift"

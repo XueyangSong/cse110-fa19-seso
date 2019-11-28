@@ -17,9 +17,7 @@ class MyProfileViewController: UIViewController {
     
     lazy var containerView: UIView = {
         let view = UIView()
-        var imgUrl = ""
-        var imageData = Data()
-        
+
         
         view.backgroundColor = .mainBlue
         
@@ -33,8 +31,8 @@ class MyProfileViewController: UIViewController {
         backButton.anchor(top: view.topAnchor, left: view.leftAnchor,
                              paddingTop: 64, paddingLeft: 32, width: 32, height: 32)
         
-        view.addSubview(followButton)
-        followButton.anchor(top: view.topAnchor, right: view.rightAnchor,
+        view.addSubview(secondButton)
+        secondButton.anchor(top: view.topAnchor, right: view.rightAnchor,
                              paddingTop: 64, paddingRight: 32, width: 32, height: 32)
         
         view.addSubview(nameLabel)
@@ -98,7 +96,7 @@ class MyProfileViewController: UIViewController {
         return button
     }()
     
-    let followButton: UIButton = {
+    let secondButton: UIButton = {
 
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "lightbulb").withRenderingMode(.alwaysOriginal), for: .normal)
@@ -126,7 +124,7 @@ class MyProfileViewController: UIViewController {
     }()
     
     @objc func handleMessageUser() {
-
+        print("test test test")
         //self.present(vc, animated: true, completion: nil)
     }
     // MARK: - Lifecycle
@@ -151,7 +149,7 @@ class MyProfileViewController: UIViewController {
     
 }
 
-/*  移动到 ViewProfileViewController
+
 extension UIColor {
     static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
         return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
@@ -195,5 +193,5 @@ extension UIView {
             heightAnchor.constraint(equalToConstant: height).isActive = true
         }
     }
-}*/
+}
 
