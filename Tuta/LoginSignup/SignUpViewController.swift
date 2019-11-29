@@ -210,7 +210,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     "gender": self.genderField.titleForSegment(at: self.genderField.selectedSegmentIndex),
                     "description": "",
                     "picture": "",
-                    "rate": 0.0,
+                    "rating": 0.0,
                     "numRate" : 0,
                     "courseTaken" : [String](),
                     "phone" : "",
