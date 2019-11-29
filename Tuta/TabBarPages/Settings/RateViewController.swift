@@ -15,8 +15,8 @@ class RateViewController: UIViewController {
     @IBOutlet weak var starRatingView: CosmosView!
     @IBOutlet weak var submitButton: UIButton!
     
-    var eventID = "3TIH0Hlq18r2czfPfQla"
-    let userID = "TP1MFf9K1rfyNBIvOLnxXG1wxPs1"
+    var eventID = "EiN3pazBdGtsl1pWA0VS"
+    let userID = "kC1VpntfdpRFImDH8ULQWDti5NK2"
     var rating: Double! = 2.5
     let dc = DataController()
 
