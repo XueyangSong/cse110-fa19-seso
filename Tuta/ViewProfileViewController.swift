@@ -123,14 +123,13 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
             print("Cannot send text")
             return
         }
-        else{
 
             let controller = MFMessageComposeViewController()
             controller.body = "hardcode"
             controller.recipients = [(self.ViewPhoneNumberLabel.text ?? "000")]
             controller.messageComposeDelegate = self
             self.present(controller, animated: true, completion: nil)
-        }
+        
     }
     
     
@@ -140,6 +139,41 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
         userID = (post["creatorID"]as? String)!
         if(uid == userID){
             RequestButton.setTitle("delete", for: .normal)
+        }
+        else{
+            print("&*(^%^&*()(*^%$")
+            var isRequested : Bool = true
+            var type = post?["type"] as? String
+            var event : Event
+            let myFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
+            let calendar = Calendar.current
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy/MM/dd"
+            let date = formatter.string(from: Date())
+            formatter.dateFormat = "hh:mm:ss"
+            let time = formatter.string(from: Date())
+            
+            if(type! == "tutor"){
+                event = Event(studentID: self.uid!, tutorID: post?["creatorID"] as! String, time: time, date: date, course: post?["course"] as! String, status: "requested")
+                
+                dc.ifRequestedBefore(event: event){ (b) in isRequested = (b)
+                    if(isRequested){
+                        self.RequestButton.isEnabled = false
+                        return;
+                    }
+                }
+            }
+            else{
+                event = Event(studentID: post?["creatorID"] as! String, tutorID: self.uid!, time: time, date: date, course: post?["course"] as! String, status: "requested")
+                dc.ifRequestedBefore(event: event){
+                    (b) in isRequested = (b)
+                    if(isRequested){
+                        self.RequestButton.isEnabled = false
+                        return;
+                    }
+                }
+            }
+            
         }
         dc.getUserFromCloud(userID: self.userID){(e) in self.user = (e)
             
