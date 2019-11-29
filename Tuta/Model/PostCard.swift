@@ -59,7 +59,7 @@ class PostCard{
         self.course = value["course"] as? String ?? ""
         self.type = value["type"] as? String ?? ""
         self.cardID = value["cardID"] as? String ?? ""
-        self.rating = value["rate"] as? Double ?? 0.0
+        self.rating = value["rating"] as? Double ?? 0.0
         self.numRate = value["numRate"] as? Int ?? 0
         
         // Round the rate to the first decimal place

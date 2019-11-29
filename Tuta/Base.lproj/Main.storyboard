@@ -291,7 +291,7 @@
             <objects>
                 <viewController id="2No-Ow-Wav" customClass="MyProfileViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eqT-dU-5AO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="jiJ-rK-Piy"/>
@@ -1514,6 +1514,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="tGE-cn-6AB"/>
+        <segue reference="i6H-qK-3cr"/>
         <segue reference="biD-n9-DuG"/>
     </inferredMetricsTieBreakers>
 </document>
