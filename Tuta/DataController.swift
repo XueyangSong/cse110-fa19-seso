@@ -144,7 +144,7 @@ class DataController{
     
     func getCardsCollection(type: String, course: String, completion: @escaping (([[String:Any]]) -> Void)) {
         var cards = [[String:Any]]()
-        let ref = db.collection("postCards").document(type).collection(course)
+        let ref = db.collection("postCards").document(type).collection(course).order(by: "rating", descending: true)
         ref.getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
