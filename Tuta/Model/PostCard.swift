@@ -18,7 +18,7 @@ class PostCard{
     var course :  String
     var type : String
     var numRate: Int
-    var rate: Double
+    var rating: Double
 
     
     init(){
@@ -30,13 +30,13 @@ class PostCard{
         self.creatorName = ""
         self.course = ""
         self.type = ""
-        self.rate = 0.0
+        self.rating = 0.0
         self.numRate = 0
 
     }
     
     init(creatorID : String, creatorName: String, description : String, date : String, time : String, 
-         cardID : String, course : String, type : String, rate: Double, numRate: Int){
+         cardID : String, course : String, type : String, rating: Double, numRate: Int){
 
         self.cardID = cardID
         self.description = description
@@ -46,7 +46,7 @@ class PostCard{
         self.creatorName = creatorName
         self.course = course
         self.type = type
-        self.rate = rate
+        self.rating = rating
         self.numRate = numRate
     }
     
@@ -59,8 +59,11 @@ class PostCard{
         self.course = value["course"] as? String ?? ""
         self.type = value["type"] as? String ?? ""
         self.cardID = value["cardID"] as? String ?? ""
-        self.rate = value["rate"] as? Double ?? 0.0
+        self.rating = value["rating"] as? Double ?? 0.0
         self.numRate = value["numRate"] as? Int ?? 0
+        
+        // Round the rate to the first decimal place
+        self.rating = Double(round(10 * self.rating) / 10)
     }
     /*
     func setUpCardID(){
@@ -69,7 +72,7 @@ class PostCard{
     */
     func getCardData() -> Dictionary<String, Any>{
         return [
-            "cardId" : self.cardID,
+            "cardID" : self.cardID,
             "description" : self.description,
             "date" : self.date,
             "time" : self.time,
@@ -77,7 +80,7 @@ class PostCard{
             "creatorName": self.creatorName,
             "course" : self.course,
             "type" : self.type,
-            "rate" : self.rate,
+            "rating" : self.rating,
             "numRate": self.numRate
 
         ]
