@@ -171,7 +171,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     func showToastForRegisteredEmail() {
-        showToast(message: "This email has arealdy registered", font: myFont)
+        showToast(message: "This email has already registered", font: myFont)
     }
     // *** sign up ***
     
@@ -210,7 +210,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     "gender": self.genderField.titleForSegment(at: self.genderField.selectedSegmentIndex),
                     "description": "",
                     "picture": "",
-                    "rate": 0.0,
+                    "rating": 0.0,
                     "numRate" : 0,
                     "courseTaken" : [String](),
                     "phone" : "",

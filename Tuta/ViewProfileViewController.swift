@@ -10,12 +10,34 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 import Firebase
+import MessageUI
 
-class ViewProfileViewController: UIViewController{
+class ViewProfileViewController: UIViewController,MFMessageComposeViewControllerDelegate{
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        switch (result) {
+            case .cancelled:
+                print("Message was cancelled")
+                dismiss(animated: true, completion: nil)
+            case .failed:
+                print("Message failed")
+                dismiss(animated: true, completion: nil)
+            case .sent:
+                print("Message was sent")
+                dismiss(animated: true, completion: nil)
+            default:
+            break
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
+    
     let dc = DataController()
     var user : TutaUser = TutaUser()
     var post : [String:Any]!
-    
+    var selfUser = TutaUser()
     var uid = Auth.auth().currentUser?.uid
     var userID = ""
     var imgUrl = ""
@@ -42,10 +64,11 @@ class ViewProfileViewController: UIViewController{
     @IBOutlet weak var RequestButton: UIButton!
     let db = Firestore.firestore()
     
+    let myFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
     @IBAction func RequestButtonClicked(_ sender: Any) {
         RequestButton.isEnabled = false
         var type = post?["type"] as? String
-        var event : Event
+        var event = Event()
         let myFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
         let calendar = Calendar.current
         let formatter = DateFormatter()
@@ -56,73 +79,137 @@ class ViewProfileViewController: UIViewController{
         
         print(post?["creatorID"] as! String)
         print(uid)
-        var isRequested : Bool = true
-        if(type! == "tutor"){
-            event = Event(studentID: self.uid!, tutorID: post?["creatorID"] as! String, time: time, date: date, course: post?["course"] as! String, status: "requested")
-            
-            dc.ifRequestedBefore(event: event){ (b) in isRequested = (b)
-                if(isRequested){
-                    self.showToast(message: "You have requested before", font: myFont)
-                    return;
+
+        
+        if(self.uid != self.post?["creatorID"] as! String){
+            dc.getUserFromCloud(userID: uid!){
+                (u) in self.selfUser = u
+                var isRequested : Bool = true
+                if(type! == "tutor"){
+                    event = Event(studentID: self.uid!, tutorID: self.post?["creatorID"] as! String, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.selfUser.name, tutorName: self.post?["creatorName"] as! String)
+                    
+                    self.dc.ifRequestedBefore(event: event){ (b) in isRequested = (b)
+                        if(isRequested){
+                            self.showToast(message: "You have requested before", font: myFont)
+                            return;
+                        }
+                        else{
+                            self.dc.uploadEventToCloud(event: event)
+                            self.showToast(message: "Successfully requested", font: myFont)
+                            print("success")
+                        }
+                    }
                 }
                 else{
-                    self.dc.uploadEventToCloud(event: event)
-                    self.showToast(message: "Successfully requested", font: myFont)
-                    print("success")
+                    event = Event(studentID: self.post?["creatorID"] as! String, tutorID: self.uid!, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.post?["creatorName"] as! String, tutorName: self.selfUser.name)
+                    self.dc.ifRequestedBefore(event: event){
+                        (b) in isRequested = (b)
+                        if(isRequested){
+                            self.showToast(message: "You have requested before", font: myFont)
+                            return;
+                        }
+                        else{
+                            self.showToast(message: "Successfully requested", font: myFont)
+                            self.dc.uploadEventToCloud(event: event)
+                        }
+                    }
                 }
             }
         }
         else{
-            event = Event(studentID: post?["creatorID"] as! String, tutorID: self.uid!, time: time, date: date, course: post?["course"] as! String, status: "requested")
-            dc.ifRequestedBefore(event: event){
-                (b) in isRequested = (b)
-                if(isRequested){
-                    self.showToast(message: "You have requested before", font: myFont)
-                    return;
-                }
-                else{
-                    self.showToast(message: "Successfully requested", font: myFont)
-                    self.dc.uploadEventToCloud(event: event)
-                }
-            }
+            dc.deletePostCard(cardDic: post)
+            self.showToast(message: "Successfully deleted", font: myFont)
         }
     }
     
     
+    @IBAction func Message(_ sender: Any) {
+        if MFMessageComposeViewController.canSendText() == false {
+            print("Cannot send text")
+            return
+        }
+
+            let controller = MFMessageComposeViewController()
+            controller.body = "hardcode"
+            controller.recipients = [(self.ViewPhoneNumberLabel.text ?? "000")]
+            controller.messageComposeDelegate = self
+            self.present(controller, animated: true, completion: nil)
+        
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dc.delegate = self
+        //dc.delegate = self
         userID = (post["creatorID"]as? String)!
-        dc.getUserFromCloud(userID: self.userID){(e) in self.user = (e)
+        if(uid == userID){
+            RequestButton.setTitle("delete", for: .normal)
+            self.showProfile()
+        }
+        else{
+            print("&*(^%^&*()(*^%$")
+            var isRequested : Bool = true
+            var type = post?["type"] as? String
+            var event = Event()
+            let myFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
+            let calendar = Calendar.current
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy/MM/dd"
+            let date = formatter.string(from: Date())
+            formatter.dateFormat = "hh:mm:ss"
+            let time = formatter.string(from: Date())
+            
+            dc.getUserFromCloud(userID: uid!){
+                (u) in self.selfUser = u
+                if(type! == "tutor"){
+                    event = Event(studentID: self.uid!, tutorID: self.post?["creatorID"] as! String, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.selfUser.name, tutorName: self.post?["creatorName"] as! String)
+                    
+                    self.dc.ifRequestedBefore(event: event){ (b) in isRequested = (b)
+                        if(isRequested){
+                            self.RequestButton.isEnabled = false
+                            return
+                        }
+                    }
+                }
+                else{
+                    event = Event(studentID: self.post?["creatorID"] as! String, tutorID: self.uid!, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.post?["creatorName"] as! String, tutorName: self.selfUser.name)
+                    self.dc.ifRequestedBefore(event: event){
+                        (b) in isRequested = (b)
+                        if(isRequested){
+                            self.RequestButton.isEnabled = false
+                            return
+                        }
+                    }
+                }
+                self.showProfile()
+            }
+        }
+    }
+    
+    func showProfile(){
+        self.dc.getUserFromCloud(userID: self.userID){(e) in self.user = (e)
             
             self.ViewNameLabel.text = self.user.name
             self.ViewEmailLabel.text = self.user.email
             self.ViewGenderLabel.text = self.user.gender
             self.ViewPhoneNumberLabel.text = self.user.phone
             self.ViewDescriptionTextView.text = self.user.description
-            self.ViewRatingLabel.text = "rating: " + String(self.user.rate)
+            self.ViewRatingLabel.text = "rating: " + String(self.user.rating)
             self.ViewNumberRateLabel.text =  String(self.user.numRate) + " rates"
-            
-            
             var courses : String = ""
             for item in self.user.courseTaken{
                 courses = courses + item + " "
             }
             self.ViewCoursesTakenLabel.text = courses
-            
+            self.imgUrl = self.user.url
+            print("*********")
+            print(self.imgUrl)
+            if(self.imgUrl == ""){}
+            else{
+                self.imageData = try!Data(contentsOf: URL(string: self.imgUrl) ??  URL(fileURLWithPath: self.defaultProfile!))
+                self.ViewPhotoImageView.image = UIImage(data : self.imageData)
+            }
         }
-        imgUrl = self.user.url
-        print("*********")
-        print(imgUrl)
-        if(imgUrl == ""){}
-        else{
-            imageData = try!Data(contentsOf: URL(string:imgUrl) ??  URL(fileURLWithPath: defaultProfile!))
-            self.ViewPhotoImageView.image = UIImage(data : imageData)
-        }
-        imagePicker.allowsEditing = true
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.delegate = self
     }
     
     func showToast(message : String, font: UIFont) {
@@ -148,54 +235,6 @@ class ViewProfileViewController: UIViewController{
                toastLabel.removeFromSuperview()
            })
        }
-    
 }
 
-extension ViewProfileViewController: ProfileDelegate {
 
-
-    func didReceiveData(_ user: TutaUser) {
-        self.user = user
-        print("did receieve: " + self.user.description)
-        ViewDescriptionTextView.text = self.user.description
-        self.ViewPhoneNumberLabel.text = user.phone
-        imgUrl = self.user.url
-        if(imgUrl == ""){}
-        else{
-        imageData = try!Data(contentsOf: URL(string:imgUrl) ??  URL(fileURLWithPath: defaultProfile!))
-        self.ViewPhotoImageView.image = UIImage(data : imageData)
-        }
-        self.ViewPhotoImageView.image = UIImage(data : imageData)
-        self.ViewRatingLabel.text = "rating: " + String(self.user.rate)
-        self.ViewNumberRateLabel.text =  String(self.user.numRate) + " rates"
-        var courses : String = ""
-        for item in self.user.courseTaken{
-            courses = courses + item + " "
-        }
-        ViewCoursesTakenLabel.text = courses
-//        print("did updated " + DescriptionText.text!)
-    }
-
-}
-extension ViewProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
-     func imagePickerController( _ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            ViewPhotoImageView.contentMode = .scaleAspectFit
-            ViewPhotoImageView.image = pickedImage
-        }
-        
-        picker.dismiss(animated: true, completion: nil)
-         if ViewPhotoImageView.image != nil{
-            dc.uploadProfilePic(img1: ViewPhotoImageView.image!, user: self.user){(url) in
-                 self.imgUrl = (url)}
-            print(self.imgUrl)
-            print("upload a picture")
-         }
-    }
-    
-     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-
-}

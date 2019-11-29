@@ -16,6 +16,8 @@ class Event{
     var date : String
     var course : String
     var status : String
+    var studentName : String
+    var tutorName : String
     
     init(){
         eventID = ""
@@ -25,10 +27,12 @@ class Event{
         date = ""
         course = ""
         status = ""
+        studentName = ""
+        tutorName = ""
     }
     
     init(studentID: String, tutorID: String, time: String, date: String,
-         course: String, status: String){
+         course: String, status: String, studentName: String, tutorName: String){
         self.eventID = DataController.getNewEventID()
         self.status = status
         self.studentID = studentID
@@ -36,6 +40,8 @@ class Event{
         self.date = date
         self.time = time
         self.course = course
+        self.studentName = studentName
+        self.tutorName = tutorName
     }
     
     init(value: [String: Any]){
@@ -46,6 +52,8 @@ class Event{
         self.date = value["date"] as? String ?? ""
         self.time = value["time"] as? String ?? ""
         self.course = value["course"] as? String ?? ""
+        self.studentName = value["studentName"] as? String ?? ""
+        self.tutorName = value["tutorName"] as? String ?? ""
     }
     
     func getEventData() -> [String: Any]{
@@ -56,8 +64,19 @@ class Event{
             "tutorID": self.tutorID,
             "date": self.date,
             "time": self.time,
-            "coures": self.course
+            "course": self.course,
+            "tutorName": self.tutorName,
+            "studentName": self.studentName
         ]
+    }
+    func eventToString() -> String {
+        
+        // properties
+        let courseName = self.course
+        let studentName = self.studentName
+        let tutorName = self.tutorName
+        
+        return "\(courseName) --- tutor: \(tutorName), student: \(studentName)"
     }
     
 }

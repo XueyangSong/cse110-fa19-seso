@@ -27,6 +27,8 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         postcardTableView.delegate = self
         postcardTableView.dataSource = self
         
+        searchForSegment.addTarget(self, action: #selector(onModeSwitch(sender:)), for: .valueChanged)
+        
     }
     
     
@@ -42,7 +44,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         return formatter.string(from: date as Date)
     }
     
-    // MARK: - DataSource
+    // MARK: - Tableview DataSource Configuration
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searching {
             return filteredPosts.count
@@ -71,7 +73,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         cell.usernameLabel!.text = postDic["creatorName"] as! String
         cell.descriptionLabel!.text = postDic["description"] as! String
         cell.timeLabel!.text = (postDic["time"] as! String) + "  " + (postDic["date"] as! String)
-        cell.ratingLabel!.text = "Rating: " + String(postDic["rate"] as! Double)
+        cell.ratingLabel!.text = "Rating: " + String(postDic["rating"] as! Double)
         cell.numRatingsLabel!.text = String(postDic["numRate"] as! Int) + " People rated"
         
         cell.descriptionLabel.sizeToFit()
@@ -104,6 +106,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
 
 }
 
+// MARK: - Search Bar Functions
 extension SearchPageViewController: UISearchBarDelegate{
     /*func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -114,15 +117,26 @@ extension SearchPageViewController: UISearchBarDelegate{
         postcardTableView.reloadData()
     }*/
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    // Turn off the auto-correction, auto-capitalization and spell-checking of the search keyboard.
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.searchTextField.autocorrectionType = .no
+        searchBar.searchTextField.autocapitalizationType = .none
+        searchBar.searchTextField.spellCheckingType = .no
+    }
+    
+    // The function to call whenever there is request to search and fetch data from the database.
+    func search() {
+        let index = self.searchForSegment.selectedSegmentIndex
+        
         searching = true
+        
         if(searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ){
             return;
         }
         
         let course = String(searchBar.text!.lowercased().filter{!$0.isNewline && !$0.isWhitespace})
         view.endEditing(true)
-        var type = self.searchForSegment.titleForSegment(at: self.searchForSegment.selectedSegmentIndex) as! String
+        var type = self.searchForSegment.titleForSegment(at: index) as! String
         type = type.lowercased()
         
         dc.getCardsCollection(type: type, course: course) { (postsFromCloud) in
@@ -131,6 +145,17 @@ extension SearchPageViewController: UISearchBarDelegate{
         }
     }
     
+    // Called when the searchSegmant has been switched.
+    @objc func onModeSwitch(sender: UISegmentedControl){
+        search()
+    }
+    
+    // Called when the search (return) button is pressed.
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        search()
+    }
+    
+    // Called when the cancel button is pressed.
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searching = false
         searchBar.text = ""
@@ -138,3 +163,4 @@ extension SearchPageViewController: UISearchBarDelegate{
         postcardTableView.reloadData()
     }
 }
+
