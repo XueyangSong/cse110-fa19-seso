@@ -182,7 +182,7 @@ class DataController{
     
     func deletePostCard(cardDic: [String: Any]){
         db.collection("postCards").document(cardDic["type"] as! String)
-            .collection(cardDic["course"] as! String).document(cardDic["cardId"] as! String).delete(){
+            .collection(cardDic["course"] as! String).document(cardDic["cardID"] as! String).delete(){
                 err in
                 if let err = err {
                     print("Error removing document: \(err)")
@@ -190,7 +190,7 @@ class DataController{
                     print("Post card Document successfully removed!")
                 }
         }
-        let cardID = cardDic["cardId"] as! String
+        let cardID = cardDic["cardID"] as! String
         var docRef = db.collection("users").document(cardDic["creatorID"] as! String)
         var cardInfo = cardID + "," + (cardDic["type"] as! String) + "," + (cardDic["course"] as! String)
         docRef.updateData([
@@ -219,7 +219,7 @@ class DataController{
     
     func ifRequestedBefore(event: Event, completion: @escaping ((Bool)->())){
         let docRef = db.collection("events")
-        docRef.whereField("tutorID", isEqualTo: event.tutorID).whereField("studentID", isEqualTo: event.studentID).getDocuments(){
+        docRef.whereField("tutorID", isEqualTo: event.tutorID).whereField("studentID", isEqualTo: event.studentID).whereField("course", isEqualTo: event.course).getDocuments(){
             (querySnapshot, err) in
             if let err = err{
                 print("Error getting documents: \(err) in isRequested")
