@@ -10,6 +10,5 @@ import Foundation
 
 protocol ProfileDelegate: class {
     func didReceiveData(_ user: TutaUser)
-    
 }
 

@@ -73,7 +73,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         cell.usernameLabel!.text = postDic["creatorName"] as! String
         cell.descriptionLabel!.text = postDic["description"] as! String
         cell.timeLabel!.text = (postDic["time"] as! String) + "  " + (postDic["date"] as! String)
-        cell.ratingLabel!.text = "Rating: " + String(postDic["rating"] as! Double)
+        cell.ratingLabel!.text = "Rating: " + String(postDic["rate"] as! Double)
         cell.numRatingsLabel!.text = String(postDic["numRate"] as! Int) + " People rated"
         
         cell.descriptionLabel.sizeToFit()
@@ -116,18 +116,13 @@ extension SearchPageViewController: UISearchBarDelegate{
         searching = true
         postcardTableView.reloadData()
     }*/
-
-    // Turn off the auto-correction, auto-capitalization and spell-checking of the search keyboard.
-
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.searchTextField.autocorrectionType = .no
         searchBar.searchTextField.autocapitalizationType = .none
         searchBar.searchTextField.spellCheckingType = .no
     }
     
-
-    // The function to call whenever there is request to search and fetch data from the database.
-
     func search() {
         let index = self.searchForSegment.selectedSegmentIndex
         
@@ -148,23 +143,14 @@ extension SearchPageViewController: UISearchBarDelegate{
         }
     }
     
-
-    // Called when the searchSegmant has been switched.
-
     @objc func onModeSwitch(sender: UISegmentedControl){
         search()
     }
     
-
-    // Called when the search (return) button is pressed.
-
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         search()
     }
     
-
-    // Called when the cancel button is pressed.
-
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searching = false
         searchBar.text = ""
@@ -172,4 +158,3 @@ extension SearchPageViewController: UISearchBarDelegate{
         postcardTableView.reloadData()
     }
 }
-

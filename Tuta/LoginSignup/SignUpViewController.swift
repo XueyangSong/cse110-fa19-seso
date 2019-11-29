@@ -16,13 +16,12 @@ protocol SignUpDelegate: class{
     func didReceiveData(value: String)
 }
 */
-public class SignUpViewController: UIViewController, UITextFieldDelegate {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var genderField: UISegmentedControl!
     var activeField: UITextField?
     var distance: CGFloat? = 0
     var signUpClicked = false
-    public static var firstSignUp = 0
     //weak var signUpDelegate: SignUpDelegate?
     
     // get a reference for database
@@ -33,20 +32,20 @@ public class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    override public func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         setUpDelegate()
         registerForKeyboardNotifications()
     }
     
-    override public func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
         
     }
     
-    override public func viewWillDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         deregisterForKeyboardNotification()
@@ -89,13 +88,13 @@ public class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     // *** textField ***
-    public func textFieldDidBeginEditing(_ textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         //print("begin editing")
         activeField = textField
         //print(activeField?.placeholder ?? "")
     }
     
-    public func textFieldDidEndEditing(_ textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         //print("end editing")
         if textField == emailTextField || textField == nameTextField {
             if emailTextField.text != "" && nameTextField.text != "" {
@@ -105,7 +104,7 @@ public class SignUpViewController: UIViewController, UITextFieldDelegate {
         activeField = nil
     }
     
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //print("done button clicked")
         self.view.endEditing(true)
         return true
@@ -160,15 +159,6 @@ public class SignUpViewController: UIViewController, UITextFieldDelegate {
             showToast(message: "Please enter a valid email", font: myFont)
             return false
         }
-        else {
-            let emailRegEx = "[A-Z0-9a-z._%+-]+@ucsd+\\.[A-Za-z]{2,64}"
-            
-            let emailPattern = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-            if !emailPattern.evaluate(with: email) {
-                showToast(message: "Please enter a UCSD email address", font: myFont)
-                return false
-            }
-        }
         
         // check password length
         let password = passwordTextField.text;
@@ -183,8 +173,6 @@ public class SignUpViewController: UIViewController, UITextFieldDelegate {
     func showToastForRegisteredEmail() {
         showToast(message: "This email has already registered", font: myFont)
     }
-    
-    
     // *** sign up ***
     
     func trySignUp() {
@@ -194,7 +182,6 @@ public class SignUpViewController: UIViewController, UITextFieldDelegate {
         else{
             signUpClicked = true
         }
-        SignUpViewController.firstSignUp = 1
         let isValid = isFieldsValid()
         let name = nameTextField.text
         let email = emailTextField.text
@@ -223,7 +210,7 @@ public class SignUpViewController: UIViewController, UITextFieldDelegate {
                     "gender": self.genderField.titleForSegment(at: self.genderField.selectedSegmentIndex),
                     "description": "",
                     "picture": "",
-                    "rating": 0.0,
+                    "rate": 0.0,
                     "numRate" : 0,
                     "courseTaken" : [String](),
                     "phone" : "",
@@ -243,8 +230,7 @@ public class SignUpViewController: UIViewController, UITextFieldDelegate {
                 vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
                 self.present(vc, animated: true, completion: nil)
                 
-                // vc.showToast(message: "verification email sent", font: self.myFont)
-                // self.showToastForSignUp()
+                //vc.showToast(message: "verification email sent", font: self.myFont)
                 
               }
               // [END_EXCLUDE]
