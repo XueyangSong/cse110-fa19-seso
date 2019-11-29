@@ -188,14 +188,17 @@ public class SignUpViewController: UIViewController, UITextFieldDelegate {
     // *** sign up ***
     
     func trySignUp() {
+        let isValid = isFieldsValid()
         if signUpClicked{
             return
         }
         else{
-            signUpClicked = true
+            if isValid! {
+              signUpClicked = true
+            }
         }
         SignUpViewController.firstSignUp = 1
-        let isValid = isFieldsValid()
+        // let isValid = isFieldsValid()
         let name = nameTextField.text
         let email = emailTextField.text
         let password = passwordTextField.text
