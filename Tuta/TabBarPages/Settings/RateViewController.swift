@@ -51,7 +51,7 @@ class RateViewController: UIViewController {
         dc.getEventFromCloud(at: eventID) { (event) in
             if(event.studentID == self.userID) {
                 print("Eligible to do the rating")
-                self.dc.updateRate(uid: event.tutorID, rate: self.rating)
+                self.dc.updateRating(uid: event.tutorID, rating: self.rating)
             }
         }
 

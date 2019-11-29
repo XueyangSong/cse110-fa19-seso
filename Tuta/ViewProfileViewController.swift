@@ -182,7 +182,7 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
             self.ViewGenderLabel.text = self.user.gender
             self.ViewPhoneNumberLabel.text = self.user.phone
             self.ViewDescriptionTextView.text = self.user.description
-            self.ViewRatingLabel.text = "rating: " + String(self.user.rate)
+            self.ViewRatingLabel.text = "rating: " + String(self.user.rating)
             self.ViewNumberRateLabel.text =  String(self.user.numRate) + " rates"
             
             
@@ -248,7 +248,7 @@ extension ViewProfileViewController: ProfileDelegate {
         self.ViewPhotoImageView.image = UIImage(data : imageData)
         }
         self.ViewPhotoImageView.image = UIImage(data : imageData)
-        self.ViewRatingLabel.text = "rating: " + String(self.user.rate)
+        self.ViewRatingLabel.text = "rating: " + String(self.user.rating)
         self.ViewNumberRateLabel.text =  String(self.user.numRate) + " rates"
         var courses : String = ""
         for item in self.user.courseTaken{

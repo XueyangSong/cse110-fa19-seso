@@ -14,7 +14,7 @@ class TutaUser{
     var email : String
     var url : String
     var gender : String
-    var rate : Double
+    var rating : Double
     var description: String
     var numRate : Int
     var courseTaken : [String]
@@ -28,7 +28,7 @@ class TutaUser{
         self.email = ""
         self.url = ""
         self.gender = ""
-        self.rate = 0
+        self.rating = 0
         self.description = ""
         self.numRate = 0
         self.courseTaken = [String]()
@@ -38,13 +38,13 @@ class TutaUser{
         self.postCards = [String]()
     }
     
-    init(name:String, email:String, url:String, gender:String, rate:Double, description:String,
+    init(name:String, email:String, url:String, gender:String, rating:Double, description:String,
          numRate : Int, courseTaken : [String], phone : String, uid : String, events : [String], postCards: [String]){
         self.name = name
         self.email = email
         self.url = url
         self.gender = gender
-        self.rate = rate
+        self.rating = rating
         self.description = description
         self.numRate = numRate
         self.courseTaken = courseTaken
@@ -59,7 +59,7 @@ class TutaUser{
         self.email = value["email"] as? String ?? ""
         self.url = value["url"] as? String ?? ""
         self.gender = value["gender"] as? String ?? ""
-        self.rate = value["rate"] as? Double ?? 0.0
+        self.rating = value["rating"] as? Double ?? 0.0
         self.description = value["description"] as? String ?? ""
         self.numRate = value["numRate"] as? Int ?? 0
         self.courseTaken = value["courseTaken"] as? [String] ?? [String]()
@@ -75,7 +75,7 @@ class TutaUser{
             "email" : self.email,
             "url" : self.url,
             "gender" : self.gender,
-            "rate" : self.rate,
+            "rating" : self.rating,
             "description" : self.description,
             "numRate" : self.numRate,
             "courseTaken" : self.courseTaken,

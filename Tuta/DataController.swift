@@ -94,18 +94,19 @@ class DataController{
         })
     }
     
-    func updateRate(uid: String, rate: Double){
+    func updateRating(uid: String, rating: Double){
         let docRef = db.collection("users").document(uid)
         docRef.getDocument{(document, error) in
             if let document = document, document.exists{
                 var numRate = document.data()!["numRate"] as! Int
-                let rate = ((document.data()!["rate"] as! Double) * Double(numRate) + rate) / Double(numRate+1)
+                let rating = ((document.data()!["rating"] as! Double) * Double(numRate) + rating) / Double(numRate+1)
                 numRate = numRate + 1
-                docRef.updateData(["rate": rate, "numRate": numRate])
+                docRef.updateData(["rating": rating, "numRate": numRate])
                 let postCards = document.data()!["postCards"] as! [String]
-                for cardID in postCards{
-                    let cardRef = self.db.collection("postCards").document(cardID)
-                    cardRef.updateData(["rate": rate, "numRate": numRate])
+                for cardInfo in postCards{
+                    let strArray = cardInfo.components(separatedBy: ",")
+                    let cardRef = self.db.collection("postCards").document(strArray[1]).collection(strArray[2]).document(strArray[0])
+                    cardRef.updateData(["rating": rating, "numRate": numRate])
                 }
             }
         }
@@ -171,7 +172,7 @@ class DataController{
                         let docRef = path.document(postCard.cardID)
                         let userRef = self.db.collection("users").document(postCard.creatorID)
                         docRef.setData(postCard.getCardData())
-                        userRef.updateData(["postCards": FieldValue.arrayUnion([postCard.cardID])])
+                        userRef.updateData(["postCards": FieldValue.arrayUnion([postCard.cardID + "," + postCard.type + "," + postCard.course])])
                         completion(true)
                     }
                 }
@@ -191,8 +192,9 @@ class DataController{
         }
         let cardID = cardDic["cardId"] as! String
         var docRef = db.collection("users").document(cardDic["creatorID"] as! String)
+        var cardInfo = cardID + "," + (cardDic["type"] as! String) + "," + (cardDic["course"] as! String)
         docRef.updateData([
-            "postCards": FieldValue.arrayRemove([cardID])
+            "postCards": FieldValue.arrayRemove([cardInfo])
         ]){
             err in
             if let err = err {
