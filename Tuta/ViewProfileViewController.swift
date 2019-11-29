@@ -68,7 +68,7 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
     @IBAction func RequestButtonClicked(_ sender: Any) {
         RequestButton.isEnabled = false
         var type = post?["type"] as? String
-        var event : Event
+        var event = Event()
         let myFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
         let calendar = Calendar.current
         let formatter = DateFormatter()
@@ -79,34 +79,39 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
         
         print(post?["creatorID"] as! String)
         print(uid)
-        if(uid != post?["creatorID"] as! String){
-            var isRequested : Bool = true
-            if(type! == "tutor"){
-                event = Event(studentID: self.uid!, tutorID: post?["creatorID"] as! String, time: time, date: date, course: post?["course"] as! String, status: "requested")
-                
-                dc.ifRequestedBefore(event: event){ (b) in isRequested = (b)
-                    if(isRequested){
-                        self.showToast(message: "You have requested before", font: myFont)
-                        return;
-                    }
-                    else{
-                        self.dc.uploadEventToCloud(event: event)
-                        self.showToast(message: "Successfully requested", font: myFont)
-                        print("success")
+
+        
+        if(self.uid != self.post?["creatorID"] as! String){
+            dc.getUserFromCloud(userID: uid!){
+                (u) in self.user = u
+                var isRequested : Bool = true
+                if(type! == "tutor"){
+                    event = Event(studentID: self.uid!, tutorID: self.post?["creatorID"] as! String, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.user.name, tutorName: self.post?["creatorName"] as! String)
+                    
+                    self.dc.ifRequestedBefore(event: event){ (b) in isRequested = (b)
+                        if(isRequested){
+                            self.showToast(message: "You have requested before", font: myFont)
+                            return;
+                        }
+                        else{
+                            self.dc.uploadEventToCloud(event: event)
+                            self.showToast(message: "Successfully requested", font: myFont)
+                            print("success")
+                        }
                     }
                 }
-            }
-            else{
-                event = Event(studentID: post?["creatorID"] as! String, tutorID: self.uid!, time: time, date: date, course: post?["course"] as! String, status: "requested")
-                dc.ifRequestedBefore(event: event){
-                    (b) in isRequested = (b)
-                    if(isRequested){
-                        self.showToast(message: "You have requested before", font: myFont)
-                        return;
-                    }
-                    else{
-                        self.showToast(message: "Successfully requested", font: myFont)
-                        self.dc.uploadEventToCloud(event: event)
+                else{
+                    event = Event(studentID: self.post?["creatorID"] as! String, tutorID: self.uid!, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.post?["creatorName"] as! String, tutorName: self.user.name)
+                    self.dc.ifRequestedBefore(event: event){
+                        (b) in isRequested = (b)
+                        if(isRequested){
+                            self.showToast(message: "You have requested before", font: myFont)
+                            return;
+                        }
+                        else{
+                            self.showToast(message: "Successfully requested", font: myFont)
+                            self.dc.uploadEventToCloud(event: event)
+                        }
                     }
                 }
             }
@@ -144,7 +149,7 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
             print("&*(^%^&*()(*^%$")
             var isRequested : Bool = true
             var type = post?["type"] as? String
-            var event : Event
+            var event = Event()
             let myFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
             let calendar = Calendar.current
             let formatter = DateFormatter()
@@ -153,23 +158,26 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
             formatter.dateFormat = "hh:mm:ss"
             let time = formatter.string(from: Date())
             
-            if(type! == "tutor"){
-                event = Event(studentID: self.uid!, tutorID: post?["creatorID"] as! String, time: time, date: date, course: post?["course"] as! String, status: "requested")
-                
-                dc.ifRequestedBefore(event: event){ (b) in isRequested = (b)
-                    if(isRequested){
-                        self.RequestButton.isEnabled = false
-                        return;
+            dc.getUserFromCloud(userID: uid!){
+                (u) in self.user = u
+                if(type! == "tutor"){
+                    event = Event(studentID: self.uid!, tutorID: self.post?["creatorID"] as! String, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.user.name, tutorName: self.post?["creatorName"] as! String)
+                    
+                    self.dc.ifRequestedBefore(event: event){ (b) in isRequested = (b)
+                        if(isRequested){
+                            self.RequestButton.isEnabled = false
+                            return
+                        }
                     }
                 }
-            }
-            else{
-                event = Event(studentID: post?["creatorID"] as! String, tutorID: self.uid!, time: time, date: date, course: post?["course"] as! String, status: "requested")
-                dc.ifRequestedBefore(event: event){
-                    (b) in isRequested = (b)
-                    if(isRequested){
-                        self.RequestButton.isEnabled = false
-                        return;
+                else{
+                    event = Event(studentID: self.post?["creatorID"] as! String, tutorID: self.uid!, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.post?["creatorName"] as! String, tutorName: self.user.name)
+                    self.dc.ifRequestedBefore(event: event){
+                        (b) in isRequested = (b)
+                        if(isRequested){
+                            self.RequestButton.isEnabled = false
+                            return
+                        }
                     }
                 }
             }

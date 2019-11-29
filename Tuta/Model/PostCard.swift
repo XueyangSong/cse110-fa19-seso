@@ -72,7 +72,7 @@ class PostCard{
     */
     func getCardData() -> Dictionary<String, Any>{
         return [
-            "cardId" : self.cardID,
+            "cardID" : self.cardID,
             "description" : self.description,
             "date" : self.date,
             "time" : self.time,

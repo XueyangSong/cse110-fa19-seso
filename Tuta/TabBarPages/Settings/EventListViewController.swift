@@ -16,32 +16,57 @@ private let reuseIdentifier = "EventListCell"
 
 
 class EventListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+    var dc = DataController()
+    let uid = Auth.auth().currentUser?.uid
     // MARK: - Properties
     
     // tableView
     var tableView: UITableView!
+    var eventList = [Event]()
     // events arrays
-    var requestedEventsArray = [Event]()
-    var inProgressEventsArray = [Event]()
-    var finishedEventsArray = [Event]()
+    var requestedEventsArray = [String]()
+    var inProgressEventsArray = [String]()
+    var finishedEventsArray = [String]()
+    
     // 2-D array
+    
     var SectionArray = [
-        ExpandableEventsArray(isExpanded: true, events: ["CSE 130 --- with David", "HILD 7A --- with Charlie", "MATH 20C --- with Nguyen", "ECON 100A -- with Eugene", "ECE 100 --- with Hector", "CSE 110 --- with Mathew", "CSE 190 --- Marcus"]),
-        ExpandableEventsArray(isExpanded: true, events: ["MATH 189 --- with Zhen", "MATH 191 --- with Gary", "CHEM 6C --- with Leomart", "BILD 10 --- with Snow"]),
-        ExpandableEventsArray(isExpanded: true, events: ["EDS 124BR --- with Jamie", "COGS 108 --- with Cersei"]),
+        ExpandableEventsArray(isExpanded: true, events: [String]()),
+        ExpandableEventsArray(isExpanded: true, events: [String]()),
+        ExpandableEventsArray(isExpanded: true, events: [String]()),
 //        ExpandableEventsArray(isExpanded: true, events: []),
 //        ExpandableEventsArray(isExpanded: true, events: []),
 //        ExpandableEventsArray(isExpanded: true, events: []),
     ]
-    
     
     // MARK: - Init
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+        setUpSectionArray()
 //        fetchEvents()
+    }
+    
+    func setUpSectionArray(){
+        self.dc.getEventsListFromCloud(userID: uid!){
+            (e) in self.eventList = (e)
+            for event in self.eventList{
+                if event.status == "requested"{
+                    self.requestedEventsArray.append(event.eventToString())
+                }
+                else if event.status == "inProgress"{
+                    self.inProgressEventsArray.append(event.eventToString())
+                }
+                else{
+                    self.finishedEventsArray.append(event.eventToString())
+                }
+            }
+            let requestList = ExpandableEventsArray(isExpanded: true, events: self.requestedEventsArray)
+            let inProgressList = ExpandableEventsArray(isExpanded: true, events: self.inProgressEventsArray)
+            let finishedList = ExpandableEventsArray(isExpanded: true, events: self.finishedEventsArray)
+            self.SectionArray = [requestList, inProgressList, finishedList]
+        }
     }
     
     func configureTableView() {
@@ -68,116 +93,14 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     
-    // MARK: - Fetch data from server
-    func fetchEvents() {
-        
-        // testing
-        print("try to fetch data from cloud")
-        var testName: String = "Null"
-        
-        // properties
-        var eventIds = [String]()
-        var eventArray = [Event]()
-        var user : TutaUser = TutaUser()
-        var event : Event = Event()
-
-        // get event ids
-        let dc = DataController()
-        let userID = Auth.auth().currentUser?.uid
-        dc.getUserFromCloud(userID: userID!) {(e) in user = (e)
-            eventIds = user.events
-            testName = user.name
-            print("This is in getUser. Name is: " + testName)
-            
-            // get events
-            for eventId in eventIds {
-                dc.getEventFromCloud(at: eventId) {(e) in event = (e)
-                    eventArray.append(event)
-                    print(event.course)
-                }
-            }
-            
-            let secondsToDelay = 2.0
-            DispatchQueue.main.asyncAfter(deadline: .now() + secondsToDelay) {
-                //print("This message is delayed")
-                // Put any code you want to be delayed here
-                
-                
-                // put events into eventArrays
-                for event in eventArray {
-                    if event.status == "requested" {
-                        self.requestedEventsArray.append(event)
-                    }
-                    else if event.status == "inProgress" {
-                        self.inProgressEventsArray.append(event)
-                    }
-                    else if event.status == "finished" {
-                        self.finishedEventsArray.append(event)
-                    }
-                    else {
-                        print("Error: event status wrong!")
-                    }
-                }
-                
-                // update the 2-d array
-                var tempString: String!
-                for event in self.requestedEventsArray {
-                    tempString = self.eventToString(event: event)
-                    self.SectionArray[0].events.append(tempString)
-                }
-                for event in self.inProgressEventsArray {
-                    tempString = self.eventToString(event: event)
-                    self.SectionArray[1].events.append(tempString)
-                }
-                for event in self.finishedEventsArray {
-                    tempString = self.eventToString(event: event)
-                    self.SectionArray[2].events.append(tempString)
-                }
-                print(self.SectionArray[0].events)
-            }
-            
-            
-            
-        }
-        print("This is outside getUser. Name is: " + testName)
-        
-        
-        print(SectionArray[0].events)
-
-        
-        
-    }
-    
     func eventToString(event: Event) -> String {
         
         // properties
-        let courseName = "[" + event.course + "] "
-        let studentId = event.studentID
-        let tutorId = event.tutorID
-        var studentName: String!
-        var tutorName: String!
+        let courseName = event.course
+        let studentName = event.studentName
+        let tutorName = event.tutorName
         
-        let dc = DataController()
-        var user : TutaUser = TutaUser()
-//        // get student name
-//        dc.getUserFromCloud(userID: studentId) {(e) in user = (e)
-//            studentName = "std: " + user.name + "; "
-//        }
-//        // get tutor name
-//        dc.getUserFromCloud(userID: tutorId) {(e) in user = (e)
-//            tutorName = "tutor: " + user.name
-//        }
-        
-//        var toString: String!
-//        let secondsToDelay = 2.0
-//        DispatchQueue.main.asyncAfter(deadline: .now() + secondsToDelay) {
-//            toString = courseName + studentName + tutorName
-//            print("eventToString is Called!")
-//            print(toString!)
-//        }
-//        sleep(2)
-//        return toString
-        return courseName
+        return "\(courseName) --- tutor: \(tutorName), student: \(studentName)"
     }
 
     
@@ -268,6 +191,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         let event = SectionArray[indexPath.section].events[indexPath.row]
         
