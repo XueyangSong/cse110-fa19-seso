@@ -234,7 +234,7 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
 }
 
 extension ViewProfileViewController: ProfileDelegate {
-
+    
 
     func didReceiveData(_ user: TutaUser) {
         self.user = user

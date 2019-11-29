@@ -56,7 +56,7 @@ class Event{
             "tutorID": self.tutorID,
             "date": self.date,
             "time": self.time,
-            "coures": self.course
+            "course": self.course
         ]
     }
     

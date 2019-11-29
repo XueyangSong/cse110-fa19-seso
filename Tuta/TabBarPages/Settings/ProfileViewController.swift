@@ -123,7 +123,7 @@ class ProfileViewController: UIViewController{
 }
 
 extension ProfileViewController: ProfileDelegate {
-    
+   
     
     func didReceiveData(_ user: TutaUser) {
         self.user = user

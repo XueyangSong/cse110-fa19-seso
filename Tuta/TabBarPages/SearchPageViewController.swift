@@ -73,7 +73,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         cell.usernameLabel!.text = postDic["creatorName"] as! String
         cell.descriptionLabel!.text = postDic["description"] as! String
         cell.timeLabel!.text = (postDic["time"] as! String) + "  " + (postDic["date"] as! String)
-        cell.ratingLabel!.text = "Rating: " + String(postDic["rate"] as! Double)
+        cell.ratingLabel!.text = "Rating: " + String(postDic["rating"] as! Double)
         cell.numRatingsLabel!.text = String(postDic["numRate"] as! Int) + " People rated"
         
         cell.descriptionLabel.sizeToFit()
@@ -163,3 +163,4 @@ extension SearchPageViewController: UISearchBarDelegate{
         postcardTableView.reloadData()
     }
 }
+
