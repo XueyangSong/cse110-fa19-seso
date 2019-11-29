@@ -219,7 +219,7 @@ class DataController{
     
     func ifRequestedBefore(event: Event, completion: @escaping ((Bool)->())){
         let docRef = db.collection("events")
-        docRef.whereField("tutorID", isEqualTo: event.tutorID).whereField("studentID", isEqualTo: event.studentID).getDocuments(){
+        docRef.whereField("tutorID", isEqualTo: event.tutorID).whereField("studentID", isEqualTo: event.studentID).whereField("course", isEqualTo: event.course).getDocuments(){
             (querySnapshot, err) in
             if let err = err{
                 print("Error getting documents: \(err) in isRequested")
