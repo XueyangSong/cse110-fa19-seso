@@ -29,18 +29,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         setUpDelegate()
         
         registerForKeyboardNotifications()
-        
-        if (SignUpViewController.firstSignUp == 1) {
-            showToastForSignUp()
-            SignUpViewController.firstSignUp = 0
-            print ("toast for sign up")
-        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-
     }
 
 
@@ -122,15 +115,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         toastLabel.layer.cornerRadius = 10;
         toastLabel.clipsToBounds  =  true
         self.view.addSubview(toastLabel)
-        UIView.animate(withDuration: 6.0, delay: 0.1, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
              toastLabel.alpha = 0.0
         }, completion: {(isCompleted) in
             toastLabel.removeFromSuperview()
         })
-    }
-    
-    func showToastForSignUp() {
-        showToast(message: "verification email sent", font: self.myFont)
     }
     
     // check if each field is valid
@@ -175,8 +164,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         else{
             loginClicked = true
         }
-        
-        
         let email = emailTextField.text
         let password = passwordTextField.text
         if(isFieldsValid()!){
