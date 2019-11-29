@@ -179,7 +179,6 @@ class DataController{
        // return true
     }
     
-    
     func deletePostCard(cardDic: [String: Any]){
         db.collection("postCards").document(cardDic["type"] as! String)
             .collection(cardDic["course"] as! String).document(cardDic["cardId"] as! String).delete(){
@@ -214,24 +213,7 @@ class DataController{
       //  Firestore.firestore().collection("events").document(eid).setData(["placeHolder":"just book this place"])
         return eid
     }
-    /*
-    let path = db.collection("postCards").document(postCard.type).collection(postCard.course)
-    path.whereField("creatorID", isEqualTo: postCard.creatorID).getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                if querySnapshot?.documents.count != 0{
-                   completion(false)
-                }
-                else{
-                    let docRef = path.document(postCard.cardID)
-                    let userRef = self.db.collection("users").document(postCard.creatorID)
-                    docRef.setData(postCard.getCardData())
-                    userRef.updateData(["postCards": FieldValue.arrayUnion([postCard.cardID])])
-                    completion(true)
-                }
-            }
-    }*/
+   
     
     func ifRequestedBefore(event: Event, completion: @escaping ((Bool)->())){
         let docRef = db.collection("events")
@@ -266,32 +248,31 @@ class DataController{
     }
     
     func getEventsListFromCloud(userID: String, completion: @escaping (([Event])->())){
-        let docRef = db.collection("users").document(userID)
-        var eventArray = [String]()
+        let docRef = db.collection("events")
         var eventList = [Event]()
-        var event = Event()
-        docRef.getDocument(){ (document, error) in
-            if let document = document, document.exists {
-                eventArray = document.get("events") as! [String]
-                for eventID in eventArray{
-                    if eventID != eventArray[-1]{
-                        self.getEventFromCloud(at: eventID){
-                            (e) in event = (e)
-                            eventList.append(event)
-                        }
-                    }
-                    else{
-                        sleep(1)
-                        self.getEventFromCloud(at: eventID){
-                            (e) in event = (e)
-                            eventList.append(event)
-                            completion(eventList)
-                        }
+        docRef.whereField("studentID", isEqualTo: userID).getDocuments(){
+            (studentQuery, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            }else{
+                for document in studentQuery!.documents{
+                    let event = Event(value: document.data())
+                    eventList.append(event)
+                }
+            }
+            docRef.whereField("tutorID", isEqualTo: userID).getDocuments(){
+                (tutorQuery, error) in
+                if let error = error{
+                    print("Error getting documents: \(error)")
+                } else{
+                    for document in tutorQuery!.documents{
+                        let event = Event(value: document.data())
+                        eventList.append(event)
                     }
                 }
-            } else {
-                print("Document does not exist")
+                completion(eventList)
             }
+            
         }
     }
     
