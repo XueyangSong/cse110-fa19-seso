@@ -48,7 +48,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
     
     func setUp() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        self.view.addGestureRecognizer(tap)
+        // self.view.addGestureRecognizer(tap)
     }
     
     func registerForKeyboardNotification() {
