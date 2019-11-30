@@ -46,14 +46,13 @@ class ConfirmEventViewController: UIViewController {
         
         self.TitleLabel.adjustsFontSizeToFitWidth = true
 
-        if(event.requesterID == userID) {
+        if(event.requesterID != userID) {
             print(event.requesterID)
             print(userID)
             // legal to confirm
             print("legal to confirm request")
             self.TitleLabel.text = "Accept Request?"
             self.AcceptButton.setTitle("Accept", for: .normal)
-            self.AcceptButton.setTitle("Accepted", for: .selected)
         }
         else {
             // not legal to confirm

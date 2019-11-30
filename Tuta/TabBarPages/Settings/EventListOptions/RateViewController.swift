@@ -16,6 +16,7 @@ class RateViewController: UIViewController {
     @IBOutlet weak var starRatingView: CosmosView!
     @IBOutlet weak var submitButton: UIButton!
     
+    public var parentVC : EventListViewController = EventListViewController()
     var event : Event = Event()
     var eventID : String!
     let userID = Auth.auth().currentUser?.uid
@@ -67,15 +68,17 @@ class RateViewController: UIViewController {
     
     @IBAction func onSubmit(_ sender: Any) {
         
-        dc.getEventFromCloud(at: eventID) { (event) in
-            if(event.studentID == self.userID) {
-                print("Eligible to do the rating")
-                self.dc.updateRating(uid: event.tutorID, rating: self.rating)
-            }
-        }
+//        dc.getEventFromCloud(at: eventID) { (event) in
+//            if(event.studentID == self.userID) {
+//                print("Eligible to do the rating")
+//                self.dc.updateRating(uid: event.tutorID, rating: self.rating)
+//            }
+//        }
 
         print("The current rating: \(rating)")
-        
+        self.parentVC.setUpSectionArray()
+        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
         
     }
     

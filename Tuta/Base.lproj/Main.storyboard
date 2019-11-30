@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -308,7 +308,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PIP-Am-qqB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2728" y="1714"/>
+            <point key="canvasLocation" x="2684" y="1817"/>
         </scene>
         <!--Event List View Controller-->
         <scene sceneID="6BW-MX-St1">
@@ -324,7 +324,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aD8-F2-ohm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3522" y="1714"/>
+            <point key="canvasLocation" x="3522" y="1817"/>
         </scene>
         <!--Event History-->
         <scene sceneID="jP6-x4-ekH">
@@ -357,7 +357,47 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eTc-VT-lPi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4228.985507246377" y="1713.6160714285713"/>
+            <point key="canvasLocation" x="4368" y="1817"/>
+        </scene>
+        <!--Finish Event View Controller-->
+        <scene sceneID="wKD-6k-ja5">
+            <objects>
+                <viewController storyboardIdentifier="FinishEventViewController" id="tOB-AC-raf" customClass="FinishEventViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cGD-tD-V0J">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDN-y0-Eve">
+                                <rect key="frame" x="61" y="459" width="292" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="finishButtonPressed:" destination="tOB-AC-raf" eventType="touchUpInside" id="Zt8-P7-AIH"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Finish Session?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y1E-5a-avv">
+                                <rect key="frame" x="75" y="199" width="264" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="VhA-Us-dM7"/>
+                    </view>
+                    <connections>
+                        <outlet property="finishButton" destination="gDN-y0-Eve" id="qva-lb-i93"/>
+                        <outlet property="titleLabel" destination="y1E-5a-avv" id="DSi-53-pG3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fQg-bH-vRQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2683" y="2538"/>
         </scene>
         <!--Confirm Event View Controller-->
         <scene sceneID="NGe-ol-vZv">
@@ -452,7 +492,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15u-pV-2IT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4228.985507246377" y="2537.9464285714284"/>
+            <point key="canvasLocation" x="4367" y="2538"/>
         </scene>
         <!--MeViewController-->
         <scene sceneID="mis-b7-6JF">
@@ -1615,7 +1655,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="4WX-ki-KIC"/>
-        <segue reference="gqm-cP-LSd"/>
         <segue reference="zb2-hM-WVX"/>
         <segue reference="Djd-gn-S7J"/>
     </inferredMetricsTieBreakers>
