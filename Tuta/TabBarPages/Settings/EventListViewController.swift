@@ -108,17 +108,6 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         
     }
-    
-    
-    func eventToString(event: Event) -> String {
-        
-        // properties
-        let courseName = event.course
-        let studentName = event.studentName
-        let tutorName = event.tutorName
-        
-        return "\(courseName) --- tutor: \(tutorName), student: \(studentName)"
-    }
 
     
     // MARK: - TableView Configurations
@@ -218,7 +207,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         let event = SectionArray[indexPath.section].events[indexPath.row]
         
-        cell.textLabel?.text = event.eventToString()
+        cell.textLabel?.text = event.eventToString(uid: self.uid!)
         
         return cell
         
