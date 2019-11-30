@@ -16,6 +16,7 @@
 		1F83DCEE235B301300DAFB89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F83DCED235B301300DAFB89 /* Assets.xcassets */; };
 		1F83DCF1235B301300DAFB89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F83DCEF235B301300DAFB89 /* LaunchScreen.storyboard */; };
 		1F83DCF9235B85CA00DAFB89 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83DCF8235B85CA00DAFB89 /* SignUpViewController.swift */; };
+		1F8505CA2392353C007EB951 /* ConfirmEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8505C92392353C007EB951 /* ConfirmEventViewController.swift */; };
 		1F9AC50D2361268F00E3A4FE /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9AC50C2361268F00E3A4FE /* HomeTabBarController.swift */; };
 		1FF1F2D52389069D0092AD83 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF1F2D42389069D0092AD83 /* EventTableViewCell.swift */; };
 		1FF1F2D9238908E10092AD83 /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF1F2D8238908E10092AD83 /* EventListViewController.swift */; };
@@ -56,6 +57,7 @@
 		1F83DCF0235B301300DAFB89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F83DCF2235B301300DAFB89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F83DCF8235B85CA00DAFB89 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		1F8505C92392353C007EB951 /* ConfirmEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmEventViewController.swift; sourceTree = "<group>"; };
 		1F9AC50C2361268F00E3A4FE /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		1FF1F2D42389069D0092AD83 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		1FF1F2D8238908E10092AD83 /* EventListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +140,15 @@
 			path = Tuta;
 			sourceTree = "<group>";
 		};
+		1F8505C82392350D007EB951 /* EventListOptions */ = {
+			isa = PBXGroup;
+			children = (
+				49FFF4A0238E544F0069A81F /* RateViewController.swift */,
+				1F8505C92392353C007EB951 /* ConfirmEventViewController.swift */,
+			);
+			path = EventListOptions;
+			sourceTree = "<group>";
+		};
 		1F9AC5052361254600E3A4FE /* TabBarPages */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,10 +164,10 @@
 		1FF1F2D7238908AF0092AD83 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				1F8505C82392350D007EB951 /* EventListOptions */,
 				1FF1F2DA23890A890092AD83 /* EditProfile */,
 				1F467B87236DFE9500A5CA59 /* ProfileViewController.swift */,
 				1FF1F2D8238908E10092AD83 /* EventListViewController.swift */,
-				49FFF4A0238E544F0069A81F /* RateViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -342,6 +353,7 @@
 				7F3E1C842383AF5800F8088B /* PopWindowViewController.swift in Sources */,
 				1FF1F2E22389BC2F0092AD83 /* ExpandableEventsArray.swift in Sources */,
 				490AB8AA2377706A00C63347 /* DescriptionViewController.swift in Sources */,
+				1F8505CA2392353C007EB951 /* ConfirmEventViewController.swift in Sources */,
 				49FFF4A1238E544F0069A81F /* RateViewController.swift in Sources */,
 				490AB8A62376D89400C63347 /* PostcardTableViewCell.swift in Sources */,
 				490AB8A52376D88C00C63347 /* PostCard.swift in Sources */,
