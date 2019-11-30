@@ -21,7 +21,7 @@ class FinishEventViewController: UIViewController {
     
     @IBAction func finishButtonPressed(_ sender: UIButton) {
         let dc = DataController()
-        dc.updateEventStatus(event: event) { (true) in
+        dc.updateEventStatus(event: event) { (b) in
             self.parentVC.setUpSectionArray()
             self.navigationController?.popViewController(animated: true)
             self.dismiss(animated: true, completion: nil)
@@ -35,6 +35,7 @@ class FinishEventViewController: UIViewController {
     }
     
     func setUpUI() {
+        
         finishButton.setTitle("Finished", for: .normal)
     }
     

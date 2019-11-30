@@ -41,6 +41,15 @@ class RateViewController: UIViewController {
     
     func setUpUI() {
         submitButton.layer.cornerRadius = 10
+        if event.status == "finished" {
+            setUpRatingUI()
+        }
+        else if event.status == "rated" {
+            setUpViewSessionUI()
+        }
+    }
+    
+    func setUpRatingUI() {
         if(event.studentID == userID) {
             // user is a student, rate tutor
             RateTutorTitleLabel.text = "Give Your Tutor a Rating"
@@ -48,7 +57,18 @@ class RateViewController: UIViewController {
         else {
             RateTutorTitleLabel.text = "Give Your Tutee a Rating"
         }
-        
+    }
+    
+    func setUpViewSessionUI() {
+        starRatingView.isHidden = true
+        submitButton.setTitle("Done", for: .normal)
+        if(event.studentID == userID) {
+            // user is a student, rate tutor
+            RateTutorTitleLabel.text = "Thanks For Studying with " + event.tutorName
+        }
+        else {
+            RateTutorTitleLabel.text = "Thanks For Tutoring " + event.studentName
+        }
     }
     
     func setUpStarRatingView() {
@@ -67,18 +87,33 @@ class RateViewController: UIViewController {
     }
     
     @IBAction func onSubmit(_ sender: Any) {
+        if event.status == "rated" {
+            return
+        }
         
-//        dc.getEventFromCloud(at: eventID) { (event) in
-//            if(event.studentID == self.userID) {
-//                print("Eligible to do the rating")
-//                self.dc.updateRating(uid: event.tutorID, rating: self.rating)
-//            }
-//        }
+        let dc = DataController()
 
-        print("The current rating: \(rating)")
-        self.parentVC.setUpSectionArray()
-        self.navigationController?.popViewController(animated: true)
-        self.dismiss(animated: true, completion: nil)
+        // get other user's ID
+        var otherID : String
+        if userID == event.studentID {
+            otherID = event.tutorID
+        } else {
+            otherID = event.studentID
+        }
+        
+        // get other user
+        dc.getUserFromCloud(userID: otherID) { (otherUser) in
+            // update rating
+            dc.updateRating(uid: otherID, rating: self.rating)
+        }
+        
+        // update status
+        dc.updateEventStatus(event: event) { (b) in
+            print("The current rating: \(String(describing: self.rating))")
+            self.parentVC.setUpSectionArray()
+            self.navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
+        }
         
     }
     

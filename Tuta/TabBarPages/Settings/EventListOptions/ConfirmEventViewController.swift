@@ -16,7 +16,7 @@ class ConfirmEventViewController: UIViewController {
     
     @IBAction func AcceptButtonPressed(_ sender: UIButton) {
         let dc = DataController()
-        dc.updateEventStatus(event: event) { (true) in
+        dc.updateEventStatus(event: event) { (b) in
             self.parentVC.setUpSectionArray()
             self.navigationController?.popViewController(animated: true)
             self.dismiss(animated: true, completion: nil)
@@ -46,7 +46,7 @@ class ConfirmEventViewController: UIViewController {
         
         self.TitleLabel.adjustsFontSizeToFitWidth = true
 
-        if(event.requesterID != userID) {
+        if(event.requesterID == userID) {
             print(event.requesterID)
             print(userID)
             // legal to confirm
