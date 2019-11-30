@@ -161,6 +161,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Forget Password?"/>
+                                <connections>
+                                    <segue destination="EWW-a3-aOW" kind="presentation" modalPresentationStyle="fullScreen" id="NTz-D1-CID"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.85098039219999999" green="0.93333333330000001" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -579,7 +582,10 @@
                                 <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <state key="normal" title="Cancel"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="CGX-QA-508" kind="presentation" modalPresentationStyle="fullScreen" id="FSQ-sQ-jRE"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.85098039219999999" green="0.93333333330000001" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1599,6 +1605,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="SZi-Fx-QAi"/>
+        <segue reference="FSQ-sQ-jRE"/>
         <segue reference="Djd-gn-S7J"/>
     </inferredMetricsTieBreakers>
 </document>
