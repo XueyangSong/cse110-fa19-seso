@@ -15,8 +15,16 @@ class ConfirmEventViewController: UIViewController {
     @IBOutlet weak var AcceptButton: UIButton!
     
     @IBAction func AcceptButtonPressed(_ sender: UIButton) {
+        let dc = DataController()
+        dc.updateEventStatus(event: event) { (true) in
+            self.parentVC.setUpSectionArray()
+            self.navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
+        }
+        
     }
     
+    public var parentVC : EventListViewController = EventListViewController()
     var event : Event = Event()
     var eventID : String!
     let userID : String = Auth.auth().currentUser!.uid
@@ -38,7 +46,7 @@ class ConfirmEventViewController: UIViewController {
         
         self.TitleLabel.adjustsFontSizeToFitWidth = true
 
-        if(event.requesterID != userID) {
+        if(event.requesterID == userID) {
             print(event.requesterID)
             print(userID)
             // legal to confirm

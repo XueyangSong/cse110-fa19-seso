@@ -51,10 +51,12 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpSectionArray()
+
         
     }
     
-    func setUpSectionArray(){
+    public func setUpSectionArray(){
         self.dc.getEventsListFromCloud(userID: uid!){
             (e) in self.eventList = (e)
             self.requestedEventsArray = []
@@ -227,6 +229,8 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
             let event = SectionArray[indexPath.section].events[indexPath.row]
             // pass event ID into view controller
             vc.setEvent(event: event)
+            // pass self to view controller
+            vc.parentVC = self
                         
             self.present(vc, animated: true, completion: nil)
         }
