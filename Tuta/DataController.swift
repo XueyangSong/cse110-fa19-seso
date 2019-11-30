@@ -157,8 +157,6 @@ class DataController{
         }
     }
     
-    
-    
     func uploadCardToCloud(postCard : PostCard, completion: @escaping ((Bool) -> ())){
         let path = db.collection("postCards").document(postCard.type).collection(postCard.course)
         path.whereField("creatorID", isEqualTo: postCard.creatorID).getDocuments() { (querySnapshot, err) in

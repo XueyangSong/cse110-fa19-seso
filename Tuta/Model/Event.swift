@@ -74,14 +74,35 @@ class Event{
             "requesterID": self.requesterID
         ]
     }
-    func eventToString() -> String {
-        
-        // properties
-        let courseName = self.course
-        let studentName = self.studentName
-        let tutorName = self.tutorName
-        
-        return "\(courseName) --- tutor: \(tutorName), student: \(studentName)"
+    
+    
+    func eventToString(uid: String) -> String {
+        if (self.status == "requested"){
+            if (uid == self.requesterID){
+                if (uid == self.studentID){
+                    return "\(self.course): Requested \(self.tutorName) to be your tutor"
+                }
+                else{
+                    return "\(self.course): Requested \(self.studentName) to be your student"
+                }
+            }
+            else{
+                if (uid == self.studentID){
+                    return "\(self.course): \(self.tutorName) wants to be your tutor"
+                }
+                else{
+                    return "\(self.course): \(self.studentName) wants to be your student"
+                }
+            }
+        }
+        else{
+            if (uid == self.studentID){
+                return "\(self.course) with tutor \(self.tutorName)"
+            }
+            else{
+                return "\(self.course) with student \(self.studentName)"
+            }
+        }
     }
     
 }
