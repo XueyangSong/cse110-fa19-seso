@@ -27,6 +27,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     var requestedEventsArray = [String]()
     var inProgressEventsArray = [String]()
     var finishedEventsArray = [String]()
+
     
     // 2-D array
     
@@ -40,12 +41,17 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     ]
     
     // MARK: - Init
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //setUpSectionArray()
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpUI()
         setUpSectionArray()
-//        fetchEvents()
+        setUpUI()
     }
     
     func setUpSectionArray(){
@@ -62,10 +68,18 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
                     self.finishedEventsArray.append(event.eventToString())
                 }
             }
+            print(self.requestedEventsArray)
+            print(self.inProgressEventsArray)
+            print(self.finishedEventsArray)
             let requestList = ExpandableEventsArray(isExpanded: true, events: self.requestedEventsArray)
             let inProgressList = ExpandableEventsArray(isExpanded: true, events: self.inProgressEventsArray)
             let finishedList = ExpandableEventsArray(isExpanded: true, events: self.finishedEventsArray)
+            print(finishedList.events)
             self.SectionArray = [requestList, inProgressList, finishedList]
+            
+            // setup table view
+            self.configureTableView()
+
         }
     }
     
@@ -83,13 +97,9 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func setUpUI() {
-        configureTableView()
+        //configureTableView()
         
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.barTintColor = UIColor(red: 55/255, green: 120/255, blue: 250/255, alpha: 1)
-        navigationItem.title = "Settings"
+        
     }
     
     
@@ -116,6 +126,12 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
             return 0
         }
         
+        if (section == 2) {
+            print("section is: " + String(section))
+            let c = SectionArray[2].events.count
+            print("number of rows in this section: " + String(c))
+            print(SectionArray[2].events)
+        }
         return SectionArray[section].events.count
 
         
@@ -235,6 +251,13 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         print(indexPath)
         
         let cell = tableView.cellForRow(at: indexPath)
+        
+        let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(identifier: "RateViewController") as RateViewController
+        
+        vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+        vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        self.present(vc, animated: true, completion: nil)
         //let rateViewController = RateViewController(eventID: "string")
         //navigationController?.pushViewController(UIViewController(), animated: true)
         self.performSegue(withIdentifier: "navToRatePage", sender: cell)
