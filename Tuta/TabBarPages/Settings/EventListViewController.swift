@@ -255,12 +255,12 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(identifier: "RateViewController") as RateViewController
         
-        vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
-        vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+//        vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+//        vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         self.present(vc, animated: true, completion: nil)
         //let rateViewController = RateViewController(eventID: "string")
         //navigationController?.pushViewController(UIViewController(), animated: true)
-        self.performSegue(withIdentifier: "navToRatePage", sender: cell)
+        // self.performSegue(withIdentifier: "navToRatePage", sender: cell)
     }
     
     /*
