@@ -11,6 +11,6 @@ import Foundation
 struct ExpandableEventsArray {
     
     var isExpanded: Bool
-    var events: [String]
+    var events: [Event]
     // let events: [Event]
 }
