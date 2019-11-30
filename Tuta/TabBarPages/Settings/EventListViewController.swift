@@ -250,17 +250,18 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         print("Selected row: ")
         print(indexPath)
         
+        // cell is used for passing in event id later
         let cell = tableView.cellForRow(at: indexPath)
         
-        let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(identifier: "RateViewController") as RateViewController
+        if(indexPath.section == 2) {
+            let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(identifier: "RateViewController") as RateViewController
+                    
+//            vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+//            vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+            self.present(vc, animated: true, completion: nil)
+        }
         
-//        vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
-//        vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        self.present(vc, animated: true, completion: nil)
-        //let rateViewController = RateViewController(eventID: "string")
-        //navigationController?.pushViewController(UIViewController(), animated: true)
-        // self.performSegue(withIdentifier: "navToRatePage", sender: cell)
     }
     
     /*
