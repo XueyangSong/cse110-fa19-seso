@@ -86,7 +86,7 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
                 (u) in self.selfUser = u
                 var isRequested : Bool = true
                 if(type! == "tutor"){
-                    event = Event(studentID: self.uid!, tutorID: self.post?["creatorID"] as! String, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.selfUser.name, tutorName: self.post?["creatorName"] as! String)
+                    event = Event(studentID: self.uid!, tutorID: self.post?["creatorID"] as! String, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.selfUser.name, tutorName: self.post?["creatorName"] as! String, requesterID: self.uid!)
                     
                     self.dc.ifRequestedBefore(event: event){ (b) in isRequested = (b)
                         if(isRequested){
@@ -101,7 +101,7 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
                     }
                 }
                 else{
-                    event = Event(studentID: self.post?["creatorID"] as! String, tutorID: self.uid!, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.post?["creatorName"] as! String, tutorName: self.selfUser.name)
+                    event = Event(studentID: self.post?["creatorID"] as! String, tutorID: self.uid!, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.post?["creatorName"] as! String, tutorName: self.selfUser.name, requesterID: self.uid!)
                     self.dc.ifRequestedBefore(event: event){
                         (b) in isRequested = (b)
                         if(isRequested){
@@ -162,7 +162,7 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
             dc.getUserFromCloud(userID: uid!){
                 (u) in self.selfUser = u
                 if(type! == "tutor"){
-                    event = Event(studentID: self.uid!, tutorID: self.post?["creatorID"] as! String, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.selfUser.name, tutorName: self.post?["creatorName"] as! String)
+                    event = Event(studentID: self.uid!, tutorID: self.post?["creatorID"] as! String, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.selfUser.name, tutorName: self.post?["creatorName"] as! String, requesterID: self.uid!)
                     
                     self.dc.ifRequestedBefore(event: event){ (b) in isRequested = (b)
                         if(isRequested){
@@ -175,7 +175,7 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
                     }
                 }
                 else{
-                    event = Event(studentID: self.post?["creatorID"] as! String, tutorID: self.uid!, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.post?["creatorName"] as! String, tutorName: self.selfUser.name)
+                    event = Event(studentID: self.post?["creatorID"] as! String, tutorID: self.uid!, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.post?["creatorName"] as! String, tutorName: self.selfUser.name, requesterID: self.uid!)
                     self.dc.ifRequestedBefore(event: event){
                         (b) in isRequested = (b)
                         if(isRequested){
