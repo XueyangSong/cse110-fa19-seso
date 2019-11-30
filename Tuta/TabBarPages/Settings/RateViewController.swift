@@ -12,6 +12,7 @@ import FirebaseAuth
 
 class RateViewController: UIViewController {
 
+    @IBOutlet weak var RateTutorTitleLabel: UILabel!
     @IBOutlet weak var starRatingView: CosmosView!
     @IBOutlet weak var submitButton: UIButton!
     
@@ -33,7 +34,11 @@ class RateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpStarRatingView()
-        
+        setUpUI()
+    }
+    
+    func setUpUI() {
+        submitButton.layer.cornerRadius = 10
     }
     
     func setUpStarRatingView() {
