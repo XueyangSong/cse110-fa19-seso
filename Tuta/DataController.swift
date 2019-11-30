@@ -326,8 +326,11 @@ class DataController{
         if event.status == "requested"{
             event.status = "inProgress"
         }
-        else{
+        else if event.status == "inProgress" {
             event.status = "finished"
+        }
+        else if event.status == "finished" {
+            event.status = "rated"
         }
         docRef.updateData(["status": event.status])
         completion(true)
