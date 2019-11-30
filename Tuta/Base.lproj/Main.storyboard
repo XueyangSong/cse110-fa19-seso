@@ -156,6 +156,15 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="98" id="gYD-pZ-yBK"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXh-Rb-YRl">
+                                <rect key="frame" x="194" y="663" width="184" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Forget Password?"/>
+                                <connections>
+                                    <segue destination="EWW-a3-aOW" kind="presentation" modalPresentationStyle="fullScreen" id="ekG-k1-Icl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.85098039219999999" green="0.93333333330000001" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -183,7 +192,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bU2-zG-ztG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-975" y="139"/>
+            <point key="canvasLocation" x="-975.36231884057975" y="138.61607142857142"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="uS9-kc-Zlc">
@@ -398,7 +407,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D2M-SF-oqV" customClass="CosmosView" customModule="Cosmos">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D2M-SF-oqV" customClass="CosmosView" customModule="Cosmos">
                                 <rect key="frame" x="147" y="329" width="120" height="20"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
@@ -537,10 +546,10 @@
             </objects>
             <point key="canvasLocation" x="3521.739130434783" y="990.40178571428567"/>
         </scene>
-        <!--View Controller-->
+        <!--Recover Password View Controller-->
         <scene sceneID="uCW-Nh-nkK">
             <objects>
-                <viewController id="EWW-a3-aOW" sceneMemberID="viewController">
+                <viewController id="EWW-a3-aOW" customClass="RecoverPasswordViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f30-jd-tXM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -551,14 +560,45 @@
                                     <constraint firstAttribute="height" constant="199" id="agG-Ah-XjG"/>
                                 </constraints>
                             </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type your email address here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PsE-sf-jgK">
+                                <rect key="frame" x="36" y="431" width="342" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tT4-kA-1h5">
+                                <rect key="frame" x="119" y="504" width="179" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <state key="normal" title="Recover Password"/>
+                                <connections>
+                                    <action selector="RecoverPasswordTapped:" destination="EWW-a3-aOW" eventType="touchUpInside" id="sFy-GB-yPd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gN4-SG-G87">
+                                <rect key="frame" x="155" y="583" width="113" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <segue destination="CGX-QA-508" kind="presentation" modalPresentationStyle="fullScreen" id="ESr-R6-DY9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.85098039219999999" green="0.93333333330000001" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6cR-Pa-JwA"/>
                     </view>
+                    <connections>
+                        <outlet property="userEmailTextField" destination="PsE-sf-jgK" id="mfm-XQ-gyP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BTb-el-1eJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-107" y="1497"/>
+            <point key="canvasLocation" x="-975.36231884057975" y="934.15178571428567"/>
         </scene>
         <!--Home Tab Bar Controller-->
         <scene sceneID="EAQ-Ss-Y0Z">
@@ -1557,7 +1597,8 @@
         <image name="tutaLogo_1" width="360" height="127"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="i6H-qK-3cr"/>
-        <segue reference="biD-n9-DuG"/>
+        <segue reference="SZi-Fx-QAi"/>
+        <segue reference="ESr-R6-DY9"/>
+        <segue reference="Djd-gn-S7J"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -34,6 +34,7 @@
 		490AB8AC2377708300C63347 /* AddCourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB8AB2377708300C63347 /* AddCourseController.swift */; };
 		490AB8AE237772AF00C63347 /* ProfileDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB8AD237772AF00C63347 /* ProfileDelegate.swift */; };
 		49FFF4A1238E544F0069A81F /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FFF4A0238E544F0069A81F /* RateViewController.swift */; };
+		5A0C3AD8239257F500A68C9B /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0C3AD7239257F500A68C9B /* RecoverPasswordViewController.swift */; };
 		5A30888223808D70007501E5 /* ViewProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A30888123808D70007501E5 /* ViewProfileViewController.swift */; };
 		7F3E1C8223836BCA00F8088B /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3E1C8123836BCA00F8088B /* MeViewController.swift */; };
 		7F3E1C842383AF5800F8088B /* PopWindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3E1C832383AF5800F8088B /* PopWindowViewController.swift */; };
@@ -75,6 +76,7 @@
 		490AB8AB2377708300C63347 /* AddCourseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseController.swift; sourceTree = "<group>"; };
 		490AB8AD237772AF00C63347 /* ProfileDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileDelegate.swift; path = Tuta/TabBarPages/ProfileDelegate.swift; sourceTree = "<group>"; };
 		49FFF4A0238E544F0069A81F /* RateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
+		5A0C3AD7239257F500A68C9B /* RecoverPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordViewController.swift; sourceTree = "<group>"; };
 		5A30888123808D70007501E5 /* ViewProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProfileViewController.swift; sourceTree = "<group>"; };
 		7F3E1C8123836BCA00F8088B /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		7F3E1C832383AF5800F8088B /* PopWindowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopWindowViewController.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				1F83DCE8235B300C00DAFB89 /* ViewController.swift */,
 				1F83DCF8235B85CA00DAFB89 /* SignUpViewController.swift */,
 				1F538BF5235CEB95003795E0 /* LogInViewController.swift */,
+				5A0C3AD7239257F500A68C9B /* RecoverPasswordViewController.swift */,
 			);
 			path = LoginSignup;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				FCFBFE73237A381700137A81 /* imagePicker.swift in Sources */,
 				FCFBFE712379C58100137A81 /* ChangeNumberController.swift in Sources */,
 				5A30888223808D70007501E5 /* ViewProfileViewController.swift in Sources */,
+				5A0C3AD8239257F500A68C9B /* RecoverPasswordViewController.swift in Sources */,
 				41C8FE4F2371444A00952CFB /* DataController.swift in Sources */,
 				1F467B88236DFE9500A5CA59 /* ProfileViewController.swift in Sources */,
 				1FF1F2DE2389AB640092AD83 /* EventListSection.swift in Sources */,
