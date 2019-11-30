@@ -16,9 +16,10 @@ class RateViewController: UIViewController {
     @IBOutlet weak var starRatingView: CosmosView!
     @IBOutlet weak var submitButton: UIButton!
     
-    var eventID = "EiN3pazBdGtsl1pWA0VS"
-    let userID = "kC1VpntfdpRFImDH8ULQWDti5NK2"
-    var rating: Double! = 2.5
+    var event : Event = Event()
+    var eventID : String!
+    let userID = Auth.auth().currentUser?.uid
+    var rating: Double! = 0.0
     let dc = DataController()
 
     
@@ -39,6 +40,14 @@ class RateViewController: UIViewController {
     
     func setUpUI() {
         submitButton.layer.cornerRadius = 10
+        if(event.studentID == userID) {
+            // user is a student, rate tutor
+            RateTutorTitleLabel.text = "Give Your Tutor a Rating"
+        }
+        else {
+            RateTutorTitleLabel.text = "Give Your Tutee a Rating"
+        }
+        
     }
     
     func setUpStarRatingView() {
@@ -49,6 +58,11 @@ class RateViewController: UIViewController {
         }
         //let margins = view.layoutMarginsGuide
         //starRatingView.topAnchor.constraint(equalToSystemSpacingBelow: margins, multiplier: 2.0)
+    }
+    
+    // setter
+    public func setEvent(event evt: Event) {
+        self.event = evt
     }
     
     @IBAction func onSubmit(_ sender: Any) {

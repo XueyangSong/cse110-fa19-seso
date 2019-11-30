@@ -24,17 +24,17 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     var tableView: UITableView!
     var eventList = [Event]()
     // events arrays
-    var requestedEventsArray = [String]()
-    var inProgressEventsArray = [String]()
-    var finishedEventsArray = [String]()
+    var requestedEventsArray = [Event]()
+    var inProgressEventsArray = [Event]()
+    var finishedEventsArray = [Event]()
 
     
     // 2-D array
     
     var SectionArray = [
-        ExpandableEventsArray(isExpanded: true, events: [String]()),
-        ExpandableEventsArray(isExpanded: true, events: [String]()),
-        ExpandableEventsArray(isExpanded: true, events: [String]()),
+        ExpandableEventsArray(isExpanded: true, events: [Event]()),
+        ExpandableEventsArray(isExpanded: true, events: [Event]()),
+        ExpandableEventsArray(isExpanded: true, events: [Event]()),
 //        ExpandableEventsArray(isExpanded: true, events: []),
 //        ExpandableEventsArray(isExpanded: true, events: []),
 //        ExpandableEventsArray(isExpanded: true, events: []),
@@ -58,23 +58,30 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         self.dc.getEventsListFromCloud(userID: uid!){
             (e) in self.eventList = (e)
             for event in self.eventList{
+//                if event.status == "requested"{
+//                    self.requestedEventsArray.append(event.eventToString())
+//                }
+//                else if event.status == "inProgress"{
+//                    self.inProgressEventsArray.append(event.eventToString())
+//                }
+//                else{
+//                    self.finishedEventsArray.append(event.eventToString())
+//                }
                 if event.status == "requested"{
-                    self.requestedEventsArray.append(event.eventToString())
+                    self.requestedEventsArray.append(event)
                 }
                 else if event.status == "inProgress"{
-                    self.inProgressEventsArray.append(event.eventToString())
+                    self.inProgressEventsArray.append(event)
                 }
                 else{
-                    self.finishedEventsArray.append(event.eventToString())
+                    self.finishedEventsArray.append(event)
                 }
             }
-            print(self.requestedEventsArray)
-            print(self.inProgressEventsArray)
-            print(self.finishedEventsArray)
+            
             let requestList = ExpandableEventsArray(isExpanded: true, events: self.requestedEventsArray)
             let inProgressList = ExpandableEventsArray(isExpanded: true, events: self.inProgressEventsArray)
             let finishedList = ExpandableEventsArray(isExpanded: true, events: self.finishedEventsArray)
-            print(finishedList.events)
+            
             self.SectionArray = [requestList, inProgressList, finishedList]
             
             // setup table view
@@ -211,7 +218,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         let event = SectionArray[indexPath.section].events[indexPath.row]
         
-        cell.textLabel?.text = event
+        cell.textLabel?.text = event.eventToString()
         
         return cell
         
@@ -250,15 +257,18 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         print("Selected row: ")
         print(indexPath)
         
-        // cell is used for passing in event id later
-        let cell = tableView.cellForRow(at: indexPath)
         
         if(indexPath.section == 2) {
             let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(identifier: "RateViewController") as RateViewController
-                    
 //            vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
 //            vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+            
+            // get event
+            let event = SectionArray[indexPath.section].events[indexPath.row]
+            // pass event ID into view controller
+            vc.setEvent(event: event)
+            
             self.present(vc, animated: true, completion: nil)
         }
         
