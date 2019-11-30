@@ -161,9 +161,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Forget Password?"/>
-                                <connections>
-                                    <segue destination="EWW-a3-aOW" kind="presentation" modalPresentationStyle="fullScreen" id="ekG-k1-Icl"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.85098039219999999" green="0.93333333330000001" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -583,9 +580,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <state key="normal" title="Cancel"/>
-                                <connections>
-                                    <segue destination="CGX-QA-508" kind="presentation" modalPresentationStyle="fullScreen" id="ESr-R6-DY9"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.85098039219999999" green="0.93333333330000001" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1605,7 +1599,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="SZi-Fx-QAi"/>
-        <segue reference="ESr-R6-DY9"/>
         <segue reference="Djd-gn-S7J"/>
     </inferredMetricsTieBreakers>
 </document>
