@@ -44,29 +44,24 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //setUpSectionArray()
+        setUpSectionArray()
+        setUpUI()
 
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpSectionArray()
-        setUpUI()
+        
     }
     
     func setUpSectionArray(){
         self.dc.getEventsListFromCloud(userID: uid!){
             (e) in self.eventList = (e)
+            self.requestedEventsArray = []
+            self.inProgressEventsArray = []
+            self.finishedEventsArray = []
+            
             for event in self.eventList{
-//                if event.status == "requested"{
-//                    self.requestedEventsArray.append(event.eventToString())
-//                }
-//                else if event.status == "inProgress"{
-//                    self.inProgressEventsArray.append(event.eventToString())
-//                }
-//                else{
-//                    self.finishedEventsArray.append(event.eventToString())
-//                }
                 if event.status == "requested"{
                     self.requestedEventsArray.append(event)
                 }
@@ -123,21 +118,12 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         if (section == 2) {
-            print("section is: " + String(section))
+//            print("section is: " + String(section))
             let c = SectionArray[2].events.count
-            print("number of rows in this section: " + String(c))
-            print(SectionArray[2].events)
+//            print(SectionArray[2].events)
         }
         return SectionArray[section].events.count
 
-        
-//        guard let section = EventListSection(rawValue: section) else { return 0 }
-//
-//        switch section {
-//        case .requested: return 5 //SocialOptions.allCases.count
-//        case .inProgress: return 5 //CommunicationOptions.allCases.count
-//        case .finished: return 5
-//        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -211,34 +197,19 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         return cell
         
-//        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! EventListCell
-//        guard let section = EventListSection(rawValue: indexPath.section) else { return UITableViewCell() }
-//
-//        switch section {
-//        case .requested:
-//            let type = "requested"
-//            print(type)
-//            //get cells
-//            // color
-//        case .inProgress:
-//            let type = "inProgress"
-//            print(type)
-//            // color
-//        case .finished:
-//            let type = "finished"
-//            print(type)
-//            // set color
-//        }
-//
-//        return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // get event
+        let event = SectionArray[indexPath.section].events[indexPath.row]
+        // remove event from sectionArray
+        SectionArray[indexPath.section].events.remove(at: indexPath.row)
+        
         if editingStyle == .delete {
-            print("Deleted")
-
-            // remove event from the array and the database
-            //self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            print("Delet event")
+            let dc = DataController()
+            dc.deleteEvent(event: event)
+            setUpSectionArray()
         }
     }
     
