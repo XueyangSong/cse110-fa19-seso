@@ -169,6 +169,9 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
                             self.RequestButton.isEnabled = false
                             return
                         }
+                        else{
+                            self.dc.deleteEvent(event: event)
+                        }
                     }
                 }
                 else{
@@ -178,6 +181,9 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
                         if(isRequested){
                             self.RequestButton.isEnabled = false
                             return
+                        }
+                        else{
+                            self.dc.deleteEvent(event: event)
                         }
                     }
                 }
