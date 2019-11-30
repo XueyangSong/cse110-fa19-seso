@@ -235,6 +235,22 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
             self.present(vc, animated: true, completion: nil)
         }
         
+        if(indexPath.section == 1) {
+            let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(identifier: "FinishEventViewController") as FinishEventViewController
+            //            vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+            //            vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+                                    
+            // get event
+            let event = SectionArray[indexPath.section].events[indexPath.row]
+            // pass event ID into view controller
+            vc.setEvent(event: event)
+            // pass self to view controller
+            vc.parentVC = self
+                                    
+            self.present(vc, animated: true, completion: nil)
+        }
+        
         if(indexPath.section == 2) {
             let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(identifier: "RateViewController") as RateViewController
