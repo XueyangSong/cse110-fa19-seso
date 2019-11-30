@@ -350,6 +350,46 @@
             </objects>
             <point key="canvasLocation" x="4228.985507246377" y="1713.6160714285713"/>
         </scene>
+        <!--Confirm Event View Controller-->
+        <scene sceneID="NGe-ol-vZv">
+            <objects>
+                <viewController storyboardIdentifier="ConfirmEventViewController" id="7k0-qL-Qrq" customClass="ConfirmEventViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EOG-yi-BWq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Accept Request?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EqX-gv-4ik">
+                                <rect key="frame" x="61" y="197" width="292" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tdD-x4-Ysf">
+                                <rect key="frame" x="61" y="459" width="292" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="AcceptButtonPressed:" destination="7k0-qL-Qrq" eventType="touchUpInside" id="92m-WV-qLP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="IXp-3i-uTG"/>
+                    </view>
+                    <connections>
+                        <outlet property="AcceptButton" destination="tdD-x4-Ysf" id="neJ-2m-Z5g"/>
+                        <outlet property="TitleLabel" destination="EqX-gv-4ik" id="7fz-ve-jJd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gJs-vQ-Glf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3521.739130434783" y="2537.9464285714284"/>
+        </scene>
         <!--Rate View Controller-->
         <scene sceneID="2hk-sy-5HP">
             <objects>

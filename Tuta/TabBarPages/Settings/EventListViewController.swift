@@ -257,6 +257,19 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         print("Selected row: ")
         print(indexPath)
         
+        if(indexPath.section == 0) {
+            let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(identifier: "ConfirmEventViewController") as ConfirmEventViewController
+//            vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+//            vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+                        
+            // get event
+            let event = SectionArray[indexPath.section].events[indexPath.row]
+            // pass event ID into view controller
+            vc.setEvent(event: event)
+                        
+            self.present(vc, animated: true, completion: nil)
+        }
         
         if(indexPath.section == 2) {
             let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
