@@ -38,7 +38,7 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
     var user : TutaUser = TutaUser()
     var post : [String:Any]!
     var selfUser = TutaUser()
-    var uid = Auth.auth().currentUser?.uid
+    var uid : String = Auth.auth().currentUser!.uid
     var userID = ""
     var imgUrl = ""
     var imagePicker = UIImagePickerController()
@@ -82,11 +82,13 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
 
         
         if(self.uid != self.post?["creatorID"] as! String){
-            dc.getUserFromCloud(userID: uid!){
+            dc.getUserFromCloud(userID: uid){
                 (u) in self.selfUser = u
                 var isRequested : Bool = true
                 if(type! == "tutor"){
+
                     event = Event(studentID: self.uid!, tutorID: self.post?["creatorID"] as! String, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.selfUser.name, tutorName: self.post?["creatorName"] as! String, requesterID: self.uid!)
+
                     
                     self.dc.ifRequestedBefore(event: event){ (b) in isRequested = (b)
                         if(isRequested){
@@ -101,7 +103,9 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
                     }
                 }
                 else{
+
                     event = Event(studentID: self.post?["creatorID"] as! String, tutorID: self.uid!, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.post?["creatorName"] as! String, tutorName: self.selfUser.name, requesterID: self.uid!)
+
                     self.dc.ifRequestedBefore(event: event){
                         (b) in isRequested = (b)
                         if(isRequested){
@@ -159,10 +163,12 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
             formatter.dateFormat = "hh:mm:ss"
             let time = formatter.string(from: Date())
             
-            dc.getUserFromCloud(userID: uid!){
+            dc.getUserFromCloud(userID: uid){
                 (u) in self.selfUser = u
                 if(type! == "tutor"){
+
                     event = Event(studentID: self.uid!, tutorID: self.post?["creatorID"] as! String, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.selfUser.name, tutorName: self.post?["creatorName"] as! String, requesterID: self.uid!)
+
                     
                     self.dc.ifRequestedBefore(event: event){ (b) in isRequested = (b)
                         if(isRequested){
@@ -175,7 +181,9 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
                     }
                 }
                 else{
+
                     event = Event(studentID: self.post?["creatorID"] as! String, tutorID: self.uid!, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.post?["creatorName"] as! String, tutorName: self.selfUser.name, requesterID: self.uid!)
+
                     self.dc.ifRequestedBefore(event: event){
                         (b) in isRequested = (b)
                         if(isRequested){

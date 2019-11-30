@@ -19,18 +19,42 @@ class ConfirmEventViewController: UIViewController {
     
     var event : Event = Event()
     var eventID : String!
-    let userID = Auth.auth().currentUser?.uid
+    let userID : String = Auth.auth().currentUser!.uid
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUpUI()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setUpUI()
+        //setUpUI()
         // Do any additional setup after loading the view.
     }
     
     func setUpUI() {
-        TitleLabel.text = "Accept Request?"
-        AcceptButton.titleLabel?.text = "Accept"
+        print("setUpUI")
+        print(self.event.requesterID)
+        
+        self.TitleLabel.adjustsFontSizeToFitWidth = true
+
+        if(event.requesterID != userID) {
+            print(event.requesterID)
+            print(userID)
+            // legal to confirm
+            print("legal to confirm request")
+            self.TitleLabel.text = "Accept Request?"
+            self.AcceptButton.setTitle("Accept", for: .normal)
+            self.AcceptButton.setTitle("Accepted", for: .selected)
+        }
+        else {
+            // not legal to confirm
+            // view request instead
+            print("Can only view request")
+            self.TitleLabel.text = "Session Requested!"
+            self.AcceptButton.isHidden = true
+        }
+        
     }
     
     // setter
