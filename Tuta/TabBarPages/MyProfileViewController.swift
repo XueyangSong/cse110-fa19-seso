@@ -145,7 +145,7 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.dataSource = self
         tableView.rowHeight = 50
         
-        
+        tableView.isScrollEnabled = false
         
         tableView.register(EventListCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
