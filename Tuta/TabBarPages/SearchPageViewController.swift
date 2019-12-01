@@ -8,12 +8,19 @@
 
 import UIKit
 
+private let reuseIdentifier = "PostcardCell"
+
+
 class SearchPageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Properties
     @IBOutlet weak var postcardTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchForSegment: UISegmentedControl!
+    
+    var tableView: UITableView!
+    var mySearchBar: UISearchBar!
+    var segmentControl: UISegmentedControl!
     
     let dc = DataController()
     
@@ -24,7 +31,9 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUp()
+        setUpUI()
+        configTableView()
+
 
         postcardTableView.delegate = self
         postcardTableView.dataSource = self
@@ -46,10 +55,38 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
     
     
     // MARK: - Functions
+    func setUpUI() {
+        
+        // test
+//        postcardTableView.isHidden = true
+//        searchBar.isHidden = true
+//        searchForSegment.isHidden = true
+        
+        
+        
+        self.view.backgroundColor = UIColor.white
+        print("setUpUI")
+        searchBar.backgroundColor = UIColor(red:0.85, green:0.93, blue:0.93, alpha:1.0)
+        searchBar.tintColor = UIColor(red:0.85, green:0.93, blue:0.93, alpha:1.0)
+    }
     
-    func setUp() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        // self.view.addGestureRecognizer(tap)
+    func configSearchBar() {
+        
+    }
+    
+    func configSegmentControl() {
+        
+    }
+    
+    func configTableView() {
+        tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 170
+        
+        tableView.register(PostcardTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+//        view.addSubview(tableView)
+        tableView.frame = CGRect(x: 0, y: searchBar.frame.origin.y + searchBar.frame.height, width: self.view.frame.width, height: self.view.frame.height - searchBar.frame.origin.y - searchBar.frame.height)
     }
     
     func registerForKeyboardNotification() {
@@ -98,7 +135,9 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        // ==========
         let cell = postcardTableView.dequeueReusableCell(withIdentifier: "PostcardTableViewCell", for: indexPath) as! PostcardTableViewCell
+        // let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! PostcardTableViewCell
         
         var post:[String:Any]
         if searching {
@@ -132,7 +171,9 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         
         // Find the select postCard
         let cell = sender as! UITableViewCell
+        // =========
         let indexPath = postcardTableView.indexPath(for: cell)!
+        //let indexPath = tableView.indexPath(for: cell)!
         var post : [String:Any]!
         if searching {
             post = filteredPosts[indexPath.row]
@@ -186,7 +227,9 @@ extension SearchPageViewController: UISearchBarDelegate{
         
         dc.getCardsCollection(type: type, course: course) { (postsFromCloud) in
             self.filteredPosts = postsFromCloud
+            // ==========
             self.postcardTableView.reloadData()
+            // self.tableView.reloadData()
         }
     }
     
@@ -211,7 +254,9 @@ extension SearchPageViewController: UISearchBarDelegate{
         searching = false
         searchBar.text = ""
         view.endEditing(true)
+        // ===========
         postcardTableView.reloadData()
+        //tableView.reloadData()
     }
 }
 

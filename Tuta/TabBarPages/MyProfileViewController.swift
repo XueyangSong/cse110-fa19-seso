@@ -295,7 +295,7 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
                 vc.modalPresentationStyle = UIModalPresentationStyle.automatic
                 self.present(vc, animated: true, completion: nil)
             }
-            
+
         }
         
         else if indexPath.section == 2 {
