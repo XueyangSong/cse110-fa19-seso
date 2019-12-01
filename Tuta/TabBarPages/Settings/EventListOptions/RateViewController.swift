@@ -80,6 +80,7 @@ class RateViewController: UIViewController {
     func setUpStarRatingView() {
         starRatingView.settings.fillMode = .half
         starRatingView.settings.starSize = 50
+        starRatingView.rating = 5.0
         starRatingView.didFinishTouchingCosmos = {value in
             self.rating = value
         }

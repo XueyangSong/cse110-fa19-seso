@@ -144,12 +144,15 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         let postDic = postCardObj.getCardData()
 
         
-        cell.courseLabel!.text = (postDic["course"] as! String)
+        //cell.courseLabel!.text = (postDic["course"] as! String)
         cell.usernameLabel!.text = (postDic["creatorName"] as! String)
-        cell.descriptionLabel!.text = (postDic["description"] as! String)
+        cell.descriptionLabel!.text = (postDic["course"] as! String) + ": " + (postDic["description"] as! String)
+        cell.descriptionLabel.sizeToFit()
         cell.timeLabel!.text = (postDic["time"] as! String) + "  " + (postDic["date"] as! String)
-        cell.ratingLabel!.text = "Rating: " + String(postDic["rating"] as! Double)
         cell.numRatingsLabel!.text = String(postDic["numRate"] as! Int) + " People rated"
+        // get rating
+        let rating = postDic["rating"] as! Double
+        cell.ratingCosmosRating.rating = rating
         // get profile picture
         let url = String(postDic["creatorURL"] as! String)
         if url != "" {
@@ -180,6 +183,8 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         } else {
             post = posts[indexPath.row]
         }
+        
+        cell.isSelected = false
 
         // Pass the selected postCard to other's profile page
         let othersProfileViewController = segue.destination as! ViewProfileViewController
