@@ -157,9 +157,14 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         // get profile picture
         let url = String(postDic["creatorURL"] as! String)
         if url != "" {
+            // var imageData = Data()
             var imageData = Data()
             imageData = try!Data(contentsOf: URL(string:url)!)
             cell.profileImageView.image = UIImage(data : imageData)
+            imageData = Data()
+        }
+        else {
+            cell.profileImageView.image = #imageLiteral(resourceName: "lightbulb")
         }
 
                 

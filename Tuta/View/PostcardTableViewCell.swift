@@ -49,9 +49,13 @@ class PostcardTableViewCell: UITableViewCell {
         innerView.layer.cornerRadius = 10
         self.addSubview(innerView)
         
+        // description
         descriptionLabel.numberOfLines = 0
         profileImageView.layer.cornerRadius = 10
         descriptionLabel.frame = CGRect(x: 164, y: 74, width: 206, height: 55)
+        
+        // imageView
+        profileImageView.centerYAnchor.constraint(equalTo: innerView.centerYAnchor).isActive = true
     }
     
     
