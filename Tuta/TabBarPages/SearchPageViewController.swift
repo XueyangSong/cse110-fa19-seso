@@ -25,7 +25,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        
+
         postcardTableView.delegate = self
         postcardTableView.dataSource = self
         

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -877,7 +877,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XeX-Ui-8VA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+
             <point key="canvasLocation" x="1676.8115942028987" y="989.73214285714278"/>
+
         </scene>
         <!--PopWindowViewController-->
         <scene sceneID="0HV-C6-MkE">
@@ -1658,7 +1660,9 @@
         <image name="user" width="35.5" height="35.5"/>
     </resources>
     <inferredMetricsTieBreakers>
+
         <segue reference="4WX-ki-KIC"/>
+
         <segue reference="FOh-xn-r2q"/>
         <segue reference="Djd-gn-S7J"/>
     </inferredMetricsTieBreakers>

@@ -37,6 +37,7 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         backButton.anchor(top: view.topAnchor, left: view.leftAnchor,
                              paddingTop: 64, paddingLeft: 32, width: 32, height: 32)
         
+
         view.addSubview(nameLabel)
         nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         nameLabel.anchor(top: profileImageView.bottomAnchor, paddingTop: 12)
@@ -67,7 +68,7 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         button.addTarget(self, action: #selector(getBack), for: .touchUpInside)
         return button
     }()
-    
+
 
     
     let nameLabel: UILabel = {
