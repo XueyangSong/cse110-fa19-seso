@@ -320,7 +320,8 @@ extension UIColor {
         return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
     }
     
-    static let mainBlue = UIColor.rgb(red: 0, green: 150, blue: 185)
+    static let mainBlue = UIColor(red:0.39, green:0.70, blue:0.80, alpha:1.0)
+    // UIColor.rgb(red: 0, green: 150, blue: 185)
 }
 
 extension UIView {

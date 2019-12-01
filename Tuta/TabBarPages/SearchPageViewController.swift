@@ -18,7 +18,6 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchForSegment: UISegmentedControl!
     
-    var tableView: UITableView!
     var mySearchBar: UISearchBar!
     var segmentControl: UISegmentedControl!
     
@@ -33,6 +32,8 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         super.viewDidLoad()
         setUpUI()
         configTableView()
+        
+        self.view.backgroundColor = UIColor(red:0.39, green:0.70, blue:0.80, alpha:1.0)
 
 
         postcardTableView.delegate = self
@@ -61,13 +62,16 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
 //        postcardTableView.isHidden = true
 //        searchBar.isHidden = true
 //        searchForSegment.isHidden = true
+        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red:0.24, green:0.44, blue:0.64, alpha:1.0)]
+        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
         
+        postcardTableView.separatorStyle = .none
         
         
         self.view.backgroundColor = UIColor.white
         print("setUpUI")
-        searchBar.backgroundColor = UIColor(red:0.85, green:0.93, blue:0.93, alpha:1.0)
-        searchBar.tintColor = UIColor(red:0.85, green:0.93, blue:0.93, alpha:1.0)
+        searchBar.backgroundColor = UIColor(red:0.24, green:0.44, blue:0.64, alpha:1.0)
+        searchBar.tintColor = UIColor(red:0.24, green:0.44, blue:0.64, alpha:1.0)
     }
     
     func configSearchBar() {
@@ -79,14 +83,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func configTableView() {
-        tableView = UITableView()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.rowHeight = 170
         
-        tableView.register(PostcardTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
-//        view.addSubview(tableView)
-        tableView.frame = CGRect(x: 0, y: searchBar.frame.origin.y + searchBar.frame.height, width: self.view.frame.width, height: self.view.frame.height - searchBar.frame.origin.y - searchBar.frame.height)
     }
     
     func registerForKeyboardNotification() {
@@ -150,13 +147,14 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         let postDic = postCardObj.getCardData()
 
         
-        cell.courseLabel!.text = postDic["course"] as! String
-        cell.usernameLabel!.text = postDic["creatorName"] as! String
-        cell.descriptionLabel!.text = postDic["description"] as! String
+        cell.courseLabel!.text = (postDic["course"] as! String)
+        cell.usernameLabel!.text = (postDic["creatorName"] as! String)
+        cell.descriptionLabel!.text = (postDic["description"] as! String)
         cell.timeLabel!.text = (postDic["time"] as! String) + "  " + (postDic["date"] as! String)
         cell.ratingLabel!.text = "Rating: " + String(postDic["rating"] as! Double)
         cell.numRatingsLabel!.text = String(postDic["numRate"] as! Int) + " People rated"
 
+        
         cell.descriptionLabel.sizeToFit()
         
         return cell
