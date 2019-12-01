@@ -37,10 +37,7 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         backButton.anchor(top: view.topAnchor, left: view.leftAnchor,
                              paddingTop: 64, paddingLeft: 32, width: 32, height: 32)
         
-//        view.addSubview(secondButton)
-//        secondButton.anchor(top: view.topAnchor, right: view.rightAnchor,
-//                             paddingTop: 64, paddingRight: 32, width: 32, height: 32)
-        
+
         view.addSubview(nameLabel)
         nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         nameLabel.anchor(top: profileImageView.bottomAnchor, paddingTop: 12)
@@ -71,15 +68,8 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         button.addTarget(self, action: #selector(getBack), for: .touchUpInside)
         return button
     }()
-    
-    let secondButton: UIButton = {
 
-        let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "lightbulb").withRenderingMode(.alwaysOriginal), for: .normal)
-        button.addTarget(self, action: #selector(handleMessageUser), for: .touchUpInside)
 
-        return button
-    }()
     
     let nameLabel: UILabel = {
         let label = UILabel()
@@ -310,7 +300,7 @@ extension UIColor {
         return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
     }
     
-    static let mainBlue = UIColor.rgb(red: 0, green: 150, blue: 255)
+    static let mainBlue = UIColor.rgb(red: 0, green: 150, blue: 185)
 }
 
 extension UIView {
