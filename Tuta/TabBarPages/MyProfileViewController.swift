@@ -152,32 +152,14 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // MARK: - tableView
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 3 {
+            return 300
+        }
         return 20.0
-    }
-    
-    // set view for footer
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        if section == 2 {
-            let footerView = UIView()
-            footerView.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0.94, alpha: 1.0)
-            return footerView
-//        }
-        
-    }
-
-    // set height for footer
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 2 {
-            let height : CGFloat = 300.0 - 50.0 * 5.0 - 20.0 * 3.0
-            return self.view.frame.height - height
-        }
-        else {
-            return 0
-        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -186,6 +168,17 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         let view = UIView()
         view.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0.94, alpha: 1.0) // #f2f2f2
 
+        if section == 3 {
+            // add copy right label
+            let copyRightLabel = UILabel()
+            copyRightLabel.text = "Copyright ©2019 Seso, Inc. All rights reserved"
+            copyRightLabel.textColor = UIColor.lightGray
+            copyRightLabel.font = .systemFont(ofSize: 12)
+            copyRightLabel.textAlignment = .center
+            copyRightLabel.frame = CGRect(x: view.frame.origin.x + 20, y: view.frame.origin.y + 20, width: self.view.frame.width - 40, height: 40)
+            copyRightLabel.numberOfLines = 0
+            view.addSubview(copyRightLabel)
+        }
 
         return view
     }
