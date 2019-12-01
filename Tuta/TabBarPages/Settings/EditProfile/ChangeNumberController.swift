@@ -23,6 +23,7 @@ class ChangeNumberController:UIViewController{
     @IBOutlet weak var numberText: UITextField!
     
     
+    @IBOutlet weak var save: UIButton!
     @IBAction func saveNumber(_ sender: Any) {
         var user : TutaUser = TutaUser()
         let isValid = isFieldValid()
@@ -60,6 +61,7 @@ class ChangeNumberController:UIViewController{
         dc.getUserFromCloud(userID: self.userID!){(e) in self.user = (e)
             self.numberText.text = self.user.phone
         }
+        save.applyButton()
 //        numberText.delegate = self
         
     }

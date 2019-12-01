@@ -18,11 +18,13 @@ class DescriptionViewController:UIViewController{
     let dc = DataController()
     let userID = Auth.auth().currentUser?.uid
     var user : TutaUser = TutaUser()
+    @IBOutlet weak var save: UIButton!
     
     @IBOutlet weak var DescriptionTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        save.applyButton()
 //        let userID = Auth.auth().currentUser?.uid
         DescriptionTextView.delegate = self
         DescriptionTextView.sizeThatFits(CGSize(width: DescriptionTextView.frame.size.width, height: DescriptionTextView.frame.size.height))

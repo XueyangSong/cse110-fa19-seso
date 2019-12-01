@@ -17,6 +17,7 @@ class AddCourseController:UIViewController {
 
     let dc = DataController()
     let userID = Auth.auth().currentUser?.uid
+    @IBOutlet weak var save: UIButton!
     
     
     @IBOutlet weak var AddCourseTextField: UITextField!
@@ -39,6 +40,7 @@ class AddCourseController:UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+        save.applyButton()
 //        let userID = Auth.auth().currentUser?.uid
 
 //        print(type(of: DescriptionTextView))
