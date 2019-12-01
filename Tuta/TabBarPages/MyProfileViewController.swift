@@ -19,6 +19,11 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // MARK: - Properties
     
+    let userID = Auth.auth().currentUser?.uid
+    var imgUrl = ""
+    var imagePicker = UIImagePickerController()
+    var imageData = Data()
+    
     lazy var containerView: UIView = {
         let view = UIView()
         
@@ -121,6 +126,22 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func setUpUI() {
+        let dc = DataController()
+        var profileImageURL : String = ""
+        
+        dc.getUserFromCloud(userID: self.userID!) { (user) in
+            // load user name and email
+            self.nameLabel.text = user.name
+            self.emailLabel.text = user.email
+            profileImageURL = user.url
+            
+            // load user profile picture
+            if(profileImageURL != "") {
+                self.imageData = try!Data(contentsOf: URL(string:profileImageURL)!)
+                self.profileImageView.image = UIImage(data : self.imageData)
+            }
+        }
+        
         view.backgroundColor = .white
         
         view.addSubview(containerView)
