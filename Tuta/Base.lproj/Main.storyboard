@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HFW-nU-lyf">
+
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
@@ -479,6 +481,7 @@
             </objects>
             <point key="canvasLocation" x="4367" y="2538"/>
         </scene>
+
         <!--Recover Password View Controller-->
         <scene sceneID="M2J-CI-GRf">
             <objects>
@@ -620,7 +623,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kqq-Lk-gRr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+
             <point key="canvasLocation" x="6985.507246376812" y="296.65178571428572"/>
+
         </scene>
         <!--SearchPage-->
         <scene sceneID="OQc-mC-3lL">
@@ -645,8 +650,10 @@
                                                     <rect key="frame" x="20" y="11" width="374" height="148"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
+
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" fixedFrame="YES" text="Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="73c-KX-0fR">
                                                             <rect key="frame" x="164" y="115" width="202" height="25"/>
+
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -660,14 +667,18 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rating" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cl9-dx-MIb">
+
                                                             <rect key="frame" x="164" y="32" width="73" height="22"/>
+
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bq7-Zp-Vrw">
+
                                                             <rect key="frame" x="164" y="10" width="109" height="21"/>
+
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="19"/>
                                                             <nil key="textColor"/>
@@ -677,6 +688,7 @@
                                                             <rect key="frame" x="14" y="10" width="133" height="128"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
+
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Course" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CdN-dv-SyI">
                                                             <rect key="frame" x="276" y="10" width="90" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -686,6 +698,7 @@
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tA6-Eo-m0R">
                                                             <rect key="frame" x="164" y="54" width="212" height="60"/>
+
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
                                                             <nil key="textColor"/>
@@ -1165,7 +1178,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dNl-6O-BnN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+
             <point key="canvasLocation" x="6088" y="-552"/>
+
         </scene>
         <!--Change Number Controller-->
         <scene sceneID="Dhs-Nv-VT1">
@@ -1212,7 +1227,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3AI-8f-iZQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+
             <point key="canvasLocation" x="5285.507246376812" y="296.65178571428572"/>
+
         </scene>
         <!--Description View Controller-->
         <scene sceneID="4jD-Pn-vl8">
@@ -1262,7 +1279,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jnG-dE-Hr0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+
             <point key="canvasLocation" x="6124.6376811594209" y="296.65178571428572"/>
+
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="knb-dR-32L">
@@ -1283,7 +1302,9 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ka3-8j-glz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+
             <point key="canvasLocation" x="5341" y="-552"/>
+
         </scene>
     </scenes>
     <resources>
