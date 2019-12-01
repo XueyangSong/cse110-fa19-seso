@@ -286,6 +286,15 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         else if indexPath.section == 1 {
+            if indexPath.row == 0 {
+                let cell = tableView.cellForRow(at: indexPath)
+                cell?.isSelected = false
+                let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = sb.instantiateViewController(identifier: "ContactUsViewController") as ContactUsViewController
+                vc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+                vc.modalPresentationStyle = UIModalPresentationStyle.automatic
+                self.present(vc, animated: true, completion: nil)
+            }
             
         }
         

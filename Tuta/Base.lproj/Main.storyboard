@@ -311,14 +311,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PIP-Am-qqB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4309" y="990"/>
+            <point key="canvasLocation" x="3577" y="990"/>
         </scene>
         <!--Event List View Controller-->
         <scene sceneID="6BW-MX-St1">
             <objects>
                 <viewController storyboardIdentifier="EventListViewController" id="a7s-Ga-07e" customClass="EventListViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wqD-Fe-YS2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="ikA-xn-zA6"/>
@@ -327,40 +327,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aD8-F2-ohm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3522" y="1817"/>
+            <point key="canvasLocation" x="3577" y="1789"/>
         </scene>
-        <!--Event History-->
-        <scene sceneID="jP6-x4-ekH">
+        <!--Contact Us View Controller-->
+        <scene sceneID="UFR-EO-url">
             <objects>
-                <viewController id="Z0v-Ua-V2P" customClass="eventHistory" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="EQZ-ad-biz">
+                <viewController storyboardIdentifier="ContactUsViewController" id="lKa-Jc-fJd" customClass="ContactUsViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="abm-Z3-1mi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jvA-8Z-K0p">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="47" id="JeF-7J-aqq" customClass="EventListCell" customModule="Tuta" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="47"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JeF-7J-aqq" id="dbs-jH-5gh">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="47"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="Ha7-uw-jRK"/>
+                        <viewLayoutGuide key="safeArea" id="Hhp-Nq-2sy"/>
                     </view>
-                    <navigationItem key="navigationItem" id="yEy-nF-wWo"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eTc-VT-lPi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p8L-a8-DeJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4368" y="1817"/>
+            <point key="canvasLocation" x="4494" y="1789"/>
         </scene>
         <!--Finish Event View Controller-->
         <scene sceneID="wKD-6k-ja5">
@@ -519,9 +501,6 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="41"/>
                                 <state key="normal" title="Profile"/>
-                                <connections>
-                                    <segue destination="oE4-Tb-iFO" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="4WX-ki-KIC"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ar3-4W-UIa">
                                 <rect key="frame" x="32" y="375" width="351" height="58"/>
@@ -531,18 +510,12 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="41"/>
                                 <state key="normal" title="Event List"/>
-                                <connections>
-                                    <segue destination="a7s-Ga-07e" kind="show" id="6b9-Uq-0G1"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHQ-7W-Cyf">
                                 <rect key="frame" x="32" y="527" width="362" height="61"/>
                                 <color key="backgroundColor" red="0.40063673259999999" green="0.69592255349999999" blue="0.8039389253" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="41"/>
                                 <state key="normal" title="Temp Profile"/>
-                                <connections>
-                                    <segue destination="2No-Ow-Wav" kind="presentation" modalPresentationStyle="fullScreen" id="AkV-cL-b9h"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TD-Eq-RMV">
                                 <rect key="frame" x="32" y="712" width="351" height="58"/>
@@ -589,7 +562,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZjS-4j-7dS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3521.739130434783" y="990.40178571428567"/>
+            <point key="canvasLocation" x="-107" y="2538"/>
         </scene>
         <!--Recover Password View Controller-->
         <scene sceneID="M2J-CI-GRf">
@@ -725,7 +698,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kqq-Lk-gRr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4228.985507246377" y="-127.23214285714285"/>
+            <point key="canvasLocation" x="6986" y="297"/>
         </scene>
         <!--SearchPage-->
         <scene sceneID="OQc-mC-3lL">
@@ -1308,7 +1281,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dNl-6O-BnN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6049.275362318841" y="1003.7946428571428"/>
+            <point key="canvasLocation" x="6126" y="-494"/>
         </scene>
         <!--Change Number Controller-->
         <scene sceneID="Dhs-Nv-VT1">
@@ -1354,7 +1327,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3AI-8f-iZQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7123.188405797102" y="1003.7946428571428"/>
+            <point key="canvasLocation" x="5286" y="297"/>
         </scene>
         <!--Description View Controller-->
         <scene sceneID="4jD-Pn-vl8">
@@ -1396,7 +1369,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jnG-dE-Hr0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5298.5507246376819" y="225.66964285714283"/>
+            <point key="canvasLocation" x="6125" y="297"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="UUD-m6-D1h">
@@ -1629,7 +1602,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7mG-ac-4rK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5920" y="1789"/>
+            <point key="canvasLocation" x="-975" y="2538"/>
         </scene>
         <!--Profile-->
         <scene sceneID="nfA-QS-9OY">
@@ -1648,7 +1621,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6j2-6D-yNF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5139.130434782609" y="1003.7946428571428"/>
+            <point key="canvasLocation" x="5286" y="-494"/>
         </scene>
     </scenes>
     <resources>
@@ -1661,7 +1634,6 @@
         <image name="tutaLogo_1" width="360" height="127"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nFO-AR-7le"/>
         <segue reference="FOh-xn-r2q"/>
         <segue reference="Djd-gn-S7J"/>
     </inferredMetricsTieBreakers>
