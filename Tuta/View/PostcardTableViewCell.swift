@@ -19,6 +19,7 @@ class PostcardTableViewCell: UITableViewCell {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var numRatingsLabel: UILabel!
     @IBOutlet weak var courseLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,7 +46,7 @@ class PostcardTableViewCell: UITableViewCell {
         self.addSubview(innerView)
         
         // description label
-        descriptionLabel.frame.origin.x = 15
+        //descriptionLabel.frame.origin.x = 15
         
         descriptionLabel.textAlignment = .left
         print(descriptionLabel.frame.width)

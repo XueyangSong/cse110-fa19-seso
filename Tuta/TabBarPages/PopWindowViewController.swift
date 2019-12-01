@@ -128,7 +128,7 @@ class PopWindowViewController: UIViewController{
             let time = formatter.string(from: Date())
             
             dc.getUserFromCloud(userID: self.uid!){(u) in self.user = (u)
-                let card = PostCard(creatorID: self.user.uid, creatorName: self.user.name, description: description, date: date, time: time, cardID: cardID, course: course, type: type, rating: self.user.rating, numRate: self.user.numRate)
+                let card = PostCard(creatorID: self.user.uid, creatorName: self.user.name, description: description, date: date, time: time, cardID: cardID, course: course, type: type, rating: self.user.rating, numRate: self.user.numRate, creatorURL: self.user.url)
                 
                 //dc.getUserFromCloud(userID: self.userID!){(e) in self.user = (e)}
                 var isSuccess = false
