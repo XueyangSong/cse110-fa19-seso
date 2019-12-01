@@ -150,10 +150,15 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         cell.timeLabel!.text = (postDic["time"] as! String) + "  " + (postDic["date"] as! String)
         cell.ratingLabel!.text = "Rating: " + String(postDic["rating"] as! Double)
         cell.numRatingsLabel!.text = String(postDic["numRate"] as! Int) + " People rated"
+        // get profile picture
+        let url = String(postDic["creatorURL"] as! String)
+        if url != "" {
+            var imageData = Data()
+            imageData = try!Data(contentsOf: URL(string:url)!)
+            cell.profileImageView.image = UIImage(data : imageData)
+        }
 
-        
-        cell.descriptionLabel.sizeToFit()
-        
+                
         return cell
     }
     
@@ -217,7 +222,7 @@ extension SearchPageViewController: UISearchBarDelegate{
         
         let course = String(searchBar.text!.lowercased().filter{!$0.isNewline && !$0.isWhitespace})
         view.endEditing(true)
-        var type = self.searchForSegment.titleForSegment(at: index) as! String
+        var type = self.searchForSegment.titleForSegment(at: index)!
         type = type.lowercased()
         
         dc.getCardsCollection(type: type, course: course) { (postsFromCloud) in
