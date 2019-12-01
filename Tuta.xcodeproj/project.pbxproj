@@ -139,7 +139,6 @@
 				FCFBFE72237A381700137A81 /* imagePicker.swift */,
 				5A30888123808D70007501E5 /* ViewProfileViewController.swift */,
 				7F81E4CE238A093F007CA329 /* CustomizedTabBar.swift */,
-				7FB494A82390B5A400ACB1F5 /* MyProfileViewController.swift */,
 			);
 			path = Tuta;
 			sourceTree = "<group>";
@@ -160,6 +159,7 @@
 				490AB897237693E000C63347 /* SearchPageViewController.swift */,
 				7F3E1C832383AF5800F8088B /* PopWindowViewController.swift */,
 				7F3E1C8123836BCA00F8088B /* MeViewController.swift */,
+				7FB494A82390B5A400ACB1F5 /* MyProfileViewController.swift */,
 				1F9AC50C2361268F00E3A4FE /* HomeTabBarController.swift */,
 				1FF1F2D7238908AF0092AD83 /* Settings */,
 			);
