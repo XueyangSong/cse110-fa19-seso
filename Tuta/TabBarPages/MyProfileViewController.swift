@@ -37,9 +37,9 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         backButton.anchor(top: view.topAnchor, left: view.leftAnchor,
                              paddingTop: 64, paddingLeft: 32, width: 32, height: 32)
         
-        view.addSubview(secondButton)
-        secondButton.anchor(top: view.topAnchor, right: view.rightAnchor,
-                             paddingTop: 64, paddingRight: 32, width: 32, height: 32)
+//        view.addSubview(secondButton)
+//        secondButton.anchor(top: view.topAnchor, right: view.rightAnchor,
+//                             paddingTop: 64, paddingRight: 32, width: 32, height: 32)
         
         view.addSubview(nameLabel)
         nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -52,39 +52,6 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
 
         return view
     }()
-    /* 尝试写 TableView 失败
-    lazy var MenuView: UIView = {
-        view = UIView()
-        view.addSubview(menuList)
-        menuList.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        menuList.anchor(top: containerView.bottomAnchor, paddingTop: 4)
-        
-        return view
-    }()*/
-    /*
-    let menuList: UITableView = {
-        var table = UITableView()
-        var tableData = ["Profile", "Event History", "Setting", "Logout"]
-
-        table.backgroundColor = UIColor.white
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "my", for: indexPath)
-            cell.textLabel?.text = "\(tableData[indexPath.row])"
-            return cell
-        }
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return tableData.count
-        }
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "my")
-        table.contentInset.top = 20
-        let contentSize = table.contentSize
-        let footer = UIView(frame: CGRect(x: table.frame.origin.x,
-        y: table.frame.origin.y + contentSize.height,
-        width: table.frame.size.width,
-        height: table.frame.height - table.contentSize.height))
-        table.tableFooterView = footer
-        return table
-    }()*/
     
     var tableView : UITableView!
     
@@ -178,6 +145,8 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.dataSource = self
         tableView.rowHeight = 50
         
+        
+        
         tableView.register(EventListCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
         tableView.frame = CGRect(x: 0,
@@ -198,6 +167,27 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 20.0
+    }
+    
+    // set view for footer
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        if section == 2 {
+            let footerView = UIView()
+            footerView.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0.94, alpha: 1.0)
+            return footerView
+//        }
+        
+    }
+
+    // set height for footer
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 2 {
+            let height : CGFloat = 300.0 - 50.0 * 5.0 - 20.0 * 3.0
+            return self.view.frame.height - height
+        }
+        else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
