@@ -36,8 +36,10 @@ class PostcardTableViewCell: UITableViewCell {
         self.backgroundColor = .clear
         print("set up ui in postcard cell view")
         print(self.frame.width)
+        innerView.frame = CGRect(x: 5, y: 5, width: self.frame.width - 10, height: self.frame.height - 10)
         print(innerView.frame.width)
-        innerView.frame = CGRect(x: self.frame.origin.x + 5, y: self.frame.origin.y + 5, width: self.frame.width - 10, height: self.frame.height - 10)
+        print(self.frame.origin.x, self.frame.origin.y)
+        print(innerView.frame.origin.x, innerView.frame.origin.y)
         innerView.backgroundColor = UIColor(red:0.85, green:0.93, blue:0.93, alpha:1.0)
         innerView.layer.cornerRadius = 10
         self.addSubview(innerView)
