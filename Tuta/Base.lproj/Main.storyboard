@@ -574,7 +574,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1ng-Su-bj9"/>
                     </view>
+
                     <tabBarItem key="tabBarItem" title="" image="User" selectedImage="User" id="QBG-RE-wL1" userLabel="Me">
+
                         <inset key="imageInsets" minX="-25" minY="10" maxX="0.0" maxY="-10"/>
                     </tabBarItem>
                     <connections>
@@ -866,7 +868,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PhX-sk-VZO"/>
                     </view>
+
                     <tabBarItem key="tabBarItem" title="" image="Search" selectedImage="Search" id="WpM-bS-W1F">
+
                         <inset key="imageInsets" minX="0.0" minY="10" maxX="-25" maxY="-10"/>
                     </tabBarItem>
                     <connections>
@@ -877,7 +881,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XeX-Ui-8VA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+
             <point key="canvasLocation" x="1676.8115942028987" y="989.73214285714278"/>
+
         </scene>
         <!--PopWindowViewController-->
         <scene sceneID="0HV-C6-MkE">
@@ -1655,9 +1661,12 @@
         <image name="lightbulb" width="1685" height="1685"/>
         <image name="logo_light" width="367" height="243"/>
         <image name="plus_transparent_128px_1142458_easyicon.net" width="64" height="64"/>
+        <image name="search" width="36" height="36"/>
         <image name="tutaLogo_1" width="360" height="127"/>
+        <image name="user" width="35.5" height="35.5"/>
     </resources>
     <inferredMetricsTieBreakers>
+
         <segue reference="FOh-xn-r2q"/>
         <segue reference="Djd-gn-S7J"/>
     </inferredMetricsTieBreakers>
