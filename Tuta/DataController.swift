@@ -223,8 +223,8 @@ class DataController{
                 print("Error getting documents: \(err) in isRequested")
                 //completion(true)
             } else{
-                if querySnapshot?.documents.count != 0{
-                   completion(true)
+                if querySnapshot?.documents.count != 0 {
+                    completion(true)
                 }
                 else{
                     completion(false)
@@ -330,7 +330,7 @@ class DataController{
             event.status = "finished"
         }
         else if event.status == "finished" {
-            event.status = "rated"
+            event.status = "alreadyRated"
         }
         docRef.updateData(["status": event.status])
         completion(true)
