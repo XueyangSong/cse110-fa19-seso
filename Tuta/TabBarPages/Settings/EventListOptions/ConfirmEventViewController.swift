@@ -9,6 +9,8 @@
 import UIKit
 import FirebaseAuth
 
+private let darkBlueColor = UIColor(red:0.24, green:0.44, blue:0.64, alpha:1.0)
+
 class ConfirmEventViewController: UIViewController {
 
     @IBOutlet weak var TitleLabel: UILabel!
@@ -45,6 +47,7 @@ class ConfirmEventViewController: UIViewController {
         print(self.event.requesterID)
         
         self.TitleLabel.adjustsFontSizeToFitWidth = true
+        AcceptButton.backgroundColor = darkBlueColor
 
         if(event.requesterID != userID) {
             print(event.requesterID)
