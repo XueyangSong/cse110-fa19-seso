@@ -305,10 +305,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="jiJ-rK-Piy"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="User" selectedImage="User" id="dor-dq-hVS">
+                        <inset key="imageInsets" minX="-25" minY="10" maxX="0.0" maxY="-10"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PIP-Am-qqB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2684" y="1817"/>
+            <point key="canvasLocation" x="4309" y="990"/>
         </scene>
         <!--Event List View Controller-->
         <scene sceneID="6BW-MX-St1">
@@ -447,7 +450,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D2M-SF-oqV" customClass="CosmosView" customModule="Cosmos">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D2M-SF-oqV" customClass="CosmosView" customModule="Cosmos">
                                 <rect key="frame" x="147" y="329" width="120" height="20"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
@@ -574,9 +577,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1ng-Su-bj9"/>
                     </view>
-
                     <tabBarItem key="tabBarItem" title="" image="User" selectedImage="User" id="QBG-RE-wL1" userLabel="Me">
-
                         <inset key="imageInsets" minX="-25" minY="10" maxX="0.0" maxY="-10"/>
                     </tabBarItem>
                     <connections>
@@ -674,7 +675,7 @@
                         <outlet property="TabBar" destination="mmk-UE-zQk" id="FG1-yF-U5Y"/>
                         <segue destination="3R0-9R-WQx" kind="relationship" relationship="viewControllers" id="MhO-Zb-5I1"/>
                         <segue destination="Grb-Z4-uQr" kind="relationship" relationship="viewControllers" id="Hmx-0s-EJL"/>
-                        <segue destination="ogR-8e-Qce" kind="relationship" relationship="viewControllers" id="tGE-cn-6AB"/>
+                        <segue destination="2No-Ow-Wav" kind="relationship" relationship="viewControllers" id="nFO-AR-7le"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nkd-Sm-DtM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -868,9 +869,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PhX-sk-VZO"/>
                     </view>
-
                     <tabBarItem key="tabBarItem" title="" image="Search" selectedImage="Search" id="WpM-bS-W1F">
-
                         <inset key="imageInsets" minX="0.0" minY="10" maxX="-25" maxY="-10"/>
                     </tabBarItem>
                     <connections>
@@ -881,9 +880,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XeX-Ui-8VA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-
             <point key="canvasLocation" x="1676.8115942028987" y="989.73214285714278"/>
-
         </scene>
         <!--PopWindowViewController-->
         <scene sceneID="0HV-C6-MkE">
@@ -1661,12 +1658,10 @@
         <image name="lightbulb" width="1685" height="1685"/>
         <image name="logo_light" width="367" height="243"/>
         <image name="plus_transparent_128px_1142458_easyicon.net" width="64" height="64"/>
-        <image name="search" width="36" height="36"/>
         <image name="tutaLogo_1" width="360" height="127"/>
-        <image name="user" width="35.5" height="35.5"/>
     </resources>
     <inferredMetricsTieBreakers>
-
+        <segue reference="nFO-AR-7le"/>
         <segue reference="FOh-xn-r2q"/>
         <segue reference="Djd-gn-S7J"/>
     </inferredMetricsTieBreakers>

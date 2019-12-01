@@ -29,7 +29,6 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         
         view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 300)
 
-        
         view.backgroundColor = .mainBlue
         
         view.addSubview(profileImageView)
@@ -38,11 +37,10 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
                                 width: 120, height: 120)
         profileImageView.layer.cornerRadius = 120 / 2
         
-        view.addSubview(backButton)
-        backButton.anchor(top: view.topAnchor, left: view.leftAnchor,
-                             paddingTop: 64, paddingLeft: 32, width: 32, height: 32)
+//        view.addSubview(backButton)
+//        backButton.anchor(top: view.topAnchor, left: view.leftAnchor,
+//                             paddingTop: 64, paddingLeft: 32, width: 32, height: 32)
         
-
         view.addSubview(nameLabel)
         nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         nameLabel.anchor(top: profileImageView.bottomAnchor, paddingTop: 12)
@@ -51,7 +49,6 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         emailLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         emailLabel.anchor(top: nameLabel.bottomAnchor, paddingTop: 4)
         
-
         return view
     }()
     
