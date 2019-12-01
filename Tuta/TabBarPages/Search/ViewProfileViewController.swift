@@ -134,7 +134,7 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
         }
 
             let controller = MFMessageComposeViewController()
-            controller.body = "hardcode"
+        controller.body = "Hi " + user.name + ", "
             controller.recipients = [(self.ViewPhoneNumberLabel.text ?? "000")]
             controller.messageComposeDelegate = self
             self.present(controller, animated: true, completion: nil)

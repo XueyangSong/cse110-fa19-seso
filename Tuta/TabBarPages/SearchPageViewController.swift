@@ -10,6 +10,8 @@ import UIKit
 
 private let reuseIdentifier = "PostcardCell"
 
+private let darkBlueColor = UIColor(red:0.24, green:0.44, blue:0.64, alpha:1.0)
+
 
 class SearchPageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -33,7 +35,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         setUpUI()
         configTableView()
         
-        self.view.backgroundColor = UIColor(red:0.24, green:0.44, blue:0.64, alpha:1.0)
+        self.view.backgroundColor = darkBlueColor
 
 
         postcardTableView.delegate = self
@@ -59,7 +61,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
     func setUpUI() {
         
         
-        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red:0.24, green:0.44, blue:0.64, alpha:1.0)]
+        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: darkBlueColor]
         UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
         
         postcardTableView.separatorStyle = .none
@@ -67,8 +69,8 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         
         self.view.backgroundColor = UIColor.white
         print("setUpUI")
-        searchBar.backgroundColor = UIColor(red:0.24, green:0.44, blue:0.64, alpha:1.0)
-        searchBar.tintColor = UIColor(red:0.24, green:0.44, blue:0.64, alpha:1.0)
+        searchBar.backgroundColor = darkBlueColor
+        searchBar.tintColor = darkBlueColor
     }
     
     func configSearchBar() {
@@ -202,14 +204,6 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
 
 // MARK: - Search Bar Functions
 extension SearchPageViewController: UISearchBarDelegate{
-    /*func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        // TODO: Omit whitespace
-        filteredPosts = posts.filter( {($0["course"] as! String).lowercased().prefix(searchText.count) == searchText.lowercased()} )
-        //print(filteredPosts)
-        searching = true
-        postcardTableView.reloadData()
-    }*/
 
     // Turn off the auto-correction, auto-capitalization and spell-checking of the search keyboard.
 

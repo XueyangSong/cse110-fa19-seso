@@ -10,6 +10,8 @@ import UIKit
 import Cosmos
 import FirebaseAuth
 
+private let darkBlueColor = UIColor(red:0.24, green:0.44, blue:0.64, alpha:1.0)
+
 class RateViewController: UIViewController {
 
     @IBOutlet weak var RateTutorTitleLabel: UILabel!
@@ -40,6 +42,7 @@ class RateViewController: UIViewController {
     }
     
     func setUpUI() {
+        submitButton.backgroundColor = darkBlueColor
         submitButton.layer.cornerRadius = 10
         if event.status == "finished" {
             setUpRatingUI()
