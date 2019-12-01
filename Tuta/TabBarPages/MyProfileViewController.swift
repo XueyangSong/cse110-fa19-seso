@@ -264,7 +264,7 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
                 let cell = tableView.cellForRow(at: indexPath)
                 cell?.isSelected = false
                 let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = sb.instantiateViewController(identifier: "ProfileViewController") as ProfileViewController
+                let vc = sb.instantiateViewController(identifier: "ProfileNavigationController")
                 vc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
                 vc.modalPresentationStyle = UIModalPresentationStyle.automatic
                 self.present(vc, animated: true, completion: nil)

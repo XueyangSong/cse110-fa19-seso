@@ -24,6 +24,7 @@ class ProfileViewController: UIViewController{
     let defaultProfile = Bundle.main.path(forResource: "stu-1", ofType: "jpg")
 
     
+    @IBOutlet weak var avatar: UIButton!
     @IBOutlet weak var DescriptionText: UITextField!
     
     @IBOutlet weak var genderLabel: UILabel!
@@ -57,10 +58,11 @@ class ProfileViewController: UIViewController{
        // Code to refresh table view
     }
    
-    override func viewDidLoad() {
-        
-        
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("Work!")
+        avatar.applyButton()
+
         dc.delegate = self
         dc.getUserFromCloud(userID: self.userID!){(e) in self.user = (e)
             
