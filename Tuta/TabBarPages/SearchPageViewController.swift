@@ -25,6 +25,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+
         postcardTableView.delegate = self
         postcardTableView.dataSource = self
         
@@ -116,7 +117,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         cell.timeLabel!.text = (postDic["time"] as! String) + "  " + (postDic["date"] as! String)
         cell.ratingLabel!.text = "Rating: " + String(postDic["rating"] as! Double)
         cell.numRatingsLabel!.text = String(postDic["numRate"] as! Int) + " People rated"
-        
+
         cell.descriptionLabel.sizeToFit()
         
         return cell
