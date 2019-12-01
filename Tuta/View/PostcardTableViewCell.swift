@@ -51,6 +51,7 @@ class PostcardTableViewCell: UITableViewCell {
         
         descriptionLabel.numberOfLines = 0
         profileImageView.layer.cornerRadius = 10
+        descriptionLabel.frame = CGRect(x: 164, y: 74, width: 206, height: 55)
     }
     
     

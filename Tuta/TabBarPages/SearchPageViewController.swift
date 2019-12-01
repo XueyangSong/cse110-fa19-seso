@@ -147,6 +147,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         //cell.courseLabel!.text = (postDic["course"] as! String)
         cell.usernameLabel!.text = (postDic["creatorName"] as! String)
         cell.descriptionLabel!.text = (postDic["course"] as! String) + ": " + (postDic["description"] as! String)
+        cell.descriptionLabel.frame = CGRect(x: 164, y: 74, width: 206, height: 55)
         cell.descriptionLabel.sizeToFit()
         cell.timeLabel!.text = (postDic["time"] as! String) + "  " + (postDic["date"] as! String)
         cell.numRatingsLabel!.text = String(postDic["numRate"] as! Int) + " People rated"
