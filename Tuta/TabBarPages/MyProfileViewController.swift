@@ -19,12 +19,16 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // MARK: - Properties
     
+    let userID = Auth.auth().currentUser?.uid
+    var imgUrl = ""
+    var imagePicker = UIImagePickerController()
+    var imageData = Data()
+    
     lazy var containerView: UIView = {
         let view = UIView()
         
         view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 300)
 
-        
         view.backgroundColor = .mainBlue
         
         view.addSubview(profileImageView)
@@ -33,11 +37,10 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
                                 width: 120, height: 120)
         profileImageView.layer.cornerRadius = 120 / 2
         
-        view.addSubview(backButton)
-        backButton.anchor(top: view.topAnchor, left: view.leftAnchor,
-                             paddingTop: 64, paddingLeft: 32, width: 32, height: 32)
+//        view.addSubview(backButton)
+//        backButton.anchor(top: view.topAnchor, left: view.leftAnchor,
+//                             paddingTop: 64, paddingLeft: 32, width: 32, height: 32)
         
-
         view.addSubview(nameLabel)
         nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         nameLabel.anchor(top: profileImageView.bottomAnchor, paddingTop: 12)
@@ -46,7 +49,6 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         emailLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         emailLabel.anchor(top: nameLabel.bottomAnchor, paddingTop: 4)
         
-
         return view
     }()
     
@@ -121,6 +123,22 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func setUpUI() {
+        let dc = DataController()
+        var profileImageURL : String = ""
+        
+        dc.getUserFromCloud(userID: self.userID!) { (user) in
+            // load user name and email
+            self.nameLabel.text = user.name
+            self.emailLabel.text = user.email
+            profileImageURL = user.url
+            
+            // load user profile picture
+            if(profileImageURL != "") {
+                self.imageData = try!Data(contentsOf: URL(string:profileImageURL)!)
+                self.profileImageView.image = UIImage(data : self.imageData)
+            }
+        }
+        
         view.backgroundColor = .white
         
         view.addSubview(containerView)
@@ -152,32 +170,14 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // MARK: - tableView
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 3 {
+            return 300
+        }
         return 20.0
-    }
-    
-    // set view for footer
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        if section == 2 {
-            let footerView = UIView()
-            footerView.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0.94, alpha: 1.0)
-            return footerView
-//        }
-        
-    }
-
-    // set height for footer
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 2 {
-            let height : CGFloat = 300.0 - 50.0 * 5.0 - 20.0 * 3.0
-            return self.view.frame.height - height
-        }
-        else {
-            return 0
-        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -186,6 +186,17 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         let view = UIView()
         view.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0.94, alpha: 1.0) // #f2f2f2
 
+        if section == 3 {
+            // add copy right label
+            let copyRightLabel = UILabel()
+            copyRightLabel.text = "Copyright ©2019 Seso, Inc. All rights reserved"
+            copyRightLabel.textColor = UIColor.lightGray
+            copyRightLabel.font = .systemFont(ofSize: 12)
+            copyRightLabel.textAlignment = .center
+            copyRightLabel.frame = CGRect(x: view.frame.origin.x + 20, y: view.frame.origin.y + 20, width: self.view.frame.width - 40, height: 40)
+            copyRightLabel.numberOfLines = 0
+            view.addSubview(copyRightLabel)
+        }
 
         return view
     }
@@ -253,7 +264,7 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
                 let cell = tableView.cellForRow(at: indexPath)
                 cell?.isSelected = false
                 let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = sb.instantiateViewController(identifier: "ProfileViewController") as ProfileViewController
+                let vc = sb.instantiateViewController(identifier: "ProfileNavigationController")
                 vc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
                 vc.modalPresentationStyle = UIModalPresentationStyle.automatic
                 self.present(vc, animated: true, completion: nil)
@@ -275,7 +286,16 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         else if indexPath.section == 1 {
-            
+            if indexPath.row == 0 {
+                let cell = tableView.cellForRow(at: indexPath)
+                cell?.isSelected = false
+                let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = sb.instantiateViewController(identifier: "ContactUsViewController") as ContactUsViewController
+                vc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+                vc.modalPresentationStyle = UIModalPresentationStyle.automatic
+                self.present(vc, animated: true, completion: nil)
+            }
+
         }
         
         else if indexPath.section == 2 {
@@ -300,7 +320,9 @@ extension UIColor {
         return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
     }
     
-    static let mainBlue = UIColor.rgb(red: 0, green: 150, blue: 185)
+    static let mainBlue = UIColor(red:0.24, green:0.44, blue:0.64, alpha:1.0)
+        // UIColor(red:0.39, green:0.70, blue:0.80, alpha:1.0)
+    // UIColor.rgb(red: 0, green: 150, blue: 185)
 }
 
 extension UIView {

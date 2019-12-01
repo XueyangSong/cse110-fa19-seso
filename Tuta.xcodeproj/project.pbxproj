@@ -18,6 +18,7 @@
 		1F83DCF9235B85CA00DAFB89 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83DCF8235B85CA00DAFB89 /* SignUpViewController.swift */; };
 		1F8505CA2392353C007EB951 /* ConfirmEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8505C92392353C007EB951 /* ConfirmEventViewController.swift */; };
 		1F8505CE23930ED8007EB951 /* FinishEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8505CD23930EC8007EB951 /* FinishEventViewController.swift */; };
+		1F8505D3239369B6007EB951 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8505D2239369B6007EB951 /* ContactUsViewController.swift */; };
 		1F9AC50D2361268F00E3A4FE /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9AC50C2361268F00E3A4FE /* HomeTabBarController.swift */; };
 		1FF1F2D52389069D0092AD83 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF1F2D42389069D0092AD83 /* EventTableViewCell.swift */; };
 		1FF1F2D9238908E10092AD83 /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF1F2D8238908E10092AD83 /* EventListViewController.swift */; };
@@ -61,6 +62,7 @@
 		1F83DCF8235B85CA00DAFB89 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		1F8505C92392353C007EB951 /* ConfirmEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmEventViewController.swift; sourceTree = "<group>"; };
 		1F8505CD23930EC8007EB951 /* FinishEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishEventViewController.swift; sourceTree = "<group>"; };
+		1F8505D2239369B6007EB951 /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		1F9AC50C2361268F00E3A4FE /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		1FF1F2D42389069D0092AD83 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		1FF1F2D8238908E10092AD83 /* EventListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewController.swift; sourceTree = "<group>"; };
@@ -137,8 +139,7 @@
 				41338E6B235E69CC0043501B /* GoogleService-Info.plist */,
 				41C8FE4E2371444A00952CFB /* DataController.swift */,
 				FCFBFE72237A381700137A81 /* imagePicker.swift */,
-				5A30888123808D70007501E5 /* ViewProfileViewController.swift */,
-				7F81E4CE238A093F007CA329 /* CustomizedTabBar.swift */,
+				1F8505D4239369DD007EB951 /* pending */,
 			);
 			path = Tuta;
 			sourceTree = "<group>";
@@ -153,14 +154,30 @@
 			path = EventListOptions;
 			sourceTree = "<group>";
 		};
+		1F8505D4239369DD007EB951 /* pending */ = {
+			isa = PBXGroup;
+			children = (
+				7F3E1C8123836BCA00F8088B /* MeViewController.swift */,
+			);
+			path = pending;
+			sourceTree = "<group>";
+		};
+		1F8505D623936A58007EB951 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				5A30888123808D70007501E5 /* ViewProfileViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		1F9AC5052361254600E3A4FE /* TabBarPages */ = {
 			isa = PBXGroup;
 			children = (
 				490AB897237693E000C63347 /* SearchPageViewController.swift */,
 				7F3E1C832383AF5800F8088B /* PopWindowViewController.swift */,
-				7F3E1C8123836BCA00F8088B /* MeViewController.swift */,
 				7FB494A82390B5A400ACB1F5 /* MyProfileViewController.swift */,
 				1F9AC50C2361268F00E3A4FE /* HomeTabBarController.swift */,
+				1F8505D623936A58007EB951 /* Search */,
 				1FF1F2D7238908AF0092AD83 /* Settings */,
 			);
 			path = TabBarPages;
@@ -173,6 +190,7 @@
 				1FF1F2DA23890A890092AD83 /* EditProfile */,
 				1F467B87236DFE9500A5CA59 /* ProfileViewController.swift */,
 				1FF1F2D8238908E10092AD83 /* EventListViewController.swift */,
+				1F8505D2239369B6007EB951 /* ContactUsViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -201,6 +219,7 @@
 		1FF1F2DC238910470092AD83 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7F81E4CE238A093F007CA329 /* CustomizedTabBar.swift */,
 				490AB8992376984D00C63347 /* PostcardTableViewCell.swift */,
 				1FF1F2D42389069D0092AD83 /* EventTableViewCell.swift */,
 				1FF1F2DF2389AEC80092AD83 /* EventListCell.swift */,
@@ -385,6 +404,7 @@
 				1F9AC50D2361268F00E3A4FE /* HomeTabBarController.swift in Sources */,
 				1F538BF6235CEB95003795E0 /* LogInViewController.swift in Sources */,
 				1FF1F2E02389AEC80092AD83 /* EventListCell.swift in Sources */,
+				1F8505D3239369B6007EB951 /* ContactUsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
