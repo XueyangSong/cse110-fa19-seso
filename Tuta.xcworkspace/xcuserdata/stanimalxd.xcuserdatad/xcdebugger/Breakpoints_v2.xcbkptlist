@@ -3,4 +3,54 @@
    uuid = "552997C3-E325-4A2B-8701-4CA0BA7453C3"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5EB3C241-9E9F-4D04-B708-24983E1C0A98"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tuta/Model/EventListSection.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "EventListSection"
+            landmarkType = "13">
+            <Locations>
+               <Location
+                  uuid = "5EB3C241-9E9F-4D04-B708-24983E1C0A98 - 70489b02935c2910"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tuta.EventListSection.init(rawValue: Swift.Int) -&gt; Swift.Optional&lt;Tuta.EventListSection&gt;"
+                  moduleName = "Tuta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/stanimalxd/Desktop/cse110-fa19-seso/Tuta/Model/EventListSection.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "82">
+               </Location>
+               <Location
+                  uuid = "5EB3C241-9E9F-4D04-B708-24983E1C0A98 - d9523f0d41d923d8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tuta.EventListSection.rawValue.getter : Swift.Int"
+                  moduleName = "Tuta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/stanimalxd/Desktop/cse110-fa19-seso/Tuta/Model/EventListSection.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "70">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

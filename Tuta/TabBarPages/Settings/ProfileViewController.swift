@@ -69,7 +69,7 @@ class ProfileViewController: UIViewController{
             self.genderLabel.text = self.user.gender
             self.phoneLabel.text = self.user.phone
             self.DescriptionText.text = self.user.description
-            self.rating.text = "rating: " + String(self.user.rate)
+            self.rating.text = "rating: " + String(self.user.rating)
             self.numberRate.text =  String(self.user.numRate) + " rates"
             
             
@@ -123,7 +123,7 @@ class ProfileViewController: UIViewController{
 }
 
 extension ProfileViewController: ProfileDelegate {
-    
+   
     
     func didReceiveData(_ user: TutaUser) {
         self.user = user
@@ -137,7 +137,7 @@ extension ProfileViewController: ProfileDelegate {
         self.profilePictureImageView.image = UIImage(data : imageData)
         }
         self.profilePictureImageView.image = UIImage(data : imageData)
-        self.rating.text = "rating: " + String(self.user.rate)
+        self.rating.text = "rating: " + String(self.user.rating)
         self.numberRate.text =  String(self.user.numRate) + " rates"
         var courses : String = ""
         for item in self.user.courseTaken{

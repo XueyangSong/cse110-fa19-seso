@@ -24,6 +24,8 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUp()
+        
         postcardTableView.delegate = self
         postcardTableView.dataSource = self
         
@@ -31,8 +33,34 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         
     }
     
+    // MARK: - ViewWillAppear
+    override func viewWillAppear(_ animated: Bool) {
+        registerForKeyboardNotification()
+    }
+    
+    // MARK: - ViewWillDisappear
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        deregisterForKeyboardNotifications()
+    }
+    
     
     // MARK: - Functions
+    
+    func setUp() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        // self.view.addGestureRecognizer(tap)
+    }
+    
+    func registerForKeyboardNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func deregisterForKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
     
     private func convertTimestamp(serverTimestamp: Int64) -> String {
         let x = Double(serverTimestamp) / 1000
@@ -42,6 +70,20 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         formatter.timeStyle = .medium
 
         return formatter.string(from: date as Date)
+    }
+    
+    // MARK: - objective-C functions
+    
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        
     }
     
     // MARK: - Tableview DataSource Configuration
@@ -73,9 +115,9 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         cell.usernameLabel!.text = postDic["creatorName"] as! String
         cell.descriptionLabel!.text = postDic["description"] as! String
         cell.timeLabel!.text = (postDic["time"] as! String) + "  " + (postDic["date"] as! String)
-        cell.ratingLabel!.text = "Rating: " + String(postDic["rate"] as! Double)
+        cell.ratingLabel!.text = "Rating: " + String(postDic["rating"] as! Double)
         cell.numRatingsLabel!.text = String(postDic["numRate"] as! Int) + " People rated"
-        
+
         cell.descriptionLabel.sizeToFit()
         
         return cell
@@ -172,3 +214,4 @@ extension SearchPageViewController: UISearchBarDelegate{
         postcardTableView.reloadData()
     }
 }
+

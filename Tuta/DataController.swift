@@ -94,18 +94,19 @@ class DataController{
         })
     }
     
-    func updateRate(uid: String, rate: Double){
+    func updateRating(uid: String, rating: Double){
         let docRef = db.collection("users").document(uid)
         docRef.getDocument{(document, error) in
             if let document = document, document.exists{
                 var numRate = document.data()!["numRate"] as! Int
-                let rate = ((document.data()!["rate"] as! Double) * Double(numRate) + rate) / Double(numRate+1)
+                let rating = ((document.data()!["rating"] as! Double) * Double(numRate) + rating) / Double(numRate+1)
                 numRate = numRate + 1
-                docRef.updateData(["rate": rate, "numRate": numRate])
+                docRef.updateData(["rating": rating, "numRate": numRate])
                 let postCards = document.data()!["postCards"] as! [String]
-                for cardID in postCards{
-                    let cardRef = self.db.collection("postCards").document(cardID)
-                    cardRef.updateData(["rate": rate, "numRate": numRate])
+                for cardInfo in postCards{
+                    let strArray = cardInfo.components(separatedBy: ",")
+                    let cardRef = self.db.collection("postCards").document(strArray[1]).collection(strArray[2]).document(strArray[0])
+                    cardRef.updateData(["rating": rating, "numRate": numRate])
                 }
             }
         }
@@ -143,7 +144,7 @@ class DataController{
     
     func getCardsCollection(type: String, course: String, completion: @escaping (([[String:Any]]) -> Void)) {
         var cards = [[String:Any]]()
-        let ref = db.collection("postCards").document(type).collection(course)
+        let ref = db.collection("postCards").document(type).collection(course).order(by: "rating", descending: true)
         ref.getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -155,8 +156,6 @@ class DataController{
             }
         }
     }
-    
-    
     
     func uploadCardToCloud(postCard : PostCard, completion: @escaping ((Bool) -> ())){
         let path = db.collection("postCards").document(postCard.type).collection(postCard.course)
@@ -171,7 +170,7 @@ class DataController{
                         let docRef = path.document(postCard.cardID)
                         let userRef = self.db.collection("users").document(postCard.creatorID)
                         docRef.setData(postCard.getCardData())
-                        userRef.updateData(["postCards": FieldValue.arrayUnion([postCard.cardID])])
+                        userRef.updateData(["postCards": FieldValue.arrayUnion([postCard.cardID + "," + postCard.type + "," + postCard.course])])
                         completion(true)
                     }
                 }
@@ -179,10 +178,9 @@ class DataController{
        // return true
     }
     
-    
     func deletePostCard(cardDic: [String: Any]){
         db.collection("postCards").document(cardDic["type"] as! String)
-            .collection(cardDic["course"] as! String).document(cardDic["cardId"] as! String).delete(){
+            .collection(cardDic["course"] as! String).document(cardDic["cardID"] as! String).delete(){
                 err in
                 if let err = err {
                     print("Error removing document: \(err)")
@@ -190,10 +188,11 @@ class DataController{
                     print("Post card Document successfully removed!")
                 }
         }
-        let cardID = cardDic["cardId"] as! String
+        let cardID = cardDic["cardID"] as! String
         var docRef = db.collection("users").document(cardDic["creatorID"] as! String)
+        var cardInfo = cardID + "," + (cardDic["type"] as! String) + "," + (cardDic["course"] as! String)
         docRef.updateData([
-            "postCards": FieldValue.arrayRemove([cardID])
+            "postCards": FieldValue.arrayRemove([cardInfo])
         ]){
             err in
             if let err = err {
@@ -214,35 +213,18 @@ class DataController{
       //  Firestore.firestore().collection("events").document(eid).setData(["placeHolder":"just book this place"])
         return eid
     }
-    /*
-    let path = db.collection("postCards").document(postCard.type).collection(postCard.course)
-    path.whereField("creatorID", isEqualTo: postCard.creatorID).getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                if querySnapshot?.documents.count != 0{
-                   completion(false)
-                }
-                else{
-                    let docRef = path.document(postCard.cardID)
-                    let userRef = self.db.collection("users").document(postCard.creatorID)
-                    docRef.setData(postCard.getCardData())
-                    userRef.updateData(["postCards": FieldValue.arrayUnion([postCard.cardID])])
-                    completion(true)
-                }
-            }
-    }*/
+   
     
     func ifRequestedBefore(event: Event, completion: @escaping ((Bool)->())){
         let docRef = db.collection("events")
-        docRef.whereField("tutorID", isEqualTo: event.tutorID).whereField("studentID", isEqualTo: event.studentID).getDocuments(){
+        docRef.whereField("tutorID", isEqualTo: event.tutorID).whereField("studentID", isEqualTo: event.studentID).whereField("course", isEqualTo: event.course).getDocuments(){
             (querySnapshot, err) in
             if let err = err{
                 print("Error getting documents: \(err) in isRequested")
                 //completion(true)
             } else{
-                if querySnapshot?.documents.count != 0{
-                   completion(true)
+                if querySnapshot?.documents.count != 0 {
+                    completion(true)
                 }
                 else{
                     completion(false)
@@ -266,32 +248,31 @@ class DataController{
     }
     
     func getEventsListFromCloud(userID: String, completion: @escaping (([Event])->())){
-        let docRef = db.collection("users").document(userID)
-        var eventArray = [String]()
+        let docRef = db.collection("events")
         var eventList = [Event]()
-        var event = Event()
-        docRef.getDocument(){ (document, error) in
-            if let document = document, document.exists {
-                eventArray = document.get("events") as! [String]
-                for eventID in eventArray{
-                    if eventID != eventArray[-1]{
-                        self.getEventFromCloud(at: eventID){
-                            (e) in event = (e)
-                            eventList.append(event)
-                        }
-                    }
-                    else{
-                        sleep(1)
-                        self.getEventFromCloud(at: eventID){
-                            (e) in event = (e)
-                            eventList.append(event)
-                            completion(eventList)
-                        }
+        docRef.whereField("studentID", isEqualTo: userID).getDocuments(){
+            (studentQuery, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            }else{
+                for document in studentQuery!.documents{
+                    let event = Event(value: document.data())
+                    eventList.append(event)
+                }
+            }
+            docRef.whereField("tutorID", isEqualTo: userID).getDocuments(){
+                (tutorQuery, error) in
+                if let error = error{
+                    print("Error getting documents: \(error)")
+                } else{
+                    for document in tutorQuery!.documents{
+                        let event = Event(value: document.data())
+                        eventList.append(event)
                     }
                 }
-            } else {
-                print("Document does not exist")
+                completion(eventList)
             }
+            
         }
     }
     
@@ -345,8 +326,11 @@ class DataController{
         if event.status == "requested"{
             event.status = "inProgress"
         }
-        else{
+        else if event.status == "inProgress" {
             event.status = "finished"
+        }
+        else if event.status == "finished" {
+            event.status = "alreadyRated"
         }
         docRef.updateData(["status": event.status])
         completion(true)
