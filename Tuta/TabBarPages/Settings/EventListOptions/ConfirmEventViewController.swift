@@ -46,7 +46,7 @@ class ConfirmEventViewController: UIViewController {
         
         self.TitleLabel.adjustsFontSizeToFitWidth = true
 
-        if(event.requesterID == userID) {
+        if(event.requesterID != userID) {
             print(event.requesterID)
             print(userID)
             // legal to confirm

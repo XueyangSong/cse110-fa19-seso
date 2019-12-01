@@ -44,7 +44,7 @@ class RateViewController: UIViewController {
         if event.status == "finished" {
             setUpRatingUI()
         }
-        else if event.status == "rated" {
+        else if event.status == "alreadyRated" {
             setUpViewSessionUI()
         }
     }
@@ -87,7 +87,7 @@ class RateViewController: UIViewController {
     }
     
     @IBAction func onSubmit(_ sender: Any) {
-        if event.status == "rated" {
+        if event.status == "alreadyRated" {
             return
         }
         
