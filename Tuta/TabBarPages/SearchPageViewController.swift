@@ -33,7 +33,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         setUpUI()
         configTableView()
         
-        self.view.backgroundColor = UIColor(red:0.39, green:0.70, blue:0.80, alpha:1.0)
+        self.view.backgroundColor = UIColor(red:0.24, green:0.44, blue:0.64, alpha:1.0)
 
 
         postcardTableView.delegate = self
@@ -58,10 +58,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
     // MARK: - Functions
     func setUpUI() {
         
-        // test
-//        postcardTableView.isHidden = true
-//        searchBar.isHidden = true
-//        searchForSegment.isHidden = true
+        
         let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red:0.24, green:0.44, blue:0.64, alpha:1.0)]
         UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
         

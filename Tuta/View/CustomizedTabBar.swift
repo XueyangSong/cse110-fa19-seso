@@ -13,6 +13,7 @@ class CustomizedTabBar: UITabBar {
     
     override func draw(_ rect: CGRect){
         self.addShape()
+        self.tintColor = UIColor(red:0.24, green:0.44, blue:0.64, alpha:1.0)
     }
     //点击在按钮里面
     /*override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
