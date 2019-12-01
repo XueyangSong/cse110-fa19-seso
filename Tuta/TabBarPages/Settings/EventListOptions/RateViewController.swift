@@ -53,6 +53,8 @@ class RateViewController: UIViewController {
         if(event.studentID == userID) {
             // user is a student, rate tutor
             RateTutorTitleLabel.text = "Give Your Tutor a Rating"
+            RateTutorTitleLabel.lineBreakMode = .byWordWrapping
+            RateTutorTitleLabel.numberOfLines = 0
         }
         else {
             RateTutorTitleLabel.text = "Give Your Tutee a Rating"
@@ -65,9 +67,13 @@ class RateViewController: UIViewController {
         if(event.studentID == userID) {
             // user is a student, rate tutor
             RateTutorTitleLabel.text = "Thanks For Studying with " + event.tutorName
+            RateTutorTitleLabel.lineBreakMode = .byWordWrapping
+            RateTutorTitleLabel.numberOfLines = 0
         }
         else {
             RateTutorTitleLabel.text = "Thanks For Tutoring " + event.studentName
+            RateTutorTitleLabel.lineBreakMode = .byWordWrapping
+            RateTutorTitleLabel.numberOfLines = 0
         }
     }
     
@@ -88,6 +94,8 @@ class RateViewController: UIViewController {
     
     @IBAction func onSubmit(_ sender: Any) {
         if event.status == "alreadyRated" {
+            navigationController?.popViewController(animated: true)
+            dismiss(animated: true, completion: nil)
             return
         }
         

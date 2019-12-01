@@ -233,6 +233,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
             vc.parentVC = self
                         
             self.present(vc, animated: true, completion: nil)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
         
         if(indexPath.section == 1) {
@@ -249,6 +250,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
             vc.parentVC = self
                                     
             self.present(vc, animated: true, completion: nil)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
         
         if(indexPath.section == 2) {
@@ -263,6 +265,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
             vc.setEvent(event: event)
             
             self.present(vc, animated: true, completion: nil)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
         
     }
