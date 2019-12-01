@@ -33,6 +33,7 @@ class PopWindowViewController: UIViewController{
         super.viewDidLoad()
         confirmButton.applyButton()
         setUpTapGesture()
+        view.backgroundColor = UIColor(red:0.85, green:0.93, blue:0.93, alpha:1.0)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

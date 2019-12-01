@@ -295,7 +295,7 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
                 vc.modalPresentationStyle = UIModalPresentationStyle.automatic
                 self.present(vc, animated: true, completion: nil)
             }
-            
+
         }
         
         else if indexPath.section == 2 {
@@ -320,7 +320,9 @@ extension UIColor {
         return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
     }
     
-    static let mainBlue = UIColor.rgb(red: 0, green: 150, blue: 185)
+    static let mainBlue = UIColor(red:0.24, green:0.44, blue:0.64, alpha:1.0)
+        // UIColor(red:0.39, green:0.70, blue:0.80, alpha:1.0)
+    // UIColor.rgb(red: 0, green: 150, blue: 185)
 }
 
 extension UIView {
