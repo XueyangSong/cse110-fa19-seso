@@ -9,10 +9,29 @@
 import UIKit
 
 class ContactUsViewController: UIViewController {
-
+    @IBOutlet weak var label1: UILabel!
+    
+    @IBOutlet weak var label2: UILabel!
+    @IBOutlet weak var label3: UILabel!
+    @IBOutlet weak var label4: UILabel!
+    @IBOutlet weak var label5: UILabel!
+    @IBOutlet weak var label6: UILabel!
+    @IBOutlet weak var label7: UILabel!
+    @IBOutlet weak var label8: UILabel!
+    @IBOutlet weak var label9: UILabel!
+    @IBOutlet weak var label10: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        label1.applyLabel()
+        label2.applyLabel()
+        label3.applyLabel()
+        label4.applyLabel()
+        label5.applyLabel()
+        label6.applyLabel()
+        label7.applyLabel()
+        label8.applyLabel()
+        label9.applyLabel()
+        label10.applyLabel()
         // Do any additional setup after loading the view.
     }
     
@@ -27,4 +46,14 @@ class ContactUsViewController: UIViewController {
     }
     */
 
+}
+extension UILabel{
+func applyLabel(){
+    
+
+     self.layer.shadowRadius = 4
+     self.layer.shadowOpacity = 0.5
+     self.layer.shadowOffset = CGSize(width: 1, height: 1)
+    
+}
 }

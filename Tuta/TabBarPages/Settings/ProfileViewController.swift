@@ -61,7 +61,7 @@ class ProfileViewController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("Work!")
-        avatar.applyButton()
+        avatar.apply()
 
         dc.delegate = self
         dc.getUserFromCloud(userID: self.userID!){(e) in self.user = (e)
