@@ -287,6 +287,10 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
                 let cell = tableView.cellForRow(at: indexPath)
                 cell?.isSelected = false
                 let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = sb.instantiateViewController(identifier: "ChangePasswordViewController") as ChangePasswordViewController
+                vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+                vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+                self.present(vc, animated: true, completion: nil)
             case 2:
                 let cell = tableView.cellForRow(at: indexPath)
                 cell?.isSelected = false
