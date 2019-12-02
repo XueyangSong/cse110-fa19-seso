@@ -216,7 +216,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         }else{
             loginClicked = false
         }
-        else {loginClicked = false}
     }
 
 
