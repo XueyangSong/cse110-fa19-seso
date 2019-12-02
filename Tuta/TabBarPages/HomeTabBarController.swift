@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
 
 class HomeTabBarController : UITabBarController, UITabBarControllerDelegate {
     
@@ -17,6 +18,9 @@ class HomeTabBarController : UITabBarController, UITabBarControllerDelegate {
     var newPostcarViewController: PopWindowViewController!
     var profileViewController: MyProfileViewController!
     
+    let userID = Auth.auth().currentUser?.uid
+    var isFirstTime : Bool = true
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,16 +31,27 @@ class HomeTabBarController : UITabBarController, UITabBarControllerDelegate {
         newPostcarViewController = sb.instantiateViewController(identifier: "PopWindowViewController") as PopWindowViewController
         profileViewController = sb.instantiateViewController(identifier: "MyProfileViewController") as MyProfileViewController
         
+        loadDataFromCloud()
+        
         self.viewControllers = [searchPageViewController, newPostcarViewController, profileViewController]
         
         self.selectedIndex = indexOfVcToBeDisplay
         
-//        searchPageViewController = SearchPageViewController()
-//        newPostcarViewController = PopWindowViewController()
-//        profileViewController = MyProfileViewController()
-//        self.viewControllers = [searchPageViewController, newPostcarViewController, profileViewController]
-//
-//        setUpTabBarItem()
+    }
+    
+    func loadDataFromCloud() {
+        if isFirstTime {
+            let dc = DataController()
+            
+            dc.getUserFromCloud(userID: self.userID!) { (user) in
+                
+                // pass user info to MyProfileViewController
+                self.profileViewController.defaultURL = user.url
+                self.profileViewController.defaultName = user.name
+                self.profileViewController.defaultEmail = user.email
+                self.isFirstTime = false
+            }
+        }
         
     }
     
