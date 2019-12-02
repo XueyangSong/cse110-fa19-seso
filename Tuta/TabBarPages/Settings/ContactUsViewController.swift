@@ -71,12 +71,11 @@ class ContactUsViewController: UIViewController {
 
 }
 extension UILabel{
-func applyLabel(){
-    
+    func applyLabel(){
 
-     self.layer.shadowRadius = 4
-     self.layer.shadowOpacity = 0.5
-     self.layer.shadowOffset = CGSize(width: 1, height: 1)
-    
-}
+         self.layer.shadowRadius = 4
+         self.layer.shadowOpacity = 0.5
+         self.layer.shadowOffset = CGSize(width: 1, height: 1)
+        
+    }
 }
