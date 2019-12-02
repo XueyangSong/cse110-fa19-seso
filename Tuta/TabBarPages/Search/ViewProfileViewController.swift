@@ -209,6 +209,7 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
             self.ViewPhoneNumberLabel.text = self.user.phone
             self.ViewDescriptionTextView.text = self.user.description
             self.ViewRatingLabel.text = "rating: " + String(self.user.rating)
+            print( "*^%^&*" + (self.ViewRatingLabel.text ?? "u"))
             self.ViewNumberRateLabel.text =  String(self.user.numRate) + " rates"
             var courses : String = ""
             for item in self.user.courseTaken{
