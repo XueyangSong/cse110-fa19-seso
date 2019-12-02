@@ -534,6 +534,42 @@ Jiahe Liu      jil061@ucsd.edu </string>
             </objects>
             <point key="canvasLocation" x="4492.753623188406" y="1788.6160714285713"/>
         </scene>
+        <!--Change Password View Controller-->
+        <scene sceneID="7aT-Rc-dWv">
+            <objects>
+                <viewController id="2Qx-2q-GJp" customClass="ChangePasswordViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tUr-6h-EAQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type your email here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vLd-XX-IqN">
+                                <rect key="frame" x="20" y="166" width="374" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q44-2N-amc">
+                                <rect key="frame" x="111" y="257" width="193" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.39378833770751953" green="0.73663556575775146" blue="0.90543735027313232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Change Password"/>
+                                <connections>
+                                    <action selector="ChangePasswordTapped:" destination="2Qx-2q-GJp" eventType="touchUpInside" id="LTZ-86-sfm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.88338130712509155" green="0.94562751054763794" blue="0.97142022848129272" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="Q5H-ZI-a44"/>
+                    </view>
+                    <connections>
+                        <outlet property="userEmailTextField" destination="vLd-XX-IqN" id="R0X-WP-cEr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YFG-gc-qdU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5317.3913043478269" y="1794.6428571428571"/>
+        </scene>
         <!--Finish Event View Controller-->
         <scene sceneID="wKD-6k-ja5">
             <objects>
