@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
@@ -479,6 +482,7 @@
             </objects>
             <point key="canvasLocation" x="4367" y="2538"/>
         </scene>
+
         <!--Recover Password View Controller-->
         <scene sceneID="M2J-CI-GRf">
             <objects>
@@ -618,7 +622,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kqq-Lk-gRr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+
             <point key="canvasLocation" x="6985.507246376812" y="296.65178571428572"/>
+
         </scene>
         <!--SearchPage-->
         <scene sceneID="OQc-mC-3lL">
@@ -643,8 +649,11 @@
                                                     <rect key="frame" x="20" y="11" width="374" height="148"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
+
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" fixedFrame="YES" text="Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="73c-KX-0fR">
+
                                                             <rect key="frame" x="168" y="130" width="202" height="8"/>
+
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -657,6 +666,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+
                                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6rK-na-Oce" customClass="CosmosView" customModule="Cosmos">
                                                             <rect key="frame" x="164" y="54" width="99" height="15"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -681,13 +691,16 @@
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bq7-Zp-Vrw">
                                                             <rect key="frame" x="164" y="19" width="202" height="31"/>
+
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="30"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#Ratings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ccd-pa-t1P">
                                                             <rect key="frame" x="275" y="54" width="95" height="15"/>
+
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                                             <nil key="textColor"/>
@@ -697,6 +710,7 @@
                                                             <rect key="frame" x="14" y="10" width="133" height="128"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
+
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 </view>
@@ -1170,7 +1184,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dNl-6O-BnN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+
             <point key="canvasLocation" x="6088" y="-552"/>
+
         </scene>
         <!--Change Number Controller-->
         <scene sceneID="Dhs-Nv-VT1">
@@ -1217,7 +1233,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3AI-8f-iZQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+
             <point key="canvasLocation" x="5285.507246376812" y="296.65178571428572"/>
+
         </scene>
         <!--Description View Controller-->
         <scene sceneID="4jD-Pn-vl8">
@@ -1267,7 +1285,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jnG-dE-Hr0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+
             <point key="canvasLocation" x="6124.6376811594209" y="296.65178571428572"/>
+
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="knb-dR-32L">
@@ -1288,7 +1308,9 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ka3-8j-glz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+
             <point key="canvasLocation" x="5341" y="-552"/>
+
         </scene>
     </scenes>
     <resources>
