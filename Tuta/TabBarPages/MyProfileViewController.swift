@@ -317,6 +317,9 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
             if indexPath.row == 0 {
                 print("logging out")
                 try! Auth.auth().signOut()
+                
+                UserDefaults.standard.set(false, forKey: "userLoggedIn")
+                
                 let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = sb.instantiateViewController(identifier: "logInViewController") as LogInViewController
                 vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
