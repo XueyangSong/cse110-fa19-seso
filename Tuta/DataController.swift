@@ -332,7 +332,7 @@ class DataController{
     }
     
     
-    func updateEventStatus(event : Event, completion: @escaping ((Bool) -> ())){
+    func updateEventStatus(event : Event, isStudent : Int, completion: @escaping ((Bool) -> ())){
         let docRef = db.collection("events").document(event.eventID)
         if event.status == "requested"{
             event.status = "inProgress"
@@ -341,7 +341,16 @@ class DataController{
             event.status = "finished"
         }
         else if event.status == "finished" {
-            event.status = "alreadyRated"
+            if (isStudent == 1) {
+                event.status = "studentRated"
+            }
+            else {
+                event.status = "tutorRated"
+            }
+            //event.status = "alreadyRated"
+        }
+        else {
+            event.status = "bothRated"
         }
         docRef.updateData(["status": event.status])
         completion(true)
