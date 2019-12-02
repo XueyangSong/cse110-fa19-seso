@@ -37,6 +37,7 @@
 		490AB8AE237772AF00C63347 /* ProfileDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB8AD237772AF00C63347 /* ProfileDelegate.swift */; };
 		49FFF4A1238E544F0069A81F /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FFF4A0238E544F0069A81F /* RateViewController.swift */; };
 		5A0C3ADA23926E4600A68C9B /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0C3AD923926E4600A68C9B /* RecoverPasswordViewController.swift */; };
+		5A0C3ADE23951D0300A68C9B /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0C3ADD23951D0300A68C9B /* ChangePasswordViewController.swift */; };
 		5A30888223808D70007501E5 /* ViewProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A30888123808D70007501E5 /* ViewProfileViewController.swift */; };
 		7F3E1C8223836BCA00F8088B /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3E1C8123836BCA00F8088B /* MeViewController.swift */; };
 		7F3E1C842383AF5800F8088B /* PopWindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3E1C832383AF5800F8088B /* PopWindowViewController.swift */; };
@@ -81,6 +82,7 @@
 		490AB8AD237772AF00C63347 /* ProfileDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileDelegate.swift; path = Tuta/TabBarPages/ProfileDelegate.swift; sourceTree = "<group>"; };
 		49FFF4A0238E544F0069A81F /* RateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
 		5A0C3AD923926E4600A68C9B /* RecoverPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordViewController.swift; sourceTree = "<group>"; };
+		5A0C3ADD23951D0300A68C9B /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		5A30888123808D70007501E5 /* ViewProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProfileViewController.swift; sourceTree = "<group>"; };
 		7F3E1C8123836BCA00F8088B /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		7F3E1C832383AF5800F8088B /* PopWindowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopWindowViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				1F467B87236DFE9500A5CA59 /* ProfileViewController.swift */,
 				1FF1F2D8238908E10092AD83 /* EventListViewController.swift */,
 				1F8505D2239369B6007EB951 /* ContactUsViewController.swift */,
+				5A0C3ADD23951D0300A68C9B /* ChangePasswordViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				1FF1F2DE2389AB640092AD83 /* EventListSection.swift in Sources */,
 				41C8FE512371450D00952CFB /* TutaUser.swift in Sources */,
 				1F8505CE23930ED8007EB951 /* FinishEventViewController.swift in Sources */,
+				5A0C3ADE23951D0300A68C9B /* ChangePasswordViewController.swift in Sources */,
 				1F9AC50D2361268F00E3A4FE /* HomeTabBarController.swift in Sources */,
 				1F538BF6235CEB95003795E0 /* LogInViewController.swift in Sources */,
 				1FF1F2E02389AEC80092AD83 /* EventListCell.swift in Sources */,
@@ -550,14 +554,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VSAZHHHK74;
+				DEVELOPMENT_TEAM = QDGG723AP6;
 				INFOPLIST_FILE = Tuta/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Jiahe.Tuta;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhenduan.Tuta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -570,14 +574,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VSAZHHHK74;
+				DEVELOPMENT_TEAM = QDGG723AP6;
 				INFOPLIST_FILE = Tuta/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Jiahe.Tuta;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhenduan.Tuta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

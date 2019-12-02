@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
@@ -299,7 +298,7 @@
         <!--My Profile View Controller-->
         <scene sceneID="wU3-eE-dif">
             <objects>
-                <viewController id="2No-Ow-Wav" customClass="MyProfileViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyProfileViewController" id="2No-Ow-Wav" customClass="MyProfileViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eqT-dU-5AO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -338,14 +337,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="logo_light" translatesAutoresizingMaskIntoConstraints="NO" id="cmT-Jd-ym8">
-                                <rect key="frame" x="36" y="0.0" width="342" height="199"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_light" translatesAutoresizingMaskIntoConstraints="NO" id="cmT-Jd-ym8">
+                                <rect key="frame" x="36" y="44" width="342" height="199"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="199" id="dSh-54-N4a"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18w-eF-Fl9">
-                                <rect key="frame" x="36" y="207" width="264" height="52"/>
+                                <rect key="frame" x="36" y="251" width="264" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.83205479380000003" green="0.9373801947" blue="0.9254915118" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" red="0.40063673259999999" green="0.69592255349999999" blue="0.8039389253" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -365,7 +364,7 @@ Xueyang Song     xus023@ucsd.edu </string>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lye-Ti-vHE">
-                                <rect key="frame" x="118" y="267" width="260" height="52"/>
+                                <rect key="frame" x="118" y="311" width="260" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.83205479380000003" green="0.9373801947" blue="0.9254915118" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -382,7 +381,7 @@ Zhen Duan      z3duan@ucsd.edu </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z65-hI-wyv">
-                                <rect key="frame" x="36" y="328" width="260" height="52"/>
+                                <rect key="frame" x="36" y="372" width="260" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.83205479380000003" green="0.9373801947" blue="0.9254915118" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <attributedString key="attributedText">
@@ -398,7 +397,7 @@ Yuxin Li     yul801@ucsd.edu </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Pp-54-Szh">
-                                <rect key="frame" x="118" y="390" width="260" height="52"/>
+                                <rect key="frame" x="118" y="434" width="260" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.83205479380000003" green="0.9373801947" blue="0.9254915118" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <attributedString key="attributedText">
@@ -414,7 +413,7 @@ Yuechen Liu     yul094@ucsd.edu </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unP-BI-hAo">
-                                <rect key="frame" x="36" y="450" width="260" height="52"/>
+                                <rect key="frame" x="36" y="494" width="260" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.83205479380000003" green="0.9373801947" blue="0.9254915118" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <attributedString key="attributedText">
@@ -430,7 +429,7 @@ Guanyi Lu      gulu@ucsd.edu </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRf-4D-wH6">
-                                <rect key="frame" x="118" y="510" width="260" height="52"/>
+                                <rect key="frame" x="118" y="554" width="260" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.83205479380000003" green="0.9373801947" blue="0.9254915118" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <attributedString key="attributedText">
@@ -446,7 +445,7 @@ Yiran Shao      yis189@ucsd.edu </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BHq-Um-yQ7">
-                                <rect key="frame" x="36" y="572" width="260" height="52"/>
+                                <rect key="frame" x="36" y="616" width="260" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.83205479380000003" green="0.9373801947" blue="0.9254915118" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <attributedString key="attributedText">
@@ -462,7 +461,7 @@ Mingyu Chen      mic215@ucsd.edu </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8a-sh-bzz">
-                                <rect key="frame" x="118" y="635" width="260" height="52"/>
+                                <rect key="frame" x="118" y="679" width="260" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.83205479380000003" green="0.9373801947" blue="0.9254915118" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <attributedString key="attributedText">
@@ -478,7 +477,7 @@ Yixing Wang     yiw575@ucsd.edu </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfs-xa-COX">
-                                <rect key="frame" x="36" y="695" width="260" height="52"/>
+                                <rect key="frame" x="36" y="739" width="260" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.83205479380000003" green="0.9373801947" blue="0.9254915118" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <attributedString key="attributedText">
@@ -494,7 +493,7 @@ Aileen Wu      a3wu@ucsd.edu </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftK-xL-OBq">
-                                <rect key="frame" x="118" y="755" width="260" height="52"/>
+                                <rect key="frame" x="118" y="799" width="260" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.83205479380000003" green="0.9373801947" blue="0.9254915118" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <attributedString key="attributedText">
@@ -511,6 +510,11 @@ Jiahe Liu      jil061@ucsd.edu </string>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.85098039219999999" green="0.93333333330000001" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="cmT-Jd-ym8" firstAttribute="leading" secondItem="Hhp-Nq-2sy" secondAttribute="leading" constant="36" id="GJb-Zu-AXl"/>
+                            <constraint firstItem="Hhp-Nq-2sy" firstAttribute="trailing" secondItem="cmT-Jd-ym8" secondAttribute="trailing" constant="36" id="lS2-LL-rrv"/>
+                            <constraint firstItem="cmT-Jd-ym8" firstAttribute="top" secondItem="Hhp-Nq-2sy" secondAttribute="top" id="nL8-dg-Js4"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Hhp-Nq-2sy"/>
                     </view>
                     <connections>
@@ -529,6 +533,42 @@ Jiahe Liu      jil061@ucsd.edu </string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p8L-a8-DeJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4492.753623188406" y="1788.6160714285713"/>
+        </scene>
+        <!--Change Password View Controller-->
+        <scene sceneID="7aT-Rc-dWv">
+            <objects>
+                <viewController storyboardIdentifier="ChangePasswordViewController" id="2Qx-2q-GJp" customClass="ChangePasswordViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tUr-6h-EAQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type your email here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vLd-XX-IqN">
+                                <rect key="frame" x="20" y="166" width="374" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q44-2N-amc">
+                                <rect key="frame" x="111" y="257" width="193" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.39378833770751953" green="0.73663556575775146" blue="0.90543735027313232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Change Password"/>
+                                <connections>
+                                    <action selector="ChangePasswordTapped:" destination="2Qx-2q-GJp" eventType="touchUpInside" id="LTZ-86-sfm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.88338130712509155" green="0.94562751054763794" blue="0.97142022848129272" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="Q5H-ZI-a44"/>
+                    </view>
+                    <connections>
+                        <outlet property="userEmailTextField" destination="vLd-XX-IqN" id="R0X-WP-cEr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YFG-gc-qdU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5317.3913043478269" y="1794.6428571428571"/>
         </scene>
         <!--Finish Event View Controller-->
         <scene sceneID="wKD-6k-ja5">
@@ -737,7 +777,7 @@ Jiahe Liu      jil061@ucsd.edu </string>
         <!--Home Tab Bar Controller-->
         <scene sceneID="EAQ-Ss-Y0Z">
             <objects>
-                <tabBarController storyboardIdentifier="homeTabBarController" id="HFW-nU-lyf" customClass="HomeTabBarController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomeTabBarController" id="HFW-nU-lyf" customClass="HomeTabBarController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mmk-UE-zQk" customClass="CustomizedTabBar" customModule="Tuta" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -809,7 +849,7 @@ Jiahe Liu      jil061@ucsd.edu </string>
         <!--SearchPage-->
         <scene sceneID="OQc-mC-3lL">
             <objects>
-                <viewController title="SearchPage" id="3R0-9R-WQx" customClass="SearchPageViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchPageViewController" title="SearchPage" id="3R0-9R-WQx" customClass="SearchPageViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NNA-kY-zKs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -872,10 +912,8 @@ Jiahe Liu      jil061@ucsd.edu </string>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#Ratings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ccd-pa-t1P">
                                                             <rect key="frame" x="275" y="54" width="95" height="15"/>
-
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                                             <nil key="textColor"/>
@@ -917,11 +955,11 @@ Jiahe Liu      jil061@ucsd.edu </string>
                                     <outlet property="delegate" destination="3R0-9R-WQx" id="7dv-u6-eDp"/>
                                 </connections>
                             </searchBar>
-                            <segmentedControl opaque="NO" contentMode="center" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ch3-HB-QOl">
-                                <rect key="frame" x="57" y="44" width="300" height="32"/>
+                            <segmentedControl opaque="NO" contentMode="center" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ch3-HB-QOl">
+                                <rect key="frame" x="32" y="50" width="350" height="32"/>
                                 <segments>
-                                    <segment title="Student"/>
-                                    <segment title="Tutor"/>
+                                    <segment title="Searching Student"/>
+                                    <segment title="Searching Tutor"/>
                                 </segments>
                             </segmentedControl>
                         </subviews>
@@ -957,7 +995,7 @@ Jiahe Liu      jil061@ucsd.edu </string>
         <!--PopWindowViewController-->
         <scene sceneID="0HV-C6-MkE">
             <objects>
-                <viewController id="Grb-Z4-uQr" userLabel="PopWindowViewController" customClass="PopWindowViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PopWindowViewController" id="Grb-Z4-uQr" userLabel="PopWindowViewController" customClass="PopWindowViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FNa-ed-yrX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1074,7 +1112,7 @@ Jiahe Liu      jil061@ucsd.edu </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwq-3N-pKb">
-                                <rect key="frame" x="211" y="148" width="64" height="46"/>
+                                <rect key="frame" x="211" y="148" width="98" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -1102,14 +1140,7 @@ Jiahe Liu      jil061@ucsd.edu </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Courses Taken" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jHj-ss-Q6B">
-                                <rect key="frame" x="40" y="733" width="185" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQB-hi-Ku0">
-                                <rect key="frame" x="39" y="517" width="139" height="36"/>
+                                <rect key="frame" x="40" y="700" width="185" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <nil key="textColor"/>
@@ -1131,7 +1162,7 @@ Jiahe Liu      jil061@ucsd.edu </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="osw-Dj-xkm">
-                                <rect key="frame" x="39" y="772" width="335" height="2"/>
+                                <rect key="frame" x="39" y="739" width="335" height="2"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Abu-OR-hWC">
@@ -1153,14 +1184,14 @@ Jiahe Liu      jil061@ucsd.edu </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Course Taken" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BeL-fG-Rhk">
-                                <rect key="frame" x="40" y="779" width="333" height="39"/>
+                                <rect key="frame" x="40" y="746" width="333" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="N/A" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AKc-BW-aCy">
-                                <rect key="frame" x="39" y="561" width="334" height="164"/>
+                                <rect key="frame" x="39" y="561" width="334" height="126"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1170,27 +1201,35 @@ Jiahe Liu      jil061@ucsd.edu </string>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4lc-pX-HXD">
                                 <rect key="frame" x="119" y="252" width="152" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.39378833770751953" green="0.73663556575775146" blue="0.90543735027313232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Request"/>
                                 <connections>
                                     <action selector="RequestButtonClicked:" destination="RAt-iE-2Re" eventType="touchUpInside" id="lX3-6o-f3x"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xDe-f9-q5j">
-                                <rect key="frame" x="274" y="464" width="99" height="30"/>
+                                <rect key="frame" x="211" y="464" width="162" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.39378833770751953" green="0.73663556575775146" blue="0.90543735027313232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Message Me"/>
                                 <connections>
                                     <action selector="Message:" destination="RAt-iE-2Re" eventType="touchUpInside" id="lVf-Ao-aPH"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQB-hi-Ku0">
+                                <rect key="frame" x="39" y="517" width="139" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.83572131395339966" green="0.94921225309371948" blue="0.97011536359786987" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="lR7-5d-g2q"/>
                     </view>
                     <navigationItem key="navigationItem" id="Cto-a2-i3q"/>
                     <connections>
+                        <outlet property="MessageMeButton" destination="xDe-f9-q5j" id="EHC-Xn-Q5r"/>
                         <outlet property="RequestButton" destination="4lc-pX-HXD" id="PC7-8z-pi2"/>
                         <outlet property="ViewCoursesTakenLabel" destination="BeL-fG-Rhk" id="awH-oa-dmH"/>
                         <outlet property="ViewDescriptionTextView" destination="AKc-BW-aCy" id="B83-pS-mqo"/>
@@ -1205,7 +1244,7 @@ Jiahe Liu      jil061@ucsd.edu </string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3zi-Xx-EW7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1677" y="1789"/>
+            <point key="canvasLocation" x="1676.8115942028987" y="1788.6160714285713"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="VuY-bS-swX">
@@ -1323,13 +1362,6 @@ Jiahe Liu      jil061@ucsd.edu </string>
                                     <action selector="uploadAvatar:" destination="cKR-m2-OON" eventType="touchUpInside" id="aGx-p3-8es"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4S5-pk-csf">
-                                <rect key="frame" x="288" y="185" width="106" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CcY-4m-SGI">
                                 <rect key="frame" x="312" y="599" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1338,6 +1370,13 @@ Jiahe Liu      jil061@ucsd.edu </string>
                                     <segue destination="Wuk-N8-FyK" kind="show" id="5kr-Ss-2qV"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4S5-pk-csf">
+                                <rect key="frame" x="298" y="185" width="106" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.85098039215686272" green="0.93333333333333335" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="roj-el-sIC"/>
@@ -1374,8 +1413,8 @@ Jiahe Liu      jil061@ucsd.edu </string>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="new phone number:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I4R-eO-GaI">
-                                <rect key="frame" x="100" y="135" width="214" height="46"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New phone number:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I4R-eO-GaI">
+                                <rect key="frame" x="100" y="135" width="219" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
@@ -1489,10 +1528,7 @@ Jiahe Liu      jil061@ucsd.edu </string>
         <image name="tutaLogo_1" width="360" height="127"/>
     </resources>
     <inferredMetricsTieBreakers>
-
         <segue reference="WrC-ET-yHO"/>
-
         <segue reference="biD-n9-DuG"/>
-
     </inferredMetricsTieBreakers>
 </document>

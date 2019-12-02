@@ -12,6 +12,10 @@ import FirebaseAuth
 import Firebase
 import MessageUI
 
+private let darkBlueColor = UIColor(red:0.24, green:0.44, blue:0.64, alpha:1.0)
+private let lightBlueColor = UIColor(red:0.85, green:0.93, blue:0.93, alpha:1.0)
+
+
 class ViewProfileViewController: UIViewController,MFMessageComposeViewControllerDelegate{
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         switch (result) {
@@ -62,6 +66,7 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
     @IBOutlet weak var ViewCoursesTakenLabel: UILabel!
     @IBOutlet weak var ViewPhotoImageView: UIImageView!
     @IBOutlet weak var RequestButton: UIButton!
+    @IBOutlet weak var MessageMeButton: UIButton!
     let db = Firestore.firestore()
     
     let myFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
@@ -145,6 +150,8 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         //dc.delegate = self
+        setUpUI()
+        
         userID = (post["creatorID"]as? String)!
         if(uid == userID){
             RequestButton.setTitle("delete", for: .normal)
@@ -200,6 +207,19 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
         }
     }
     
+    func setUpUI() {
+        self.view.backgroundColor = lightBlueColor
+        
+        ViewDescriptionTextView.backgroundColor = UIColor.clear
+        
+        RequestButton.backgroundColor = darkBlueColor
+        RequestButton.setTitleColor(UIColor.white, for: .normal)
+        RequestButton.titleLabel?.font = .systemFont(ofSize: 22)
+        MessageMeButton.backgroundColor = darkBlueColor
+        MessageMeButton.setTitleColor(UIColor.white, for: .normal)
+        MessageMeButton.titleLabel?.font = .systemFont(ofSize: 18)
+    }
+    
     func showProfile(){
         self.dc.getUserFromCloud(userID: self.userID){(e) in self.user = (e)
             
@@ -208,7 +228,9 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
             self.ViewGenderLabel.text = self.user.gender
             self.ViewPhoneNumberLabel.text = self.user.phone
             self.ViewDescriptionTextView.text = self.user.description
-            self.ViewRatingLabel.text = "rating: " + String(self.user.rating)
+            self.ViewDescriptionTextView.isEditable = false
+            self.ViewRatingLabel.text = "rating: " + String(format: "%.02f", self.user.rating)
+            print( "*^%^&*" + (self.ViewRatingLabel.text ?? "u"))
             self.ViewNumberRateLabel.text =  String(self.user.numRate) + " rates"
             var courses : String = ""
             for item in self.user.courseTaken{

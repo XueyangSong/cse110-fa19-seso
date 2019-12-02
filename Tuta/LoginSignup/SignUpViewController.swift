@@ -184,6 +184,12 @@ public class SignUpViewController: UIViewController, UITextFieldDelegate {
         showToast(message: "This email has already registered", font: myFont)
     }
     
+    func showAlert(title: String, message: String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     
     // *** sign up ***
     
@@ -197,7 +203,7 @@ public class SignUpViewController: UIViewController, UITextFieldDelegate {
               signUpClicked = true
             }
         }
-        SignUpViewController.firstSignUp = 1
+        
         // let isValid = isFieldsValid()
         let name = nameTextField.text
         let email = emailTextField.text
@@ -206,15 +212,17 @@ public class SignUpViewController: UIViewController, UITextFieldDelegate {
             Auth.auth().createUser(withEmail: email!, password: password!) { authResult, error in
               // [START_EXCLUDE]
                 guard let user = authResult?.user, error == nil else {
-                    self.showToastForRegisteredEmail()
+                    
+                  self.showAlert(title: "SignUp Failed", message: error!.localizedDescription)
                   print("failed")
                   self.signUpClicked = false
                   return
                 }
-                
+                SignUpViewController.firstSignUp = 1
                 // print("\(user.email!) created")
                 // jump to login page
                 //print("presenting home page")
+                SignUpViewController.firstSignUp = 1
                 Auth.auth().currentUser!.sendEmailVerification()
                 //self.signUpDelegate?.didReceiveData(value: "Verification email has been sent")
                 

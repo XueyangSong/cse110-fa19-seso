@@ -47,8 +47,24 @@ class RateViewController: UIViewController {
         if event.status == "finished" {
             setUpRatingUI()
         }
-        else if event.status == "alreadyRated" {
+        else if event.status == "abothRated" {
             setUpViewSessionUI()
+        }
+        else if event.status == "astudentRated" {
+            if userID == event.studentID {
+                setUpViewSessionUI()
+            }
+            else {
+                setUpRatingUI()
+            }
+        }
+        else {
+            if userID == event.studentID {
+                setUpRatingUI()
+            }
+            else {
+                setUpViewSessionUI()
+            }
         }
     }
     
@@ -97,7 +113,7 @@ class RateViewController: UIViewController {
     }
     
     @IBAction func onSubmit(_ sender: Any) {
-        if event.status == "alreadyRated" {
+        if event.status == "abothRated" {
             navigationController?.popViewController(animated: true)
             dismiss(animated: true, completion: nil)
             return
@@ -107,10 +123,23 @@ class RateViewController: UIViewController {
 
         // get other user's ID
         var otherID : String
+        var isStudent : Int
         if userID == event.studentID {
             otherID = event.tutorID
+            isStudent = 1
+            if event.status == "astudentRated" {
+                navigationController?.popViewController(animated: true)
+                dismiss(animated: true, completion: nil)
+                return
+            }
         } else {
             otherID = event.studentID
+            isStudent = 0
+            if event.status == "atutorRated" {
+                navigationController?.popViewController(animated: true)
+                dismiss(animated: true, completion: nil)
+                return
+            }
         }
         
         // get other user
@@ -120,7 +149,7 @@ class RateViewController: UIViewController {
         }
         
         // update status
-        dc.updateEventStatus(event: event) { (b) in
+        dc.updateEventStatus(event: event, isStudent: isStudent) { (b) in
             print("The current rating: \(String(describing: self.rating))")
             self.parentVC.setUpSectionArray()
             self.navigationController?.popViewController(animated: true)

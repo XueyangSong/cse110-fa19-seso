@@ -82,9 +82,19 @@ class DataController{
         storeImage.putData(uploadData, metadata: metaData, completion: { (metaData, error) in
             storeImage.downloadURL(completion: { (url, error) in
                 if let urlText = url?.absoluteString {
-
                     strURL = urlText
                     print(strURL)
+                    let docRef = self.db.collection("users").document(user.uid)
+                    docRef.getDocument{(document, error) in
+                        if let document = document, document.exists{
+                            let postCards = document.data()!["postCards"] as! [String]
+                            for cardInfo in postCards{
+                                let strArray = cardInfo.components(separatedBy: ",")
+                                let cardRef = self.db.collection("postCards").document(strArray[1]).collection(strArray[2]).document(strArray[0])
+                                cardRef.updateData(["creatorURL": strURL])
+                            }
+                        }
+                    }
                     //print("///////////tttttttt//////// \(strURL)   ////////")
                     user.url = strURL
                     self.uploadUserToCloud(tutaUser: user)
@@ -92,6 +102,7 @@ class DataController{
                 }
             })
         })
+        
     }
     
     func updateRating(uid: String, rating: Double){
@@ -217,7 +228,7 @@ class DataController{
     
     func ifRequestedBefore(event: Event, completion: @escaping ((Bool)->())){
         let docRef = db.collection("events")
-        docRef.whereField("tutorID", isEqualTo: event.tutorID).whereField("studentID", isEqualTo: event.studentID).whereField("course", isEqualTo: event.course).getDocuments(){
+        docRef.whereField("tutorID", isEqualTo: event.tutorID).whereField("studentID", isEqualTo: event.studentID).whereField("course", isEqualTo: event.course).whereField("status", isEqualTo: "requested").getDocuments(){
             (querySnapshot, err) in
             if let err = err{
                 print("Error getting documents: \(err) in isRequested")
@@ -321,7 +332,7 @@ class DataController{
     }
     
     
-    func updateEventStatus(event : Event, completion: @escaping ((Bool) -> ())){
+    func updateEventStatus(event : Event, isStudent : Int, completion: @escaping ((Bool) -> ())){
         let docRef = db.collection("events").document(event.eventID)
         if event.status == "requested"{
             event.status = "inProgress"
@@ -330,7 +341,16 @@ class DataController{
             event.status = "finished"
         }
         else if event.status == "finished" {
-            event.status = "alreadyRated"
+            if (isStudent == 1) {
+                event.status = "astudentRated"
+            }
+            else {
+                event.status = "atutorRated"
+            }
+            //event.status = "alreadyRated"
+        }
+        else {
+            event.status = "abothRated"
         }
         docRef.updateData(["status": event.status])
         completion(true)

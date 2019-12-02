@@ -18,7 +18,7 @@ class ConfirmEventViewController: UIViewController {
     
     @IBAction func AcceptButtonPressed(_ sender: UIButton) {
         let dc = DataController()
-        dc.updateEventStatus(event: event) { (b) in
+        dc.updateEventStatus(event: event, isStudent: Int(0)) { (b) in
             self.parentVC.setUpSectionArray()
             self.navigationController?.popViewController(animated: true)
             self.dismiss(animated: true, completion: nil)

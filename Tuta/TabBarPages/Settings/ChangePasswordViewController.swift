@@ -1,40 +1,22 @@
 //
-//  ContactUsViewController.swift
+//  ChangePasswordViewController.swift
 //  Tuta
 //
-//  Created by Zhen Duan on 11/30/19.
+//  Created by Alex Li on 12/2/19.
 //  Copyright © 2019 Zhen Duan. All rights reserved.
 //
 
+
 import UIKit
+import Firebase
+import FirebaseAuth
 
-class ContactUsViewController: UIViewController {
-    @IBOutlet weak var label1: UILabel!
-    
-    @IBOutlet weak var label2: UILabel!
-    @IBOutlet weak var label3: UILabel!
-    @IBOutlet weak var label4: UILabel!
-    @IBOutlet weak var label5: UILabel!
-    @IBOutlet weak var label6: UILabel!
-    @IBOutlet weak var label7: UILabel!
-    @IBOutlet weak var label8: UILabel!
-    @IBOutlet weak var label9: UILabel!
-    @IBOutlet weak var label10: UILabel!
+class ChangePasswordViewController: UIViewController {
     
     
-
+    @IBOutlet weak var userEmailTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        label1.applyLabel()
-        label2.applyLabel()
-        label3.applyLabel()
-        label4.applyLabel()
-        label5.applyLabel()
-        label6.applyLabel()
-        label7.applyLabel()
-        label8.applyLabel()
-        label9.applyLabel()
-        label10.applyLabel()
         // Do any additional setup after loading the view.
         
         self.view.addSubview(backButton)
@@ -58,7 +40,36 @@ class ContactUsViewController: UIViewController {
         vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         self.present(vc, animated: true, completion: nil)
     }
+    
+    
+    @IBAction func ChangePasswordTapped(_ sender: Any) {
+        let userEmail = self.userEmailTextField.text
 
+        
+
+        Auth.auth().sendPasswordReset(withEmail: userEmail!, completion: { (error) in
+
+            if error != nil{
+
+                let resetFailedAlert = UIAlertController(title: "Reset Failed", message: "Error: \(String(describing: error?.localizedDescription))", preferredStyle: .alert)
+
+                resetFailedAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+                self.present(resetFailedAlert, animated: true, completion: nil)
+
+            }else {
+
+                let resetEmailSentAlert = UIAlertController(title: "Reset email sent successfully",message: "Check your email", preferredStyle: .alert)
+
+                resetEmailSentAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+                self.present(resetEmailSentAlert, animated: true, completion: nil)
+
+            }
+
+        })
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -68,14 +79,4 @@ class ContactUsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
-}
-extension UILabel{
-    func applyLabel(){
-
-         self.layer.shadowRadius = 4
-         self.layer.shadowOpacity = 0.5
-         self.layer.shadowOffset = CGSize(width: 1, height: 1)
-        
-    }
 }

@@ -134,39 +134,13 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         showToast(message: "verification email sent", font: self.myFont)
     }
     
-    // check if each field is valid
-    func isFieldsValid()->Bool?{
-        // check empty fields
-        if  emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""{
-            showToast(message: "Please fill in every field", font: myFont)
-            return false
-        }
-        
-        // check email pattern
-        let email = emailTextField.text;
-        if !isValidEmail(emailStr: email!){
-            showToast(message: "Please enter a valid email", font: myFont)
-            return false
-        }
-        
-        // check password length
-        let password = passwordTextField.text;
-        if password!.count < 8{
-            showToast(message: "Password is too short", font: myFont)
-            return false
-        }
-        
-        return true
-    }
-    
+   
     // *** Log In ***
-    func showToastForRegisteredEmail() {
-        showToast(message: "Wrong email and password", font: myFont)
-    }
     
-    func showToastForVerifyEmail() {
-        showToast(message: "Please first verify your email", font: myFont)
+    func showAlert(title: String, message: String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func tryLogIn() {
@@ -177,33 +151,33 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             loginClicked = true
         }
         
-        
         let email = emailTextField.text
         let password = passwordTextField.text
-        if(isFieldsValid()!){
-            Auth.auth().signIn(withEmail: email!, password: password!) { [weak self] user, error in
+        Auth.auth().signIn(withEmail: email!, password: password!) { [weak self] user, error in
                   // [START_EXCLUDE]
-                if error != nil {
-                    print("login failed")
-                    self!.showToastForRegisteredEmail()
+            if error != nil {
+                print("login failed")
+                self!.showAlert(title: "Login Failed", message: error!.localizedDescription)
+                self!.loginClicked = false
+                return
+            }
+            else{
+                if(!Auth.auth().currentUser!.isEmailVerified){
+                    // alert for verifying email
+                    self!.showAlert(title: "Please verify your email", message: "We've sent an email to \(email!)")
                     self!.loginClicked = false
                     return
                 }
-                else{
-                    // @TODO go to main page
-                    if(!Auth.auth().currentUser!.isEmailVerified){
-                        self!.showToastForVerifyEmail()
-                        self!.loginClicked = false
-                        return
-                    }
-                    print("login successfull")
-                    // present home tabBarController
-                    let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    let vc = sb.instantiateViewController(identifier: "homeTabBarController") as HomeTabBarController
-                    vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
-                    vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-                    self!.present(vc, animated: true, completion: nil)
-                }
+                print("login successfull")
+                    
+                UserDefaults.standard.set(true, forKey: "userLoggedIn")
+                    
+                // present home tabBarController
+                let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = sb.instantiateViewController(identifier: "HomeTabBarController") as HomeTabBarController
+                vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+                vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+                self!.present(vc, animated: true, completion: nil)
             }
         }
     }
