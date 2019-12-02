@@ -17,7 +17,8 @@ import FirebaseAuth
 
 
 class RecoverPasswordViewController: UIViewController{
-
+    @IBOutlet weak var recover: UIButton!
+    
     
 
 
@@ -26,7 +27,7 @@ class RecoverPasswordViewController: UIViewController{
     override public func viewDidLoad() {
 
         super.viewDidLoad()
-
+        recover.apply()
     }
 
     @IBAction func RecoverPasswordTapped(_ sender: Any) {
