@@ -300,7 +300,7 @@
         <!--My Profile View Controller-->
         <scene sceneID="wU3-eE-dif">
             <objects>
-                <viewController id="2No-Ow-Wav" customClass="MyProfileViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyProfileViewController" id="2No-Ow-Wav" customClass="MyProfileViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eqT-dU-5AO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1312,9 +1312,7 @@
         <image name="tutaLogo_1" width="360" height="127"/>
     </resources>
     <inferredMetricsTieBreakers>
-
         <segue reference="WrC-ET-yHO"/>
         <segue reference="Djd-gn-S7J"/>
-
     </inferredMetricsTieBreakers>
 </document>
