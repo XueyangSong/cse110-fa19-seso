@@ -22,7 +22,12 @@ class ProfileViewController: UIViewController{
     var imagePicker = UIImagePickerController()
     var imageData = Data()
     let defaultProfile = Bundle.main.path(forResource: "stu-1", ofType: "jpg")
-
+    let backButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "backIcon").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(getBack), for: .touchUpInside)
+        return button
+    }()
     
     @IBOutlet weak var avatar: UIButton!
     @IBOutlet weak var DescriptionText: UITextField!
@@ -40,7 +45,7 @@ class ProfileViewController: UIViewController{
     @IBOutlet weak var phoneLabel: UILabel!
 
     @IBAction func uploadAvatar(_ sender: UIButton) {
-       present(imagePicker, animated: true, completion: nil)
+        present(imagePicker, animated: true, completion: nil)
     }
     
     @IBOutlet weak var rating: UILabel!
@@ -56,6 +61,14 @@ class ProfileViewController: UIViewController{
 
     @objc func refresh(sender:AnyObject) {
        // Code to refresh table view
+    }
+    
+    @objc func getBack() {
+        let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(identifier: "MyProfileViewController") as MyProfileViewController
+        vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+        vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
    
     override func viewWillAppear(_ animated: Bool) {
@@ -91,8 +104,14 @@ class ProfileViewController: UIViewController{
         imagePicker.allowsEditing = true
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
+        
+        self.view.addSubview(backButton)
+        backButton.anchor(top: self.view.topAnchor, left: self.view.leftAnchor,
+                          paddingTop: 48, paddingLeft: 16, width: 32, height: 32)
 
+        self.navigationController?.navigationBar.isHidden = true
     }
+    
     
     func updateTextField(user: TutaUser){
         self.DescriptionText.text = user.description
@@ -165,6 +184,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                  self.imgUrl = (url)}
             print(self.imgUrl)
             print("upload a picture")
+
          }
     }
     

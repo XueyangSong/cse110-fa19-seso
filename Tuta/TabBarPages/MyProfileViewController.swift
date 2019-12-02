@@ -109,12 +109,13 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        setUpUI()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setUpUI()
 
     }
     
@@ -265,8 +266,8 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
                 cell?.isSelected = false
                 let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = sb.instantiateViewController(identifier: "ProfileNavigationController")
-                vc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
-                vc.modalPresentationStyle = UIModalPresentationStyle.automatic
+                vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+                vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
                 self.present(vc, animated: true, completion: nil)
             case 1:
                 let cell = tableView.cellForRow(at: indexPath)
