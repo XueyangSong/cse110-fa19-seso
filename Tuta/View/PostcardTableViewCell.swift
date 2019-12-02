@@ -48,18 +48,22 @@ class PostcardTableViewCell: UITableViewCell {
         descriptionLabel.numberOfLines = 0
         profileImageView.layer.cornerRadius = 10
         descriptionLabel.frame = CGRect(x: 164, y: 74, width: 206, height: 55)
+
         
         // imageView
         profileImageView.centerYAnchor.constraint(equalTo: innerView.centerYAnchor).isActive = true
         
         setUpStarRatingView()
+
     }
     
     
     func setUpStarRatingView() {
         ratingCosmosRating.settings.fillMode = .precise
         ratingCosmosRating.settings.starSize = 15
+
         ratingCosmosRating.settings.updateOnTouch = false
+
 
     }
 
