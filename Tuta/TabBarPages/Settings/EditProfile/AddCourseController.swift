@@ -39,6 +39,7 @@ class AddCourseController:UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = false
         setUp()
         save.applyButton()
 //        let userID = Auth.auth().currentUser?.uid

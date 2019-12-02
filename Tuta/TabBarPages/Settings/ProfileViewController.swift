@@ -65,7 +65,8 @@ class ProfileViewController: UIViewController{
     
     @objc func getBack() {
         let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(identifier: "MyProfileViewController") as MyProfileViewController
+        let vc = sb.instantiateViewController(identifier: "HomeTabBarController") as HomeTabBarController
+        vc.indexOfVcToBeDisplay = 2
         vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         self.present(vc, animated: true, completion: nil)
@@ -73,7 +74,7 @@ class ProfileViewController: UIViewController{
    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("Work!")
+//        print("Work!")
         avatar.apply()
 
         dc.delegate = self

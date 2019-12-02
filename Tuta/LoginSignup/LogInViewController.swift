@@ -202,7 +202,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                     
                     // present home tabBarController
                     let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    let vc = sb.instantiateViewController(identifier: "homeTabBarController") as HomeTabBarController
+                    let vc = sb.instantiateViewController(identifier: "HomeTabBarController") as HomeTabBarController
                     vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
                     vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
                     self!.present(vc, animated: true, completion: nil)

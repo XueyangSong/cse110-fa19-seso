@@ -19,6 +19,10 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // MARK: - Properties
     
+    public var defaultURL: String = ""
+    public var defaultName: String = ""
+    public var defaultEmail: String = ""
+    
     let userID = Auth.auth().currentUser?.uid
     var imgUrl = ""
     var imagePicker = UIImagePickerController()
@@ -56,7 +60,7 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     
     let profileImageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = #imageLiteral(resourceName: "profilePic_1")
+        iv.image = #imageLiteral(resourceName: "lightbulb")
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.layer.borderWidth = 3
@@ -124,6 +128,16 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func setUpUI() {
+        
+        // load default user info
+        nameLabel.text = defaultName
+        emailLabel.text = defaultEmail
+        if(defaultURL != "") {
+            self.imageData = try!Data(contentsOf: URL(string:defaultURL)!)
+            self.profileImageView.image = UIImage(data : self.imageData)
+        }
+        
+        // load user info from cloud
         let dc = DataController()
         var profileImageURL : String = ""
         
@@ -292,8 +306,8 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
                 cell?.isSelected = false
                 let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = sb.instantiateViewController(identifier: "ContactUsViewController") as ContactUsViewController
-                vc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
-                vc.modalPresentationStyle = UIModalPresentationStyle.automatic
+                vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+                vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
                 self.present(vc, animated: true, completion: nil)
             }
 
