@@ -47,10 +47,10 @@ class RateViewController: UIViewController {
         if event.status == "finished" {
             setUpRatingUI()
         }
-        else if event.status == "bothRated" {
+        else if event.status == "abothRated" {
             setUpViewSessionUI()
         }
-        else if event.status == "studentRated" {
+        else if event.status == "astudentRated" {
             if userID == event.studentID {
                 setUpViewSessionUI()
             }
@@ -113,7 +113,7 @@ class RateViewController: UIViewController {
     }
     
     @IBAction func onSubmit(_ sender: Any) {
-        if event.status == "bothRated" {
+        if event.status == "abothRated" {
             navigationController?.popViewController(animated: true)
             dismiss(animated: true, completion: nil)
             return
@@ -127,7 +127,7 @@ class RateViewController: UIViewController {
         if userID == event.studentID {
             otherID = event.tutorID
             isStudent = 1
-            if event.status == "studentRated" {
+            if event.status == "astudentRated" {
                 navigationController?.popViewController(animated: true)
                 dismiss(animated: true, completion: nil)
                 return
@@ -135,7 +135,7 @@ class RateViewController: UIViewController {
         } else {
             otherID = event.studentID
             isStudent = 0
-            if event.status == "tutorRated" {
+            if event.status == "atutorRated" {
                 navigationController?.popViewController(animated: true)
                 dismiss(animated: true, completion: nil)
                 return

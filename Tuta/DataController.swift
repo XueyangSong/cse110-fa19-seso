@@ -228,7 +228,7 @@ class DataController{
     
     func ifRequestedBefore(event: Event, completion: @escaping ((Bool)->())){
         let docRef = db.collection("events")
-        docRef.whereField("tutorID", isEqualTo: event.tutorID).whereField("studentID", isEqualTo: event.studentID).whereField("course", isEqualTo: event.course).getDocuments(){
+        docRef.whereField("tutorID", isEqualTo: event.tutorID).whereField("studentID", isEqualTo: event.studentID).whereField("course", isEqualTo: event.course).whereField("status", isEqualTo: "requested").getDocuments(){
             (querySnapshot, err) in
             if let err = err{
                 print("Error getting documents: \(err) in isRequested")
@@ -342,15 +342,15 @@ class DataController{
         }
         else if event.status == "finished" {
             if (isStudent == 1) {
-                event.status = "studentRated"
+                event.status = "astudentRated"
             }
             else {
-                event.status = "tutorRated"
+                event.status = "atutorRated"
             }
             //event.status = "alreadyRated"
         }
         else {
-            event.status = "bothRated"
+            event.status = "abothRated"
         }
         docRef.updateData(["status": event.status])
         completion(true)
