@@ -197,7 +197,7 @@ public class SignUpViewController: UIViewController, UITextFieldDelegate {
               signUpClicked = true
             }
         }
-        SignUpViewController.firstSignUp = 1
+        
         // let isValid = isFieldsValid()
         let name = nameTextField.text
         let email = emailTextField.text
@@ -211,7 +211,7 @@ public class SignUpViewController: UIViewController, UITextFieldDelegate {
                   self.signUpClicked = false
                   return
                 }
-                
+                SignUpViewController.firstSignUp = 1
                 // print("\(user.email!) created")
                 // jump to login page
                 //print("presenting home page")
