@@ -51,12 +51,15 @@ class PostcardTableViewCell: UITableViewCell {
         
         // imageView
         profileImageView.centerYAnchor.constraint(equalTo: innerView.centerYAnchor).isActive = true
+        
+        setUpStarRatingView()
     }
     
     
     func setUpStarRatingView() {
         ratingCosmosRating.settings.fillMode = .precise
         ratingCosmosRating.settings.starSize = 15
+        ratingCosmosRating.settings.updateOnTouch = false
 
     }
 
