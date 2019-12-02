@@ -197,6 +197,9 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                         return
                     }
                     print("login successfull")
+                    
+                    UserDefaults.standard.set(true, forKey: "userLoggedIn")
+                    
                     // present home tabBarController
                     let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let vc = sb.instantiateViewController(identifier: "homeTabBarController") as HomeTabBarController

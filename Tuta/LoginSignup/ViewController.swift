@@ -30,6 +30,17 @@ class ViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if UserDefaults.standard.bool(forKey: "userLoggedIn") {
+            // present home tabBarController
+            let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(identifier: "homeTabBarController") as HomeTabBarController
+            vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+            vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
         print("Sign Up button pressed!")
         //introTextLabel.text = "Yes! we are the best!"
