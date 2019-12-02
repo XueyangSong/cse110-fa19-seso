@@ -169,6 +169,12 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         showToast(message: "Please first verify your email", font: myFont)
     }
     
+    func showAlert(title: String, message: String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     func tryLogIn() {
         if loginClicked{
             return
@@ -177,7 +183,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             loginClicked = true
         }
         
-        
         let email = emailTextField.text
         let password = passwordTextField.text
         if(isFieldsValid()!){
@@ -185,14 +190,14 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                   // [START_EXCLUDE]
                 if error != nil {
                     print("login failed")
-                    self!.showToastForRegisteredEmail()
+                    self!.showAlert(title: "Login Failed", message: error!.localizedDescription)
                     self!.loginClicked = false
                     return
                 }
                 else{
-                    // @TODO go to main page
                     if(!Auth.auth().currentUser!.isEmailVerified){
-                        self!.showToastForVerifyEmail()
+                        // alert for verifying email
+                        self!.showAlert(title: "Please verify your email", message: "We've sent an email to \(email!)")
                         self!.loginClicked = false
                         return
                     }
@@ -208,6 +213,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                     self!.present(vc, animated: true, completion: nil)
                 }
             }
+        }else{
+            loginClicked = false
         }
     }
 

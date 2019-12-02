@@ -82,9 +82,19 @@ class DataController{
         storeImage.putData(uploadData, metadata: metaData, completion: { (metaData, error) in
             storeImage.downloadURL(completion: { (url, error) in
                 if let urlText = url?.absoluteString {
-
                     strURL = urlText
                     print(strURL)
+                    let docRef = self.db.collection("users").document(user.uid)
+                    docRef.getDocument{(document, error) in
+                        if let document = document, document.exists{
+                            let postCards = document.data()!["postCards"] as! [String]
+                            for cardInfo in postCards{
+                                let strArray = cardInfo.components(separatedBy: ",")
+                                let cardRef = self.db.collection("postCards").document(strArray[1]).collection(strArray[2]).document(strArray[0])
+                                cardRef.updateData(["creatorURL": strURL])
+                            }
+                        }
+                    }
                     //print("///////////tttttttt//////// \(strURL)   ////////")
                     user.url = strURL
                     self.uploadUserToCloud(tutaUser: user)
@@ -92,6 +102,7 @@ class DataController{
                 }
             })
         })
+        
     }
     
     func updateRating(uid: String, rating: Double){
