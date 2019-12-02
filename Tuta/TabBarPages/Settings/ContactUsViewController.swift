@@ -22,6 +22,7 @@ class ContactUsViewController: UIViewController {
     @IBOutlet weak var label10: UILabel!
     
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         label1.applyLabel()
