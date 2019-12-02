@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Cosmos
+
 
 class PostcardTableViewCell: UITableViewCell {
 
@@ -16,10 +18,11 @@ class PostcardTableViewCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var numRatingsLabel: UILabel!
-    @IBOutlet weak var courseLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var ratingCosmosRating: CosmosView!
+    
+    var newDescriptionLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,23 +37,27 @@ class PostcardTableViewCell: UITableViewCell {
     }
     
     func setUp() {
+        
         self.backgroundColor = .clear
-        print("set up ui in postcard cell view")
-        print(self.frame.width)
         innerView.frame = CGRect(x: 8, y: 8, width: self.frame.width - 16, height: self.frame.height - 16)
-        print(innerView.frame.width)
-        print(self.frame.origin.x, self.frame.origin.y)
-        print(innerView.frame.origin.x, innerView.frame.origin.y)
         innerView.backgroundColor = UIColor(red:0.85, green:0.93, blue:0.93, alpha:1.0)
         innerView.layer.cornerRadius = 10
         self.addSubview(innerView)
         
-        // description label
-        //descriptionLabel.frame.origin.x = 15
+        // description
+        descriptionLabel.numberOfLines = 0
+        profileImageView.layer.cornerRadius = 10
+        descriptionLabel.frame = CGRect(x: 164, y: 74, width: 206, height: 55)
         
-        descriptionLabel.textAlignment = .left
-        print(descriptionLabel.frame.width)
-        print(descriptionLabel.frame.origin.x)
+        // imageView
+        profileImageView.centerYAnchor.constraint(equalTo: innerView.centerYAnchor).isActive = true
+    }
+    
+    
+    func setUpStarRatingView() {
+        ratingCosmosRating.settings.fillMode = .precise
+        ratingCosmosRating.settings.starSize = 15
+
     }
 
 }

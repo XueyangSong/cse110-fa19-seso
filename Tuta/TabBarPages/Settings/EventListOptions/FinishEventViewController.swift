@@ -9,6 +9,8 @@
 import UIKit
 import FirebaseAuth
 
+private let darkBlueColor = UIColor(red:0.24, green:0.44, blue:0.64, alpha:1.0)
+
 class FinishEventViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -37,6 +39,7 @@ class FinishEventViewController: UIViewController {
     func setUpUI() {
         
         finishButton.setTitle("Finished", for: .normal)
+        finishButton.backgroundColor = darkBlueColor
     }
     
     // setter

@@ -13,6 +13,7 @@ import FirebaseAuth
 import Firebase
 
 private let reuseIdentifier = "EventListCell"
+private let darkBlueColor = UIColor(red:0.24, green:0.44, blue:0.64, alpha:1.0)
 
 
 class EventListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -132,14 +133,14 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // build view
         let view = UIView()
-        view.backgroundColor = UIColor(red: 55/255, green: 120/255, blue: 250/255, alpha: 1)
+        view.backgroundColor = darkBlueColor
         
         // build button
         let button = UIButton(type: .system)
         view.addSubview(button)
         button.setTitle("close", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor(red: 55/255, green: 120/255, blue: 250/255, alpha: 1)
+        button.backgroundColor = darkBlueColor
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.tag = section
         button.addTarget(self, action: #selector(handleExpandClose), for: .touchUpInside)
