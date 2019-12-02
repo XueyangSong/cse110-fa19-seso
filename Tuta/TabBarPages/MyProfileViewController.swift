@@ -292,8 +292,8 @@ class MyProfileViewController: UIViewController, UITableViewDelegate, UITableVie
                 cell?.isSelected = false
                 let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = sb.instantiateViewController(identifier: "ContactUsViewController") as ContactUsViewController
-                vc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
-                vc.modalPresentationStyle = UIModalPresentationStyle.automatic
+                vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+                vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
                 self.present(vc, animated: true, completion: nil)
             }
 

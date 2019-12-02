@@ -737,7 +737,7 @@ Jiahe Liu      jil061@ucsd.edu </string>
         <!--Home Tab Bar Controller-->
         <scene sceneID="EAQ-Ss-Y0Z">
             <objects>
-                <tabBarController storyboardIdentifier="homeTabBarController" id="HFW-nU-lyf" customClass="HomeTabBarController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomeTabBarController" id="HFW-nU-lyf" customClass="HomeTabBarController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mmk-UE-zQk" customClass="CustomizedTabBar" customModule="Tuta" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -809,7 +809,7 @@ Jiahe Liu      jil061@ucsd.edu </string>
         <!--SearchPage-->
         <scene sceneID="OQc-mC-3lL">
             <objects>
-                <viewController title="SearchPage" id="3R0-9R-WQx" customClass="SearchPageViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchPageViewController" title="SearchPage" id="3R0-9R-WQx" customClass="SearchPageViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NNA-kY-zKs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -957,7 +957,7 @@ Jiahe Liu      jil061@ucsd.edu </string>
         <!--PopWindowViewController-->
         <scene sceneID="0HV-C6-MkE">
             <objects>
-                <viewController id="Grb-Z4-uQr" userLabel="PopWindowViewController" customClass="PopWindowViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PopWindowViewController" id="Grb-Z4-uQr" userLabel="PopWindowViewController" customClass="PopWindowViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FNa-ed-yrX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1490,9 +1490,6 @@ Jiahe Liu      jil061@ucsd.edu </string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="WrC-ET-yHO"/>
-
-
         <segue reference="biD-n9-DuG"/>
-
     </inferredMetricsTieBreakers>
 </document>
