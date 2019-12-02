@@ -24,6 +24,7 @@ class DescriptionViewController:UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = false
         save.applyButton()
 //        let userID = Auth.auth().currentUser?.uid
         DescriptionTextView.delegate = self

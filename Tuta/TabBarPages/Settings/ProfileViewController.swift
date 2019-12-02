@@ -74,7 +74,7 @@ class ProfileViewController: UIViewController{
    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("Work!")
+//        print("Work!")
         avatar.apply()
 
         dc.delegate = self
