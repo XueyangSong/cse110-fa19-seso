@@ -58,6 +58,7 @@ class ChangeNumberController:UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = false
         dc.getUserFromCloud(userID: self.userID!){(e) in self.user = (e)
             self.numberText.text = self.user.phone
         }
