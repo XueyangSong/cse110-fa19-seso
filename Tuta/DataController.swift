@@ -95,7 +95,6 @@ class DataController{
                             }
                         }
                     }
-                    //print("///////////tttttttt//////// \(strURL)   ////////")
                     user.url = strURL
                     self.uploadUserToCloud(tutaUser: user)
                     completion(strURL)
@@ -132,6 +131,15 @@ class DataController{
         let cardID = Firestore.firestore().collection("postCards").document(type).collection(course).document().documentID
     //Firestore.firestore().collection("postCards").document(type).collection(course).document(cardID).setData(["placeHolder":"just book this place"])
         return cardID
+    }
+    
+    func checkPostcardExists(cardInfo : [String: Any], completion: @escaping ((Bool)->())){
+        let docRef = db.collection("postCards").document(cardInfo["type"] as! String).collection(cardInfo["course"] as! String).document(cardInfo["cardID"] as! String)
+        docRef.getDocument{ (document, error) in
+            if let document = document{
+                completion(document.exists)
+            }
+        }
     }
     
     func getCardFromCloud(cardID : String, type: String, course : String, completion: @escaping ((PostCard) -> ())){

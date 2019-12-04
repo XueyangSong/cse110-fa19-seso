@@ -51,7 +51,7 @@ class ChangePasswordViewController: UIViewController {
 
             if error != nil{
 
-                let resetFailedAlert = UIAlertController(title: "Reset Failed", message: "Error: \(String(describing: error?.localizedDescription))", preferredStyle: .alert)
+                let resetFailedAlert = UIAlertController(title: "Reset Failed", message: "Error: \(String(describing: error!.localizedDescription))", preferredStyle: .alert)
 
                 resetFailedAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
 
@@ -69,14 +69,5 @@ class ChangePasswordViewController: UIViewController {
 
         })
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
 }
