@@ -75,6 +75,16 @@ class Event{
         ]
     }
     
+    func getOtherPersonId() -> String {
+//        if requesterID == studentID {
+//            return tutorID
+//        }
+//        else if requesterID == tutorID {
+//            return studentID
+//        }
+        return requesterID
+    }
+    
     
     func eventToString(uid: String) -> String {
         if (self.status == "requested"){

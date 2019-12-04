@@ -28,6 +28,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     var requestedEventsArray = [Event]()
     var inProgressEventsArray = [Event]()
     var finishedEventsArray = [Event]()
+    var otherPersonId : String = ""
 
     
     // 2-D array
@@ -198,6 +199,8 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         cell.textLabel?.text = event.eventToString(uid: self.uid!)
         
+        otherPersonId = event.getOtherPersonId()
+        
         return cell
         
     }
@@ -227,6 +230,8 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
 //            vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
                         
             // get event
+            vc.titleString = String((tableView.cellForRow(at: indexPath)?.textLabel!.text)!)
+            vc.otherPersonId = self.otherPersonId
             let event = SectionArray[indexPath.section].events[indexPath.row]
             // pass event ID into view controller
             vc.setEvent(event: event)

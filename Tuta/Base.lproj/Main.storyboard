@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
@@ -618,8 +618,8 @@ Jiahe Liu      jil061@ucsd.edu </string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Accept Request?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EqX-gv-4ik">
-                                <rect key="frame" x="61" y="197" width="292" height="48"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Accept Request?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EqX-gv-4ik">
+                                <rect key="frame" x="20" y="197" width="374" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
@@ -637,6 +637,20 @@ Jiahe Liu      jil061@ucsd.edu </string>
                                     <action selector="AcceptButtonPressed:" destination="7k0-qL-Qrq" eventType="touchUpInside" id="92m-WV-qLP"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDw-nL-2MH">
+                                <rect key="frame" x="41" y="281" width="332" height="117"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SwO-s8-z6K">
+                                <rect key="frame" x="41" y="283" width="332" height="112"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="viewOtherProfileButtonPressed:" destination="7k0-qL-Qrq" eventType="touchUpInside" id="fCq-hu-Bxc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="IXp-3i-uTG"/>
@@ -644,6 +658,7 @@ Jiahe Liu      jil061@ucsd.edu </string>
                     <connections>
                         <outlet property="AcceptButton" destination="tdD-x4-Ysf" id="neJ-2m-Z5g"/>
                         <outlet property="TitleLabel" destination="EqX-gv-4ik" id="7fz-ve-jJd"/>
+                        <outlet property="contentLabel" destination="zDw-nL-2MH" id="7P2-aP-ikW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gJs-vQ-Glf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1088,7 +1103,7 @@ Jiahe Liu      jil061@ucsd.edu </string>
         <!--View Profile View Controller-->
         <scene sceneID="RPk-3S-nff">
             <objects>
-                <viewController id="RAt-iE-2Re" customClass="ViewProfileViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewProfileViewController" id="RAt-iE-2Re" customClass="ViewProfileViewController" customModule="Tuta" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n4U-bR-4Wi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1529,7 +1544,6 @@ Jiahe Liu      jil061@ucsd.edu </string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="WrC-ET-yHO"/>
-
         <segue reference="biD-n9-DuG"/>
     </inferredMetricsTieBreakers>
 </document>
