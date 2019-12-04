@@ -63,8 +63,6 @@ class PostcardTableViewCell: UITableViewCell {
         ratingCosmosRating.settings.starSize = 15
 
         ratingCosmosRating.settings.updateOnTouch = false
-
-
     }
 
 }
