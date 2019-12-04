@@ -19,6 +19,7 @@ class PostCard{
     var type : String
     var numRate: Int
     var rating: Double
+    var creatorURL: String
 
     
     init(){
@@ -32,11 +33,12 @@ class PostCard{
         self.type = ""
         self.rating = 0.0
         self.numRate = 0
+        self.creatorURL = ""
 
     }
     
     init(creatorID : String, creatorName: String, description : String, date : String, time : String, 
-         cardID : String, course : String, type : String, rating: Double, numRate: Int){
+         cardID : String, course : String, type : String, rating: Double, numRate: Int, creatorURL: String){
 
         self.cardID = cardID
         self.description = description
@@ -48,6 +50,7 @@ class PostCard{
         self.type = type
         self.rating = rating
         self.numRate = numRate
+        self.creatorURL = creatorURL
     }
     
     init(value : Dictionary<String, Any>){
@@ -59,8 +62,9 @@ class PostCard{
         self.course = value["course"] as? String ?? ""
         self.type = value["type"] as? String ?? ""
         self.cardID = value["cardID"] as? String ?? ""
-        self.rating = value["rate"] as? Double ?? 0.0
+        self.rating = value["rating"] as? Double ?? 0.0
         self.numRate = value["numRate"] as? Int ?? 0
+        self.creatorURL = value["creatorURL"] as? String ?? ""
         
         // Round the rate to the first decimal place
         self.rating = Double(round(10 * self.rating) / 10)
@@ -81,7 +85,8 @@ class PostCard{
             "course" : self.course,
             "type" : self.type,
             "rating" : self.rating,
-            "numRate": self.numRate
+            "numRate": self.numRate,
+            "creatorURL": self.creatorURL
 
         ]
     }

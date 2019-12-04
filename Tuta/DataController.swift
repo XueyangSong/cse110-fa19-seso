@@ -82,16 +82,26 @@ class DataController{
         storeImage.putData(uploadData, metadata: metaData, completion: { (metaData, error) in
             storeImage.downloadURL(completion: { (url, error) in
                 if let urlText = url?.absoluteString {
-
                     strURL = urlText
                     print(strURL)
-                    //print("///////////tttttttt//////// \(strURL)   ////////")
+                    let docRef = self.db.collection("users").document(user.uid)
+                    docRef.getDocument{(document, error) in
+                        if let document = document, document.exists{
+                            let postCards = document.data()!["postCards"] as! [String]
+                            for cardInfo in postCards{
+                                let strArray = cardInfo.components(separatedBy: ",")
+                                let cardRef = self.db.collection("postCards").document(strArray[1]).collection(strArray[2]).document(strArray[0])
+                                cardRef.updateData(["creatorURL": strURL])
+                            }
+                        }
+                    }
                     user.url = strURL
                     self.uploadUserToCloud(tutaUser: user)
                     completion(strURL)
                 }
             })
         })
+        
     }
     
     func updateRating(uid: String, rating: Double){
@@ -121,6 +131,15 @@ class DataController{
         let cardID = Firestore.firestore().collection("postCards").document(type).collection(course).document().documentID
     //Firestore.firestore().collection("postCards").document(type).collection(course).document(cardID).setData(["placeHolder":"just book this place"])
         return cardID
+    }
+    
+    func checkPostcardExists(cardInfo : [String: Any], completion: @escaping ((Bool)->())){
+        let docRef = db.collection("postCards").document(cardInfo["type"] as! String).collection(cardInfo["course"] as! String).document(cardInfo["cardID"] as! String)
+        docRef.getDocument{ (document, error) in
+            if let document = document{
+                completion(document.exists)
+            }
+        }
     }
     
     func getCardFromCloud(cardID : String, type: String, course : String, completion: @escaping ((PostCard) -> ())){
@@ -156,8 +175,6 @@ class DataController{
             }
         }
     }
-    
-    
     
     func uploadCardToCloud(postCard : PostCard, completion: @escaping ((Bool) -> ())){
         let path = db.collection("postCards").document(postCard.type).collection(postCard.course)
@@ -219,14 +236,14 @@ class DataController{
     
     func ifRequestedBefore(event: Event, completion: @escaping ((Bool)->())){
         let docRef = db.collection("events")
-        docRef.whereField("tutorID", isEqualTo: event.tutorID).whereField("studentID", isEqualTo: event.studentID).whereField("course", isEqualTo: event.course).getDocuments(){
+        docRef.whereField("tutorID", isEqualTo: event.tutorID).whereField("studentID", isEqualTo: event.studentID).whereField("course", isEqualTo: event.course).whereField("status", isEqualTo: "requested").getDocuments(){
             (querySnapshot, err) in
             if let err = err{
                 print("Error getting documents: \(err) in isRequested")
                 //completion(true)
             } else{
-                if querySnapshot?.documents.count != 0{
-                   completion(true)
+                if querySnapshot?.documents.count != 0 {
+                    completion(true)
                 }
                 else{
                     completion(false)
@@ -323,13 +340,25 @@ class DataController{
     }
     
     
-    func updateEventStatus(event : Event, completion: @escaping ((Bool) -> ())){
+    func updateEventStatus(event : Event, isStudent : Int, completion: @escaping ((Bool) -> ())){
         let docRef = db.collection("events").document(event.eventID)
         if event.status == "requested"{
             event.status = "inProgress"
         }
-        else{
+        else if event.status == "inProgress" {
             event.status = "finished"
+        }
+        else if event.status == "finished" {
+            if (isStudent == 1) {
+                event.status = "astudentRated"
+            }
+            else {
+                event.status = "atutorRated"
+            }
+            //event.status = "alreadyRated"
+        }
+        else {
+            event.status = "abothRated"
         }
         docRef.updateData(["status": event.status])
         completion(true)

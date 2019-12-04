@@ -16,12 +16,13 @@ protocol SignUpDelegate: class{
     func didReceiveData(value: String)
 }
 */
-class SignUpViewController: UIViewController, UITextFieldDelegate {
+public class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var genderField: UISegmentedControl!
     var activeField: UITextField?
     var distance: CGFloat? = 0
     var signUpClicked = false
+    public static var firstSignUp = 0
     //weak var signUpDelegate: SignUpDelegate?
     
     // get a reference for database
@@ -32,20 +33,20 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         setUpDelegate()
         registerForKeyboardNotifications()
     }
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         setUp()
         
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         deregisterForKeyboardNotification()
@@ -88,13 +89,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     // *** textField ***
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
         //print("begin editing")
         activeField = textField
         //print(activeField?.placeholder ?? "")
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    public func textFieldDidEndEditing(_ textField: UITextField) {
         //print("end editing")
         if textField == emailTextField || textField == nameTextField {
             if emailTextField.text != "" && nameTextField.text != "" {
@@ -104,7 +105,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         activeField = nil
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //print("done button clicked")
         self.view.endEditing(true)
         return true
@@ -159,6 +160,15 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             showToast(message: "Please enter a valid email", font: myFont)
             return false
         }
+        else {
+            let emailRegEx = "[A-Z0-9a-z._%+-]+@ucsd+\\.[A-Za-z]{2,64}"
+            
+            let emailPattern = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+            if !emailPattern.evaluate(with: email) {
+                showToast(message: "Please enter a UCSD email address", font: myFont)
+                return false
+            }
+        }
         
         // check password length
         let password = passwordTextField.text;
@@ -173,16 +183,28 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     func showToastForRegisteredEmail() {
         showToast(message: "This email has already registered", font: myFont)
     }
+    
+    func showAlert(title: String, message: String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
     // *** sign up ***
     
     func trySignUp() {
+        let isValid = isFieldsValid()
         if signUpClicked{
             return
         }
         else{
-            signUpClicked = true
+            if isValid! {
+              signUpClicked = true
+            }
         }
-        let isValid = isFieldsValid()
+        
+        // let isValid = isFieldsValid()
         let name = nameTextField.text
         let email = emailTextField.text
         let password = passwordTextField.text
@@ -190,17 +212,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             Auth.auth().createUser(withEmail: email!, password: password!) { authResult, error in
               // [START_EXCLUDE]
                 guard let user = authResult?.user, error == nil else {
-                    self.showToastForRegisteredEmail()
+                    
+                  self.showAlert(title: "SignUp Failed", message: error!.localizedDescription)
                   print("failed")
                   self.signUpClicked = false
                   return
                 }
-                
-                // print("\(user.email!) created")
-                // jump to login page
-                //print("presenting home page")
+                SignUpViewController.firstSignUp = 1
                 Auth.auth().currentUser!.sendEmailVerification()
-                //self.signUpDelegate?.didReceiveData(value: "Verification email has been sent")
                 
                 
                 //store user data
@@ -229,11 +248,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
                 vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
                 self.present(vc, animated: true, completion: nil)
-                
-                //vc.showToast(message: "verification email sent", font: self.myFont)
-                
               }
-              // [END_EXCLUDE]
         }
     }
     
@@ -247,10 +262,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             
             if activeField != nil {
                 distance = keyboardY - (activeField?.frame.origin.y)! - (activeField?.frame.height)! * 2 - self.view.frame.origin.y
-                //print(distance!)
                 if (distance?.isLess(than: CGFloat.zero))! {
                     self.view.frame.origin.y += distance!
-                    //print("screen moved")
                 }
             }
         }
@@ -261,15 +274,5 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         self.view.frame.origin.y = 0
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

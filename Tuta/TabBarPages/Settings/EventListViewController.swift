@@ -13,6 +13,7 @@ import FirebaseAuth
 import Firebase
 
 private let reuseIdentifier = "EventListCell"
+private let darkBlueColor = UIColor(red:0.24, green:0.44, blue:0.64, alpha:1.0)
 
 
 class EventListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -24,48 +25,67 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     var tableView: UITableView!
     var eventList = [Event]()
     // events arrays
-    var requestedEventsArray = [String]()
-    var inProgressEventsArray = [String]()
-    var finishedEventsArray = [String]()
+    var requestedEventsArray = [Event]()
+    var inProgressEventsArray = [Event]()
+    var finishedEventsArray = [Event]()
+    var otherPersonId : String = ""
+
     
     // 2-D array
     
     var SectionArray = [
-        ExpandableEventsArray(isExpanded: true, events: [String]()),
-        ExpandableEventsArray(isExpanded: true, events: [String]()),
-        ExpandableEventsArray(isExpanded: true, events: [String]()),
+        ExpandableEventsArray(isExpanded: true, events: [Event]()),
+        ExpandableEventsArray(isExpanded: true, events: [Event]()),
+        ExpandableEventsArray(isExpanded: true, events: [Event]()),
 //        ExpandableEventsArray(isExpanded: true, events: []),
 //        ExpandableEventsArray(isExpanded: true, events: []),
 //        ExpandableEventsArray(isExpanded: true, events: []),
     ]
     
     // MARK: - Init
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUpSectionArray()
+        setUpUI()
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpUI()
         setUpSectionArray()
-//        fetchEvents()
+
+        
     }
     
-    func setUpSectionArray(){
+    public func setUpSectionArray(){
         self.dc.getEventsListFromCloud(userID: uid!){
             (e) in self.eventList = (e)
+            self.requestedEventsArray = []
+            self.inProgressEventsArray = []
+            self.finishedEventsArray = []
+            
             for event in self.eventList{
                 if event.status == "requested"{
-                    self.requestedEventsArray.append(event.eventToString())
+                    self.requestedEventsArray.append(event)
                 }
                 else if event.status == "inProgress"{
-                    self.inProgressEventsArray.append(event.eventToString())
+                    self.inProgressEventsArray.append(event)
                 }
                 else{
-                    self.finishedEventsArray.append(event.eventToString())
+                    self.finishedEventsArray.append(event)
                 }
             }
+            
             let requestList = ExpandableEventsArray(isExpanded: true, events: self.requestedEventsArray)
             let inProgressList = ExpandableEventsArray(isExpanded: true, events: self.inProgressEventsArray)
             let finishedList = ExpandableEventsArray(isExpanded: true, events: self.finishedEventsArray)
+            
             self.SectionArray = [requestList, inProgressList, finishedList]
+            
+            // setup table view
+            self.configureTableView()
+
         }
     }
     
@@ -83,24 +103,9 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func setUpUI() {
-        configureTableView()
+        //configureTableView()
         
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.barTintColor = UIColor(red: 55/255, green: 120/255, blue: 250/255, alpha: 1)
-        navigationItem.title = "Settings"
-    }
-    
-    
-    func eventToString(event: Event) -> String {
         
-        // properties
-        let courseName = event.course
-        let studentName = event.studentName
-        let tutorName = event.tutorName
-        
-        return "\(courseName) --- tutor: \(tutorName), student: \(studentName)"
     }
 
     
@@ -116,30 +121,27 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
             return 0
         }
         
+        if (section == 2) {
+//            print("section is: " + String(section))
+            let c = SectionArray[2].events.count
+//            print(SectionArray[2].events)
+        }
         return SectionArray[section].events.count
 
-        
-//        guard let section = EventListSection(rawValue: section) else { return 0 }
-//
-//        switch section {
-//        case .requested: return 5 //SocialOptions.allCases.count
-//        case .inProgress: return 5 //CommunicationOptions.allCases.count
-//        case .finished: return 5
-//        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         // build view
         let view = UIView()
-        view.backgroundColor = UIColor(red: 55/255, green: 120/255, blue: 250/255, alpha: 1)
+        view.backgroundColor = darkBlueColor
         
         // build button
         let button = UIButton(type: .system)
         view.addSubview(button)
         button.setTitle("close", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor(red: 55/255, green: 120/255, blue: 250/255, alpha: 1)
+        button.backgroundColor = darkBlueColor
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.tag = section
         button.addTarget(self, action: #selector(handleExpandClose), for: .touchUpInside)
@@ -195,38 +197,24 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         let event = SectionArray[indexPath.section].events[indexPath.row]
         
-        cell.textLabel?.text = event
+        cell.textLabel?.text = event.eventToString(uid: self.uid!)
+        
         
         return cell
         
-//        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! EventListCell
-//        guard let section = EventListSection(rawValue: indexPath.section) else { return UITableViewCell() }
-//
-//        switch section {
-//        case .requested:
-//            let type = "requested"
-//            print(type)
-//            //get cells
-//            // color
-//        case .inProgress:
-//            let type = "inProgress"
-//            print(type)
-//            // color
-//        case .finished:
-//            let type = "finished"
-//            print(type)
-//            // set color
-//        }
-//
-//        return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // get event
+        let event = SectionArray[indexPath.section].events[indexPath.row]
+        // remove event from sectionArray
+        SectionArray[indexPath.section].events.remove(at: indexPath.row)
+        
         if editingStyle == .delete {
-            print("Deleted")
-
-            // remove event from the array and the database
-            //self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            print("Delet event")
+            let dc = DataController()
+            dc.deleteEvent(event: event)
+            setUpSectionArray()
         }
     }
     
@@ -234,23 +222,55 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         print("Selected row: ")
         print(indexPath)
         
-        let cell = tableView.cellForRow(at: indexPath)
-        //let rateViewController = RateViewController(eventID: "string")
-        //navigationController?.pushViewController(UIViewController(), animated: true)
-        self.performSegue(withIdentifier: "navToRatePage", sender: cell)
-    }
-    
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Find the selected event
-        let cell = sender as! UITableViewCell
-        let indexPath = tableView.indexPath(for: cell)!
-        let event = finishedEventsArray[indexPath.row]
-        let eventID = event.eventID
-        print("Selected event ID is >>>>>>>>>>>>>>>>>>> " + eventID)
+        if(indexPath.section == 0) {
+            let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(identifier: "ConfirmEventViewController") as ConfirmEventViewController
+//            vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+//            vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+                        
+            // get event
+            vc.titleString = String((tableView.cellForRow(at: indexPath)?.textLabel!.text)!)
+            vc.otherPersonId = self.otherPersonId
+            let event = SectionArray[indexPath.section].events[indexPath.row]
+            // pass event ID into view controller
+            vc.setEvent(event: event)
+            // pass self to view controller
+            vc.parentVC = self
+            vc.otherPersonId = event.getOtherPersonId()
+
+            self.present(vc, animated: true, completion: nil)
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
         
-        // Pass the eventID to the rate view controller
-        let rateViewController = segue.destination as! RateViewController
-        rateViewController.eventID = eventID
-    }*/
+        if(indexPath.section == 1) {
+            let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(identifier: "FinishEventViewController") as FinishEventViewController
+            //            vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+            //            vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+                                    
+            // get event
+            let event = SectionArray[indexPath.section].events[indexPath.row]
+            // pass event ID into view controller
+            vc.setEvent(event: event)
+            // pass self to view controller
+            vc.parentVC = self
+                                    
+            self.present(vc, animated: true, completion: nil)
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        
+        if(indexPath.section == 2) {
+            let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(identifier: "RateViewController") as RateViewController
+            
+            // get event
+            let event = SectionArray[indexPath.section].events[indexPath.row]
+            // pass event ID into view controller
+            vc.setEvent(event: event)
+            
+            self.present(vc, animated: true, completion: nil)
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        
+    }
 }

@@ -29,11 +29,18 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         setUpDelegate()
         
         registerForKeyboardNotifications()
+        
+        if (SignUpViewController.firstSignUp == 1) {
+            showToastForSignUp()
+            SignUpViewController.firstSignUp = 0
+            print ("toast for sign up")
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+
     }
 
 
@@ -62,6 +69,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }
 
     func deregisterForKeyboardNorifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
@@ -115,46 +123,24 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         toastLabel.layer.cornerRadius = 10;
         toastLabel.clipsToBounds  =  true
         self.view.addSubview(toastLabel)
-        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 6.0, delay: 0.1, options: .curveEaseOut, animations: {
              toastLabel.alpha = 0.0
         }, completion: {(isCompleted) in
             toastLabel.removeFromSuperview()
         })
     }
     
-    // check if each field is valid
-    func isFieldsValid()->Bool?{
-        // check empty fields
-        if  emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""{
-            showToast(message: "Please fill in every field", font: myFont)
-            return false
-        }
-        
-        // check email pattern
-        let email = emailTextField.text;
-        if !isValidEmail(emailStr: email!){
-            showToast(message: "Please enter a valid email", font: myFont)
-            return false
-        }
-        
-        // check password length
-        let password = passwordTextField.text;
-        if password!.count < 8{
-            showToast(message: "Password is too short", font: myFont)
-            return false
-        }
-        
-        return true
+    func showToastForSignUp() {
+        showToast(message: "verification email sent", font: self.myFont)
     }
     
+   
     // *** Log In ***
-    func showToastForRegisteredEmail() {
-        showToast(message: "Wrong email and password", font: myFont)
-    }
     
-    func showToastForVerifyEmail() {
-        showToast(message: "Please first verify your email", font: myFont)
+    func showAlert(title: String, message: String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func tryLogIn() {
@@ -164,32 +150,34 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         else{
             loginClicked = true
         }
+        
         let email = emailTextField.text
         let password = passwordTextField.text
-        if(isFieldsValid()!){
-            Auth.auth().signIn(withEmail: email!, password: password!) { [weak self] user, error in
+        Auth.auth().signIn(withEmail: email!, password: password!) { [weak self] user, error in
                   // [START_EXCLUDE]
-                if error != nil {
-                    print("login failed")
-                    self!.showToastForRegisteredEmail()
+            if error != nil {
+                print("login failed")
+                self!.showAlert(title: "Login Failed", message: error!.localizedDescription)
+                self!.loginClicked = false
+                return
+            }
+            else{
+                if(!Auth.auth().currentUser!.isEmailVerified){
+                    // alert for verifying email
+                    self!.showAlert(title: "Please verify your email", message: "We've sent an email to \(email!)")
                     self!.loginClicked = false
                     return
                 }
-                else{
-                    // @TODO go to main page
-                    if(!Auth.auth().currentUser!.isEmailVerified){
-                        self!.showToastForVerifyEmail()
-                        self!.loginClicked = false
-                        return
-                    }
-                    print("login successfull")
-                    // present home tabBarController
-                    let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    let vc = sb.instantiateViewController(identifier: "homeTabBarController") as HomeTabBarController
-                    vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
-                    vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-                    self!.present(vc, animated: true, completion: nil)
-                }
+                print("login successfull")
+                    
+                UserDefaults.standard.set(true, forKey: "userLoggedIn")
+                    
+                // present home tabBarController
+                let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = sb.instantiateViewController(identifier: "HomeTabBarController") as HomeTabBarController
+                vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+                vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+                self!.present(vc, animated: true, completion: nil)
             }
         }
     }
@@ -214,25 +202,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     @objc func keyboardWillHide(notification: Notification) {
         self.view.frame.origin.y = 0
     }
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
-/*
-extension LogInViewController: SignUpDelegate{
-    func didReceiveData(value: String) {
-        showToast(message: value, font: myFont)
-    }
-}
-*/
+
