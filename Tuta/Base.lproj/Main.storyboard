@@ -970,11 +970,11 @@ Jiahe Liu      jil061@ucsd.edu </string>
                                     <outlet property="delegate" destination="3R0-9R-WQx" id="7dv-u6-eDp"/>
                                 </connections>
                             </searchBar>
-                            <segmentedControl opaque="NO" contentMode="center" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ch3-HB-QOl">
-                                <rect key="frame" x="32" y="50" width="350" height="32"/>
+                            <segmentedControl opaque="NO" contentMode="center" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ch3-HB-QOl">
+                                <rect key="frame" x="57" y="44" width="300" height="32"/>
                                 <segments>
-                                    <segment title="Searching Student"/>
-                                    <segment title="Searching Tutor"/>
+                                    <segment title="Student"/>
+                                    <segment title="Tutor"/>
                                 </segments>
                             </segmentedControl>
                         </subviews>
@@ -1428,8 +1428,8 @@ Jiahe Liu      jil061@ucsd.edu </string>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New phone number:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I4R-eO-GaI">
-                                <rect key="frame" x="100" y="135" width="219" height="46"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="new phone number:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I4R-eO-GaI">
+                                <rect key="frame" x="100" y="135" width="214" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>

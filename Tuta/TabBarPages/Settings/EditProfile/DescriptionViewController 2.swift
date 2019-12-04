@@ -1,0 +1,62 @@
+//
+//  DescriptionView.swift
+//  Tuta
+//
+//  Created by Alex Li on 11/6/19.
+//  Copyright © 2019 Zhen Duan. All rights reserved.
+//
+
+import Foundation
+import UIKit
+import FirebaseFirestore
+import FirebaseAuth
+import Firebase
+
+
+class DescriptionViewController:UIViewController{
+    
+    let dc = DataController()
+    let userID = Auth.auth().currentUser?.uid
+    var user : TutaUser = TutaUser()
+    @IBOutlet weak var save: UIButton!
+    
+    @IBOutlet weak var DescriptionTextView: UITextView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = false
+        save.applyButton()
+//        let userID = Auth.auth().currentUser?.uid
+        DescriptionTextView.delegate = self
+        DescriptionTextView.sizeThatFits(CGSize(width: DescriptionTextView.frame.size.width, height: DescriptionTextView.frame.size.height))
+        dc.getUserFromCloud(userID: self.userID!){(e) in self.user = (e)
+            self.DescriptionTextView.text = self.user.description
+        }
+//        print(type(of: DescriptionTextView))
+//        print(type(of: self))
+        //DescriptionButton.backgroundColor = ;
+    }
+
+    @IBAction func EnterTapped(_ sender: Any) {
+//        let userID = Auth.auth().currentUser?.uid
+        
+        dc.getUserFromCloud(userID: userID!){(e) in self.user = (e)
+            self.user.description = self.DescriptionTextView.text!
+            self.dc.uploadUserToCloud(tutaUser: self.user)
+            
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        DescriptionTextView.resignFirstResponder()
+    }
+}
+
+extension DescriptionViewController : UITextViewDelegate{
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        textView.resignFirstResponder()
+        return true
+    }
+    
+}
+
