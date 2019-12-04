@@ -970,7 +970,7 @@ Jiahe Liu      jil061@ucsd.edu </string>
                                     <outlet property="delegate" destination="3R0-9R-WQx" id="7dv-u6-eDp"/>
                                 </connections>
                             </searchBar>
-                            <segmentedControl opaque="NO" contentMode="center" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ch3-HB-QOl">
+                            <segmentedControl opaque="NO" contentMode="center" restorationIdentifier="Student" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ch3-HB-QOl">
                                 <rect key="frame" x="57" y="44" width="300" height="32"/>
                                 <segments>
                                     <segment title="Searching Student"/>

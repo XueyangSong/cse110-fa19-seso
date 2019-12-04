@@ -230,6 +230,12 @@ extension SearchPageViewController: UISearchBarDelegate{
         view.endEditing(true)
         var type = self.searchForSegment.titleForSegment(at: index)!
         type = type.lowercased()
+        if (type == "searching student") {
+            type = "student"
+        }
+        else {
+            type = "tutor"
+        }
         
         dc.getCardsCollection(type: type, course: course) { (postsFromCloud) in
             self.filteredPosts = postsFromCloud
