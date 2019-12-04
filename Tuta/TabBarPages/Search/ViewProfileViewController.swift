@@ -72,7 +72,7 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
     
     let myFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
     @IBAction func RequestButtonClicked(_ sender: Any) {
-        RequestButton.isEnabled = false
+        //RequestButton.isEnabled = false
         var type = post?["type"] as? String
         var event = Event()
         let myFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
@@ -99,6 +99,7 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
                     self.dc.ifRequestedBefore(event: event){ (b) in isRequested = (b)
                         if(isRequested){
                             self.showToast(message: "You have requested before", font: myFont)
+                            print("requested before")
                             return;
                         }
                         else{
@@ -116,6 +117,7 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
                         (b) in isRequested = (b)
                         if(isRequested){
                             self.showToast(message: "You have requested before", font: myFont)
+                            print("requested before")
                             return;
                         }
                         else{
@@ -171,40 +173,43 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
             formatter.dateFormat = "hh:mm:ss"
             let time = formatter.string(from: Date())
             
+            
             dc.getUserFromCloud(userID: uid){
                 (u) in self.selfUser = u
-                if(type! == "tutor"){
-
-                    event = Event(studentID: self.uid, tutorID: self.post?["creatorID"] as! String, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.selfUser.name, tutorName: self.post?["creatorName"] as! String, requesterID: self.uid)
-
-                    
-                    self.dc.ifRequestedBefore(event: event){ (b) in isRequested = (b)
-                        if(isRequested){
-                            self.RequestButton.isEnabled = false
-                            return
-                        }
-                        else{
-                            self.dc.deleteEvent(event: event)
-                        }
-                    }
-                }
-                else{
-
-                    event = Event(studentID: self.post?["creatorID"] as! String, tutorID: self.uid, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.post?["creatorName"] as! String, tutorName: self.selfUser.name, requesterID: self.uid)
-
-                    self.dc.ifRequestedBefore(event: event){
-                        (b) in isRequested = (b)
-                        if(isRequested){
-                            self.RequestButton.isEnabled = false
-                            return
-                        }
-                        else{
-                            self.dc.deleteEvent(event: event)
-                        }
-                    }
-                }
+//                if(type! == "tutor"){
+//
+//                    event = Event(studentID: self.uid, tutorID: self.post?["creatorID"] as! String, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.selfUser.name, tutorName: self.post?["creatorName"] as! String, requesterID: self.uid)
+//
+//
+//                    self.dc.ifRequestedBefore(event: event){ (b) in isRequested = (b)
+//                        if(isRequested){
+//                            self.RequestButton.isEnabled = false
+//                            return
+//                        }
+//                        else{
+//                            self.dc.deleteEvent(event: event)
+//                        }
+//                    }
+//                }
+//                else{
+//
+//                    event = Event(studentID: self.post?["creatorID"] as! String, tutorID: self.uid, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.post?["creatorName"] as! String, tutorName: self.selfUser.name, requesterID: self.uid)
+//
+//                    self.dc.ifRequestedBefore(event: event){
+//                        (b) in isRequested = (b)
+//                        if(isRequested){
+//                            self.RequestButton.isEnabled = false
+//                            return
+//                        }
+//                        else{
+//                            self.dc.deleteEvent(event: event)
+//                        }
+//                    }
+//                }
                 self.showProfile()
             }
+            
+            
         }
     }
     
