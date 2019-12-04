@@ -197,6 +197,7 @@ class SearchPageViewController: UIViewController, UITableViewDataSource, UITable
         // Pass the selected postCard to other's profile page
         let othersProfileViewController = segue.destination as! ViewProfileViewController
         othersProfileViewController.post = post
+        othersProfileViewController.shouldShowRequest = true
     }
     
 

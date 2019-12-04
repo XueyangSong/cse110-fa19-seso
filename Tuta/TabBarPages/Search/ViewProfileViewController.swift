@@ -37,6 +37,7 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
         self.navigationController?.isNavigationBarHidden = false
     }
     
+    public var shouldShowRequest = true
     
     let dc = DataController()
     var user : TutaUser = TutaUser()
@@ -218,6 +219,10 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
         MessageMeButton.backgroundColor = darkBlueColor
         MessageMeButton.setTitleColor(UIColor.white, for: .normal)
         MessageMeButton.titleLabel?.font = .systemFont(ofSize: 18)
+        
+        if !shouldShowRequest {
+            RequestButton.isHidden = true
+        }
     }
     
     func showProfile(){
