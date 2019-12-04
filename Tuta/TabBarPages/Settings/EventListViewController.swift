@@ -198,9 +198,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         let event = SectionArray[indexPath.section].events[indexPath.row]
         
         cell.textLabel?.text = event.eventToString(uid: self.uid!)
-        
-        otherPersonId = event.getOtherPersonId()
-        
+                
         return cell
         
     }
@@ -237,6 +235,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
             vc.setEvent(event: event)
             // pass self to view controller
             vc.parentVC = self
+            vc.otherPersonId = event.getOtherPersonId()
                         
             self.present(vc, animated: true, completion: nil)
             tableView.deselectRow(at: indexPath, animated: true)

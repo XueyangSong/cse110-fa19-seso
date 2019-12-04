@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>422459108077-5ipg0f395p40p1on990auj4b0f6do2tu.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.422459108077-5ipg0f395p40p1on990auj4b0f6do2tu</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAUmi-MhuOARd4tvOdnUWKiF6_qRe-5fe8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>422459108077</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.Jiahe.Tuta</string>
+	<key>PROJECT_ID</key>
+	<string>tuta-c481d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>tuta-c481d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:422459108077:ios:da435d080d50944d3d3ae4</string>
+	<key>DATABASE_URL</key>
+	<string>https://tuta-c481d.firebaseio.com</string>
+</dict>
+</plist>
