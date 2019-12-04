@@ -29,12 +29,12 @@
 		41C8FE4F2371444A00952CFB /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C8FE4E2371444A00952CFB /* DataController.swift */; };
 		41C8FE512371450D00952CFB /* TutaUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C8FE502371450D00952CFB /* TutaUser.swift */; };
 		41D020E2237C983B00910A14 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D020E1237C983B00910A14 /* Event.swift */; };
+		41DFA38D23987D3F009C8DF9 /* ProfileDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DFA38C23987D3F009C8DF9 /* ProfileDelegate.swift */; };
 		490AB8A42376D87400C63347 /* SearchPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB897237693E000C63347 /* SearchPageViewController.swift */; };
 		490AB8A52376D88C00C63347 /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C8FE522371492600952CFB /* PostCard.swift */; };
 		490AB8A62376D89400C63347 /* PostcardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB8992376984D00C63347 /* PostcardTableViewCell.swift */; };
 		490AB8AA2377706A00C63347 /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB8A92377706A00C63347 /* DescriptionViewController.swift */; };
 		490AB8AC2377708300C63347 /* AddCourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB8AB2377708300C63347 /* AddCourseController.swift */; };
-		490AB8AE237772AF00C63347 /* ProfileDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490AB8AD237772AF00C63347 /* ProfileDelegate.swift */; };
 		49FFF4A1238E544F0069A81F /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FFF4A0238E544F0069A81F /* RateViewController.swift */; };
 		5A0C3ADA23926E4600A68C9B /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0C3AD923926E4600A68C9B /* RecoverPasswordViewController.swift */; };
 		5A0C3ADE23951D0300A68C9B /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0C3ADD23951D0300A68C9B /* ChangePasswordViewController.swift */; };
@@ -75,11 +75,11 @@
 		41C8FE502371450D00952CFB /* TutaUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutaUser.swift; sourceTree = "<group>"; };
 		41C8FE522371492600952CFB /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
 		41D020E1237C983B00910A14 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		41DFA38C23987D3F009C8DF9 /* ProfileDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDelegate.swift; sourceTree = "<group>"; };
 		490AB897237693E000C63347 /* SearchPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageViewController.swift; sourceTree = "<group>"; };
 		490AB8992376984D00C63347 /* PostcardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostcardTableViewCell.swift; sourceTree = "<group>"; };
 		490AB8A92377706A00C63347 /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		490AB8AB2377708300C63347 /* AddCourseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseController.swift; sourceTree = "<group>"; };
-		490AB8AD237772AF00C63347 /* ProfileDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileDelegate.swift; path = Tuta/TabBarPages/ProfileDelegate.swift; sourceTree = "<group>"; };
 		49FFF4A0238E544F0069A81F /* RateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
 		5A0C3AD923926E4600A68C9B /* RecoverPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordViewController.swift; sourceTree = "<group>"; };
 		5A0C3ADD23951D0300A68C9B /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
@@ -109,7 +109,6 @@
 		1F83DCD8235B300C00DAFB89 = {
 			isa = PBXGroup;
 			children = (
-				490AB8AD237772AF00C63347 /* ProfileDelegate.swift */,
 				1F83DCE3235B300C00DAFB89 /* Tuta */,
 				1F83DCE2235B300C00DAFB89 /* Products */,
 				848DB37B9286BAC8C717041D /* Pods */,
@@ -175,6 +174,7 @@
 		1F9AC5052361254600E3A4FE /* TabBarPages */ = {
 			isa = PBXGroup;
 			children = (
+				41DFA38C23987D3F009C8DF9 /* ProfileDelegate.swift */,
 				490AB897237693E000C63347 /* SearchPageViewController.swift */,
 				7F3E1C832383AF5800F8088B /* PopWindowViewController.swift */,
 				7FB494A82390B5A400ACB1F5 /* MyProfileViewController.swift */,
@@ -376,12 +376,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FF1F2D52389069D0092AD83 /* EventTableViewCell.swift in Sources */,
-				490AB8AE237772AF00C63347 /* ProfileDelegate.swift in Sources */,
 				490AB8AC2377708300C63347 /* AddCourseController.swift in Sources */,
 				7F3E1C842383AF5800F8088B /* PopWindowViewController.swift in Sources */,
 				1FF1F2E22389BC2F0092AD83 /* ExpandableEventsArray.swift in Sources */,
 				490AB8AA2377706A00C63347 /* DescriptionViewController.swift in Sources */,
 				1F8505CA2392353C007EB951 /* ConfirmEventViewController.swift in Sources */,
+				41DFA38D23987D3F009C8DF9 /* ProfileDelegate.swift in Sources */,
 				49FFF4A1238E544F0069A81F /* RateViewController.swift in Sources */,
 				490AB8A62376D89400C63347 /* PostcardTableViewCell.swift in Sources */,
 				490AB8A52376D88C00C63347 /* PostCard.swift in Sources */,
