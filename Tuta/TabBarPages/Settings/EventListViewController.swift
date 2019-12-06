@@ -198,7 +198,8 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         let event = SectionArray[indexPath.section].events[indexPath.row]
         
         cell.textLabel?.text = event.eventToString(uid: self.uid!)
-                
+        
+        
         return cell
         
     }
@@ -236,7 +237,6 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
             // pass self to view controller
             vc.parentVC = self
             vc.otherPersonId = event.getOtherPersonId()
-                        
             self.present(vc, animated: true, completion: nil)
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -261,8 +261,6 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         if(indexPath.section == 2) {
             let sb : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(identifier: "RateViewController") as RateViewController
-//            vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
-//            vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
             
             // get event
             let event = SectionArray[indexPath.section].events[indexPath.row]
@@ -274,18 +272,4 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
     }
-    
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Find the selected event
-        let cell = sender as! UITableViewCell
-        let indexPath = tableView.indexPath(for: cell)!
-        let event = finishedEventsArray[indexPath.row]
-        let eventID = event.eventID
-        print("Selected event ID is >>>>>>>>>>>>>>>>>>> " + eventID)
-        
-        // Pass the eventID to the rate view controller
-        let rateViewController = segue.destination as! RateViewController
-        rateViewController.eventID = eventID
-    }*/
 }

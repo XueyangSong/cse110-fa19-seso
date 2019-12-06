@@ -219,12 +219,7 @@ public class SignUpViewController: UIViewController, UITextFieldDelegate {
                   return
                 }
                 SignUpViewController.firstSignUp = 1
-                // print("\(user.email!) created")
-                // jump to login page
-                //print("presenting home page")
-                SignUpViewController.firstSignUp = 1
                 Auth.auth().currentUser!.sendEmailVerification()
-                //self.signUpDelegate?.didReceiveData(value: "Verification email has been sent")
                 
                 
                 //store user data
@@ -253,12 +248,7 @@ public class SignUpViewController: UIViewController, UITextFieldDelegate {
                 vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
                 vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
                 self.present(vc, animated: true, completion: nil)
-                
-                // vc.showToast(message: "verification email sent", font: self.myFont)
-                // self.showToastForSignUp()
-                
               }
-              // [END_EXCLUDE]
         }
     }
     
@@ -272,10 +262,8 @@ public class SignUpViewController: UIViewController, UITextFieldDelegate {
             
             if activeField != nil {
                 distance = keyboardY - (activeField?.frame.origin.y)! - (activeField?.frame.height)! * 2 - self.view.frame.origin.y
-                //print(distance!)
                 if (distance?.isLess(than: CGFloat.zero))! {
                     self.view.frame.origin.y += distance!
-                    //print("screen moved")
                 }
             }
         }
@@ -286,15 +274,5 @@ public class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         self.view.frame.origin.y = 0
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

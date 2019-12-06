@@ -18,11 +18,6 @@ class CustomizedTabBar: UITabBar {
         self.addShape()
         self.tintColor = darkBlueColor
     }
-    //点击在按钮里面
-    /*override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        let buttonRadius: CGFloat = 35
-        return abs(self.center.x - point.x) > buttonRadius || abs(point.y) > buttonRadius
-    }*/
     
     private func addShape(){
         let shapeLayer = CAShapeLayer()

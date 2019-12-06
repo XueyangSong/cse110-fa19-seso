@@ -105,6 +105,7 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
                         else{
                             self.dc.uploadEventToCloud(event: event)
                             self.showToast(message: "Successfully requested", font: myFont)
+                            self.RequestButton.backgroundColor = UIColor.gray
                             print("success")
                         }
                     }
@@ -123,6 +124,7 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
                         else{
                             self.showToast(message: "Successfully requested", font: myFont)
                             self.dc.uploadEventToCloud(event: event)
+                            self.RequestButton.backgroundColor = UIColor.gray
                         }
                     }
                 }
@@ -131,6 +133,8 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
         else{
             dc.deletePostCard(cardDic: post)
             self.showToast(message: "Successfully deleted", font: myFont)
+            self.RequestButton.isEnabled = false
+            self.RequestButton.backgroundColor = UIColor.gray
         }
     }
     
@@ -154,10 +158,17 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
         super.viewDidLoad()
         //dc.delegate = self
         setUpUI()
-        
         userID = (post["creatorID"]as? String)!
+        var isExist = true
         if(uid == userID){
             RequestButton.setTitle("delete", for: .normal)
+            dc.checkPostcardExists(cardInfo: post){
+                (b) in isExist = b
+                if (!isExist){
+                    self.RequestButton.isEnabled = false
+                    self.RequestButton.backgroundColor = UIColor.gray
+                }
+            }
             self.showProfile()
         }
         else{
@@ -176,36 +187,38 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
             
             dc.getUserFromCloud(userID: uid){
                 (u) in self.selfUser = u
-//                if(type! == "tutor"){
-//
-//                    event = Event(studentID: self.uid, tutorID: self.post?["creatorID"] as! String, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.selfUser.name, tutorName: self.post?["creatorName"] as! String, requesterID: self.uid)
-//
-//
-//                    self.dc.ifRequestedBefore(event: event){ (b) in isRequested = (b)
-//                        if(isRequested){
-//                            self.RequestButton.isEnabled = false
-//                            return
-//                        }
-//                        else{
-//                            self.dc.deleteEvent(event: event)
-//                        }
-//                    }
-//                }
-//                else{
-//
-//                    event = Event(studentID: self.post?["creatorID"] as! String, tutorID: self.uid, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.post?["creatorName"] as! String, tutorName: self.selfUser.name, requesterID: self.uid)
-//
-//                    self.dc.ifRequestedBefore(event: event){
-//                        (b) in isRequested = (b)
-//                        if(isRequested){
-//                            self.RequestButton.isEnabled = false
-//                            return
-//                        }
-//                        else{
-//                            self.dc.deleteEvent(event: event)
-//                        }
-//                    }
-//                }
+                if(type! == "tutor"){
+
+                    event = Event(studentID: self.uid, tutorID: self.post?["creatorID"] as! String, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.selfUser.name, tutorName: self.post?["creatorName"] as! String, requesterID: self.uid)
+
+                    
+                    self.dc.ifRequestedBefore(event: event){ (b) in isRequested = (b)
+                        if(isRequested){
+                            self.RequestButton.isEnabled = false
+                            self.RequestButton.backgroundColor = UIColor.gray
+                            return
+                        }
+                        else{
+                            self.dc.deleteEvent(event: event)
+                        }
+                    }
+                }
+                else{
+
+                    event = Event(studentID: self.post?["creatorID"] as! String, tutorID: self.uid, time: time, date: date, course: self.post?["course"] as! String, status: "requested", studentName: self.post?["creatorName"] as! String, tutorName: self.selfUser.name, requesterID: self.uid)
+
+                    self.dc.ifRequestedBefore(event: event){
+                        (b) in isRequested = (b)
+                        if(isRequested){
+                            self.RequestButton.isEnabled = false
+                            self.RequestButton.backgroundColor = UIColor.gray
+                            return
+                        }
+                        else{
+                            self.dc.deleteEvent(event: event)
+                        }
+                    }
+                }
                 self.showProfile()
             }
             
@@ -262,7 +275,6 @@ class ViewProfileViewController: UIViewController,MFMessageComposeViewController
 
            let rect = CGRect.init(x: (self.view.frame.width - 250) / 2, y: ViewDescriptionTextView.frame.origin.y - 55, width: 250, height: 35)
            let toastLabel = UILabel(frame: rect)
-               //CGRect(x: self.view.frame.size.width/2 - 120, y: self.view.frame.size.height-100, width: 250, height: 35))
            
            toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
            toastLabel.textColor = UIColor.white

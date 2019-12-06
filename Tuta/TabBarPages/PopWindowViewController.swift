@@ -80,19 +80,6 @@ class PopWindowViewController: UIViewController{
     }
     
     @objc func keyboardWillShow(notification: Notification) {
-//        if let keyboardFrame : NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-//            let keyboardRectangle = keyboardFrame.cgRectValue
-//            let keyboardY = keyboardRectangle.origin.y
-//
-//            if activeField != nil {
-//                distance = keyboardY - (activeField?.frame.origin.y)! - (activeField?.frame.height)! * 2 - self.view.frame.origin.y
-//                //print(distance!)
-//                if (distance.isLess(than: CGFloat.zero)) {
-//                    self.view.frame.origin.y += distance
-//                    //print("screen moved")
-//                }
-//            }
-//        }
     }
 
     @objc func keyboardWillHide(notification: Notification) {
