@@ -112,21 +112,8 @@ The User must have an Iphone 11 or Iphone 11 Pro Max.
 
 # Technical Support
 
-$$\begin{matrix} Duan\ Zhen&zhen.duan.nfd@gmail.com&Tech\ Lead \\ Jiahe Liu&jil061@ucsd.edu&Business\ Analyst \\ Jamie\ Song&xus023@ucsd.edu&Project\ Manager \\ Mingyu\ Chen&mic215@ucsd.edu&Algorithm\ Specialist \end{matrix}$$
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+| Duan Zhen   | zhen.duan.nfd@gmail.com | Tech Lead            |
+| :---------- | ----------------------- | -------------------- |
+| Jiahe Liu   | jil061@ucsd.edu         | Business Analyst     |
+| Jamie Song  | xus023@ucsd.edu         | Project Manager      |
+| Mingyu Chen | mic215@ucsd.edu         | Algorithm Specialist |
